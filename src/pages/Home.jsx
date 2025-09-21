@@ -3,8 +3,8 @@ import { Github, PlayCircle } from "lucide-react";
 
 function HomePage({ isLocalMode }) {
     return (
-        <div className="p-8 md:p-12 space-y-8 max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+        <div className="p-8 md:p-12 max-w-4xl mx-auto text-center space-y-6">
+            <h1 className="text-2xl md:text-5xl font-extrabold text-gray-900 leading-tight">
                 Welcome to your Data Engineering Prep App!
             </h1>
             <p className="text-lg text-gray-600">

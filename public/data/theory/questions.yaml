@@ -1,0 +1,12 @@
+- id: 1
+  stack: spark
+  question: "What is RDD in Spark?"
+  answer: "RDD stands for Resilient Distributed Dataset, the fundamental data structure of Spark."
+- id: 2
+  stack: sql
+  question: "What is a primary key in SQL?"
+  answer: "A primary key is a column or set of columns that uniquely identifies a row in a table."
+- id: 3
+  stack: airflow
+  question: "What is an Airflow DAG?"
+  answer: "A DAG (Directed Acyclic Graph) is a collection of tasks with dependencies that Airflow runs."

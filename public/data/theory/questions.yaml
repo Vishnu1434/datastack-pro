@@ -1,12 +1,101 @@
 - id: 1
   stack: spark
+  type: theory
   question: "What is RDD in Spark?"
   answer: "RDD stands for Resilient Distributed Dataset, the fundamental data structure of Spark."
+
 - id: 2
   stack: sql
+  type: theory
   question: "What is a primary key in SQL?"
   answer: "A primary key is a column or set of columns that uniquely identifies a row in a table."
+
 - id: 3
   stack: airflow
+  type: theory
   question: "What is an Airflow DAG?"
   answer: "A DAG (Directed Acyclic Graph) is a collection of tasks with dependencies that Airflow runs."
+
+# -------------------------
+# MCQ Questions
+# -------------------------
+- id: 3
+  type: mcq
+  stack: airflow
+  question: "What does an Airflow DAG represent?"
+  options:
+    - "A directed acyclic graph of tasks"
+    - "A single Python function"
+    - "A database schema"
+    - "A Kubernetes Pod"
+  correct: "A directed acyclic graph of tasks"
+
+- id: 4
+  type: mcq
+  stack: sql
+  question: "Which SQL command is used to remove a table from a database?"
+  options:
+    - "DELETE TABLE table_name;"
+    - "REMOVE table_name;"
+    - "DROP TABLE table_name;"
+    - "TRUNCATE TABLE table_name;"
+  correct: "DROP TABLE table_name;"
+
+# -------------------------
+# Timed MCQ (same as MCQ, timer is frontend logic)
+# -------------------------
+- id: 5
+  type: mcq
+  stack: python
+  question: "What is the output of len([[]]) in Python?"
+  options:
+    - "0"
+    - "1"
+    - "2"
+    - "Error"
+  correct: "1"
+
+# -------------------------
+# Exam Simulation (group of questions)
+# -------------------------
+- id: 6
+  type: exam
+  stack: aws
+  question: "Which AWS service is best suited for real-time data streaming?"
+  options:
+    - "Amazon S3"
+    - "Amazon Kinesis"
+    - "Amazon RDS"
+    - "Amazon DynamoDB"
+  correct: "Amazon Kinesis"
+
+- id: 7
+  type: exam
+  stack: kubernetes
+  question: "What does a Kubernetes Service do?"
+  options:
+    - "Manages storage volumes"
+    - "Exposes a set of Pods as a network service"
+    - "Schedules Pods onto nodes"
+    - "Handles cluster authentication"
+  correct: "Exposes a set of Pods as a network service"
+
+# -------------------------
+# Coding Stub Questions
+# -------------------------
+- id: 8
+  type: coding
+  stack: python
+  question: "Write a Python function to reverse a string."
+  solution: |
+    def reverse_string(s: str) -> str:
+        return s[::-1]
+
+- id: 9
+  type: coding
+  stack: scala
+  question: "Write a Scala function to compute factorial of a number."
+  solution: |
+    def factorial(n: Int): Int = {
+      if (n == 0) 1 else n * factorial(n - 1)
+    }

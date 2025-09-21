@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Book, CheckCircle, Code, Home } from "lucide-react";
+import { Home, CheckCircle } from "lucide-react";
 
 import HomePage from "./pages/Home.jsx";
-import TheoryPage from "./pages/Theory.jsx";
-import MCQsPage from "./pages/MCQs.jsx";
-import CodingPage from "./pages/Coding.jsx";
+import PracticePage from "./pages/Practice.jsx";
 
 const navItems = [
     { name: "Home", icon: Home, page: "home" },
-    { name: "Theory", icon: Book, page: "theory" },
-    { name: "MCQs", icon: CheckCircle, page: "mcqs" },
-    { name: "Coding Questions", icon: Code, page: "coding" },
+    { name: "Practice", icon: CheckCircle, page: "practice" },
 ];
 
 function App() {
@@ -34,12 +30,8 @@ function App() {
         switch (currentPage) {
             case "home":
                 return <HomePage isLocalMode={isLocalMode} />;
-            case "theory":
-                return <TheoryPage />;
-            case "mcqs":
-                return <MCQsPage />;
-            case "coding":
-                return <CodingPage isLocalMode={isLocalMode} />;
+            case "practice":
+                return <PracticePage />;
             default:
                 return <HomePage isLocalMode={isLocalMode} />;
         }
@@ -63,8 +55,8 @@ function App() {
                             >
                                 <item.icon className="h-5 w-5 mr-2" />
                                 <span className="font-medium hidden sm:inline-block">
-                                  {item.name}
-                                </span>
+                  {item.name}
+                </span>
                             </button>
                         ))}
                     </div>

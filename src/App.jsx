@@ -70,7 +70,7 @@ function App() {
             <main className="flex-grow">{renderPage()}</main>
 
             {/* Footer */}
-            <footer className="bg-white p-4 text-center text-sm text-gray-500 shadow-inner mt-8">
+            <footer className="bg-white p-4 text-center text-sm text-gray-500 shadow-inner">
                 Designed & Built by Gunji Vishnu Teja.
             </footer>
         </div>

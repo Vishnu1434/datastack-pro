@@ -8,8 +8,8 @@ import SurvivalMode from "../services/practiceModes/SurvivalMode";
 const modes = [
     { id: "flashcard", label: "Flashcards" },
     { id: "mcq", label: "MCQs" },
-    { id: "exam", label: "Exam Simulation" },
-    { id: "daily", label: "Daily Challenge" },
+    { id: "adaptive", label: "Adaptive Mode" },
+    { id: "revision", label: "Revision Mode" },
     { id: "survival", label: "Survival Mode" },
 ];
 
@@ -34,9 +34,9 @@ function PracticePage() {
     };
 
     return (
-        <div className="p-4 md:p-6 max-w-5xl mx-auto space-y-6">
+        <div className="flex flex-col flex-1 p-4 w-full h-[calc(100vh-4rem-4rem)]">
             {/* Tabs */}
-            <div className="flex space-x-3 border-b border-gray-200 pb-2">
+            <div className="flex border-b border-gray-200">
                 {modes.map((mode) => (
                     <button
                         key={mode.id}
@@ -53,7 +53,9 @@ function PracticePage() {
             </div>
 
             {/* Mode Content */}
-            <div className="bg-white p-6 rounded-lg shadow">{renderMode()}</div>
+            <div className="flex-1 bg-white p-4 md:p-6 rounded-lg shadow overflow-auto">
+                {renderMode()}
+            </div>
         </div>
     );
 }

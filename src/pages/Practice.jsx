@@ -67,12 +67,13 @@ function PracticePage() {
     }, [selectedTechStacks]);
 
     // Measure and set fixed widths based on longest option per dropdown
-    // For right-side filters, include checkbox + spacing to prevent dropdowns from exceeding button width
+    // For right-side filters, include checkbox + spacing and scrollbar width to prevent dropdowns from exceeding button width
     const measureAndSetWidth = (key, options, config = {}) => {
         if (!Array.isArray(options) || options.length === 0) return;
         const { includeCheckbox = false, buttonLabel = "" } = config;
 
         let maxWidth = 0;
+        const DROPDOWN_MAX_HEIGHT_PX = 240; // corresponds to Tailwind max-h-60 (15rem)
 
         const container = document.createElement("div");
         container.style.visibility = "hidden";
@@ -81,19 +82,29 @@ function PracticePage() {
         container.style.top = "-9999px";
         document.body.appendChild(container);
 
-        if (includeCheckbox) {
-            const labelEl = document.createElement("label");
-            labelEl.className = "flex items-center px-3 py-2 text-sm";
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.className = "mr-2";
-            const textEl = document.createElement("span");
-            labelEl.appendChild(checkbox);
-            labelEl.appendChild(textEl);
-            container.appendChild(labelEl);
+        // Create a menu element that mimics the dropdown so we can detect scrollbar
+        const menu = document.createElement("div");
+        menu.style.maxHeight = `${DROPDOWN_MAX_HEIGHT_PX}px`;
+        menu.style.overflow = "auto";
+        menu.className = "absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0";
+        container.appendChild(menu);
 
+        if (includeCheckbox) {
             options.forEach((text) => {
+                const labelEl = document.createElement("label");
+                labelEl.className = "flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm";
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "mr-2";
+                labelEl.appendChild(checkbox);
+
+                const textEl = document.createElement("span");
                 textEl.textContent = text;
+                labelEl.appendChild(textEl);
+
+                menu.appendChild(labelEl);
+
                 const w = labelEl.offsetWidth;
                 if (w > maxWidth) maxWidth = w;
             });
@@ -107,14 +118,31 @@ function PracticePage() {
                 if (bw > maxWidth) maxWidth = bw;
             }
         } else {
-            const buttonEl = document.createElement("button");
-            buttonEl.className = BUTTON_CLASSES;
-            container.appendChild(buttonEl);
+            // single-select style items
             options.forEach((text) => {
-                buttonEl.textContent = text;
-                const w = buttonEl.offsetWidth;
+                const itemEl = document.createElement("div");
+                itemEl.className = "px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm";
+                itemEl.textContent = text;
+                menu.appendChild(itemEl);
+                const w = itemEl.offsetWidth;
                 if (w > maxWidth) maxWidth = w;
             });
+
+            if (buttonLabel) {
+                const buttonEl = document.createElement("button");
+                buttonEl.className = BUTTON_CLASSES;
+                buttonEl.textContent = buttonLabel;
+                container.appendChild(buttonEl);
+                const bw = buttonEl.offsetWidth;
+                if (bw > maxWidth) maxWidth = bw;
+            }
+        }
+
+        // If overflow (scrollbar) exists, include scrollbar width in measurement
+        const hasVerticalOverflow = menu.scrollHeight > menu.clientHeight;
+        if (hasVerticalOverflow) {
+            const scrollbarWidth = menu.offsetWidth - menu.clientWidth;
+            if (scrollbarWidth > 0) maxWidth += scrollbarWidth;
         }
 
         document.body.removeChild(container);

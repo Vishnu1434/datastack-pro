@@ -206,7 +206,7 @@ function PracticePage() {
                                 checked={selectedArray.includes(opt)}
                                 onChange={() => toggleSelection(opt, setSelectedArray, selectedArray)}
                             />
-                            <span className="truncate block">{opt}</span>
+                            <span className="whitespace-nowrap block">{opt}</span>
                         </label>
                     ))}
                 </div>
@@ -245,7 +245,7 @@ function PracticePage() {
                                 setDropdownOpen((prev) => ({ ...prev, [key]: false }));
                             }}
                         >
-                            <span className="truncate block">{opt}</span>
+                            <span className="whitespace-nowrap block">{opt}</span>
                         </div>
                     ))}
                 </div>

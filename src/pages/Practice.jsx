@@ -40,6 +40,20 @@ function PracticePage() {
     const [buttonWidths, setButtonWidths] = useState({});
 
     const dropdownRefs = useRef({});
+    const dropdownMenuRefs = useRef({});
+
+    useEffect(() => {
+        const handler = (e) => {
+            const btns = Object.values(dropdownRefs.current || {});
+            const menus = Object.values(dropdownMenuRefs.current || {});
+            const clickedInside = btns.some((el) => el && el.contains(e.target)) || menus.some((el) => el && el.contains(e.target));
+            if (!clickedInside) {
+                setDropdownOpen({ mode: false, difficulty: false, tech: false, topic: false, practice: false });
+            }
+        };
+        document.addEventListener("click", handler);
+        return () => document.removeEventListener("click", handler);
+    }, []);
 
     useEffect(() => {
         let topics = [];
@@ -93,7 +107,12 @@ function PracticePage() {
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
+                onClick={() => setDropdownOpen((prev) => {
+                    const wasOpen = !!prev[key];
+                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
+                    newState[key] = !wasOpen;
+                    return newState;
+                })}
                 className={BUTTON_CLASSES}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
@@ -103,7 +122,8 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}>
+                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt) => (
                         <label
                             key={opt}
@@ -128,7 +148,12 @@ function PracticePage() {
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
+                onClick={() => setDropdownOpen((prev) => {
+                    const wasOpen = !!prev[key];
+                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
+                    newState[key] = !wasOpen;
+                    return newState;
+                })}
                 className={BUTTON_CLASSES}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
@@ -138,7 +163,8 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}>
+                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt) => (
                         <div
                             key={opt}

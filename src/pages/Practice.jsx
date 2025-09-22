@@ -232,13 +232,13 @@ function PracticePage() {
                     {options.map((opt, idx) => (
                         <div
                             key={`${opt}-${idx}`}
-                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm whitespace-nowrap"
                             onClick={() => {
                                 setSelected(opt);
                                 setDropdownOpen((prev) => ({ ...prev, [key]: false }));
                             }}
                         >
-                            {opt}
+                            <span className="truncate block">{opt}</span>
                         </div>
                     ))}
                 </div>

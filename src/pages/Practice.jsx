@@ -151,8 +151,9 @@ function PracticePage() {
     };
 
     useEffect(() => {
-        measureAndSetWidth("mode", modes);
-        measureAndSetWidth("practice", practiceTypes);
+        // Ensure left-side buttons account for their own label width as well as their options
+        measureAndSetWidth("mode", modes, { buttonLabel: "Flashcards" });
+        measureAndSetWidth("practice", practiceTypes, { buttonLabel: "Self-Paced" });
         measureAndSetWidth("difficulty", difficulties, { includeCheckbox: true, buttonLabel: "Difficulty" });
         measureAndSetWidth("tech", techStacks, { includeCheckbox: true, buttonLabel: "Tech Stack" });
         measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });

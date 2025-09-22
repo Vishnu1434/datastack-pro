@@ -92,9 +92,9 @@ export default function FlashcardMode() {
     <div className="flex flex-col gap-4">
       <div className="bg-white border rounded-md shadow-sm overflow-auto" style={{ maxHeight: 420 }}>
         <div className="sticky top-0 bg-white z-20 p-4 flex items-center justify-between border-b">
-          <h3 className="text-lg font-bold">Theory Questions ({questions.length})</h3>
+          <h3 className="text-lg font-bold text-gray-900"><span className="text-blue-600">Theory</span> Questions ({questions.length})</h3>
           <div className="flex items-center gap-2">
-            <button onClick={shuffleQuestions} aria-label="Shuffle questions" className="flex items-center gap-2 px-3 py-2 bg-white border rounded text-sm hover:shadow">
+            <button onClick={shuffleQuestions} aria-label="Shuffle questions" className="flex items-center gap-2 px-3 py-2 bg-gray-50 border rounded text-sm text-blue-600 hover:shadow">
               <Shuffle size={16} />
               <span className="hidden sm:inline">Shuffle</span>
             </button>
@@ -106,15 +106,17 @@ export default function FlashcardMode() {
             const stackLabel = q.stack || q.source || (q.tags && q.tags[0]) || "";
             const Icon = iconForStack(stackLabel);
             return (
-              <article key={`${q.question}-${idx}`} className="bg-white border rounded-md shadow-sm p-4 flex flex-col w-full">
-                <div className="flex items-start gap-4">
+              <article key={`${q.question}-${idx}`} className="relative bg-white border border-gray-200 rounded-md shadow-sm p-4 flex flex-col w-full hover:shadow-md transition-shadow duration-150">
+                <div className="absolute left-0 top-0 h-full w-1 rounded-l-md bg-blue-600" />
+
+                <div className="flex items-start gap-4 ml-4">
                   <div className="flex-shrink-0 text-gray-700">
                     {Icon ? (
-                      <div className="w-10 h-10 flex items-center justify-center text-black">
+                      <div className="w-10 h-10 flex items-center justify-center text-blue-600">
                         {Icon}
                       </div>
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-semibold">
                         {(stackLabel || "?")
                           .toString()
                           .split(/[^A-Za-z0-9]+/)
@@ -140,7 +142,7 @@ export default function FlashcardMode() {
                           onClick={() => toggleAnswer(idx)}
                           aria-expanded={openIndex === idx}
                           aria-label={openIndex === idx ? "Hide answer" : "Show answer"}
-                          className="p-2 rounded-md bg-gray-50 hover:bg-gray-100 border"
+                          className={`p-2 rounded-md border ${openIndex === idx ? 'bg-blue-50 border-blue-100' : 'bg-gray-50 hover:bg-gray-100'}`}
                         >
                           <BookOpen size={18} className={`${openIndex === idx ? "text-blue-600" : "text-gray-700"}`} />
                         </button>

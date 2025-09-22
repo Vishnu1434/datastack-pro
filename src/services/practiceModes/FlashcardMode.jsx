@@ -60,7 +60,7 @@ export default function FlashcardMode() {
   if (!questions.length) return <p>Loading flashcards...</p>;
 
   return (
-      <div className="flex flex-col h-[70vh] bg-gray-50 rounded-md overflow-hidden">
+      <div className="flex flex-col h-[63vh] bg-gray-50 rounded-md overflow-hidden">
         {/* Header - stays fixed, no scroll */}
         <div className="flex items-center justify-between p-3 bg-white shadow-sm flex-shrink-0 w-full">
           <h3 className="text-lg font-bold text-gray-900">
@@ -84,7 +84,6 @@ export default function FlashcardMode() {
                   className="bg-white rounded-md shadow p-4 hover:shadow-md transition-shadow w-full"
               >
                 <div className="flex items-start gap-4">
-                  {/* Updated container classes */}
                   <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-lg">
                     {iconForStack(q.stack || q.source || "")}
                   </div>

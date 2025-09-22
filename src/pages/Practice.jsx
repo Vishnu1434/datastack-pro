@@ -159,7 +159,10 @@ function PracticePage() {
         measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
     }, []);
 
-    // Topic width measured in initial effect including checkbox width
+    useEffect(() => {
+        // Re-measure topic width when availableTopics change (e.g., selecting tech stacks)
+        measureAndSetWidth("topic", availableTopics.length ? availableTopics : ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
+    }, [availableTopics]);
 
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));
@@ -186,7 +189,7 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined), boxSizing: 'border-box' }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <label
@@ -227,7 +230,7 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined), boxSizing: 'border-box' }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <div

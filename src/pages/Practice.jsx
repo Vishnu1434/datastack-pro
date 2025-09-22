@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FlashcardMode from "../services/practiceModes/FlashcardMode";
 import MCQMode from "../services/practiceModes/MCQMode";
 // import AdaptiveMode from "../services/practiceModes/AdaptiveMode";
@@ -19,16 +19,13 @@ const topicsByStack = {
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
 function PracticePage() {
-    const [activeModes, setActiveModes] = useState(["Flashcards"]);
+    const [activeMode, setActiveMode] = useState("Flashcards");
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
     const [selectedTechStacks, setSelectedTechStacks] = useState([]);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [availableTopics, setAvailableTopics] = useState([]);
-    const [selectedPracticeTypes, setSelectedPracticeTypes] = useState(["Self-Paced"]);
-    const [overallTime, setOverallTime] = useState(30);
-    const [perQuestionTime, setPerQuestionTime] = useState(1);
+    const [selectedPracticeType, setSelectedPracticeType] = useState("Self-Paced");
 
-    // Dropdown open state
     const [dropdownOpen, setDropdownOpen] = useState({
         mode: false,
         difficulty: false,
@@ -36,6 +33,8 @@ function PracticePage() {
         topic: false,
         practice: false,
     });
+
+    const dropdownRefs = useRef({});
 
     useEffect(() => {
         let topics = [];
@@ -51,29 +50,21 @@ function PracticePage() {
         else arraySetter([...array, value]);
     };
 
+    // ✅ Multi-select dropdown with checkboxes (always shows label)
     const renderCheckboxDropdown = (label, options, selectedArray, setSelectedArray, key) => (
-        <div className="relative">
+        <div className="relative inline-block">
             <button
-                onClick={() =>
-                    setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))
-                }
-                className="px-3 py-2 border rounded-md bg-white flex items-center justify-between text-sm font-medium shadow-sm hover:bg-gray-100"
+                ref={(el) => (dropdownRefs.current[key] = el)}
+                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
+                className="px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap"
             >
                 {label}
-                <svg
-                    className={`ml-1 w-4 h-4 transition-transform duration-200 ${
-                        dropdownOpen[key] ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
             </button>
 
             {dropdownOpen[key] && (
-                <div className="absolute z-10 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+                <div
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
+                    style={{ minWidth: dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined }}>
                     {options.map((opt) => (
                         <label
                             key={opt}
@@ -93,26 +84,51 @@ function PracticePage() {
         </div>
     );
 
+    // ✅ Single-select dropdown (shows only selected value)
+    const renderSingleSelectDropdown = (options, selected, setSelected, key) => (
+        <div className="relative inline-block">
+            <button
+                ref={(el) => (dropdownRefs.current[key] = el)}
+                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
+                className="px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap"
+            >
+                {selected}
+            </button>
+
+            {dropdownOpen[key] && (
+                <div
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
+                    style={{ minWidth: dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined }}>
+                    {options.map((opt) => (
+                        <div
+                            key={opt}
+                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                            onClick={() => {
+                                setSelected(opt);
+                                setDropdownOpen((prev) => ({ ...prev, [key]: false }));
+                            }}
+                        >
+                            {opt}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+
     const renderModeComponent = () => {
-        const mode = activeModes[0] || "Flashcards"; // pick first selected
         const props = {
             difficulty: selectedDifficulties,
             techStack: selectedTechStacks,
             topic: selectedTopics,
-            practiceType: selectedPracticeTypes,
-            overallTime,
-            perQuestionTime,
+            practiceType: selectedPracticeType,
         };
 
-        switch (mode) {
+        switch (activeMode) {
             case "Flashcards":
                 return <FlashcardMode {...props} />;
             case "MCQs":
                 return <MCQMode {...props} />;
-            case "Adaptive Mode":
-                return <AdaptiveMode {...props} />;
-            case "Revision Mode":
-                return <RevisionMode {...props} />;
             case "Survival Mode":
                 return <SurvivalMode {...props} />;
             default:
@@ -121,42 +137,26 @@ function PracticePage() {
     };
 
     return (
-        <div className="flex flex-col flex-1 p-4 w-full h-[calc(100vh-4rem-4rem)]">
-            {/* Filter Bar */}
-            <div className="flex flex-wrap gap-3 p-3 bg-gray-50 border-b border-gray-200 items-center">
-                {renderCheckboxDropdown("Mode", modes, activeModes, setActiveModes, "mode")}
-                {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
-                {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}
-                {renderCheckboxDropdown("Topic", availableTopics, selectedTopics, setSelectedTopics, "topic")}
-                {renderCheckboxDropdown("Practice Type", practiceTypes, selectedPracticeTypes, setSelectedPracticeTypes, "practice")}
+        <div className="flex flex-col flex-1 px-3 py-2 w-full h-[calc(100vh-5rem-5rem)]">
+            <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden">
+                {/* Filters bar */}
+                <div className="p-3 bg-blue-600 flex justify-between items-center">
+                    {/* Left side: Mode + Practice Type */}
+                    <div className="flex gap-3">
+                        {renderSingleSelectDropdown(modes, activeMode, setActiveMode, "mode")}
+                        {renderSingleSelectDropdown(practiceTypes, selectedPracticeType, setSelectedPracticeType, "practice")}
+                    </div>
 
-                {/* Time inputs */}
-                {selectedPracticeTypes.includes("Overall Time") && (
-                    <input
-                        type="number"
-                        min={1}
-                        value={overallTime}
-                        onChange={(e) => setOverallTime(parseInt(e.target.value))}
-                        placeholder="Overall Time (min)"
-                        className="px-3 py-2 border rounded-md w-36 text-sm"
-                    />
-                )}
-                {selectedPracticeTypes.includes("Per Question Time") && (
-                    <input
-                        type="number"
-                        min={1}
-                        value={perQuestionTime}
-                        onChange={(e) => setPerQuestionTime(parseInt(e.target.value))}
-                        placeholder="Per Q Time (min)"
-                        className="px-3 py-2 border rounded-md w-36 text-sm"
-                    />
-                )}
-            </div>
+                    {/* Right side: Difficulty + Tech Stack + Topic */}
+                    <div className="flex gap-3">
+                        {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
+                        {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}
+                        {renderCheckboxDropdown("Topic", availableTopics, selectedTopics, setSelectedTopics, "topic")}
+                    </div>
+                </div>
 
-            {/* Practice Content */}
-            {/*<div className="flex-1 bg-white p-4 md:p-6 overflow-auto">{renderModeComponent()}</div>*/}
-            <div className="flex-1 bg-white p-4 md:p-6 rounded-lg shadow overflow-auto">
-                {renderModeComponent()}
+                {/* Practice Content */}
+                <div className="flex-1 bg-white p-4 md:p-6 overflow-auto">{renderModeComponent()}</div>
             </div>
         </div>
     );

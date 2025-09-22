@@ -65,23 +65,57 @@ function PracticePage() {
     }, [selectedTechStacks]);
 
     // Measure and set fixed widths based on longest option per dropdown
-    const measureAndSetWidth = (key, options) => {
+    // For right-side filters, include checkbox + spacing to prevent dropdowns from exceeding button width
+    const measureAndSetWidth = (key, options, config = {}) => {
         if (!Array.isArray(options) || options.length === 0) return;
-        const temp = document.createElement("button");
-        temp.className = BUTTON_CLASSES;
-        temp.style.visibility = "hidden";
-        temp.style.position = "absolute";
-        temp.style.left = "-9999px";
-        temp.style.top = "-9999px";
-        document.body.appendChild(temp);
+        const { includeCheckbox = false, buttonLabel = "" } = config;
 
         let maxWidth = 0;
-        options.forEach((text) => {
-            temp.textContent = text;
-            const w = temp.offsetWidth;
-            if (w > maxWidth) maxWidth = w;
-        });
-        document.body.removeChild(temp);
+
+        const container = document.createElement("div");
+        container.style.visibility = "hidden";
+        container.style.position = "absolute";
+        container.style.left = "-9999px";
+        container.style.top = "-9999px";
+        document.body.appendChild(container);
+
+        if (includeCheckbox) {
+            const labelEl = document.createElement("label");
+            labelEl.className = "flex items-center px-3 py-2 text-sm";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "mr-2";
+            const textEl = document.createElement("span");
+            labelEl.appendChild(checkbox);
+            labelEl.appendChild(textEl);
+            container.appendChild(labelEl);
+
+            options.forEach((text) => {
+                textEl.textContent = text;
+                const w = labelEl.offsetWidth;
+                if (w > maxWidth) maxWidth = w;
+            });
+
+            if (buttonLabel) {
+                const buttonEl = document.createElement("button");
+                buttonEl.className = BUTTON_CLASSES;
+                buttonEl.textContent = buttonLabel;
+                container.appendChild(buttonEl);
+                const bw = buttonEl.offsetWidth;
+                if (bw > maxWidth) maxWidth = bw;
+            }
+        } else {
+            const buttonEl = document.createElement("button");
+            buttonEl.className = BUTTON_CLASSES;
+            container.appendChild(buttonEl);
+            options.forEach((text) => {
+                buttonEl.textContent = text;
+                const w = buttonEl.offsetWidth;
+                if (w > maxWidth) maxWidth = w;
+            });
+        }
+
+        document.body.removeChild(container);
 
         setButtonWidths((prev) => ({ ...prev, [key]: maxWidth }));
     };
@@ -89,13 +123,12 @@ function PracticePage() {
     useEffect(() => {
         measureAndSetWidth("mode", modes);
         measureAndSetWidth("practice", practiceTypes);
-        measureAndSetWidth("difficulty", difficulties);
-        measureAndSetWidth("tech", techStacks);
+        measureAndSetWidth("difficulty", difficulties, { includeCheckbox: true, buttonLabel: "Difficulty" });
+        measureAndSetWidth("tech", techStacks, { includeCheckbox: true, buttonLabel: "Tech Stack" });
+        measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
     }, []);
 
-    useEffect(() => {
-        measureAndSetWidth("topic", ALL_TOPICS);
-    }, []);
+    // Topic width measured in initial effect including checkbox width
 
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));
@@ -217,7 +250,7 @@ function PracticePage() {
                     <div className="flex gap-3">
                         {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
                         {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}
-                        {renderCheckboxDropdown("Topic", availableTopics, selectedTopics, setSelectedTopics, "topic")}
+                        {renderCheckboxDropdown("Topic", availableTopics.length ? availableTopics : ALL_TOPICS, selectedTopics, setSelectedTopics, "topic")}
                     </div>
                 </div>
 

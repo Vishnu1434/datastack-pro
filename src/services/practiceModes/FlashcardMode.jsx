@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadTheoryQuestions } from "../theoryPage.js";
+import { loadQuestions } from "../practicePage.js";
 
 function FlashcardMode() {
     const [questions, setQuestions] = useState([]);
@@ -7,7 +7,7 @@ function FlashcardMode() {
 
     useEffect(() => {
         async function fetchQuestions() {
-            const data = await loadTheoryQuestions();
+            const data = await loadQuestions("theory");
             const theoryQs = data.filter((q) => q.type === "theory");
             setQuestions(theoryQs);
         }

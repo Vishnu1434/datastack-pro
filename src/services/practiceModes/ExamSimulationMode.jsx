@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadTheoryQuestions } from "../theoryPage.js";
+import { loadQuestions } from "../practicePage.js";
 
 function ExamSimulationMode() {
     const [questions, setQuestions] = useState([]);
@@ -10,7 +10,7 @@ function ExamSimulationMode() {
 
     useEffect(() => {
         async function fetchQuestions() {
-            const data = await loadTheoryQuestions();
+            const data = await loadQuestions();
             const mcqs = data.filter((q) => q.type === "mcq");
             setQuestions(mcqs.slice(0, 10)); // 10 Q exam
         }

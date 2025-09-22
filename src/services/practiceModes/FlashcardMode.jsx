@@ -90,72 +90,74 @@ export default function FlashcardMode() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-bold">Theory Questions ({questions.length})</h3>
-        <div className="flex items-center gap-2">
-          <button onClick={shuffleQuestions} aria-label="Shuffle questions" className="flex items-center gap-2 px-3 py-2 bg-white border rounded text-sm hover:shadow">
-            <Shuffle size={16} />
-            <span className="hidden sm:inline">Shuffle</span>
-          </button>
+      <div className="bg-white border rounded-md shadow-sm overflow-auto" style={{ maxHeight: 420 }}>
+        <div className="sticky top-0 bg-white z-20 p-4 flex items-center justify-between border-b">
+          <h3 className="text-lg font-bold">Theory Questions ({questions.length})</h3>
+          <div className="flex items-center gap-2">
+            <button onClick={shuffleQuestions} aria-label="Shuffle questions" className="flex items-center gap-2 px-3 py-2 bg-white border rounded text-sm hover:shadow">
+              <Shuffle size={16} />
+              <span className="hidden sm:inline">Shuffle</span>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {questions.map((q, idx) => {
-          const stackLabel = q.stack || q.source || (q.tags && q.tags[0]) || "";
-          const Icon = iconForStack(stackLabel);
-          return (
-            <article key={`${q.question}-${idx}`} className="bg-white border rounded-md shadow-sm p-4 flex flex-col h-full">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 text-gray-700">
-                  {Icon ? (
-                    <div className="w-10 h-10 flex items-center justify-center text-black">
-                      {Icon}
-                    </div>
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-semibold">
-                      {(stackLabel || "?")
-                        .toString()
-                        .split(/[^A-Za-z0-9]+/)
-                        .filter(Boolean)
-                        .map((s) => s[0])
-                        .slice(0, 2)
-                        .join("")
-                        .toUpperCase()}
-                    </div>
-                  )}
-                </div>
+        <div className="p-4 flex flex-col gap-4">
+          {questions.map((q, idx) => {
+            const stackLabel = q.stack || q.source || (q.tags && q.tags[0]) || "";
+            const Icon = iconForStack(stackLabel);
+            return (
+              <article key={`${q.question}-${idx}`} className="bg-white border rounded-md shadow-sm p-4 flex flex-col w-full">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 text-gray-700">
+                    {Icon ? (
+                      <div className="w-10 h-10 flex items-center justify-center text-black">
+                        {Icon}
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-semibold">
+                        {(stackLabel || "?")
+                          .toString()
+                          .split(/[^A-Za-z0-9]+/)
+                          .filter(Boolean)
+                          .map((s) => s[0])
+                          .slice(0, 2)
+                          .join("")
+                          .toUpperCase()}
+                      </div>
+                    )}
+                  </div>
 
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-900 mb-2 break-words">{q.question}</h4>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-medium text-gray-900 mb-2 break-words">{q.question}</h4>
 
-                  <div className="mt-auto flex items-center justify-between gap-3">
-                    <div className="text-xs text-gray-500">{stackLabel}</div>
+                    <div className="mt-auto flex items-center justify-between gap-3">
+                      <div className="text-xs text-gray-500">{stackLabel}</div>
 
-                    <div className="flex items-center gap-3">
-                      <DifficultyBadge level={q.difficulty} />
+                      <div className="flex items-center gap-3">
+                        <DifficultyBadge level={q.difficulty} />
 
-                      <button
-                        onClick={() => toggleAnswer(idx)}
-                        aria-expanded={openIndex === idx}
-                        aria-label={openIndex === idx ? "Hide answer" : "Show answer"}
-                        className="p-2 rounded-md bg-gray-50 hover:bg-gray-100 border"
-                      >
-                        <BookOpen size={18} className={`${openIndex === idx ? "text-blue-600" : "text-gray-700"}`} />
-                      </button>
+                        <button
+                          onClick={() => toggleAnswer(idx)}
+                          aria-expanded={openIndex === idx}
+                          aria-label={openIndex === idx ? "Hide answer" : "Show answer"}
+                          className="p-2 rounded-md bg-gray-50 hover:bg-gray-100 border"
+                        >
+                          <BookOpen size={18} className={`${openIndex === idx ? "text-blue-600" : "text-gray-700"}`} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {openIndex === idx && (
-                <div className="mt-3 text-gray-700 text-sm border-t pt-3">
-                  {q.answer}
-                </div>
-              )}
-            </article>
-          );
-        })}
+                {openIndex === idx && (
+                  <div className="mt-3 text-gray-700 text-sm border-t pt-3">
+                    {q.answer}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

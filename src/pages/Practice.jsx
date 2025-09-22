@@ -189,7 +189,7 @@ function PracticePage() {
                     {/* Right side: Difficulty + Tech Stack + Topic */}
                     <div className="flex gap-3">
                         {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
-                        {renderCheckboxDropdown("Tech Stack", techStacks, setSelectedTechStacks, setSelectedTechStacks, "tech")}
+                        {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}
                         {renderCheckboxDropdown("Topic", availableTopics, selectedTopics, setSelectedTopics, "topic")}
                     </div>
                 </div>

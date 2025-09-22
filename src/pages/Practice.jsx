@@ -163,10 +163,7 @@ function PracticePage() {
         measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
     }, []);
 
-    useEffect(() => {
-        // Re-measure topic width when availableTopics change (e.g., selecting tech stacks)
-        measureAndSetWidth("topic", availableTopics.length ? availableTopics : ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
-    }, [availableTopics]);
+    // Widths are computed once on mount; do not re-measure dynamically
 
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));

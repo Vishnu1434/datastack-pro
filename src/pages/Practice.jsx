@@ -18,6 +18,9 @@ const topicsByStack = {
 };
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
+const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap";
+const ALL_TOPICS = Object.values(topicsByStack).flat();
+
 function PracticePage() {
     const [activeMode, setActiveMode] = useState("Flashcards");
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
@@ -34,7 +37,23 @@ function PracticePage() {
         practice: false,
     });
 
+    const [buttonWidths, setButtonWidths] = useState({});
+
     const dropdownRefs = useRef({});
+    const dropdownMenuRefs = useRef({});
+
+    useEffect(() => {
+        const handler = (e) => {
+            const btns = Object.values(dropdownRefs.current || {});
+            const menus = Object.values(dropdownMenuRefs.current || {});
+            const clickedInside = btns.some((el) => el && el.contains(e.target)) || menus.some((el) => el && el.contains(e.target));
+            if (!clickedInside) {
+                setDropdownOpen({ mode: false, difficulty: false, tech: false, topic: false, practice: false });
+            }
+        };
+        document.addEventListener("click", handler);
+        return () => document.removeEventListener("click", handler);
+    }, []);
 
     useEffect(() => {
         let topics = [];
@@ -44,6 +63,39 @@ function PracticePage() {
         setAvailableTopics(topics);
         setSelectedTopics((prev) => prev.filter((t) => topics.includes(t)));
     }, [selectedTechStacks]);
+
+    // Measure and set fixed widths based on longest option per dropdown
+    const measureAndSetWidth = (key, options) => {
+        if (!Array.isArray(options) || options.length === 0) return;
+        const temp = document.createElement("button");
+        temp.className = BUTTON_CLASSES;
+        temp.style.visibility = "hidden";
+        temp.style.position = "absolute";
+        temp.style.left = "-9999px";
+        temp.style.top = "-9999px";
+        document.body.appendChild(temp);
+
+        let maxWidth = 0;
+        options.forEach((text) => {
+            temp.textContent = text;
+            const w = temp.offsetWidth;
+            if (w > maxWidth) maxWidth = w;
+        });
+        document.body.removeChild(temp);
+
+        setButtonWidths((prev) => ({ ...prev, [key]: maxWidth }));
+    };
+
+    useEffect(() => {
+        measureAndSetWidth("mode", modes);
+        measureAndSetWidth("practice", practiceTypes);
+        measureAndSetWidth("difficulty", difficulties);
+        measureAndSetWidth("tech", techStacks);
+    }, []);
+
+    useEffect(() => {
+        measureAndSetWidth("topic", ALL_TOPICS);
+    }, []);
 
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));
@@ -55,8 +107,14 @@ function PracticePage() {
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
-                className="px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap"
+                onClick={() => setDropdownOpen((prev) => {
+                    const wasOpen = !!prev[key];
+                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
+                    newState[key] = !wasOpen;
+                    return newState;
+                })}
+                className={BUTTON_CLASSES}
+                style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
                 {label}
             </button>
@@ -64,7 +122,8 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined }}>
+                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt) => (
                         <label
                             key={opt}
@@ -89,8 +148,14 @@ function PracticePage() {
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }))}
-                className="px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap"
+                onClick={() => setDropdownOpen((prev) => {
+                    const wasOpen = !!prev[key];
+                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
+                    newState[key] = !wasOpen;
+                    return newState;
+                })}
+                className={BUTTON_CLASSES}
+                style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
                 {selected}
             </button>
@@ -98,7 +163,8 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
-                    style={{ minWidth: dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined }}>
+                    style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt) => (
                         <div
                             key={opt}

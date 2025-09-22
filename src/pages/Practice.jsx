@@ -80,8 +80,8 @@ function PracticePage() {
     }, []);
 
     useEffect(() => {
-        measureAndSetWidth("topic", availableTopics);
-    }, [availableTopics]);
+        measureAndSetWidth("topic", ALL_TOPICS);
+    }, []);
 
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));

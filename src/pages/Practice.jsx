@@ -145,6 +145,10 @@ function PracticePage() {
             if (scrollbarWidth > 0) maxWidth += scrollbarWidth;
         }
 
+        // Add a small buffer to ensure no accidental truncation due to rounding/borders
+        const MEASUREMENT_BUFFER = 12;
+        maxWidth += MEASUREMENT_BUFFER;
+
         document.body.removeChild(container);
 
         setButtonWidths((prev) => ({ ...prev, [key]: maxWidth }));

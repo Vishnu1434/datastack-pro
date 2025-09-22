@@ -165,6 +165,29 @@ function PracticePage() {
 
     // Widths are computed once on mount; do not re-measure dynamically
 
+    // Compute simple dropdown alignment to avoid horizontal page scroll.
+    // Returns inline styles { left: 0 } or { left: 'auto', right: 0 } based on available space.
+    const computeDropdownPosition = (key) => {
+        const style = {};
+        try {
+            const btn = dropdownRefs.current[key];
+            const w = buttonWidths[key];
+            if (!btn || !w) return style;
+            const rect = btn.getBoundingClientRect();
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+            const spaceRight = viewportWidth - rect.left - 8; // small margin
+            if (w <= spaceRight) {
+                style.left = 0;
+            } else {
+                style.left = 'auto';
+                style.right = 0;
+            }
+        } catch (e) {
+            // noop
+        }
+        return style;
+    };
+
     const toggleSelection = (value, arraySetter, array) => {
         if (array.includes(value)) arraySetter(array.filter((v) => v !== value));
         else arraySetter([...array, value]);
@@ -190,7 +213,7 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
-                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
+                    style={{ ...computeDropdownPosition(key), width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <label
@@ -231,7 +254,7 @@ function PracticePage() {
             {dropdownOpen[key] && (
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
-                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
+                    style={{ ...computeDropdownPosition(key), width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <div

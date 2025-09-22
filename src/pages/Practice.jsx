@@ -19,6 +19,7 @@ const topicsByStack = {
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
 const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap";
+const ALL_TOPICS = Object.values(topicsByStack).flat();
 
 function PracticePage() {
     const [activeMode, setActiveMode] = useState("Flashcards");

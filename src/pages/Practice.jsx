@@ -19,7 +19,7 @@ const topicsByStack = {
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
 const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap";
-const ALL_TOPICS = Object.values(topicsByStack).flat();
+const ALL_TOPICS = Array.from(new Set(Object.values(topicsByStack).flat()));
 
 function PracticePage() {
     const [activeMode, setActiveMode] = useState("Flashcards");
@@ -60,8 +60,10 @@ function PracticePage() {
         selectedTechStacks.forEach((stack) => {
             if (topicsByStack[stack]) topics = [...topics, ...topicsByStack[stack]];
         });
-        setAvailableTopics(topics);
-        setSelectedTopics((prev) => prev.filter((t) => topics.includes(t)));
+        // Deduplicate topics so keys remain unique
+        const unique = Array.from(new Set(topics));
+        setAvailableTopics(unique);
+        setSelectedTopics((prev) => prev.filter((t) => unique.includes(t)));
     }, [selectedTechStacks]);
 
     // Measure and set fixed widths based on longest option per dropdown
@@ -157,9 +159,9 @@ function PracticePage() {
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
                     style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
-                    {options.map((opt) => (
+                    {options.map((opt, idx) => (
                         <label
-                            key={opt}
+                            key={`${opt}-${idx}`}
                             className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                         >
                             <input
@@ -198,9 +200,9 @@ function PracticePage() {
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0"
                     style={{ minWidth: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined) }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
-                    {options.map((opt) => (
+                    {options.map((opt, idx) => (
                         <div
-                            key={opt}
+                            key={`${opt}-${idx}`}
                             className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                             onClick={() => {
                                 setSelected(opt);

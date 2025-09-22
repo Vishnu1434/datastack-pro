@@ -191,15 +191,15 @@ function PracticePage() {
                     {options.map((opt, idx) => (
                         <label
                             key={`${opt}-${idx}`}
-                            className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                            className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm whitespace-nowrap"
                         >
                             <input
                                 type="checkbox"
-                                className="mr-2"
+                                className="mr-2 flex-shrink-0"
                                 checked={selectedArray.includes(opt)}
                                 onChange={() => toggleSelection(opt, setSelectedArray, selectedArray)}
                             />
-                            {opt}
+                            <span className="truncate block">{opt}</span>
                         </label>
                     ))}
                 </div>

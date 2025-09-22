@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import FlashcardMode from "../services/practiceModes/FlashcardMode";
 import MCQMode from "../services/practiceModes/MCQMode";
-// import AdaptiveMode from "../services/practiceModes/AdaptiveMode";
-// import RevisionMode from "../services/practiceModes/RevisionMode";
 import SurvivalMode from "../services/practiceModes/SurvivalMode";
 
 const modes = ["Flashcards", "MCQs", "Adaptive Mode", "Revision Mode", "Survival Mode"];
@@ -18,7 +16,7 @@ const topicsByStack = {
 };
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
-const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm inline-block whitespace-nowrap";
+const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm whitespace-nowrap";
 const ALL_TOPICS = Array.from(new Set(Object.values(topicsByStack).flat()));
 
 function PracticePage() {
@@ -29,133 +27,86 @@ function PracticePage() {
     const [availableTopics, setAvailableTopics] = useState([]);
     const [selectedPracticeType, setSelectedPracticeType] = useState("Self-Paced");
 
-    const [dropdownOpen, setDropdownOpen] = useState({
-        mode: false,
-        difficulty: false,
-        tech: false,
-        topic: false,
-        practice: false,
-    });
-
+    const [dropdownOpen, setDropdownOpen] = useState({});
     const [buttonWidths, setButtonWidths] = useState({});
-
     const dropdownRefs = useRef({});
     const dropdownMenuRefs = useRef({});
 
+    // Close dropdowns on outside click
     useEffect(() => {
         const handler = (e) => {
             const btns = Object.values(dropdownRefs.current || {});
             const menus = Object.values(dropdownMenuRefs.current || {});
-            const clickedInside = btns.some((el) => el && el.contains(e.target)) || menus.some((el) => el && el.contains(e.target));
-            if (!clickedInside) {
-                setDropdownOpen({ mode: false, difficulty: false, tech: false, topic: false, practice: false });
-            }
+            const clickedInside =
+                btns.some((el) => el && el.contains(e.target)) ||
+                menus.some((el) => el && el.contains(e.target));
+            if (!clickedInside) setDropdownOpen({});
         };
         document.addEventListener("click", handler);
         return () => document.removeEventListener("click", handler);
     }, []);
 
+    // Update topics when tech stack changes
     useEffect(() => {
-        let topics = [];
-        selectedTechStacks.forEach((stack) => {
-            if (topicsByStack[stack]) topics = [...topics, ...topicsByStack[stack]];
-        });
-        // Deduplicate topics so keys remain unique
-        const unique = Array.from(new Set(topics));
+        const unique = Array.from(
+            new Set(selectedTechStacks.flatMap((stack) => topicsByStack[stack] || []))
+        );
         setAvailableTopics(unique);
         setSelectedTopics((prev) => prev.filter((t) => unique.includes(t)));
     }, [selectedTechStacks]);
 
-    // Measure and set fixed widths based on longest option per dropdown
-    // For right-side filters, include checkbox + spacing and scrollbar width to prevent dropdowns from exceeding button width
-    const measureAndSetWidth = (key, options, config = {}) => {
-        if (!Array.isArray(options) || options.length === 0) return;
-        const { includeCheckbox = false, buttonLabel = "" } = config;
-
+    // Measure and set widths
+    const measureAndSetWidth = (key, options, { includeCheckbox = false, buttonLabel = "" } = {}) => {
+        if (!options?.length) return;
         let maxWidth = 0;
-        const DROPDOWN_MAX_HEIGHT_PX = 240; // corresponds to Tailwind max-h-60 (15rem)
 
         const container = document.createElement("div");
-        container.style.visibility = "hidden";
-        container.style.position = "absolute";
-        container.style.left = "-9999px";
-        container.style.top = "-9999px";
+        container.style.cssText = "visibility:hidden;position:absolute;left:-9999px;top:-9999px;";
         document.body.appendChild(container);
 
-        // Create a menu element that mimics the dropdown so we can detect scrollbar
         const menu = document.createElement("div");
-        menu.style.maxHeight = `${DROPDOWN_MAX_HEIGHT_PX}px`;
+        menu.style.maxHeight = "240px";
         menu.style.overflow = "auto";
-        menu.className = "absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto left-0";
         container.appendChild(menu);
 
-        if (includeCheckbox) {
-            options.forEach((text) => {
-                const labelEl = document.createElement("label");
-                labelEl.className = "flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm";
-
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.className = "mr-2";
-                labelEl.appendChild(checkbox);
-
-                const textEl = document.createElement("span");
-                textEl.textContent = text;
-                labelEl.appendChild(textEl);
-
-                menu.appendChild(labelEl);
-
-                const w = labelEl.offsetWidth;
-                if (w > maxWidth) maxWidth = w;
-            });
-
-            if (buttonLabel) {
-                const buttonEl = document.createElement("button");
-                buttonEl.className = BUTTON_CLASSES;
-                buttonEl.textContent = buttonLabel;
-                container.appendChild(buttonEl);
-                const bw = buttonEl.offsetWidth;
-                if (bw > maxWidth) maxWidth = bw;
+        const createEl = (text) => {
+            const el = document.createElement(includeCheckbox ? "label" : "div");
+            el.className = "px-3 py-2 text-sm flex items-center";
+            if (includeCheckbox) {
+                const cb = document.createElement("input");
+                cb.type = "checkbox";
+                cb.className = "mr-2";
+                el.appendChild(cb);
             }
-        } else {
-            // single-select style items
-            options.forEach((text) => {
-                const itemEl = document.createElement("div");
-                itemEl.className = "px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm";
-                itemEl.textContent = text;
-                menu.appendChild(itemEl);
-                const w = itemEl.offsetWidth;
-                if (w > maxWidth) maxWidth = w;
-            });
+            const span = document.createElement("span");
+            span.textContent = text;
+            el.appendChild(span);
+            menu.appendChild(el);
+            return el.offsetWidth;
+        };
 
-            if (buttonLabel) {
-                const buttonEl = document.createElement("button");
-                buttonEl.className = BUTTON_CLASSES;
-                buttonEl.textContent = buttonLabel;
-                container.appendChild(buttonEl);
-                const bw = buttonEl.offsetWidth;
-                if (bw > maxWidth) maxWidth = bw;
-            }
+        options.forEach((opt) => {
+            maxWidth = Math.max(maxWidth, createEl(opt));
+        });
+
+        if (buttonLabel) {
+            const btn = document.createElement("button");
+            btn.className = BUTTON_CLASSES;
+            btn.textContent = buttonLabel;
+            container.appendChild(btn);
+            maxWidth = Math.max(maxWidth, btn.offsetWidth);
         }
 
-        // If overflow (scrollbar) exists, include scrollbar width in measurement
-        const hasVerticalOverflow = menu.scrollHeight > menu.clientHeight;
-        if (hasVerticalOverflow) {
-            const scrollbarWidth = menu.offsetWidth - menu.clientWidth;
-            if (scrollbarWidth > 0) maxWidth += scrollbarWidth;
+        // account for scrollbar if present
+        if (menu.scrollHeight > menu.clientHeight) {
+            maxWidth += menu.offsetWidth - menu.clientWidth;
         }
-
-        // Add a small buffer to ensure no accidental truncation due to rounding/borders
-        const MEASUREMENT_BUFFER = 12;
-        maxWidth += MEASUREMENT_BUFFER;
 
         document.body.removeChild(container);
-
-        setButtonWidths((prev) => ({ ...prev, [key]: maxWidth }));
+        setButtonWidths((prev) => ({ ...prev, [key]: maxWidth + 12 }));
     };
 
     useEffect(() => {
-        // Ensure left-side buttons account for their own label width as well as their options
         measureAndSetWidth("mode", modes, { buttonLabel: "Flashcards" });
         measureAndSetWidth("practice", practiceTypes, { buttonLabel: "Self-Paced" });
         measureAndSetWidth("difficulty", difficulties, { includeCheckbox: true, buttonLabel: "Difficulty" });
@@ -163,47 +114,24 @@ function PracticePage() {
         measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
     }, []);
 
-    // Widths are computed once on mount; do not re-measure dynamically
-
-    // Compute simple dropdown alignment to avoid horizontal page scroll.
-    // Returns inline styles { left: 0 } or { left: 'auto', right: 0 } based on available space.
     const computeDropdownPosition = (key) => {
-        const style = {};
-        try {
-            const btn = dropdownRefs.current[key];
-            const w = buttonWidths[key];
-            if (!btn || !w) return style;
-            const rect = btn.getBoundingClientRect();
-            const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-            const spaceRight = viewportWidth - rect.left - 8; // small margin
-            if (w <= spaceRight) {
-                style.left = 0;
-            } else {
-                style.left = 'auto';
-                style.right = 0;
-            }
-        } catch (e) {
-            // noop
-        }
-        return style;
+        const btn = dropdownRefs.current[key];
+        const w = buttonWidths[key];
+        if (!btn || !w) return {};
+        const rect = btn.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const spaceRight = viewportWidth - rect.left - 8;
+        return w <= spaceRight ? { left: 0 } : { left: "auto", right: 0 };
     };
 
-    const toggleSelection = (value, arraySetter, array) => {
-        if (array.includes(value)) arraySetter(array.filter((v) => v !== value));
-        else arraySetter([...array, value]);
-    };
+    const toggleSelection = (value, setter, array) =>
+        setter(array.includes(value) ? array.filter((v) => v !== value) : [...array, value]);
 
-    // ✅ Multi-select dropdown with checkboxes (always shows label)
-    const renderCheckboxDropdown = (label, options, selectedArray, setSelectedArray, key) => (
+    const renderCheckboxDropdown = (label, options, selected, setter, key) => (
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => {
-                    const wasOpen = !!prev[key];
-                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
-                    newState[key] = !wasOpen;
-                    return newState;
-                })}
+                onClick={() => setDropdownOpen({ [key]: !dropdownOpen[key] })}
                 className={BUTTON_CLASSES}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
@@ -212,21 +140,25 @@ function PracticePage() {
 
             {dropdownOpen[key] && (
                 <div
-                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
-                    style={{ ...computeDropdownPosition(key), width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
-                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
-                    {options.map((opt, idx) => (
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+                    style={{
+                        ...computeDropdownPosition(key),
+                        width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined,
+                    }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}
+                >
+                    {options.map((opt) => (
                         <label
-                            key={`${opt}-${idx}`}
-                            className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm whitespace-nowrap"
+                            key={opt}
+                            className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                         >
                             <input
                                 type="checkbox"
-                                className="mr-2 flex-shrink-0"
-                                checked={selectedArray.includes(opt)}
-                                onChange={() => toggleSelection(opt, setSelectedArray, selectedArray)}
+                                className="mr-2"
+                                checked={selected.includes(opt)}
+                                onChange={() => toggleSelection(opt, setter, selected)}
                             />
-                            <span className="whitespace-nowrap block">{opt}</span>
+                            {opt}
                         </label>
                     ))}
                 </div>
@@ -234,17 +166,11 @@ function PracticePage() {
         </div>
     );
 
-    // ✅ Single-select dropdown (shows only selected value)
-    const renderSingleSelectDropdown = (options, selected, setSelected, key) => (
+    const renderSingleSelectDropdown = (options, selected, setter, key) => (
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen((prev) => {
-                    const wasOpen = !!prev[key];
-                    const newState = { mode: false, difficulty: false, tech: false, topic: false, practice: false };
-                    newState[key] = !wasOpen;
-                    return newState;
-                })}
+                onClick={() => setDropdownOpen({ [key]: !dropdownOpen[key] })}
                 className={BUTTON_CLASSES}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
             >
@@ -253,19 +179,23 @@ function PracticePage() {
 
             {dropdownOpen[key] && (
                 <div
-                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
-                    style={{ ...computeDropdownPosition(key), width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
-                    ref={(el) => (dropdownMenuRefs.current[key] = el)}>
-                    {options.map((opt, idx) => (
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+                    style={{
+                        ...computeDropdownPosition(key),
+                        width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined,
+                    }}
+                    ref={(el) => (dropdownMenuRefs.current[key] = el)}
+                >
+                    {options.map((opt) => (
                         <div
-                            key={`${opt}-${idx}`}
-                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm whitespace-nowrap"
+                            key={opt}
+                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                             onClick={() => {
-                                setSelected(opt);
-                                setDropdownOpen((prev) => ({ ...prev, [key]: false }));
+                                setter(opt);
+                                setDropdownOpen({});
                             }}
                         >
-                            <span className="whitespace-nowrap block">{opt}</span>
+                            {opt}
                         </div>
                     ))}
                 </div>
@@ -280,7 +210,6 @@ function PracticePage() {
             topic: selectedTopics,
             practiceType: selectedPracticeType,
         };
-
         switch (activeMode) {
             case "Flashcards":
                 return <FlashcardMode {...props} />;
@@ -298,13 +227,13 @@ function PracticePage() {
             <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden">
                 {/* Filters bar */}
                 <div className="p-3 bg-blue-600 flex justify-between items-center">
-                    {/* Left side: Mode + Practice Type */}
+                    {/* Left side */}
                     <div className="flex gap-3">
                         {renderSingleSelectDropdown(modes, activeMode, setActiveMode, "mode")}
                         {renderSingleSelectDropdown(practiceTypes, selectedPracticeType, setSelectedPracticeType, "practice")}
                     </div>
 
-                    {/* Right side: Difficulty + Tech Stack + Topic */}
+                    {/* Right side */}
                     <div className="flex gap-3">
                         {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
                         {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}

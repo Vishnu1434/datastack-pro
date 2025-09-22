@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadTheoryQuestions } from "../theoryPage.js";
+import { loadQuestions } from "../practicePage.js";
 
 function MCQMode() {
     const [questions, setQuestions] = useState([]);
@@ -8,7 +8,7 @@ function MCQMode() {
 
     useEffect(() => {
         async function fetchQuestions() {
-            const data = await loadTheoryQuestions();
+            const data = await loadQuestions();
             const mcqs = data.filter((q) => q.type === "mcq");
             setQuestions(mcqs);
         }

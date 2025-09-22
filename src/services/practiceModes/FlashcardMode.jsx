@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { loadQuestions } from "../practicePage.js";
 import { BookOpen, Shuffle } from "lucide-react";
 
+import SparkIcon from "../../icons/spark.svg";
+import PythonIcon from "../../icons/python.svg";
+import JavaIcon from "../../icons/java.svg";
+import SqlIcon from "../../icons/sql.svg";
+import AirflowIcon from "../../icons/airflow.svg";
+import DefaultIcon from "../../icons/default.svg";
+
 const shuffleArray = (arr) => {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
@@ -12,14 +19,14 @@ const shuffleArray = (arr) => {
 };
 
 const iconForStack = (stack) => {
-  if (!stack) return null;
+  if (!stack) return <img src={DefaultIcon} alt="Default" className="w-6 h-6" />;
   const s = stack.toLowerCase();
-  if (s.includes("spark")) return "⚡";
-  if (s.includes("python")) return "🐍";
-  if (s.includes("java")) return "☕";
-  if (s.includes("sql")) return "🗄️";
-  if (s.includes("airflow")) return "🌬️";
-  return "📘";
+  if (s.includes("spark")) return <img src={SparkIcon} alt="Spark" className="w-6 h-6"/>;
+  if (s.includes("python")) return <img src={PythonIcon} alt="Python" className="w-6 h-6"/>;
+  if (s.includes("java")) return <img src={JavaIcon} alt="Java" className="w-6 h-6"/>;
+  if (s.includes("sql")) return <img src={SqlIcon} alt="SQL" className="w-6 h-6"/>;
+  if (s.includes("airflow")) return <img src={AirflowIcon} alt="Airflow" className="w-6 h-6"/>;
+  return <img src={DefaultIcon} alt="Default" className="w-6 h-6"/>;
 };
 
 const DifficultyBadge = ({ level }) => {
@@ -77,7 +84,8 @@ export default function FlashcardMode() {
                   className="bg-white rounded-md shadow p-4 hover:shadow-md transition-shadow w-full"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-lg">
+                  {/* Updated container classes */}
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-lg">
                     {iconForStack(q.stack || q.source || "")}
                   </div>
 

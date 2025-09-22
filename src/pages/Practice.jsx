@@ -230,8 +230,8 @@ function PracticePage() {
 
             {dropdownOpen[key] && (
                 <div
-                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible"
-                    style={getDropdownInlineStyle(key)}
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
+                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined, boxSizing: 'border-box', whiteSpace: 'nowrap' }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <div

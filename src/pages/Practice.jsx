@@ -173,6 +173,43 @@ function PracticePage() {
         else arraySetter([...array, value]);
     };
 
+    // Helper to compute dropdown inline style to avoid horizontal page scroll and ensure full option visibility
+    const getDropdownInlineStyle = (key) => {
+        const baseWidth = buttonWidths[key] || (dropdownRefs.current[key] ? dropdownRefs.current[key].offsetWidth : undefined);
+        const style = { boxSizing: 'border-box', whiteSpace: 'nowrap' };
+        if (!baseWidth) return style;
+
+        // compute available spaces
+        const btn = dropdownRefs.current[key];
+        if (!btn) {
+            style.width = `${baseWidth}px`;
+            return style;
+        }
+
+        const rect = btn.getBoundingClientRect();
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const spaceRight = viewportWidth - rect.left - 8; // small margin
+        const spaceLeft = rect.right - 8;
+
+        // Prefer placing to the right (left:0) if it fits, otherwise align right to button
+        if (baseWidth <= spaceRight) {
+            style.left = 0;
+            style.width = `${baseWidth}px`;
+        } else if (baseWidth <= spaceLeft) {
+            style.left = 'auto';
+            style.right = 0;
+            style.width = `${baseWidth}px`;
+        } else {
+            // If won't fully fit either side, choose the larger side and cap width to it
+            const cap = Math.max(spaceRight, spaceLeft);
+            style.width = `${Math.max(baseWidth, cap)}px`;
+            // ensure we position to avoid overflow
+            if (spaceRight >= spaceLeft) style.left = 0;
+            else { style.left = 'auto'; style.right = 0; }
+        }
+        return style;
+    };
+
     // ✅ Multi-select dropdown with checkboxes (always shows label)
     const renderCheckboxDropdown = (label, options, selectedArray, setSelectedArray, key) => (
         <div className="relative inline-block">
@@ -192,8 +229,8 @@ function PracticePage() {
 
             {dropdownOpen[key] && (
                 <div
-                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible left-0"
-                    style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : (dropdownRefs.current[key] ? `${dropdownRefs.current[key].offsetWidth}px` : undefined), boxSizing: 'border-box', whiteSpace: 'nowrap' }}
+                    className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto overflow-x-visible"
+                    style={getDropdownInlineStyle(key)}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}>
                     {options.map((opt, idx) => (
                         <label

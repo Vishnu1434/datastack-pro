@@ -53,9 +53,9 @@ export default function FlashcardMode() {
   if (!questions.length) return <p>Loading flashcards...</p>;
 
   return (
-      <div className="flex flex-col min-h-[50vh] max-h-[70vh] h-auto bg-gray-50 rounded-md shadow overflow-hidden">
+      <div className="flex flex-col h-[70vh] bg-gray-50 rounded-md overflow-hidden">
         {/* Header - stays fixed, no scroll */}
-        <div className="flex items-center justify-between p-3 bg-white shadow-sm">
+        <div className="flex items-center justify-between p-3 bg-white shadow-sm flex-shrink-0 w-full">
           <h3 className="text-lg font-bold text-gray-900">
             <span className="text-blue-600">Theory</span> Questions ({questions.length})
           </h3>
@@ -74,7 +74,7 @@ export default function FlashcardMode() {
           {questions.map((q, idx) => (
               <article
                   key={`${q.question}-${idx}`}
-                  className="bg-white rounded-md shadow p-4 hover:shadow-md transition-shadow"
+                  className="bg-white rounded-md shadow p-4 hover:shadow-md transition-shadow w-full"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-lg">

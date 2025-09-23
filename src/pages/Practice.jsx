@@ -223,7 +223,7 @@ function PracticePage() {
     };
 
     return (
-        <div className="flex flex-col flex-1 px-3 py-2 w-full h-[calc(100vh-5rem-5rem)]">
+        <div className="flex flex-col flex-1 px-3 py-2 w-full min-h-[calc(100vh-5rem)]">
             <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden">
                 {/* Filters bar */}
                 <div className="p-3 bg-blue-600 flex justify-between items-center">
@@ -242,10 +242,13 @@ function PracticePage() {
                 </div>
 
                 {/* Practice Content */}
-                <div className="flex-1 bg-white p-4 md:p-6 overflow-auto">{renderModeComponent()}</div>
+                <div className="flex-1 bg-red-800">
+                    {renderModeComponent()}
+                </div>
             </div>
         </div>
     );
+
 }
 
 export default PracticePage;

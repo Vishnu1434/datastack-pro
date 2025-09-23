@@ -60,7 +60,7 @@ export default function FlashcardMode() {
   if (!questions.length) return <p>Loading flashcards...</p>;
 
   return (
-      <div className="flex flex-col flex-1 h-full bg-gray-50 rounded-md overflow-hidden">
+      <div className="flex flex-col flex-1 h-full bg-gray-50 rounded-md overflow-hidden min-h-0">
         {/* Header - stays fixed, no scroll */}
         <div className="flex items-center justify-between p-3 bg-white shadow-sm flex-shrink-0 w-full">
           <h3 className="text-lg font-bold text-gray-900">

@@ -9,14 +9,14 @@ export async function loadQuestions(type = "theory") {
         const manifestText = await manifestResponse.text();
         const manifest = yaml.load(manifestText); // YAML -> JS object
 
-        for (const [stack, stackObject] of Object.entries(manifest)) {
+        for (const [techStack, stackObject] of Object.entries(manifest)) {
             // Check if this stack contains the requested type
             if (!stackObject.types || !stackObject.types.includes(type)) continue;
 
             try {
-                const response = await fetch(`data/${stack}/${type}.yaml`);
+                const response = await fetch(`data/${techStack}/${type}.yaml`);
                 if (!response.ok) {
-                    console.warn(`No ${type}.yaml in ${stack}`);
+                    console.warn(`No ${type}.yaml in ${techStack}`);
                     continue;
                 }
 
@@ -26,7 +26,7 @@ export async function loadQuestions(type = "theory") {
                     allQuestions.push(...data);
                 }
             } catch (error) {
-                console.error(`Error loading ${type}.yaml from ${stack}:`, error);
+                console.error(`Error loading ${type}.yaml from ${techStack}:`, error);
             }
         }
 

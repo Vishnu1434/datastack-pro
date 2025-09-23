@@ -1,3 +1,5 @@
+import yaml from "js-yaml";
+
 import SparkIcon from "../icons/spark.svg";
 import PythonIcon from "../icons/python.svg";
 import JavaIcon from "../icons/java.svg";
@@ -81,4 +83,27 @@ export const filterQuestions = (
         const passTopic = !hasAny(topicSet) || qTopics.some((t) => topicSet.has(t));
         return passDiff && passTech && passTopic;
     });
+};
+
+export const load_manifest = async () => {
+    try {
+        const response = await fetch("data/stack_manifest.yaml");
+
+        const text = await response.text();
+        const manifest = yaml.load(text); // parse YAML into JS object
+
+        const techStacks = []
+        const topicsByStack = {};
+
+        for (const [stack, stackData] of Object.entries(manifest)) {
+            console.log(stack);
+            techStacks.push(stack);
+            topicsByStack[stack.charAt(0).toUpperCase() + stack.slice(1)] = stackData.topics || [];
+        }
+        console.log(techStacks);
+        return { techStacks, topicsByStack };
+    } catch (error) {
+        console.error("Error loading stack_manifest.yaml:", error);
+        return { techStacks: [], topicsByStack: {} };
+    }
 };

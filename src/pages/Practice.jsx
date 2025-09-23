@@ -2,18 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import FlashcardMode from "../services/practiceModes/FlashcardMode";
 import MCQMode from "../services/practiceModes/MCQMode";
 import SurvivalMode from "../services/practiceModes/SurvivalMode";
+import { load_manifest } from "../utils/common.jsx";
 
+const { techStacks, topicsByStack}  = await load_manifest();
 const modes = ["Flashcards", "MCQs", "Adaptive Mode", "Revision Mode", "Survival Mode"];
 const difficulties = ["Easy", "Medium", "Hard"];
-const techStacks = ["Spark", "SQL", "Python", "Java", "PySpark", "Airflow"];
-const topicsByStack = {
-    Spark: ["RDD", "DataFrame", "Spark SQL"],
-    SQL: ["Joins", "Clauses", "Indexing"],
-    Python: ["Lists", "Dicts", "Functions"],
-    Java: ["OOP", "Collections", "Streams"],
-    PySpark: ["RDD", "DataFrame", "Transformations"],
-    Airflow: ["DAGs", "Operators", "Scheduling"],
-};
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 
 const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm whitespace-nowrap";
@@ -32,13 +25,13 @@ function PracticePage() {
     const dropdownRefs = useRef({});
     const dropdownMenuRefs = useRef({});
 
-    // Close dropdowns on outside click
+    // Close dropdowns on the outside click
     useEffect(() => {
         const handler = (e) => {
-            const btns = Object.values(dropdownRefs.current || {});
+            const buttons = Object.values(dropdownRefs.current || {});
             const menus = Object.values(dropdownMenuRefs.current || {});
             const clickedInside =
-                btns.some((el) => el && el.contains(e.target)) ||
+                buttons.some((el) => el && el.contains(e.target)) ||
                 menus.some((el) => el && el.contains(e.target));
             if (!clickedInside) setDropdownOpen({});
         };

@@ -1,0 +1,209 @@
+- stack: sql
+  type: theory
+  topic: basics
+  difficulty: easy
+  question: "What does SQL stand for?"
+  answer: "SQL stands for Structured Query Language."
+
+- stack: sql
+  type: theory
+  topic: basics
+  difficulty: easy
+  question: "What is the difference between SQL and MySQL?"
+  answer: "SQL is a query language, whereas MySQL is a relational database management system that uses SQL."
+
+- stack: sql
+  type: theory
+  topic: basics
+  difficulty: easy
+  question: "What are the different types of SQL commands?"
+  answer: "SQL commands are categorized into DDL, DML, DCL, and TCL."
+
+- stack: sql
+  type: theory
+  topic: ddl
+  difficulty: easy
+  question: "What is DDL in SQL?"
+  answer: "DDL stands for Data Definition Language, used to define database objects like tables, indexes, and schemas."
+
+- stack: sql
+  type: theory
+  topic: ddl
+  difficulty: easy
+  question: "What is the difference between DROP and TRUNCATE in SQL?"
+  answer: "DROP removes the table structure and its data permanently, while TRUNCATE removes only the data but keeps the table structure."
+
+- stack: sql
+  type: theory
+  topic: ddl
+  difficulty: medium
+  question: "What is the difference between DELETE and TRUNCATE in SQL?"
+  answer: "DELETE removes rows one by one and can be rolled back, while TRUNCATE is faster, removes all rows, and cannot be rolled back."
+
+- stack: sql
+  type: theory
+  topic: dml
+  difficulty: easy
+  question: "What is DML in SQL?"
+  answer: "DML stands for Data Manipulation Language, used to manipulate data in tables using SELECT, INSERT, UPDATE, and DELETE."
+
+- stack: sql
+  type: theory
+  topic: dml
+  difficulty: medium
+  question: "What is the difference between INNER JOIN and OUTER JOIN?"
+  answer: "INNER JOIN returns rows that have matching values in both tables, while OUTER JOIN returns all rows from one table and the matching rows from the other."
+
+- stack: sql
+  type: theory
+  topic: joins
+  difficulty: medium
+  question: "What is a SELF JOIN in SQL?"
+  answer: "A SELF JOIN is a join where a table is joined with itself."
+
+- stack: sql
+  type: theory
+  topic: joins
+  difficulty: medium
+  question: "What is a CROSS JOIN in SQL?"
+  answer: "A CROSS JOIN returns the Cartesian product of the two tables."
+
+- stack: sql
+  type: theory
+  topic: indexing
+  difficulty: medium
+  question: "What is an index in SQL?"
+  answer: "An index is a database object that improves the speed of data retrieval operations on a table."
+
+- stack: sql
+  type: theory
+  topic: indexing
+  difficulty: medium
+  question: "What are clustered and non-clustered indexes?"
+  answer: "A clustered index sorts and stores the data rows in the table, while a non-clustered index creates a separate structure pointing to the data."
+
+- stack: sql
+  type: theory
+  topic: constraints
+  difficulty: easy
+  question: "What are constraints in SQL?"
+  answer: "Constraints are rules enforced on table data to maintain integrity, such as PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, and CHECK."
+
+- stack: sql
+  type: theory
+  topic: constraints
+  difficulty: medium
+  question: "What is the difference between PRIMARY KEY and UNIQUE constraint?"
+  answer: "Both enforce uniqueness, but a PRIMARY KEY also prevents NULL values and defines a table's main identifier."
+
+- stack: sql
+  type: theory
+  topic: constraints
+  difficulty: medium
+  question: "What is a FOREIGN KEY in SQL?"
+  answer: "A FOREIGN KEY enforces a link between the data in two tables, ensuring referential integrity."
+
+- stack: sql
+  type: theory
+  topic: functions
+  difficulty: easy
+  question: "What are aggregate functions in SQL?"
+  answer: "Aggregate functions perform calculations on a set of values and return a single value, such as COUNT, SUM, AVG, MIN, MAX."
+
+- stack: sql
+  type: theory
+  topic: functions
+  difficulty: medium
+  question: "What is the difference between aggregate and scalar functions?"
+  answer: "Aggregate functions return a single value for a group of rows, while scalar functions return a value for each row."
+
+- stack: sql
+  type: theory
+  topic: transactions
+  difficulty: medium
+  question: "What are transactions in SQL?"
+  answer: "A transaction is a sequence of operations performed as a single logical unit of work, which must be either fully completed or fully rolled back."
+
+- stack: sql
+  type: theory
+  topic: transactions
+  difficulty: medium
+  question: "What are the ACID properties in SQL?"
+  answer: "ACID stands for Atomicity, Consistency, Isolation, and Durability, the four key properties of transactions."
+
+- stack: sql
+  type: theory
+  topic: views
+  difficulty: easy
+  question: "What is a view in SQL?"
+  answer: "A view is a virtual table based on the result of a SQL query."
+
+- stack: sql
+  type: theory
+  topic: views
+  difficulty: medium
+  question: "What is the difference between a view and a table?"
+  answer: "A table stores data physically, whereas a view is a saved SQL query that displays data dynamically."
+
+- stack: sql
+  type: theory
+  topic: normalization
+  difficulty: medium
+  question: "What is normalization in SQL?"
+  answer: "Normalization is the process of organizing data to minimize redundancy and improve data integrity."
+
+- stack: sql
+  type: theory
+  topic: normalization
+  difficulty: medium
+  question: "What are different normal forms in SQL?"
+  answer: "The most common are 1NF, 2NF, 3NF, and BCNF, each with stricter rules to eliminate redundancy."
+
+- stack: sql
+  type: theory
+  topic: subqueries
+  difficulty: medium
+  question: "What is a subquery in SQL?"
+  answer: "A subquery is a query nested inside another SQL query."
+
+- stack: sql
+  type: theory
+  topic: subqueries
+  difficulty: medium
+  question: "What is the difference between correlated and non-correlated subqueries?"
+  answer: "A correlated subquery depends on the outer query for its values, while a non-correlated subquery runs independently."
+
+- stack: sql
+  type: theory
+  topic: keys
+  difficulty: easy
+  question: "What is the difference between PRIMARY KEY and FOREIGN KEY?"
+  answer: "A PRIMARY KEY uniquely identifies each row within its table, while a FOREIGN KEY references the primary key of another table."
+
+- stack: sql
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What is query optimization in SQL?"
+  answer: "Query optimization is the process of improving query execution time by analyzing multiple query plans and choosing the most efficient."
+
+- stack: sql
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What is the difference between HAVING and WHERE clause?"
+  answer: "WHERE filters rows before grouping, while HAVING filters groups after aggregation."
+
+- stack: sql
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What is the difference between UNION and UNION ALL?"
+  answer: "UNION removes duplicate rows, while UNION ALL includes duplicates."
+
+- stack: sql
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "What are common causes of slow SQL queries?"
+  answer: "Slow queries can result from missing indexes, poor query design, large data scans, lack of normalization, or blocking locks."

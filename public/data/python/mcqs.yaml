@@ -1,0 +1,364 @@
+- id: 1
+  stack: python
+  type: mcq
+  topic: Data Types
+  difficulty: easy
+  question: Which of the following data types is immutable in Python?
+  options:
+    '1': list
+    '2': dict
+    '3': tuple
+    '4': set
+  answer: '3'
+- id: 2
+  stack: python
+  type: mcq
+  topic: Variables & Memory
+  difficulty: medium
+  question: What is the output of the following code?
+    x = [1, 2, 3]
+    y = x
+    y[0] = 10
+    print(x)
+  options:
+    '1': '[1, 2, 3]'
+    '2': '[10, 2, 3]'
+    '3': An error
+    '4': None
+  answer: '2'
+- id: 3
+  stack: python
+  type: mcq
+  topic: Functions
+  difficulty: medium
+  question: How do you correctly define a function that takes a variable number of positional arguments?
+  options:
+    '1': "def my_func(*args):"
+    '2': "def my_func(**kwargs):"
+    '3': "def my_func(args):"
+    '4': "def my_func(args[]):"
+  answer: '1'
+- id: 4
+  stack: python
+  type: mcq
+  topic: File I/O
+  difficulty: medium
+  question: Which of the following is the correct way to open a file for writing, creating it if it doesn't exist, and overwriting its contents?
+  options:
+    '1': open('file.txt', 'r')
+    '2': open('file.txt', 'a')
+    '3': open('file.txt', 'w')
+    '4': open('file.txt', 'x')
+  answer: '3'
+- id: 5
+  stack: python
+  type: mcq
+  topic: OOP
+  difficulty: medium
+  question: In Python, what is the purpose of the `__init__` method in a class?
+  options:
+    '1': It is the destructor, used to clean up resources when an object is destroyed.
+    '2': It is the constructor, used to initialize a new instance of a class.
+    '3': It is a private method that cannot be accessed from outside the class.
+    '4': It defines the string representation of an object.
+  answer: '2'
+- id: 6
+  stack: python
+  type: mcq
+  topic: Control Flow
+  difficulty: hard
+  question: Which loop will execute at least once, even if the condition is false from the beginning?
+  options:
+    '1': while loop
+    '2': for loop
+    '3': do-while loop
+    '4': until loop
+  answer: '3'
+- id: 7
+  stack: python
+  type: mcq
+  topic: Data Structures
+  difficulty: easy
+  question: What is the primary difference between a list and a tuple?
+  options:
+    '1': Lists are immutable, while tuples are mutable.
+    '2': Lists are ordered, while tuples are unordered.
+    '3': Lists can store different data types, while tuples can only store the same data type.
+    '4': Lists are mutable, while tuples are immutable.
+  answer: '4'
+- id: 8
+  stack: python
+  type: mcq
+  topic: Error Handling
+  difficulty: medium
+  question: Which of the following is the correct way to handle exceptions in Python?
+  options:
+    '1': try-catch-finally
+    '2': try-except-finally
+    '3': if-else
+    '4': with-as
+  answer: '2'
+- id: 9
+  stack: python
+  type: mcq
+  topic: Functions
+  difficulty: medium
+  question: What is a 'lambda' function in Python?
+  options:
+    '1': A function that can only be used with integers.
+    '2': A function with multiple expressions separated by semicolons.
+    '3': An anonymous, inline function with a single expression.
+    '4': A function that is only used for object-oriented programming.
+  answer: '3'
+- id: 10
+  stack: python
+  type: mcq
+  topic: Concurrency
+  difficulty: hard
+  question: Which of the following statements is true about Python's Global Interpreter Lock (GIL)?
+  options:
+    '1': It allows multiple threads to execute Python bytecode at the same time on different cores.
+    '2': It is present in all Python implementations, including Jython and IronPython.
+    '3': It primarily affects programs that are I/O-bound rather than CPU-bound.
+    '4': It is a mutex that protects access to Python objects, preventing multiple threads from executing Python code simultaneously.
+  answer: '4'
+- id: 11
+  stack: python
+  type: mcq
+  topic: Generators
+  difficulty: hard
+  question: What is a generator in Python?
+  options:
+    '1': A function that creates and returns a list.
+    '2': An object that stores all its elements in memory at once.
+    '3': A function that uses the `yield` keyword to produce a sequence of values lazily.
+    '4': A class with a `__next__` method.
+  answer: '3'
+- id: 12
+  stack: python
+  type: mcq
+  topic: Data Structures
+  difficulty: easy
+  question: What is the correct way to make a shallow copy of a list named `original_list`?
+  options:
+    '1': new_list = original_list.copy()
+    '2': new_list = original_list
+    '3': new_list = original_list[:]
+    '4': new_list = original_list.deepcopy()
+  answer: '1'
+- id: 13
+  stack: python
+  type: mcq
+  topic: Control Flow
+  difficulty: easy
+  question: What does the `pass` statement do in Python?
+  options:
+    '1': It acts as a placeholder when a statement is syntactically required but you don't want to execute any code.
+    '2': It immediately exits a loop.
+    '3': It skips the rest of the code in the current iteration of a loop.
+    '4': It is used to define a private variable.
+  answer: '1'
+- id: 14
+  stack: python
+  type: mcq
+  topic: Data Structures
+  difficulty: medium
+  question: Which of the following is not a standard Python data structure?
+  options:
+    '1': list
+    '2': dictionary
+    '3': linked list
+    '4': tuple
+  answer: '3'
+- id: 15
+  stack: python
+  type: mcq
+  topic: OOP
+  difficulty: hard
+  question: What is the purpose of the `super()` function in Python?
+  options:
+    '1': To call a method of the current object's parent class.
+    '2': To create a new instance of the superclass.
+    '3': To define a static method in a class.
+    '4': To get the size of an object in memory.
+  answer: '1'
+- id: 16
+  stack: python
+  type: mcq
+  topic: Operators
+  difficulty: easy
+  question: What will be the output of `print(10 // 3)`?
+  options:
+    '1': 3.333...
+    '2': 3
+    '3': 3.0
+    '4': Error
+  answer: '2'
+- id: 17
+  stack: python
+  type: mcq
+  topic: Comprehensions
+  difficulty: medium
+  question: Which of the following is an example of a list comprehension?
+  options:
+    '1': my_list = [i for i in range(10)]
+    '2': my_list = list(range(10))
+    '3': my_list = (i for i in range(10))
+    '4': my_list = {i for i in range(10)}
+  answer: '1'
+- id: 18
+  stack: python
+  type: mcq
+  topic: Dictionaries
+  difficulty: easy
+  question: What is the correct way to check if a key exists in a dictionary named `my_dict`?
+  options:
+    '1': "if my_dict.has_key('key'):"
+    '2': "if 'key' in my_dict:"
+    '3': "if my_dict['key'] is not None:"
+    '4': "if my_dict.get('key'):"
+  answer: '2'
+- id: 19
+  stack: python
+  type: mcq
+  topic: Typing
+  difficulty: medium
+  question: Which of the following is a key feature of Python's dynamic typing?
+  options:
+    '1': Variables must be declared with a specific data type before they are used.
+    '2': The type of a variable is checked at runtime, not at compile time.
+    '3': It prevents type-related errors from ever occurring.
+    '4': It requires the use of type hints for every variable.
+  answer: '2'
+- id: 20
+  stack: python
+  type: mcq
+  topic: Documentation
+  difficulty: medium
+  question: What is a docstring in Python?
+  options:
+    '1': A type of comment used to explain code for a user.
+    '2': A string that is used to automatically generate documentation.
+    '3': A string literal that is ignored by the interpreter.
+    '4': A special type of string used for multi-line comments only.
+  answer: '2'
+- id: 21
+  stack: python
+  type: mcq
+  topic: Modules
+  difficulty: easy
+  question: How do you correctly import a specific function `my_func` from a module named `my_module`?
+  options:
+    '1': import my_module.my_func
+    '2': from my_module import my_func
+    '3': import my_func from my_module
+    '4': include my_module.my_func
+  answer: '2'
+- id: 22
+  stack: python
+  type: mcq
+  topic: Error Handling
+  difficulty: easy
+  question: What does a `TypeError` indicate in Python?
+  options:
+    '1': A variable has an incorrect name.
+    '2': An operation is performed on a variable of an inappropriate data type.
+    '3': The program attempted to access a key that does not exist in a dictionary.
+    '4': There is a syntax mistake in the code.
+  answer: '2'
+- id: 23
+  stack: python
+  type: mcq
+  topic: Lists
+  difficulty: easy
+  question: In Python, what is the correct way to remove all items from a list named `my_list`?
+  options:
+    '1': my_list.delete()
+    '2': del my_list[:]
+    '3': my_list.remove_all()
+    '4': my_list.clear()
+  answer: '2'
+- id: 24
+  stack: python
+  type: mcq
+  topic: Generators
+  difficulty: medium
+  question: What is the purpose of the `yield` keyword in a function?
+  options:
+    '1': To terminate a loop and exit the function.
+    '2': To return a value from a function and then immediately resume execution.
+    '3': To indicate that a function will return `None`.
+    '4': To define a private variable within a function.
+  answer: '2'
+- id: 25
+  stack: python
+  type: mcq
+  topic: Operators
+  difficulty: easy
+  question: Which operator is used for exponentiation in Python?
+  options:
+    '1': '**'
+    '2': '^'
+    '3': '//'
+    '4': E
+  answer: '1'
+- id: 26
+  stack: python
+  type: mcq
+  topic: Decorators
+  difficulty: hard
+  question: What is a decorator in Python?
+  options:
+    '1': A function that is used to remove a class from an object.
+    '2': A special syntax to define a class method.
+    '3': A function that takes another function as an argument, adds some functionality, and returns a new function.
+    '4': A class with no methods.
+  answer: '3'
+- id: 27
+  stack: python
+  type: mcq
+  topic: Sets
+  difficulty: medium
+  question: Which of the following statements about `set` objects is true?
+  options:
+    '1': Sets can contain duplicate elements.
+    '2': Set elements are ordered and can be accessed by index.
+    '3': Sets are mutable but their elements must be immutable.
+    '4': Sets can be created using square brackets.
+  answer: '3'
+- id: 28
+  stack: python
+  type: mcq
+  topic: OOP
+  difficulty: easy
+  question: What is the purpose of the `self` parameter in a Python class method?
+  options:
+    '1': It is a reserved keyword for the class name.
+    '2': It refers to the class itself, allowing access to class-level attributes.
+    '3': It is the first argument that refers to the instance of the object being operated on.
+    '4': It is an optional parameter that can be omitted from methods.
+  answer: '3'
+- id: 29
+  stack: python
+  type: mcq
+  topic: Strings
+  difficulty: easy
+  question: What is the correct way to format a string in Python using an f-string?
+  options:
+    '1': print('Hello, {name}'.format(name='world'))
+    '2': print('Hello, %s' % 'world')
+    '3': print(f'Hello, {"world"}')
+    '4': print('Hello, ' + 'world')
+  answer: '3'
+- id: 30
+  stack: python
+  type: mcq
+  topic: Functions
+  difficulty: medium
+  question: What is the difference between `*args` and `**kwargs` in a function definition?
+  options:
+    '1': "*args is for positional arguments and **kwargs is for keyword arguments."
+    '2': "*args is for keyword arguments and **kwargs is for positional arguments."
+    '3': "*args is a list and **kwargs is a tuple."
+    '4': "*args is for required arguments and **kwargs is for optional arguments."
+  answer: '1'

@@ -1,0 +1,389 @@
+- stack: spark
+  id: 1
+  type: mcq
+  topic: rdd
+  difficulty: easy
+  question: What does RDD stand for in Spark?
+  options:
+    '1': Resilient Distributed Dataset
+    '2': Reliable Data Division
+    '3': Random Data Distribution
+    '4': Resilient Data Division
+  answer: '1'
+
+- stack: spark
+  id: 2
+  type: mcq
+  topic: spark-streaming
+  difficulty: hard
+  question: What is Structured Streaming in Spark?
+  options:
+    '1': A low-level API for DStreams
+    '2': A scalable stream processing engine built on Spark SQL
+    '3': A separate component outside Spark Core
+    '4': A Spark MLlib API for real-time ML
+  answer: '2'
+
+- stack: spark
+  id: 3
+  type: mcq
+  topic: dataframe
+  difficulty: medium
+  question: Which of the following best describes a DataFrame in Spark?
+  options:
+    '1': A distributed collection of key-value pairs
+    '2': A distributed table with rows and named columns
+    '3': A local Pandas DataFrame
+    '4': A Spark ML pipeline
+  answer: '2'
+
+- stack: spark
+  id: 4
+  type: mcq
+  topic: sql
+  difficulty: easy
+  question: Which Spark component allows running SQL queries?
+  options:
+    '1': Spark SQL
+    '2': Spark Core
+    '3': Spark MLlib
+    '4': Spark GraphX
+  answer: '1'
+
+- stack: spark
+  id: 5
+  type: mcq
+  topic: rdd
+  difficulty: medium
+  question: Which operation in Spark RDD triggers execution?
+  options:
+    '1': map
+    '2': filter
+    '3': reduce
+    '4': flatMap
+  answer: '3'
+
+- stack: spark
+  id: 6
+  type: mcq
+  topic: dataframe
+  difficulty: medium
+  question: What file formats can Spark DataFrame natively read?
+  options:
+    '1': JSON, Parquet, ORC, CSV
+    '2': Only CSV and JSON
+    '3': Only Parquet
+    '4': Only Avro
+  answer: '1'
+
+- stack: spark
+  id: 7
+  type: mcq
+  topic: spark-core
+  difficulty: hard
+  question: What is the default cluster manager for Spark?
+  options:
+    '1': YARN
+    '2': Mesos
+    '3': Standalone
+    '4': Kubernetes
+  answer: '3'
+
+- stack: spark
+  id: 8
+  type: mcq
+  topic: optimization
+  difficulty: medium
+  question: What is Catalyst in Spark?
+  options:
+    '1': The Spark ML optimization engine
+    '2': The Spark SQL query optimizer
+    '3': The Spark GraphX engine
+    '4': The Spark job scheduler
+  answer: '2'
+
+- stack: spark
+  id: 9
+  type: mcq
+  topic: optimization
+  difficulty: medium
+  question: What is Tungsten in Spark?
+  options:
+    '1': Spark’s memory and code optimization project
+    '2': A Spark SQL function
+    '3': Spark ML clustering algorithm
+    '4': A deployment mode
+  answer: '1'
+
+- stack: spark
+  id: 10
+  type: mcq
+  topic: dataframe
+  difficulty: hard
+  question: Which join type is not supported in Spark SQL?
+  options:
+    '1': Inner
+    '2': Outer
+    '3': Lateral
+    '4': Left Semi
+  answer: '3'
+
+- stack: spark
+  id: 11
+  type: mcq
+  topic: rdd
+  difficulty: easy
+  question: Which is an action in Spark RDD?
+  options:
+    '1': map
+    '2': filter
+    '3': count
+    '4': flatMap
+  answer: '3'
+
+- stack: spark
+  id: 12
+  type: mcq
+  topic: spark-streaming
+  difficulty: medium
+  question: What is a DStream in Spark?
+  options:
+    '1': A stream of RDDs
+    '2': A DataFrame API
+    '3': A SQL query
+    '4': A Spark ML pipeline
+  answer: '1'
+
+- stack: spark
+  id: 13
+  type: mcq
+  topic: deployment
+  difficulty: medium
+  question: Which of the following is NOT a Spark deployment mode?
+  options:
+    '1': Client
+    '2': Cluster
+    '3': Embedded
+    '4': Local
+  answer: '3'
+
+- stack: spark
+  id: 14
+  type: mcq
+  topic: dataframe
+  difficulty: easy
+  question: What function is used to display the first rows of a DataFrame?
+  options:
+    '1': show()
+    '2': head()
+    '3': collect()
+    '4': take()
+  answer: '1'
+
+- stack: spark
+  id: 15
+  type: mcq
+  topic: spark-core
+  difficulty: hard
+  question: What does Spark use for DAG scheduling?
+  options:
+    '1': Stage and Task-based scheduling
+    '2': MapReduce scheduling
+    '3': Thread-based scheduling
+    '4': FIFO only
+  answer: '1'
+
+- stack: spark
+  id: 16
+  type: mcq
+  topic: optimization
+  difficulty: medium
+  question: What is predicate pushdown in Spark?
+  options:
+    '1': Moving filters close to the data source
+    '2': Pushing data to workers
+    '3': Partition pruning
+    '4': Repartitioning DataFrames
+  answer: '1'
+
+- stack: spark
+  id: 17
+  type: mcq
+  topic: dataframe
+  difficulty: medium
+  question: Which method persists a DataFrame in memory?
+  options:
+    '1': cache()
+    '2': register()
+    '3': save()
+    '4': checkpoint()
+  answer: '1'
+
+- stack: spark
+  id: 18
+  type: mcq
+  topic: rdd
+  difficulty: hard
+  question: Which transformation guarantees data shuffling in Spark?
+  options:
+    '1': map
+    '2': filter
+    '3': groupByKey
+    '4': flatMap
+  answer: '3'
+
+- stack: spark
+  id: 19
+  type: mcq
+  topic: spark-core
+  difficulty: medium
+  question: In Spark, what is a narrow transformation?
+  options:
+    '1': A transformation that requires data shuffling
+    '2': A transformation that doesn’t require data shuffling
+    '3': An action on RDD
+    '4': A join operation
+  answer: '2'
+
+- stack: spark
+  id: 20
+  type: mcq
+  topic: dataframe
+  difficulty: easy
+  question: Which Spark API is most similar to SQL?
+  options:
+    '1': RDD API
+    '2': DataFrame API
+    '3': GraphX API
+    '4': Streaming API
+  answer: '2'
+
+- stack: spark
+  id: 21
+  type: mcq
+  topic: sql
+  difficulty: hard
+  question: Which Spark SQL function is used for windowing operations?
+  options:
+    '1': over()
+    '2': window()
+    '3': row_number()
+    '4': rank()
+  answer: '2'
+
+- stack: spark
+  id: 22
+  type: mcq
+  topic: spark-core
+  difficulty: medium
+  question: Which cluster manager is NOT supported by Spark?
+  options:
+    '1': Kubernetes
+    '2': Mesos
+    '3': Hadoop YARN
+    '4': Apache Flink
+  answer: '4'
+
+- stack: spark
+  id: 23
+  type: mcq
+  topic: optimization
+  difficulty: medium
+  question: Which file format is best for Spark performance with schema evolution?
+  options:
+    '1': JSON
+    '2': Parquet
+    '3': CSV
+    '4': TXT
+  answer: '2'
+
+- stack: spark
+  id: 24
+  type: mcq
+  topic: spark-streaming
+  difficulty: hard
+  question: How does checkpointing help in Spark Streaming?
+  options:
+    '1': Saves intermediate RDDs to avoid recomputation
+    '2': Persists DataFrames in memory
+    '3': Reduces network shuffle
+    '4': Balances partitions
+  answer: '1'
+
+- stack: spark
+  id: 25
+  type: mcq
+  topic: rdd
+  difficulty: easy
+  question: Which method is used to parallelize a local collection into RDD?
+  options:
+    '1': SparkContext.textFile()
+    '2': SparkContext.parallelize()
+    '3': SparkContext.runJob()
+    '4': SparkContext.range()
+  answer: '2'
+
+- stack: spark
+  id: 26
+  type: mcq
+  topic: dataframe
+  difficulty: hard
+  question: Which method writes DataFrame in append mode?
+  options:
+    '1': df.write.save("path")
+    '2': df.write.mode("append").save("path")
+    '3': df.save("path")
+    '4': df.append("path")
+  answer: '2'
+
+- stack: spark
+  id: 27
+  type: mcq
+  topic: sql
+  difficulty: medium
+  question: How do you register a DataFrame as a temporary SQL table?
+  options:
+    '1': createTempView
+    '2': registerTable
+    '3': registerSQL
+    '4': createView
+  answer: '1'
+
+- stack: spark
+  id: 28
+  type: mcq
+  topic: spark-core
+  difficulty: medium
+  question: Which deployment mode runs the driver on the cluster?
+  options:
+    '1': Client
+    '2': Cluster
+    '3': Local
+    '4': Embedded
+  answer: '2'
+
+- stack: spark
+  id: 29
+  type: mcq
+  topic: optimization
+  difficulty: hard
+  question: What is broadcast join in Spark?
+  options:
+    '1': Joining large datasets by repartition
+    '2': Sending a small dataset to all worker nodes
+    '3': Streaming joins in real-time
+    '4': Cross join with shuffle
+  answer: '2'
+
+- stack: spark
+  id: 30
+  type: mcq
+  topic: spark-core
+  difficulty: easy
+  question: Which language APIs does Spark support?
+  options:
+    '1': Java, Scala, Python, R
+    '2': Only Java and Scala
+    '3': Only Python
+    '4': Java, Scala, C++
+  answer: '1'

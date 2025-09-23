@@ -4,13 +4,14 @@ export async function loadQuestions(type = "theory") {
     try {
         const allQuestions = [];
 
+        // Load stack_manifest.yaml
         const manifestResponse = await fetch("data/stack_manifest.yaml");
         const manifestText = await manifestResponse.text();
+        const manifest = yaml.load(manifestText); // YAML -> JS object
 
-        const manifest = yaml.load(manifestText); // should become an object
-
-        for (const [stack, types] of Object.entries(manifest)) {
-            if (!types.includes(type)) continue;
+        for (const [stack, stackObject] of Object.entries(manifest)) {
+            // Check if this stack contains the requested type
+            if (!stackObject.types || !stackObject.types.includes(type)) continue;
 
             try {
                 const response = await fetch(`data/${stack}/${type}.yaml`);

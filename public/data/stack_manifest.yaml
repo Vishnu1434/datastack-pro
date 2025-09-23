@@ -1,0 +1,9 @@
+spark:
+  - theory
+  - mcqs
+sql:
+  - theory
+  - mcqs
+python:
+  - theory
+  - mcqs

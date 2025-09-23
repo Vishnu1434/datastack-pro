@@ -1,0 +1,209 @@
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: easy
+  question: "What is RDD in Spark?"
+  answer: "RDD stands for Resilient Distributed Dataset, the fundamental data structure of Spark."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: easy
+  question: "Why are RDDs called 'resilient'?"
+  answer: "They can automatically recompute lost partitions using lineage information."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: medium
+  question: "What are the two types of RDD operations in Spark?"
+  answer: "Transformations and Actions."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: medium
+  question: "What is the difference between narrow and wide transformations in Spark?"
+  answer: "Narrow transformations don’t require data shuffling (e.g., map), while wide transformations require shuffling across partitions (e.g., reduceByKey)."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: easy
+  question: "What is lineage in Spark RDD?"
+  answer: "It is the record of how an RDD was derived from other RDDs, used for recomputation in case of failure."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: medium
+  question: "What is lazy evaluation in Spark?"
+  answer: "Transformations are not executed immediately; Spark builds a DAG and executes only when an action is called."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: medium
+  question: "What is the role of persistence in RDDs?"
+  answer: "Persistence allows RDDs to be cached in memory or disk for faster reuse in computations."
+
+- stack: spark
+  type: theory
+  topic: rdd
+  difficulty: hard
+  question: "How does Spark handle data locality when working with RDDs?"
+  answer: "Spark schedules tasks on nodes where the data resides to minimize network I/O, improving performance."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: easy
+  question: "What is a DataFrame in Spark?"
+  answer: "A DataFrame is a distributed collection of data organized into named columns, similar to a table."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: easy
+  question: "What is the difference between RDD and DataFrame?"
+  answer: "RDD is low-level and type-safe, while DataFrame is high-level, optimized, and supports SQL-like operations."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: medium
+  question: "What is Catalyst Optimizer in Spark SQL?"
+  answer: "It is Spark's query optimizer that transforms logical plans into efficient physical execution plans."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: medium
+  question: "What are Spark SQL DataTypes?"
+  answer: "They define the schema of DataFrames, such as StringType, IntegerType, ArrayType, and StructType."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: medium
+  question: "What is Tungsten in Spark SQL?"
+  answer: "Tungsten is Spark's execution engine focused on memory management and code generation for performance."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: hard
+  question: "How does Spark SQL optimize joins?"
+  answer: "By using techniques like broadcast joins, shuffle hash joins, and sort-merge joins based on data size."
+
+- stack: spark
+  type: theory
+  topic: dataframe
+  difficulty: medium
+  question: "What is the difference between DataFrame and Dataset in Spark?"
+  answer: "Dataset is a type-safe, object-oriented API, while DataFrame is untyped and optimized for performance."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: easy
+  question: "What is SparkContext?"
+  answer: "SparkContext is the entry point for Spark functionality, managing the connection to a Spark cluster."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: easy
+  question: "What is a DAG in Spark?"
+  answer: "DAG (Directed Acyclic Graph) represents the sequence of computations to be performed on the data."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: medium
+  question: "What is a stage in Spark execution?"
+  answer: "A stage is a set of parallel tasks executed as part of a Spark job, separated by shuffle boundaries."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: medium
+  question: "What is a task in Spark?"
+  answer: "A task is the smallest unit of work in Spark, representing computation on a single partition of data."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: medium
+  question: "What is the role of the driver in Spark?"
+  answer: "The driver coordinates the execution of tasks by creating the SparkContext and scheduling jobs."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: medium
+  question: "What is the role of executors in Spark?"
+  answer: "Executors run tasks on worker nodes and store data for computation."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: hard
+  question: "What is shuffle in Spark?"
+  answer: "Shuffle is the process of redistributing data across partitions, often required for wide transformations."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: hard
+  question: "What are Spark accumulators?"
+  answer: "Accumulators are variables used to aggregate information across executors, often for debugging or counters."
+
+- stack: spark
+  type: theory
+  topic: spark-core
+  difficulty: medium
+  question: "What are Spark broadcast variables?"
+  answer: "Broadcast variables efficiently distribute large read-only data to all worker nodes."
+
+- stack: spark
+  type: theory
+  topic: spark-streaming
+  difficulty: easy
+  question: "What is Spark Streaming?"
+  answer: "It is Spark's extension for processing real-time data streams."
+
+- stack: spark
+  type: theory
+  topic: spark-streaming
+  difficulty: medium
+  question: "What is a DStream in Spark Streaming?"
+  answer: "A DStream (Discretized Stream) is a sequence of RDDs representing continuous data streams."
+
+- stack: spark
+  type: theory
+  topic: spark-streaming
+  difficulty: medium
+  question: "What is windowed operation in Spark Streaming?"
+  answer: "Windowed operations allow computations on data over a sliding time window."
+
+- stack: spark
+  type: theory
+  topic: spark-streaming
+  difficulty: hard
+  question: "What is checkpointing in Spark Streaming?"
+  answer: "Checkpointing saves metadata and data to reliable storage for fault tolerance and recovery."
+
+- stack: spark
+  type: theory
+  topic: spark-streaming
+  difficulty: hard
+  question: "What is Structured Streaming in Spark?"
+  answer: "Structured Streaming is a newer API in Spark that treats streaming data as an unbounded table processed incrementally."
+
+- stack: spark
+  type: theory
+  topic: performance
+  difficulty: hard
+  question: "What are common performance tuning techniques in Spark?"
+  answer: "Techniques include caching, using broadcast joins, reducing shuffles, adjusting parallelism, and optimizing memory usage."

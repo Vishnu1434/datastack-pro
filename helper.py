@@ -1,9 +1,9 @@
 import os
 import yaml
 
-def get_the_topics(dir, file):
+def get_the_topics(directory, file):
     topics = []
-    with open(f"{dir}/{file}", 'r') as file:
+    with open(f"{directory}/{file}", 'r') as file:
         yaml_data = yaml.safe_load(file)
 
         for question in yaml_data:
@@ -39,13 +39,9 @@ def generate_stack_manifest(data_root="public/data/", output_file="public/data/s
             manifest[stack_name]["types"].append("mcqs")
             manifest[stack_name]["topics"] += get_the_topics(root, "mcqs.yaml")
 
-    # Write clean YAML (preserve key order and avoid ? '' issue)
-    print(manifest)
     with open(output_file, "w") as f:
         yaml.safe_dump(manifest, f, default_flow_style=False, sort_keys=False)
 
     print(f"stack_manifest.yaml generated at {output_file}")
 
-
-# Example usage:
 generate_stack_manifest()

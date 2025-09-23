@@ -1,9 +1,140 @@
-spark:
+Python:
+  types:
   - theory
   - mcqs
-sql:
+  topics:
+  - functions
+  - memory
+  - exceptions
+  - comprehension
+  - modules
+  - iterators
+  - control_flow
+  - generators
+  - advanced
+  - oop
+  - variables
+  - decorators
+  - basics
+  - Functions
+  - Decorators
+  - Operators
+  - Concurrency
+  - Data Structures
+  - Variables & Memory
+  - Typing
+  - Error Handling
+  - Dictionaries
+  - Data Types
+  - Strings
+  - Control Flow
+  - File I/O
+  - Modules
+  - Documentation
+  - Lists
+  - OOP
+  - Generators
+  - Comprehensions
+  - Sets
+Spark:
+  types:
   - theory
   - mcqs
-python:
+  topics:
+  - rdd_operations
+  - spark security
+  - logging
+  - spark basics
+  - udf
+  - data_skew
+  - multi-tenancy
+  - AQE
+  - memory management
+  - window_functions
+  - cluster managers
+  - transformations
+  - fault tolerance
+  - optimization
+  - lakehouse architecture
+  - structured streaming
+  - lakehouse integration
+  - caching strategies
+  - Joins
+  - resource tuning
+  - task scheduling
+  - dataframes
+  - dataframes_vs_datasets
+  - spark sql
+  - change data capture
+  - garbage collection
+  - skew mitigation
+  - spark monitoring
+  - incremental etl
+  - lakehouse comparison
+  - delta lake
+  - dag scheduler
+  - aqe
+  - datasets
+  - sql
+  - serialization
+  - checkpointing
+  - tungsten project
+  - shuffle optimization
+  - cloud deployments
+  - hive
+  - fault_tolerance
+  - query_optimization
+  - data source
+  - apache iceberg
+  - actions
+  - Partitioning
+  - dynamic resource allocation
+  - spark debugging
+  - shuffle operations
+  - spark on kubernetes
+  - apache hudi
+  - persistence
+  - rdd
+  - dataframe
+  - sql
+  - deployment
+  - spark-streaming
+  - optimization
+  - spark-core
+SQL:
+  types:
   - theory
   - mcqs
+  topics:
+  - transactions
+  - functions
+  - joins
+  - views
+  - keys
+  - ddl
+  - constraints
+  - subqueries
+  - dml
+  - basics
+  - optimization
+  - indexing
+  - normalization
+  - transactions
+  - constraints
+  - basics
+  - normalization
+  - keys
+  - ddl
+  - subqueries
+  - data-types
+  - dml
+  - indexing
+  - joins
+  - update
+  - aggregate
+  - functions
+  - views
+  - delete
+  - performance
+  - aggregation
+  - window-functions

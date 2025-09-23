@@ -1,0 +1,1663 @@
+- stack: spark
+  id: 1
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Big Data?"
+  answer: "Big Data refers to datasets that are too large or complex to be processed by traditional systems, characterized by high Volume, Velocity, and Variety."
+
+- stack: spark
+  id: 2
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What are the 3Vs of Big Data?"
+  answer: "Volume, Velocity, and Variety."
+
+- stack: spark
+  id: 3
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is the difference between batch processing and real-time processing?"
+  answer: "Batch processing handles data in bulk at scheduled intervals, while real-time processing handles continuous streams of data with low latency."
+
+- stack: spark
+  id: 4
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Give an example of a batch processing system."
+  answer: "Hadoop MapReduce is a batch processing system."
+
+- stack: spark
+  id: 5
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Give an example of a real-time processing system."
+  answer: "Apache Kafka with Spark Structured Streaming can be used for real-time processing."
+
+- stack: spark
+  id: 6
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Apache Spark?"
+  answer: "Apache Spark is an open-source distributed computing framework for fast large-scale data processing across clusters."
+
+- stack: spark
+  id: 7
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Why is Spark faster than Hadoop MapReduce?"
+  answer: "Because Spark processes data in-memory and minimizes disk I/O, whereas MapReduce stores intermediate data on disk."
+
+- stack: spark
+  id: 8
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "List the main components of the Spark ecosystem."
+  answer: "Spark Core, Spark SQL, Spark Streaming, MLlib, and GraphX."
+
+- stack: spark
+  id: 9
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is Spark Core?"
+  answer: "Spark Core provides basic functionalities like task scheduling, memory management, fault tolerance, and interaction with storage systems."
+
+- stack: spark
+  id: 10
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Spark SQL used for?"
+  answer: "Spark SQL is used for structured data processing and enables SQL queries on distributed data."
+
+- stack: spark
+  id: 11
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Spark Streaming?"
+  answer: "Spark Streaming is a component of Spark used for processing real-time streaming data."
+
+- stack: spark
+  id: 12
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is MLlib in Spark?"
+  answer: "MLlib is Spark’s scalable machine learning library providing algorithms for classification, regression, clustering, and more."
+
+- stack: spark
+  id: 13
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is GraphX in Spark?"
+  answer: "GraphX is Spark’s API for graph-parallel computation and graph analytics."
+
+- stack: spark
+  id: 14
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Explain Spark’s architecture in one line."
+  answer: "Spark follows a master-slave architecture with a Driver program coordinating tasks executed by Executors on cluster nodes."
+
+- stack: spark
+  id: 15
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is the role of the Driver in Spark?"
+  answer: "The Driver runs the main program, builds the execution plan, and coordinates execution of tasks on Executors."
+
+- stack: spark
+  id: 16
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What are Executors in Spark?"
+  answer: "Executors are worker processes that run individual tasks and store intermediate data."
+
+- stack: spark
+  id: 17
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the role of the Cluster Manager?"
+  answer: "The Cluster Manager allocates resources across applications. Examples are Standalone, YARN, Mesos, and Kubernetes."
+
+- stack: spark
+  id: 18
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the difference between Standalone and YARN in Spark?"
+  answer: "Standalone is Spark’s built-in cluster manager, while YARN is a Hadoop-based cluster manager for resource sharing across applications."
+
+- stack: spark
+  id: 19
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is Spark on Kubernetes?"
+  answer: "It is Spark’s native integration with Kubernetes, where Spark applications run as pods in a Kubernetes cluster."
+
+- stack: spark
+  id: 20
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Local mode in Spark?"
+  answer: "Local mode runs Spark on a single machine for development or testing purposes."
+
+- stack: spark
+  id: 21
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Cluster mode in Spark?"
+  answer: "Cluster mode runs Spark on multiple nodes managed by a cluster manager for distributed processing."
+
+- stack: spark
+  id: 22
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Which cluster managers can Spark run on?"
+  answer: "Standalone, Apache YARN, Apache Mesos, and Kubernetes."
+
+- stack: spark
+  id: 23
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is Spark Shell?"
+  answer: "Spark Shell is an interactive command-line environment available in Scala and Python for experimenting with Spark."
+
+- stack: spark
+  id: 24
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "Which languages are supported by Spark Shell?"
+  answer: "Scala and Python."
+
+- stack: spark
+  id: 25
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "Why is Spark Shell useful?"
+  answer: "It allows quick experimentation, testing Spark commands, and interactive data exploration."
+
+- stack: spark
+  id: 26
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the difference between PySpark and Scala Spark?"
+  answer: "PySpark provides a Python API for Spark, while Scala is Spark’s native language and often offers better performance."
+
+- stack: spark
+  id: 27
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the role of DAG (Directed Acyclic Graph) in Spark execution?"
+  answer: "The Driver converts user operations into a DAG of stages and tasks, which are then scheduled for execution on Executors."
+
+- stack: spark
+  id: 28
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is SparkContext?"
+  answer: "SparkContext is the entry point of any Spark application; it connects to the cluster manager and coordinates resources."
+
+- stack: spark
+  id: 29
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What is SparkSession?"
+  answer: "SparkSession is the unified entry point to work with RDDs, DataFrames, and Datasets in Spark 2.x and above."
+
+- stack: spark
+  id: 30
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the difference between SparkContext and SparkSession?"
+  answer: "SparkContext is the entry point for low-level RDD APIs, while SparkSession is a unified entry point introduced in Spark 2.x for all APIs including SQL and DataFrames."
+
+- stack: spark
+  id: 31
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "What does RDD stand for in Spark and what role does it serve?"
+  answer: "RDD stands for Resilient Distributed Dataset, the core data structure in Spark."
+
+- stack: spark
+  id: 32
+  type: theory
+  topic: spark basics
+  difficulty: easy
+  question: "Why are distributed datasets called 'resilient'?"
+  answer: "Because they can automatically recover from node failures using lineage information."
+
+- stack: spark
+  id: 33
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What does it mean that distributed datasets are immutable?"
+  answer: "Once created, distributed datasets cannot be changed. Any operation produces a new dataset."
+
+- stack: spark
+  id: 34
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What does lazy evaluation mean in Spark?"
+  answer: "Operations on distributed datasets are not executed immediately; Spark builds a DAG and executes only when an action is triggered."
+
+- stack: spark
+  id: 35
+  type: theory
+  topic: fault_tolerance
+  difficulty: medium
+  question: "What is fault tolerance in distributed data structures?"
+  answer: "They can recompute lost partitions using lineage information if data is lost due to node failures."
+
+- stack: spark
+  id: 36
+  type: theory
+  topic: transformations
+  difficulty: easy
+  question: "What are transformations in Spark's distributed datasets?"
+  answer: "Transformations are operations that create a new dataset from an existing one, such as map and filter."
+
+- stack: spark
+  id: 37
+  type: theory
+  topic: actions
+  difficulty: easy
+  question: "What are actions in Spark's distributed datasets?"
+  answer: "Actions are operations that trigger execution and return results to the driver or write data to storage, such as collect and count."
+
+- stack: spark
+  id: 38
+  type: theory
+  topic: transformations
+  difficulty: medium
+  question: "Give two examples of transformations in Spark."
+  answer: "map and filter."
+
+- stack: spark
+  id: 39
+  type: theory
+  topic: actions
+  difficulty: medium
+  question: "Give two examples of actions in Spark."
+  answer: "collect and saveAsTextFile."
+
+- stack: spark
+  id: 40
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is the difference between narrow and wide dependencies in distributed datasets?"
+  answer: "In narrow dependencies, each parent partition is used by at most one child partition. In wide dependencies, multiple child partitions depend on multiple parent partitions, causing shuffles."
+
+- stack: spark
+  id: 41
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Give an example of a narrow dependency operation."
+  answer: "map and filter create narrow dependencies."
+
+- stack: spark
+  id: 42
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "Give an example of a wide dependency operation."
+  answer: "reduceByKey and groupByKey create wide dependencies because they require shuffling."
+
+- stack: spark
+  id: 43
+  type: theory
+  topic: rdd_operations
+  difficulty: easy
+  question: "How can you create a distributed dataset from a collection?"
+  answer: "By using the parallelize method on a collection."
+
+- stack: spark
+  id: 44
+  type: theory
+  topic: rdd_operations
+  difficulty: easy
+  question: "How can you create a distributed dataset from an external file?"
+  answer: "By using methods like textFile() to read files into distributed datasets."
+
+- stack: spark
+  id: 45
+  type: theory
+  topic: transformations
+  difficulty: easy
+  question: "What does the map() transformation do on a distributed dataset?"
+  answer: "It applies a function to each element of the dataset and returns a new dataset with the results."
+
+- stack: spark
+  id: 46
+  type: theory
+  topic: transformations
+  difficulty: easy
+  question: "What does the flatMap() transformation do on a distributed dataset?"
+  answer: "It applies a function to each element and flattens the results into a single dataset."
+
+- stack: spark
+  id: 47
+  type: theory
+  topic: transformations
+  difficulty: easy
+  question: "What does the filter() transformation do on a distributed dataset?"
+  answer: "It returns a new dataset containing only the elements that satisfy a given condition."
+
+- stack: spark
+  id: 48
+  type: theory
+  topic: actions
+  difficulty: medium
+  question: "What does reduce() action do in Spark?"
+  answer: "It aggregates the elements of the dataset using a specified associative function."
+
+- stack: spark
+  id: 49
+  type: theory
+  topic: actions
+  difficulty: medium
+  question: "What is the difference between reduceByKey and groupByKey?"
+  answer: "reduceByKey combines values for each key locally before shuffling, while groupByKey shuffles all key-value pairs, making it less efficient."
+
+- stack: spark
+  id: 50
+  type: theory
+  topic: rdd_operations
+  difficulty: medium
+  question: "What is the purpose of the join() operation on distributed datasets?"
+  answer: "It combines two datasets based on matching keys, similar to SQL joins."
+
+- stack: spark
+  id: 51
+  type: theory
+  topic: rdd_operations
+  difficulty: medium
+  question: "What does the union() operation do in distributed datasets?"
+  answer: "It returns a dataset that contains elements from both source datasets."
+
+- stack: spark
+  id: 52
+  type: theory
+  topic: rdd_operations
+  difficulty: medium
+  question: "What does the distinct() operation do in distributed datasets?"
+  answer: "It returns a dataset with duplicate elements removed."
+
+- stack: spark
+  id: 53
+  type: theory
+  topic: rdd_operations
+  difficulty: medium
+  question: "What does the cartesian() operation do in distributed datasets?"
+  answer: "It returns all possible pairs between elements of two datasets, which can be very expensive."
+
+- stack: spark
+  id: 54
+  type: theory
+  topic: actions
+  difficulty: easy
+  question: "What does the collect() action do on a distributed dataset?"
+  answer: "It returns all elements of the dataset to the driver program."
+
+- stack: spark
+  id: 55
+  type: theory
+  topic: actions
+  difficulty: easy
+  question: "What does the count() action do on a distributed dataset?"
+  answer: "It returns the number of elements in the dataset."
+
+- stack: spark
+  id: 56
+  type: theory
+  topic: actions
+  difficulty: easy
+  question: "What does the take() action do on a distributed dataset?"
+  answer: "It returns the first N elements of the dataset."
+
+- stack: spark
+  id: 57
+  type: theory
+  topic: actions
+  difficulty: medium
+  question: "What does saveAsTextFile() action do?"
+  answer: "It saves the elements of a dataset as a text file in the specified directory."
+
+- stack: spark
+  id: 58
+  type: theory
+  topic: persistence
+  difficulty: medium
+  question: "What is dataset persistence?"
+  answer: "Persistence allows intermediate datasets to be stored in memory or on disk for reuse in future computations."
+
+- stack: spark
+  id: 59
+  type: theory
+  topic: persistence
+  difficulty: medium
+  question: "What is the difference between cache() and persist() in Spark?"
+  answer: "cache() stores datasets in memory only, while persist() allows specifying different storage levels such as memory and disk."
+
+- stack: spark
+  id: 60
+  type: theory
+  topic: spark basics
+  difficulty: medium
+  question: "What is lineage in distributed datasets?"
+  answer: "Lineage is the sequence of transformations used to build a dataset, which Spark uses to recompute lost data partitions."
+
+- stack: spark
+  id: 61
+  type: theory
+  topic: spark basics
+  difficulty: hard
+  question: "How does Spark use DAG (Directed Acyclic Graph) for distributed datasets?"
+  answer: "Spark represents transformations as a DAG of stages and tasks. The DAG scheduler optimizes and executes this plan efficiently across the cluster."
+
+- stack: spark
+  id: 62
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "What is a DataFrame in Spark?"
+  answer: "A DataFrame is a distributed collection of data organized into named columns, similar to a table in a relational database."
+
+- stack: spark
+  id: 63
+  type: theory
+  topic: datasets
+  difficulty: easy
+  question: "What is a Dataset in Spark?"
+  answer: "A Dataset is a strongly-typed distributed collection of data introduced in Spark 1.6, combining the benefits of RDDs and DataFrames."
+
+- stack: spark
+  id: 64
+  type: theory
+  topic: dataframes_vs_datasets
+  difficulty: medium
+  question: "What is the difference between an RDD, DataFrame, and Dataset?"
+  answer: "RDDs provide low-level control with no schema, DataFrames are schema-based and optimized, and Datasets add compile-time type safety on top of DataFrames."
+
+- stack: spark
+  id: 65
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "What is the role of a schema in Spark DataFrames?"
+  answer: "A schema defines the structure of the DataFrame including column names and data types, enabling optimized execution through Catalyst."
+
+- stack: spark
+  id: 66
+  type: theory
+  topic: query_optimization
+  difficulty: medium
+  question: "What is the Catalyst Optimizer?"
+  answer: "Catalyst Optimizer is Spark SQL’s query optimization engine that automatically optimizes logical query plans into efficient physical execution plans."
+
+- stack: spark
+  id: 67
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "How can you create a DataFrame from an RDD?"
+  answer: "By applying a schema using SparkSession.createDataFrame() on an RDD."
+
+- stack: spark
+  id: 68
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "How can you create a DataFrame from a JSON file?"
+  answer: "By using spark.read.json('path')."
+
+- stack: spark
+  id: 69
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "How can you create a DataFrame from a Parquet file?"
+  answer: "By using spark.read.parquet('path')."
+
+- stack: spark
+  id: 70
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "How can you create a DataFrame from a CSV file?"
+  answer: "By using spark.read.csv('path', header=True, inferSchema=True)."
+
+- stack: spark
+  id: 71
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "How can you create a DataFrame from a Hive table?"
+  answer: "By enabling Hive support and using spark.sql('SELECT * FROM table_name')."
+
+- stack: spark
+  id: 72
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "What does the select() operation do in DataFrames?"
+  answer: "select() returns a new DataFrame with specified columns."
+
+- stack: spark
+  id: 73
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "What does withColumn() do in DataFrames?"
+  answer: "withColumn() creates a new column or replaces an existing one with a computed value."
+
+- stack: spark
+  id: 74
+  type: theory
+  topic: dataframes
+  difficulty: easy
+  question: "What does the filter() operation do in DataFrames?"
+  answer: "filter() returns rows that satisfy a given condition."
+
+- stack: spark
+  id: 75
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "What does groupBy() and agg() do in DataFrames?"
+  answer: "groupBy() groups rows by column values and agg() performs aggregations such as sum, avg, or count."
+
+- stack: spark
+  id: 76
+  type: theory
+  topic: sql
+  difficulty: medium
+  question: "How can SQL queries be executed in Spark?"
+  answer: "By registering DataFrames as temporary views and running queries using spark.sql()."
+
+- stack: spark
+  id: 77
+  type: theory
+  topic: data source
+  difficulty: easy
+  question: "What is the advantage of using Parquet as a data source?"
+  answer: "Parquet is a columnar storage format that enables efficient compression and query performance."
+
+- stack: spark
+  id: 78
+  type: theory
+  topic: data source
+  difficulty: medium
+  question: "What is the difference between Parquet and JSON as Spark data sources?"
+  answer: "Parquet is columnar, compact, and optimized for queries, while JSON is row-based and more human-readable but less efficient."
+
+- stack: spark
+  id: 79
+  type: theory
+  topic: data source
+  difficulty: medium
+  question: "How can Spark connect to relational databases?"
+  answer: "By using the JDBC data source with spark.read.format('jdbc')."
+
+- stack: spark
+  id: 80
+  type: theory
+  topic: udf
+  difficulty: medium
+  question: "What is a User-Defined Function (UDF) in Spark?"
+  answer: "A UDF is a custom function defined by users to extend the functionality of Spark SQL."
+
+- stack: spark
+  id: 81
+  type: theory
+  topic: udf
+  difficulty: medium
+  question: "What is the difference between a UDF and a UDAF?"
+  answer: "A UDF operates on individual rows, while a UDAF (User-Defined Aggregate Function) performs aggregation over multiple rows."
+
+- stack: spark
+  id: 82
+  type: theory
+  topic: window_functions
+  difficulty: hard
+  question: "What are window functions in Spark SQL?"
+  answer: "Window functions perform calculations across a set of rows related to the current row, such as ranking and moving averages."
+
+- stack: spark
+  id: 83
+  type: theory
+  topic: window_functions
+  difficulty: medium
+  question: "Give an example of a window function in Spark."
+  answer: "ROW_NUMBER() OVER (PARTITION BY col ORDER BY col2) assigns sequential numbers within each partition."
+
+- stack: spark
+  id: 84
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What are broadcast variables in Spark?"
+  answer: "Broadcast variables allow large read-only data to be cached on worker nodes, reducing communication overhead."
+
+- stack: spark
+  id: 85
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What are accumulators in Spark?"
+  answer: "Accumulators are variables that workers can only add to, useful for counters and aggregations."
+
+- stack: spark
+  id: 86
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "What is data locality in Spark?"
+  answer: "Data locality refers to executing tasks as close as possible to where the data resides to reduce network overhead."
+
+- stack: spark
+  id: 87
+  type: theory
+  topic: dataframes
+  difficulty: medium
+  question: "What is partitioning in Spark DataFrames?"
+  answer: "Partitioning splits data into smaller chunks stored across nodes, enabling parallelism and optimized processing."
+
+- stack: spark
+  id: 88
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "How can partitioning strategies improve Spark performance?"
+  answer: "By colocating related data in the same partition, reducing shuffles and improving query execution."
+
+- stack: spark
+  id: 89
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "What is shuffling in Spark?"
+  answer: "Shuffling is the process of redistributing data across partitions, usually caused by operations like groupBy, reduceByKey, and join."
+
+- stack: spark
+  id: 90
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "Why is shuffling expensive in Spark?"
+  answer: "Because it involves disk I/O, network transfer, and serialization, making it one of the most costly operations in Spark."
+
+- stack: spark
+  id: 91
+  type: theory
+  topic: spark sql
+  difficulty: medium
+  question: "What is Spark SQL?"
+  answer: "Spark SQL is a Spark module for structured data processing, allowing SQL queries alongside DataFrame and Dataset APIs."
+
+- stack: spark
+  id: 92
+  type: theory
+  topic: spark sql
+  difficulty: medium
+  question: "What are the main components of Spark SQL?"
+  answer: "Spark SQL consists of the Catalyst Optimizer for query optimization and the Tungsten execution engine for efficient physical execution."
+
+- stack: spark
+  id: 93
+  type: theory
+  topic: query_optimization
+  difficulty: hard
+  question: "What is the role of the Catalyst Optimizer in Spark SQL?"
+  answer: "The Catalyst Optimizer transforms logical query plans into optimized physical execution plans using rule-based and cost-based optimization."
+
+- stack: spark
+  id: 94
+  type: theory
+  topic: query_optimization
+  difficulty: hard
+  question: "What is Tungsten execution engine in Spark SQL?"
+  answer: "Tungsten is a Spark SQL execution engine designed for memory management, code generation, and CPU efficiency."
+
+- stack: spark
+  id: 95
+  type: theory
+  topic: query_optimization
+  difficulty: hard
+  question: "What is whole-stage code generation in Spark SQL?"
+  answer: "Whole-stage code generation compiles multiple operators into a single optimized Java function to reduce overhead and improve performance."
+
+- stack: spark
+  id: 96
+  type: theory
+  topic: spark sql
+  difficulty: medium
+  question: "What is schema evolution in Spark SQL?"
+  answer: "Schema evolution is the ability of Spark SQL to handle changes in schema, such as adding new columns, without breaking queries."
+
+- stack: spark
+  id: 97
+  type: theory
+  topic: Joins
+  difficulty: easy
+  question: "What are the types of joins supported in Spark SQL?"
+  answer: "Spark SQL supports inner, left, right, full outer, semi, anti, cross, broadcast, shuffle, and sort-merge joins."
+
+- stack: spark
+  id: 98
+  type: theory
+  topic: Joins
+  difficulty: medium
+  question: "What is a broadcast join in Spark SQL?"
+  answer: "A broadcast join sends a small table to all worker nodes to avoid shuffling the larger table."
+
+- stack: spark
+  id: 99
+  type: theory
+  topic: Joins
+  difficulty: medium
+  question: "When should broadcast joins be used in Spark?"
+  answer: "Broadcast joins are efficient when one dataset is small enough to fit in memory and can be broadcasted to all nodes."
+
+- stack: spark
+  id: 100
+  type: theory
+  topic: Joins
+  difficulty: medium
+  question: "What is a shuffle join in Spark SQL?"
+  answer: "A shuffle join redistributes data across partitions so that matching keys from both datasets end up on the same node."
+
+- stack: spark
+  id: 101
+  type: theory
+  topic: Joins
+  difficulty: hard
+  question: "What is a sort-merge join in Spark SQL?"
+  answer: "Sort-merge join sorts both datasets on join keys and then merges them, suitable for large datasets."
+
+- stack: spark
+  id: 102
+  type: theory
+  topic: data_skew
+  difficulty: hard
+  question: "How does Spark SQL handle data skew in joins?"
+  answer: "Spark SQL uses techniques such as salting, skew join optimization, and broadcasting small partitions to handle skew."
+
+- stack: spark
+  id: 103
+  type: theory
+  topic: AQE
+  difficulty: medium
+  question: "What is Adaptive Query Execution (AQE) in Spark SQL?"
+  answer: "AQE dynamically optimizes query plans at runtime based on statistics collected during execution."
+
+- stack: spark
+  id: 104
+  type: theory
+  topic: AQE
+  difficulty: medium
+  question: "What are the benefits of AQE in Spark SQL?"
+  answer: "AQE improves join strategies, reduces shuffle partitions, and handles skewed data dynamically."
+
+- stack: spark
+  id: 105
+  type: theory
+  topic: AQE
+  difficulty: hard
+  question: "How does AQE improve join strategies in Spark SQL?"
+  answer: "AQE can switch from a sort-merge join to a broadcast join at runtime if it detects a small dataset."
+
+- stack: spark
+  id: 106
+  type: theory
+  topic: AQE
+  difficulty: hard
+  question: "How does AQE handle skewed data in Spark SQL?"
+  answer: "AQE splits skewed partitions into smaller sub-partitions to balance the workload."
+
+- stack: spark
+  id: 107
+  type: theory
+  topic: Partitioning
+  difficulty: medium
+  question: "What is bucketing in Spark SQL?"
+  answer: "Bucketing distributes rows into a fixed number of buckets based on the hash of a column, improving join performance."
+
+- stack: spark
+  id: 108
+  type: theory
+  topic: Partitioning
+  difficulty: medium
+  question: "What is partitioning in Spark SQL?"
+  answer: "Partitioning organizes data into directories based on column values, enabling efficient query pruning."
+
+- stack: spark
+  id: 109
+  type: theory
+  topic: Partitioning
+  difficulty: hard
+  question: "What is Z-ordering in Spark SQL?"
+  answer: "Z-ordering is a data layout technique that colocates related information in the same file blocks to improve query performance."
+
+- stack: spark
+  id: 110
+  type: theory
+  topic: Partitioning
+  difficulty: medium
+  question: "What is the difference between bucketing and partitioning?"
+  answer: "Partitioning divides data into directories by column values, while bucketing distributes data into a fixed number of files by hashing column values."
+
+- stack: spark
+  id: 111
+  type: theory
+  topic: hive
+  difficulty: medium
+  question: "How does Spark SQL integrate with Hive?"
+  answer: "Spark SQL can use Hive metastore, run HiveQL queries, and read/write Hive tables using Hive support."
+
+- stack: spark
+  id: 112
+  type: theory
+  topic: hive
+  difficulty: medium
+  question: "What is the Hive metastore in Spark SQL?"
+  answer: "The Hive metastore is a central repository of metadata for Hive and Spark SQL tables."
+
+- stack: spark
+  id: 113
+  type: theory
+  topic: hive
+  difficulty: medium
+  question: "What are managed and external Hive tables in Spark SQL?"
+  answer: "Managed tables are controlled fully by Spark/Hive, while external tables only store metadata in Hive and data outside."
+
+- stack: spark
+  id: 114
+  type: theory
+  topic: hive
+  difficulty: hard
+  question: "How can you enable Hive support in Spark?"
+  answer: "By creating a SparkSession with enableHiveSupport() method."
+
+- stack: spark
+  id: 115
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What are some query tuning techniques in Spark SQL?"
+  answer: "Techniques include caching, broadcast hints, partition pruning, reducing shuffles, and using optimized file formats like Parquet."
+
+- stack: spark
+  id: 116
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "How do broadcast hints improve query performance in Spark SQL?"
+  answer: "Broadcast hints force Spark to broadcast a table, avoiding shuffle joins for small datasets."
+
+- stack: spark
+  id: 117
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "How does partition pruning optimize queries in Spark SQL?"
+  answer: "Partition pruning skips scanning irrelevant partitions based on query filters."
+
+- stack: spark
+  id: 118
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "Why is file format selection important for Spark SQL performance?"
+  answer: "Columnar formats like Parquet and ORC improve compression and query efficiency compared to row-based formats like JSON or CSV."
+  
+- stack: spark
+  id: 201
+  type: theory
+  topic: dag scheduler
+  difficulty: easy
+  question: "What is the role of the DAG Scheduler in Spark?"
+  answer: "The DAG Scheduler translates a logical execution plan into stages and tasks, scheduling them for execution across cluster nodes."
+
+- stack: spark
+  id: 202
+  type: theory
+  topic: dag scheduler
+  difficulty: medium
+  question: "What is the difference between a stage and a task in Spark’s DAG Scheduler?"
+  answer: "A stage is a set of tasks that can be executed in parallel, while a task is the smallest unit of work sent to a single executor."
+
+- stack: spark
+  id: 203
+  type: theory
+  topic: dag scheduler
+  difficulty: medium
+  question: "What triggers the creation of a new stage in Spark?"
+  answer: "A new stage is created when a wide dependency (shuffle operation) is encountered."
+
+- stack: spark
+  id: 204
+  type: theory
+  topic: task scheduling
+  difficulty: medium
+  question: "How does Spark assign tasks to executors?"
+  answer: "The Task Scheduler assigns tasks to executors based on data locality and available resources."
+
+- stack: spark
+  id: 205
+  type: theory
+  topic: shuffle operations
+  difficulty: easy
+  question: "What is a shuffle in Spark?"
+  answer: "A shuffle is the process of redistributing data across partitions, typically caused by wide transformations such as reduceByKey or join."
+
+- stack: spark
+  id: 206
+  type: theory
+  topic: shuffle operations
+  difficulty: medium
+  question: "Why are shuffle operations expensive in Spark?"
+  answer: "Because they involve disk I/O, network data transfer, and serialization/deserialization overhead."
+
+- stack: spark
+  id: 207
+  type: theory
+  topic: shuffle optimization
+  difficulty: medium
+  question: "How can shuffle performance be optimized in Spark?"
+  answer: "By using operations like reduceByKey instead of groupByKey, tuning partition sizes, and enabling map-side combine."
+
+- stack: spark
+  id: 208
+  type: theory
+  topic: tungsten project
+  difficulty: easy
+  question: "What is the Tungsten project in Spark?"
+  answer: "Tungsten is a Spark initiative to improve performance using memory management, whole-stage code generation, and vectorized execution."
+
+- stack: spark
+  id: 209
+  type: theory
+  topic: tungsten project
+  difficulty: medium
+  question: "What is whole-stage code generation in Tungsten?"
+  answer: "Whole-stage code generation compiles multiple operators into optimized Java bytecode to reduce CPU overhead."
+
+- stack: spark
+  id: 210
+  type: theory
+  topic: tungsten project
+  difficulty: medium
+  question: "What is vectorized execution in Spark Tungsten?"
+  answer: "Vectorized execution processes multiple rows in a single CPU instruction batch, improving performance for columnar formats like Parquet."
+
+- stack: spark
+  id: 211
+  type: theory
+  topic: memory management
+  difficulty: easy
+  question: "What are the two main categories of memory in Spark’s unified memory model?"
+  answer: "Execution memory (used for shuffles, joins, sorts) and storage memory (used for caching and broadcast variables)."
+
+- stack: spark
+  id: 212
+  type: theory
+  topic: memory management
+  difficulty: medium
+  question: "How does Spark dynamically allocate execution and storage memory?"
+  answer: "Spark allows execution and storage memory to borrow space from each other, as long as tasks or cached data can be safely evicted."
+
+- stack: spark
+  id: 213
+  type: theory
+  topic: caching strategies
+  difficulty: medium
+  question: "What caching strategies does Spark provide?"
+  answer: "Spark provides cache() for in-memory storage and persist() for specifying storage levels like memory-only, memory-and-disk, or disk-only."
+
+- stack: spark
+  id: 214
+  type: theory
+  topic: garbage collection
+  difficulty: medium
+  question: "Why is garbage collection tuning important in Spark?"
+  answer: "Poor GC tuning can cause long pause times, out-of-memory errors, and performance bottlenecks in Spark jobs."
+
+- stack: spark
+  id: 215
+  type: theory
+  topic: garbage collection
+  difficulty: hard
+  question: "Which JVM garbage collectors are commonly tuned for Spark workloads?"
+  answer: "G1GC and CMS (Concurrent Mark-Sweep) are commonly tuned for Spark workloads."
+
+- stack: spark
+  id: 216
+  type: theory
+  topic: serialization
+  difficulty: easy
+  question: "What are the two main serialization formats in Spark?"
+  answer: "Java serialization and Kryo serialization."
+
+- stack: spark
+  id: 217
+  type: theory
+  topic: serialization
+  difficulty: medium
+  question: "Why is Kryo serialization preferred over Java serialization in Spark?"
+  answer: "Kryo is faster and produces smaller serialized objects compared to Java serialization."
+
+- stack: spark
+  id: 218
+  type: theory
+  topic: serialization
+  difficulty: medium
+  question: "What is a limitation of Kryo serialization?"
+  answer: "You may need to register custom classes manually to achieve optimal performance."
+
+- stack: spark
+  id: 219
+  type: theory
+  topic: skew mitigation
+  difficulty: medium
+  question: "What is data skew in Spark?"
+  answer: "Data skew occurs when certain partitions receive disproportionately large amounts of data, causing performance bottlenecks."
+
+- stack: spark
+  id: 220
+  type: theory
+  topic: skew mitigation
+  difficulty: hard
+  question: "What are techniques to mitigate data skew in Spark?"
+  answer: "Using salting, custom partitioning, broadcast joins, or increasing parallelism."
+
+- stack: spark
+  id: 221
+  type: theory
+  topic: resource tuning
+  difficulty: easy
+  question: "What are the main executor-related parameters to tune in Spark?"
+  answer: "Number of executors, executor cores, and executor memory."
+
+- stack: spark
+  id: 222
+  type: theory
+  topic: resource tuning
+  difficulty: medium
+  question: "What is the trade-off in setting a high number of executor cores?"
+  answer: "More cores increase parallelism but may cause garbage collection overhead and reduce data locality."
+
+- stack: spark
+  id: 223
+  type: theory
+  topic: resource tuning
+  difficulty: medium
+  question: "How can improper memory tuning affect Spark performance?"
+  answer: "Too little memory causes frequent spills to disk, while too much memory may lead to long GC pauses."
+
+- stack: spark
+  id: 224
+  type: theory
+  topic: aqe
+  difficulty: easy
+  question: "What is Adaptive Query Execution (AQE) in Spark?"
+  answer: "AQE is a Spark feature that dynamically optimizes query plans at runtime based on actual data statistics."
+
+- stack: spark
+  id: 225
+  type: theory
+  topic: aqe
+  difficulty: medium
+  question: "What kind of optimizations can AQE perform?"
+  answer: "Optimizations include dynamically switching join strategies, optimizing shuffle partitions, and handling skewed data."
+
+- stack: spark
+  id: 226
+  type: theory
+  topic: aqe
+  difficulty: hard
+  question: "How does AQE improve skew handling in Spark SQL?"
+  answer: "AQE can split skewed partitions into smaller sub-partitions and balance workloads across executors."
+
+- stack: spark
+  id: 227
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "Why is partition size important in Spark performance optimization?"
+  answer: "Too few partitions cause underutilization of resources, while too many partitions increase scheduling overhead."
+
+- stack: spark
+  id: 228
+  type: theory
+  topic: optimization
+  difficulty: medium
+  question: "What is the recommended partition size for Spark?"
+  answer: "Typically between 128MB and 256MB per partition for efficient processing."
+
+- stack: spark
+  id: 229
+  type: theory
+  topic: optimization
+  difficulty: hard
+  question: "How can broadcast joins improve performance in Spark?"
+  answer: "By broadcasting small tables to all executors, broadcast joins eliminate the need for shuffling large datasets."
+
+- stack: spark
+  id: 301
+  type: theory
+  topic: cluster managers
+  difficulty: easy
+  question: "What is the role of a cluster manager in Spark?"
+  answer: "A cluster manager allocates resources such as CPU and memory across Spark applications and coordinates execution."
+
+- stack: spark
+  id: 302
+  type: theory
+  topic: cluster managers
+  difficulty: medium
+  question: "What is the main difference between YARN and Kubernetes as Spark cluster managers?"
+  answer: "YARN is a Hadoop-based resource manager, while Kubernetes is a container-orchestration system that runs Spark applications as pods."
+
+- stack: spark
+  id: 303
+  type: theory
+  topic: cluster managers
+  difficulty: medium
+  question: "What are the advantages of using Kubernetes over Standalone mode for Spark?"
+  answer: "Kubernetes offers containerized deployment, better isolation, scalability, and integration with cloud-native tools."
+
+- stack: spark
+  id: 304
+  type: theory
+  topic: cluster managers
+  difficulty: hard
+  question: "Why is Mesos less commonly used for Spark today compared to Kubernetes?"
+  answer: "Kubernetes gained popularity due to strong community adoption, cloud integration, and flexibility, while Mesos adoption declined."
+
+- stack: spark
+  id: 305
+  type: theory
+  topic: dynamic resource allocation
+  difficulty: easy
+  question: "What is dynamic resource allocation in Spark?"
+  answer: "Dynamic resource allocation allows Spark to add or remove executors at runtime based on workload requirements."
+
+- stack: spark
+  id: 306
+  type: theory
+  topic: dynamic resource allocation
+  difficulty: medium
+  question: "What is required for dynamic resource allocation to work in Spark?"
+  answer: "It requires an external shuffle service to preserve shuffle files when executors are removed."
+
+- stack: spark
+  id: 307
+  type: theory
+  topic: checkpointing
+  difficulty: easy
+  question: "What is checkpointing in Spark?"
+  answer: "Checkpointing saves RDD or streaming state to reliable storage like HDFS to provide fault tolerance."
+
+- stack: spark
+  id: 308
+  type: theory
+  topic: checkpointing
+  difficulty: medium
+  question: "How is checkpointing different from caching in Spark?"
+  answer: "Caching stores data in memory/disk for faster access, while checkpointing saves data to reliable storage for fault recovery."
+
+- stack: spark
+  id: 309
+  type: theory
+  topic: fault tolerance
+  difficulty: medium
+  question: "How does Spark achieve fault tolerance in Structured Streaming?"
+  answer: "It uses checkpoints and write-ahead logs (WAL) to recover from failures and resume processing without data loss."
+
+- stack: spark
+  id: 310
+  type: theory
+  topic: delta lake
+  difficulty: easy
+  question: "What is Delta Lake in Spark?"
+  answer: "Delta Lake is a storage layer that brings ACID transactions, schema enforcement, and time travel to Spark data lakes."
+
+- stack: spark
+  id: 311
+  type: theory
+  topic: apache hudi
+  difficulty: easy
+  question: "What is Apache Hudi?"
+  answer: "Apache Hudi is a data lake framework enabling incremental data processing, upserts, and time-travel queries."
+
+- stack: spark
+  id: 312
+  type: theory
+  topic: apache iceberg
+  difficulty: easy
+  question: "What is Apache Iceberg?"
+  answer: "Apache Iceberg is a high-performance table format for huge analytic datasets supporting schema evolution and partition evolution."
+
+- stack: spark
+  id: 313
+  type: theory
+  topic: lakehouse integration
+  difficulty: medium
+  question: "How does Delta Lake differ from Apache Iceberg?"
+  answer: "Delta Lake emphasizes ACID transactions and streaming integration, while Iceberg focuses on flexible schema and partition evolution."
+
+- stack: spark
+  id: 314
+  type: theory
+  topic: structured streaming
+  difficulty: medium
+  question: "How does Spark Structured Streaming guarantee exactly-once processing?"
+  answer: "By combining idempotent sinks, checkpointing, and write-ahead logs to ensure no duplicate or lost records."
+
+- stack: spark
+  id: 315
+  type: theory
+  topic: structured streaming
+  difficulty: hard
+  question: "What challenges exist in achieving exactly-once guarantees in Spark Streaming?"
+  answer: "Challenges include handling retries, ensuring sink idempotency, and maintaining consistent offsets across sources."
+
+- stack: spark
+  id: 316
+  type: theory
+  topic: spark security
+  difficulty: easy
+  question: "What authentication mechanism is commonly used in Spark on Hadoop clusters?"
+  answer: "Kerberos is commonly used for authentication in Spark on Hadoop clusters."
+
+- stack: spark
+  id: 317
+  type: theory
+  topic: spark security
+  difficulty: medium
+  question: "How does Spark provide data encryption?"
+  answer: "Spark supports encryption for data at rest and in transit, using SSL for communication and encryption keys for storage."
+
+- stack: spark
+  id: 318
+  type: theory
+  topic: spark security
+  difficulty: hard
+  question: "What are the main challenges of implementing security in multi-tenant Spark clusters?"
+  answer: "Challenges include isolation of workloads, secure authentication, role-based authorization, and protecting sensitive logs."
+
+- stack: spark
+  id: 319
+  type: theory
+  topic: multi-tenancy
+  difficulty: medium
+  question: "What is multi-tenancy in Spark clusters?"
+  answer: "Multi-tenancy refers to multiple users or teams sharing the same Spark cluster with proper resource isolation and fairness."
+
+- stack: spark
+  id: 320
+  type: theory
+  topic: multi-tenancy
+  difficulty: medium
+  question: "Which Spark features help enable multi-tenancy?"
+  answer: "Features like YARN queues, Kubernetes namespaces, and Spark fair scheduler help enable multi-tenancy."
+
+- stack: spark
+  id: 321
+  type: theory
+  topic: spark monitoring
+  difficulty: easy
+  question: "What is the Spark UI used for?"
+  answer: "The Spark UI provides a web interface to monitor jobs, stages, tasks, storage, and environment details."
+
+- stack: spark
+  id: 322
+  type: theory
+  topic: spark monitoring
+  difficulty: medium
+  question: "How can Spark be integrated with Prometheus and Grafana?"
+  answer: "By exposing Spark metrics via JMX or Prometheus exporters and visualizing them on Grafana dashboards."
+
+- stack: spark
+  id: 323
+  type: theory
+  topic: spark monitoring
+  difficulty: medium
+  question: "What metrics are commonly monitored in Spark applications?"
+  answer: "Metrics include job duration, task failures, shuffle read/write size, memory usage, and executor utilization."
+
+- stack: spark
+  id: 324
+  type: theory
+  topic: spark debugging
+  difficulty: medium
+  question: "How does the Spark UI help in debugging failed jobs?"
+  answer: "It shows failed tasks, error logs, stage execution details, and skewed partition information for troubleshooting."
+
+- stack: spark
+  id: 325
+  type: theory
+  topic: logging
+  difficulty: easy
+  question: "Which logging framework does Spark use by default?"
+  answer: "Spark uses Log4j as its default logging framework."
+
+- stack: spark
+  id: 326
+  type: theory
+  topic: logging
+  difficulty: medium
+  question: "What are logging best practices in Spark applications?"
+  answer: "Use appropriate log levels, avoid excessive logging, externalize log configuration, and centralize logs using tools like ELK or Splunk."
+
+- stack: spark
+  id: 327
+  type: theory
+  topic: logging
+  difficulty: hard
+  question: "Why should sensitive information be excluded from Spark logs?"
+  answer: "Because logs may be shared across teams or stored centrally, leaking sensitive data like credentials or PII poses security risks."
+
+- stack: spark
+  id: 328
+  type: theory
+  topic: cloud deployments
+  difficulty: easy
+  question: "What is AWS EMR in the context of Spark?"
+  answer: "Amazon EMR is a managed Hadoop and Spark service on AWS that simplifies cluster provisioning and scaling."
+
+- stack: spark
+  id: 329
+  type: theory
+  topic: cloud deployments
+  difficulty: easy
+  question: "What is Databricks?"
+  answer: "Databricks is a managed cloud platform built on Apache Spark, offering collaborative notebooks, optimized runtime, and ML integration."
+
+- stack: spark
+  id: 330
+  type: theory
+  topic: cloud deployments
+  difficulty: medium
+  question: "What is GCP Dataproc?"
+  answer: "Google Cloud Dataproc is a managed service for running Spark and Hadoop clusters on Google Cloud."
+
+- stack: spark
+  id: 331
+  type: theory
+  topic: cloud deployments
+  difficulty: medium
+  question: "What is Azure HDInsight?"
+  answer: "Azure HDInsight is a managed cloud service for running Apache Spark, Hadoop, and other big data frameworks on Azure."
+
+- stack: spark
+  id: 332
+  type: theory
+  topic: cloud deployments
+  difficulty: hard
+  question: "What are the advantages of using managed Spark services like Databricks over self-managed clusters?"
+  answer: "Advantages include simplified management, auto-scaling, performance optimizations, built-in security, and better integration with cloud ecosystems."
+
+- stack: spark
+  id: 401
+  type: theory
+  topic: spark on kubernetes
+  difficulty: easy
+  question: "What is Spark on Kubernetes?"
+  answer: "It is the native integration of Apache Spark with Kubernetes, where Spark applications run as Kubernetes pods."
+
+- stack: spark
+  id: 402
+  type: theory
+  topic: spark on kubernetes
+  difficulty: medium
+  question: "How is driver scheduling different in Spark on Kubernetes compared to YARN?"
+  answer: "In Kubernetes, the driver runs inside a pod, while in YARN the driver typically runs on the cluster node managed by YARN."
+
+- stack: spark
+  id: 403
+  type: theory
+  topic: spark on kubernetes
+  difficulty: medium
+  question: "How are Spark executors launched in Kubernetes?"
+  answer: "Executors are created as separate pods by the Kubernetes scheduler, based on Spark resource requests."
+
+- stack: spark
+  id: 404
+  type: theory
+  topic: spark on kubernetes
+  difficulty: medium
+  question: "What is the role of the Kubernetes scheduler in Spark?"
+  answer: "It handles pod placement, resource allocation, and executor scaling for Spark workloads."
+
+- stack: spark
+  id: 405
+  type: theory
+  topic: spark on kubernetes
+  difficulty: hard
+  question: "What challenges arise when running Spark on Kubernetes?"
+  answer: "Challenges include networking setup, persistent storage integration, dynamic scaling, and security configurations."
+
+- stack: spark
+  id: 406
+  type: theory
+  topic: spark on kubernetes
+  difficulty: hard
+  question: "How does Spark on Kubernetes handle dynamic resource allocation?"
+  answer: "It integrates with Kubernetes’ pod lifecycle and requires external shuffle service or Kubernetes-native shuffle implementations."
+
+- stack: spark
+  id: 407
+  type: theory
+  topic: spark on kubernetes
+  difficulty: hard
+  question: "What are the advantages of using Spark on Kubernetes over YARN?"
+  answer: "Advantages include containerization, cloud-native deployment, better isolation, and compatibility with DevOps tooling."
+
+- stack: spark
+  id: 408
+  type: theory
+  topic: spark on kubernetes
+  difficulty: medium
+  question: "How do ConfigMaps and Secrets help Spark on Kubernetes?"
+  answer: "They allow injecting configuration files and secure credentials into Spark pods."
+
+- stack: spark
+  id: 409
+  type: theory
+  topic: lakehouse architecture
+  difficulty: easy
+  question: "What is a Lakehouse in the context of Spark?"
+  answer: "A Lakehouse is a data architecture combining features of data lakes and data warehouses, often powered by formats like Delta Lake, Iceberg, and Hudi."
+
+- stack: spark
+  id: 410
+  type: theory
+  topic: lakehouse architecture
+  difficulty: medium
+  question: "How does a Lakehouse differ from a traditional data warehouse?"
+  answer: "Lakehouses support raw data storage and schema-on-read, while also providing ACID transactions and schema enforcement like warehouses."
+
+- stack: spark
+  id: 411
+  type: theory
+  topic: delta lake
+  difficulty: easy
+  question: "What are Delta Lake transaction logs?"
+  answer: "They are JSON-based logs that track all changes to a Delta table, enabling ACID transactions and time travel."
+
+- stack: spark
+  id: 412
+  type: theory
+  topic: delta lake
+  difficulty: medium
+  question: "How does Delta Lake support schema enforcement?"
+  answer: "It validates incoming data against the table schema and rejects incompatible records."
+
+- stack: spark
+  id: 413
+  type: theory
+  topic: delta lake
+  difficulty: hard
+  question: "What is Delta Lake Z-Ordering?"
+  answer: "It is a multi-dimensional clustering technique to optimize query performance by colocating related records."
+
+- stack: spark
+  id: 414
+  type: theory
+  topic: apache iceberg
+  difficulty: easy
+  question: "How does Apache Iceberg handle schema evolution?"
+  answer: "Iceberg allows adding, dropping, and renaming columns without rewriting the entire dataset."
+
+- stack: spark
+  id: 415
+  type: theory
+  topic: apache iceberg
+  difficulty: medium
+  question: "What is hidden partitioning in Iceberg?"
+  answer: "It allows query optimization without exposing partition columns to users, unlike Hive-style partitioning."
+
+- stack: spark
+  id: 416
+  type: theory
+  topic: apache iceberg
+  difficulty: hard
+  question: "How does Iceberg enable snapshot isolation for queries?"
+  answer: "By keeping metadata about snapshots and ensuring queries operate on consistent versions of data."
+
+- stack: spark
+  id: 417
+  type: theory
+  topic: apache hudi
+  difficulty: easy
+  question: "What is the difference between Hudi Copy-on-Write and Merge-on-Read tables?"
+  answer: "Copy-on-Write rewrites entire files on updates, while Merge-on-Read defers updates until read time for better write performance."
+
+- stack: spark
+  id: 418
+  type: theory
+  topic: apache hudi
+  difficulty: medium
+  question: "How does Apache Hudi support Change Data Capture (CDC)?"
+  answer: "It tracks incremental commits and exposes data streams for downstream CDC pipelines."
+
+- stack: spark
+  id: 419
+  type: theory
+  topic: lakehouse comparison
+  difficulty: hard
+  question: "Compare Delta Lake, Iceberg, and Hudi in terms of update and delete support."
+  answer: "Delta Lake and Hudi support upserts and deletes directly, while Iceberg focuses on snapshot-based versioning and metadata efficiency."
+
+- stack: spark
+  id: 420
+  type: theory
+  topic: lakehouse comparison
+  difficulty: medium
+  question: "Which Lakehouse format is better for streaming workloads?"
+  answer: "Delta Lake and Hudi are often better suited for streaming workloads due to native upsert and incremental processing support."
+
+- stack: spark
+  id: 421
+  type: theory
+  topic: incremental etl
+  difficulty: easy
+  question: "What is Incremental ETL in Spark?"
+  answer: "It refers to processing only new or changed data instead of reprocessing the entire dataset."
+
+- stack: spark
+  id: 422
+  type: theory
+  topic: incremental etl
+  difficulty: medium
+  question: "How can watermarks help in incremental ETL pipelines?"
+  answer: "Watermarks define event-time thresholds to handle late data and ensure state cleanup in streaming ETL."
+
+- stack: spark
+  id: 423
+  type: theory
+  topic: incremental etl
+  difficulty: medium
+  question: "How do checkpointing and write-ahead logs support incremental ETL?"
+  answer: "They allow Spark to resume processing from the last successful state after failures."
+
+- stack: spark
+  id: 424
+  type: theory
+  topic: change data capture
+  difficulty: easy
+  question: "What is Change Data Capture (CDC) in Spark?"
+  answer: "CDC refers to identifying and processing inserts, updates, and deletes from source systems."
+
+- stack: spark
+  id: 425
+  type: theory
+  topic: change data capture
+  difficulty: medium
+  question: "How can Spark Structured Streaming be used for CDC pipelines?"
+  answer: "It can continuously ingest changes from sources like Kafka, apply transformations, and write results to data lakes or warehouses."
+
+- stack: spark
+  id: 426
+  type: theory
+  topic: change data capture
+  difficulty: hard
+  question: "What are the challenges of implementing CDC with Spark?"
+  answer: "Challenges include handling schema evolution, ensuring exactly-once delivery, managing late events, and scaling with high change rates."
+
+- stack: spark
+  id: 427
+  type: theory
+  topic: incremental etl
+  difficulty: hard
+  question: "How do merge operations in Delta Lake support incremental ETL?"
+  answer: "Delta Lake’s MERGE INTO allows upserts of changed records, making it efficient for incremental pipelines."
+
+- stack: spark
+  id: 428
+  type: theory
+  topic: incremental etl
+  difficulty: medium
+  question: "Why is partitioning strategy important in incremental ETL?"
+  answer: "A good partitioning strategy reduces shuffle, speeds up queries, and avoids rewriting large volumes of data unnecessarily."
+
+- stack: spark
+  id: 429
+  type: theory
+  topic: incremental etl
+  difficulty: hard
+  question: "How can Spark handle CDC when the source system provides only snapshots and not logs?"
+  answer: "Spark can compare snapshots using join/diff strategies or leverage Hudi/Iceberg metadata for incremental detection."

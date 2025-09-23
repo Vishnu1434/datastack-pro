@@ -242,7 +242,7 @@ function PracticePage() {
                 </div>
 
                 {/* Practice Content */}
-                <div className="flex-1 bg-white">
+                <div className="flex-1 bg-red-800">
                     {renderModeComponent()}
                 </div>
             </div>

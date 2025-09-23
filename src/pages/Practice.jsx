@@ -224,7 +224,7 @@ function PracticePage() {
 
     return (
         <div className="flex flex-col flex-1 px-3 py-2 w-full h-[calc(100vh-5rem)]">
-            <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden">
+            <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden min-h-0">
                 {/* Filters bar */}
                 <div className="p-3 bg-blue-600 flex justify-between items-center">
                     {/* Left side */}

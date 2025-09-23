@@ -1,5 +1,6 @@
 spark:
   - theory
+  - mcqs
 sql:
   - theory
 python:

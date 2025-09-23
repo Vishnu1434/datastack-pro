@@ -1,0 +1,129 @@
+- stack: sql
+  id: 1
+  type: mcq
+  topic: basics
+  difficulty: easy
+  question: Which SQL statement is used to retrieve data from a database?
+  options:
+    '1': SELECT
+    '2': GET
+    '3': EXTRACT
+    '4': FETCH
+  answer: '1'
+
+- stack: sql
+  id: 2
+  type: mcq
+  topic: joins
+  difficulty: medium
+  question: Which JOIN returns all rows from both tables, even if there is no match?
+  options:
+    '1': INNER JOIN
+    '2': LEFT JOIN
+    '3': FULL OUTER JOIN
+    '4': CROSS JOIN
+  answer: '3'
+
+- stack: sql
+  id: 3
+  type: mcq
+  topic: constraints
+  difficulty: easy
+  question: Which constraint ensures that a column cannot have NULL values?
+  options:
+    '1': UNIQUE
+    '2': NOT NULL
+    '3': CHECK
+    '4': DEFAULT
+  answer: '2'
+
+- stack: sql
+  id: 4
+  type: mcq
+  topic: aggregation
+  difficulty: medium
+  question: Which SQL keyword is used with aggregate functions to group rows?
+  options:
+    '1': ORDER BY
+    '2': GROUP BY
+    '3': PARTITION BY
+    '4': DISTINCT
+  answer: '2'
+
+- stack: sql
+  id: 5
+  type: mcq
+  topic: indexing
+  difficulty: hard
+  question: What is the main purpose of an index in SQL?
+  options:
+    '1': To enforce referential integrity
+    '2': To speed up query performance
+    '3': To store duplicate records
+    '4': To normalize data
+  answer: '2'
+
+- stack: sql
+  id: 6
+  type: mcq
+  topic: normalization
+  difficulty: medium
+  question: Which normal form removes transitive dependencies?
+  options:
+    '1': 1NF
+    '2': 2NF
+    '3': 3NF
+    '4': BCNF
+  answer: '3'
+
+- stack: sql
+  id: 7
+  type: mcq
+  topic: subqueries
+  difficulty: hard
+  question: Which type of subquery can return multiple rows and be used with IN operator?
+  options:
+    '1': Scalar subquery
+    '2': Correlated subquery
+    '3': Table subquery
+    '4': Multi-row subquery
+  answer: '4'
+
+- stack: sql
+  id: 8
+  type: mcq
+  topic: window-functions
+  difficulty: hard
+  question: Which clause defines the set of rows for a window function?
+  options:
+    '1': GROUP BY
+    '2': OVER
+    '3': PARTITION
+    '4': RANK
+  answer: '2'
+
+- stack: sql
+  id: 9
+  type: mcq
+  topic: transactions
+  difficulty: medium
+  question: Which property of a transaction ensures that once committed, data remains permanent?
+  options:
+    '1': Atomicity
+    '2': Consistency
+    '3': Isolation
+    '4': Durability
+  answer: '4'
+
+- stack: sql
+  id: 10
+  type: mcq
+  topic: performance
+  difficulty: hard
+  question: What is the effect of using SELECT * in a query?
+  options:
+    '1': It improves performance by reducing parsing
+    '2': It may reduce readability and retrieve unnecessary columns
+    '3': It enforces normalization
+    '4': It avoids table scans
+  answer: '2'

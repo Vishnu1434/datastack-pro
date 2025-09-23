@@ -8,7 +8,7 @@ function MCQMode() {
 
     useEffect(() => {
         async function fetchQuestions() {
-            const data = await loadQuestions();
+            const data = await loadQuestions("mcqs");
             const mcqs = data.filter((q) => q.type === "mcq");
             setQuestions(mcqs);
         }

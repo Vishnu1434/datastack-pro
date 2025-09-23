@@ -77,7 +77,7 @@ export default function FlashcardMode() {
         </div>
 
         {/* Only this container scrolls */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
           {questions.map((q, idx) => (
               <article
                   key={`${q.question}-${idx}`}

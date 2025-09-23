@@ -127,3 +127,264 @@
     '3': It enforces normalization
     '4': It avoids table scans
   answer: '2'
+
+- stack: sql
+  id: 11
+  type: mcq
+  topic: data-types
+  difficulty: easy
+  question: Which SQL data type is used to store variable-length character strings?
+  options:
+    '1': CHAR
+    '2': VARCHAR
+    '3': TEXT
+    '4': STRING
+  answer: '2'
+
+- stack: sql
+  id: 12
+  type: mcq
+  topic: ddl
+  difficulty: medium
+  question: Which SQL command is used to remove a table along with its data permanently?
+  options:
+    '1': DELETE
+    '2': DROP
+    '3': TRUNCATE
+    '4': REMOVE
+  answer: '2'
+
+- stack: sql
+  id: 13
+  type: mcq
+  topic: dml
+  difficulty: easy
+  question: Which SQL statement is used to insert new records into a table?
+  options:
+    '1': ADD
+    '2': APPEND
+    '3': INSERT INTO
+    '4': UPDATE
+  answer: '3'
+
+- stack: sql
+  id: 14
+  type: mcq
+  topic: update
+  difficulty: medium
+  question: What happens if you run an UPDATE statement without a WHERE clause?
+  options:
+    '1': Only the first row is updated
+    '2': The query fails with an error
+    '3': All rows in the table are updated
+    '4': No rows are updated
+  answer: '3'
+
+- stack: sql
+  id: 15
+  type: mcq
+  topic: delete
+  difficulty: medium
+  question: Which SQL command removes all rows from a table but retains the structure?
+  options:
+    '1': DROP
+    '2': DELETE
+    '3': TRUNCATE
+    '4': CLEAR
+  answer: '3'
+
+- stack: sql
+  id: 16
+  type: mcq
+  topic: joins
+  difficulty: medium
+  question: Which JOIN returns only rows that have matching values in both tables?
+  options:
+    '1': INNER JOIN
+    '2': LEFT JOIN
+    '3': RIGHT JOIN
+    '4': FULL OUTER JOIN
+  answer: '1'
+
+- stack: sql
+  id: 17
+  type: mcq
+  topic: joins
+  difficulty: medium
+  question: Which JOIN can potentially create a Cartesian product?
+  options:
+    '1': CROSS JOIN
+    '2': INNER JOIN
+    '3': LEFT JOIN
+    '4': NATURAL JOIN
+  answer: '1'
+
+- stack: sql
+  id: 18
+  type: mcq
+  topic: aggregate
+  difficulty: easy
+  question: Which aggregate function is used to count the number of rows?
+  options:
+    '1': SUM()
+    '2': COUNT()
+    '3': TOTAL()
+    '4': LENGTH()
+  answer: '2'
+
+- stack: sql
+  id: 19
+  type: mcq
+  topic: aggregate
+  difficulty: medium
+  question: Which aggregate function ignores NULL values when calculating?
+  options:
+    '1': SUM()
+    '2': AVG()
+    '3': MAX()
+    '4': All of the above
+  answer: '4'
+
+- stack: sql
+  id: 20
+  type: mcq
+  topic: keys
+  difficulty: easy
+  question: Which key uniquely identifies each row in a table?
+  options:
+    '1': Foreign Key
+    '2': Primary Key
+    '3': Candidate Key
+    '4': Composite Key
+  answer: '2'
+
+- stack: sql
+  id: 21
+  type: mcq
+  topic: keys
+  difficulty: medium
+  question: Which type of key can accept NULL values in SQL?
+  options:
+    '1': Primary Key
+    '2': Foreign Key
+    '3': Unique Key
+    '4': Super Key
+  answer: '3'
+
+- stack: sql
+  id: 22
+  type: mcq
+  topic: constraints
+  difficulty: medium
+  question: Which SQL constraint is used to enforce a condition on a column?
+  options:
+    '1': UNIQUE
+    '2': CHECK
+    '3': NOT NULL
+    '4': FOREIGN KEY
+  answer: '2'
+
+- stack: sql
+  id: 23
+  type: mcq
+  topic: constraints
+  difficulty: hard
+  question: Which constraint ensures referential integrity between two tables?
+  options:
+    '1': PRIMARY KEY
+    '2': UNIQUE
+    '3': FOREIGN KEY
+    '4': DEFAULT
+  answer: '3'
+
+- stack: sql
+  id: 24
+  type: mcq
+  topic: functions
+  difficulty: easy
+  question: Which SQL function returns the current date?
+  options:
+    '1': NOW()
+    '2': GETDATE()
+    '3': CURRENT_DATE
+    '4': SYSDATE
+  answer: '3'
+
+- stack: sql
+  id: 25
+  type: mcq
+  topic: window-functions
+  difficulty: hard
+  question: Which window function assigns a unique sequential number to rows within a partition?
+  options:
+    '1': ROW_NUMBER()
+    '2': RANK()
+    '3': DENSE_RANK()
+    '4': NTILE()
+  answer: '1'
+
+- stack: sql
+  id: 26
+  type: mcq
+  topic: window-functions
+  difficulty: hard
+  question: Which window function can assign the same rank to ties but skip the next rank?
+  options:
+    '1': ROW_NUMBER()
+    '2': RANK()
+    '3': DENSE_RANK()
+    '4': NTILE()
+  answer: '2'
+
+- stack: sql
+  id: 27
+  type: mcq
+  topic: transactions
+  difficulty: medium
+  question: Which SQL command is used to undo changes in a transaction?
+  options:
+    '1': COMMIT
+    '2': ROLLBACK
+    '3': SAVEPOINT
+    '4': UNDO
+  answer: '2'
+
+- stack: sql
+  id: 28
+  type: mcq
+  topic: transactions
+  difficulty: hard
+  question: Which isolation level prevents dirty reads but allows non-repeatable reads?
+  options:
+    '1': READ UNCOMMITTED
+    '2': READ COMMITTED
+    '3': REPEATABLE READ
+    '4': SERIALIZABLE
+  answer: '2'
+
+- stack: sql
+  id: 29
+  type: mcq
+  topic: views
+  difficulty: medium
+  question: Which SQL statement is used to update an existing view?
+  options:
+    '1': ALTER VIEW
+    '2': UPDATE VIEW
+    '3': MODIFY VIEW
+    '4': CREATE OR REPLACE VIEW
+  answer: '4'
+
+- stack: sql
+  id: 30
+  type: mcq
+  topic: performance
+  difficulty: hard
+  question: What is the main drawback of using too many indexes in a table?
+  options:
+    '1': Slower reads
+    '2': Slower writes (INSERT/UPDATE/DELETE)
+    '3': Increased normalization
+    '4': Smaller database size
+  answer: '2'
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { loadQuestions } from "../practicePage.js";
 import { BookOpen, Shuffle } from "lucide-react";
-import { iconForStack, difficultyBadge } from "../../utils/common.jsx";
+import { iconForStack, difficultyBadge, filterQuestions } from "../../utils/common.jsx";
 
 const shuffleArray = (arr) => {
   const a = arr.slice();
@@ -12,9 +12,11 @@ const shuffleArray = (arr) => {
   return a;
 };
 
-export default function FlashcardMode() {
+export default function FlashcardMode({ difficulty = [], techStack = [], topic = [] }) {
+  const [allQuestions, setAllQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [openIndex, setOpenIndex] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
@@ -22,16 +24,24 @@ export default function FlashcardMode() {
       const data = await loadQuestions("theory");
       const theoryQs = Array.isArray(data) ? data.filter((q) => q.type === "theory") : [];
       if (!mounted) return;
-      setQuestions(theoryQs);
+      setAllQuestions(theoryQs);
+      setQuestions(filterQuestions(theoryQs, { difficulties: difficulty, techStacks: techStack, topics: topic }));
+      setLoading(false);
     }
     fetchQuestions();
     return () => (mounted = false);
   }, []);
 
+  useEffect(() => {
+    setQuestions((prev) => filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic }));
+    setOpenIndex(null);
+  }, [difficulty, techStack, topic, allQuestions]);
+
   const toggleAnswer = (idx) => setOpenIndex((prev) => (prev === idx ? null : idx));
   const shuffleQuestions = () => setQuestions((prev) => shuffleArray(prev));
 
-  if (!questions.length) return <p>Loading flashcards...</p>;
+  if (loading) return <p>Loading flashcards...</p>;
+  if (!questions.length) return <p>No questions match current filters.</p>;
 
   return (
       <div className="flex flex-col flex-1 h-screen bg-gray-50 rounded-md overflow-hidden min-h-0">

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { loadQuestions } from "../practicePage.js";
 import { CheckCircle, XCircle, Shuffle } from "lucide-react";
-import { iconForStack, difficultyBadge } from "../../utils/common.jsx";
+import { iconForStack, difficultyBadge, filterQuestions } from "../../utils/common.jsx";
 
 // Utility: shuffle array
 const shuffleArray = (arr) => arr.map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
 
-export default function MCQMode() {
+export default function MCQMode({ difficulty = [], techStack = [], topic = [] }) {
+    const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [current, setCurrent] = useState(0);
     const [selected, setSelected] = useState(null);
     const [answered, setAnswered] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         let mounted = true;
@@ -20,11 +22,20 @@ export default function MCQMode() {
                 ? data.filter((q) => q.type === "mcq" && q.options)
                 : [];
             if (!mounted) return;
-            setQuestions(mcqs);
+            setAllQuestions(mcqs);
+            setQuestions(filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic }));
+            setLoading(false);
         }
         fetchQuestions();
         return () => (mounted = false);
     }, []);
+
+    useEffect(() => {
+        setQuestions(filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic }));
+        setCurrent(0);
+        setSelected(null);
+        setAnswered(false);
+    }, [difficulty, techStack, topic, allQuestions]);
 
     const handleSelect = (optKey) => {
         if (answered) return;
@@ -35,7 +46,7 @@ export default function MCQMode() {
     const handleNext = () => {
         setSelected(null);
         setAnswered(false);
-        setCurrent((prev) => Math.min(prev + 1, questions.length - 1));
+        setCurrent((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
     };
 
     const handleReset = () => {
@@ -51,7 +62,8 @@ export default function MCQMode() {
         setAnswered(false);
     };
 
-    if (!questions.length) return <p>Loading MCQs...</p>;
+    if (loading) return <p>Loading MCQs...</p>;
+    if (!questions.length) return <p>No questions match current filters.</p>;
 
     const q = questions[current] || null;
     const options = Object.entries(q.options || {});
@@ -79,7 +91,7 @@ export default function MCQMode() {
             <ul className="space-y-2">
                 {Object.entries(q.options).map(([key, value], i) => {
                     const isSelected = selected === key;
-                    const isCorrect = q.answer === key; // 👈 compare against key, not value
+                    const isCorrect = q.answer === key;
 
                     return (
                         <li

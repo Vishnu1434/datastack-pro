@@ -3,5 +3,6 @@ spark:
   - mcqs
 sql:
   - theory
+  - mcqs
 python:
   - theory

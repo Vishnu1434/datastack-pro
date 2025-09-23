@@ -83,7 +83,7 @@ export default function MCQMode() {
     const options = Object.entries(q.options || {});
 
     return (
-        <div className="flex flex-col flex-1 min-h-0 gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
+        <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
             {/* Question header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -149,14 +149,14 @@ export default function MCQMode() {
                 </button>
                 <button
                     onClick={handleShuffle}
-                    className="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+                    className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
                 >
                     <Shuffle size={16} /> Shuffle
                 </button>
                 <button
                     onClick={handleNext}
                     disabled={current >= questions.length - 1}
-                    className="px-5 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                    className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50"
                 >
                     Next
                 </button>

@@ -3,138 +3,127 @@ Python:
   - theory
   - mcqs
   topics:
-  - functions
-  - memory
-  - exceptions
-  - comprehension
-  - modules
-  - iterators
-  - control_flow
-  - generators
-  - advanced
-  - oop
-  - variables
   - decorators
+  - control_flow
   - basics
-  - Functions
-  - Decorators
+  - memory
+  - generators
+  - oop
+  - iterators
+  - advanced
+  - exceptions
+  - variables
+  - functions
+  - modules
+  - comprehension
+  - Data Structures
+  - Generators
   - Operators
   - Concurrency
-  - Data Structures
-  - Variables & Memory
   - Typing
-  - Error Handling
+  - File I/O
+  - Documentation
+  - Control Flow
+  - Functions
+  - Lists
+  - Strings
+  - Comprehensions
+  - OOP
+  - Decorators
+  - Modules
   - Dictionaries
   - Data Types
-  - Strings
-  - Control Flow
-  - File I/O
-  - Modules
-  - Documentation
-  - Lists
-  - OOP
-  - Generators
-  - Comprehensions
   - Sets
+  - Error Handling
+  - Variables & Memory
 Spark:
   types:
   - theory
   - mcqs
   topics:
-  - rdd_operations
-  - spark security
-  - logging
-  - spark basics
-  - udf
-  - data_skew
-  - multi-tenancy
-  - AQE
-  - memory management
-  - window_functions
-  - cluster managers
-  - transformations
-  - fault tolerance
-  - optimization
-  - lakehouse architecture
-  - structured streaming
-  - lakehouse integration
-  - caching strategies
-  - Joins
-  - resource tuning
-  - task scheduling
-  - dataframes
-  - dataframes_vs_datasets
-  - spark sql
-  - change data capture
-  - garbage collection
-  - skew mitigation
-  - spark monitoring
-  - incremental etl
-  - lakehouse comparison
-  - delta lake
-  - dag scheduler
-  - aqe
-  - datasets
-  - sql
-  - serialization
-  - checkpointing
-  - tungsten project
-  - shuffle optimization
-  - cloud deployments
-  - hive
-  - fault_tolerance
-  - query_optimization
-  - data source
-  - apache iceberg
-  - actions
+  - Logging
+  - Spark Security
+  - Resource Tuning
+  - Lake House
+  - Checkpointing
+  - Actions
+  - Tungsten Engine
+  - Memory Management
+  - Debugging
+  - Deployment
+  - Apache Iceberg
+  - Optimization
+  - Serialization
+  - Kubernetes
+  - Structured Streaming
+  - DAG Scheduler
+  - Window Functions
+  - Monitoring
+  - Basics
+  - Delta Lake
+  - Incremental ETL
+  - Transformations
   - Partitioning
-  - dynamic resource allocation
-  - spark debugging
+  - Data Sources
+  - Cluster Managers
+  - Hive
+  - Caching
+  - SQL
+  - Dataframes
+  - AQE
+  - Fault Tolerance
+  - Task Scheduling
+  - Joins
+  - Apache Hudi
+  - Data Capture
+  - UDF
+  - Spark SQL
+  - Data Skew
+  - Multi-Tenancy
+  - Datasets
+  - RDD
   - shuffle operations
-  - spark on kubernetes
-  - apache hudi
-  - persistence
-  - rdd
-  - dataframe
-  - sql
-  - deployment
-  - spark-streaming
-  - optimization
-  - spark-core
+  - SQL
+  - Dataframes
+  - Basics
+  - Deployment
+  - Spark Streaming
+  - RDD
+  - Optimization
 SQL:
   types:
   - theory
   - mcqs
   topics:
-  - transactions
-  - functions
-  - joins
-  - views
-  - keys
-  - ddl
-  - constraints
-  - subqueries
-  - dml
-  - basics
   - optimization
-  - indexing
-  - normalization
-  - transactions
-  - constraints
   - basics
-  - normalization
-  - keys
-  - ddl
-  - subqueries
-  - data-types
-  - dml
   - indexing
-  - joins
-  - update
-  - aggregate
-  - functions
   - views
-  - delete
+  - ddl
+  - dml
+  - transactions
+  - normalization
+  - subqueries
+  - keys
+  - functions
+  - constraints
+  - joins
+  - views
+  - dml
+  - update
+  - normalization
+  - subqueries
   - performance
+  - keys
+  - delete
+  - basics
+  - transactions
   - aggregation
+  - joins
+  - aggregate
+  - indexing
+  - ddl
+  - constraints
+  - functions
   - window-functions
+  - data-types

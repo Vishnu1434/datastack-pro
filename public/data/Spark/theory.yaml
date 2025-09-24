@@ -1,7 +1,7 @@
 - stack: spark
   id: 1
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Big Data?"
   answer: "Big Data refers to datasets that are too large or complex to be processed by traditional systems, characterized by high Volume, Velocity, and Variety."
@@ -9,7 +9,7 @@
 - stack: spark
   id: 2
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What are the 3Vs of Big Data?"
   answer: "Volume, Velocity, and Variety."
@@ -17,7 +17,7 @@
 - stack: spark
   id: 3
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is the difference between batch processing and real-time processing?"
   answer: "Batch processing handles data in bulk at scheduled intervals, while real-time processing handles continuous streams of data with low latency."
@@ -25,7 +25,7 @@
 - stack: spark
   id: 4
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Give an example of a batch processing system."
   answer: "Hadoop MapReduce is a batch processing system."
@@ -33,7 +33,7 @@
 - stack: spark
   id: 5
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Give an example of a real-time processing system."
   answer: "Apache Kafka with Spark Structured Streaming can be used for real-time processing."
@@ -41,7 +41,7 @@
 - stack: spark
   id: 6
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Apache Spark?"
   answer: "Apache Spark is an open-source distributed computing framework for fast large-scale data processing across clusters."
@@ -49,7 +49,7 @@
 - stack: spark
   id: 7
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Why is Spark faster than Hadoop MapReduce?"
   answer: "Because Spark processes data in-memory and minimizes disk I/O, whereas MapReduce stores intermediate data on disk."
@@ -57,7 +57,7 @@
 - stack: spark
   id: 8
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "List the main components of the Spark ecosystem."
   answer: "Spark Core, Spark SQL, Spark Streaming, MLlib, and GraphX."
@@ -65,7 +65,7 @@
 - stack: spark
   id: 9
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is Spark Core?"
   answer: "Spark Core provides basic functionalities like task scheduling, memory management, fault tolerance, and interaction with storage systems."
@@ -73,7 +73,7 @@
 - stack: spark
   id: 10
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Spark SQL used for?"
   answer: "Spark SQL is used for structured data processing and enables SQL queries on distributed data."
@@ -81,7 +81,7 @@
 - stack: spark
   id: 11
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Spark Streaming?"
   answer: "Spark Streaming is a component of Spark used for processing real-time streaming data."
@@ -89,7 +89,7 @@
 - stack: spark
   id: 12
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is MLlib in Spark?"
   answer: "MLlib is Spark’s scalable machine learning library providing algorithms for classification, regression, clustering, and more."
@@ -97,7 +97,7 @@
 - stack: spark
   id: 13
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is GraphX in Spark?"
   answer: "GraphX is Spark’s API for graph-parallel computation and graph analytics."
@@ -105,7 +105,7 @@
 - stack: spark
   id: 14
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Explain Spark’s architecture in one line."
   answer: "Spark follows a master-slave architecture with a Driver program coordinating tasks executed by Executors on cluster nodes."
@@ -113,7 +113,7 @@
 - stack: spark
   id: 15
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is the role of the Driver in Spark?"
   answer: "The Driver runs the main program, builds the execution plan, and coordinates execution of tasks on Executors."
@@ -121,7 +121,7 @@
 - stack: spark
   id: 16
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What are Executors in Spark?"
   answer: "Executors are worker processes that run individual tasks and store intermediate data."
@@ -129,7 +129,7 @@
 - stack: spark
   id: 17
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the role of the Cluster Manager?"
   answer: "The Cluster Manager allocates resources across applications. Examples are Standalone, YARN, Mesos, and Kubernetes."
@@ -137,7 +137,7 @@
 - stack: spark
   id: 18
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the difference between Standalone and YARN in Spark?"
   answer: "Standalone is Spark’s built-in cluster manager, while YARN is a Hadoop-based cluster manager for resource sharing across applications."
@@ -145,7 +145,7 @@
 - stack: spark
   id: 19
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is Spark on Kubernetes?"
   answer: "It is Spark’s native integration with Kubernetes, where Spark applications run as pods in a Kubernetes cluster."
@@ -153,7 +153,7 @@
 - stack: spark
   id: 20
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Local mode in Spark?"
   answer: "Local mode runs Spark on a single machine for development or testing purposes."
@@ -161,7 +161,7 @@
 - stack: spark
   id: 21
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Cluster mode in Spark?"
   answer: "Cluster mode runs Spark on multiple nodes managed by a cluster manager for distributed processing."
@@ -169,7 +169,7 @@
 - stack: spark
   id: 22
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Which cluster managers can Spark run on?"
   answer: "Standalone, Apache YARN, Apache Mesos, and Kubernetes."
@@ -177,7 +177,7 @@
 - stack: spark
   id: 23
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is Spark Shell?"
   answer: "Spark Shell is an interactive command-line environment available in Scala and Python for experimenting with Spark."
@@ -185,7 +185,7 @@
 - stack: spark
   id: 24
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "Which languages are supported by Spark Shell?"
   answer: "Scala and Python."
@@ -193,7 +193,7 @@
 - stack: spark
   id: 25
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "Why is Spark Shell useful?"
   answer: "It allows quick experimentation, testing Spark commands, and interactive data exploration."
@@ -201,7 +201,7 @@
 - stack: spark
   id: 26
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the difference between PySpark and Scala Spark?"
   answer: "PySpark provides a Python API for Spark, while Scala is Spark’s native language and often offers better performance."
@@ -209,7 +209,7 @@
 - stack: spark
   id: 27
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the role of DAG (Directed Acyclic Graph) in Spark execution?"
   answer: "The Driver converts user operations into a DAG of stages and tasks, which are then scheduled for execution on Executors."
@@ -217,7 +217,7 @@
 - stack: spark
   id: 28
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is SparkContext?"
   answer: "SparkContext is the entry point of any Spark application; it connects to the cluster manager and coordinates resources."
@@ -225,7 +225,7 @@
 - stack: spark
   id: 29
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What is SparkSession?"
   answer: "SparkSession is the unified entry point to work with RDDs, DataFrames, and Datasets in Spark 2.x and above."
@@ -233,7 +233,7 @@
 - stack: spark
   id: 30
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the difference between SparkContext and SparkSession?"
   answer: "SparkContext is the entry point for low-level RDD APIs, while SparkSession is a unified entry point introduced in Spark 2.x for all APIs including SQL and DataFrames."
@@ -241,7 +241,7 @@
 - stack: spark
   id: 31
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "What does RDD stand for in Spark and what role does it serve?"
   answer: "RDD stands for Resilient Distributed Dataset, the core data structure in Spark."
@@ -249,7 +249,7 @@
 - stack: spark
   id: 32
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: easy
   question: "Why are distributed datasets called 'resilient'?"
   answer: "Because they can automatically recover from node failures using lineage information."
@@ -257,7 +257,7 @@
 - stack: spark
   id: 33
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What does it mean that distributed datasets are immutable?"
   answer: "Once created, distributed datasets cannot be changed. Any operation produces a new dataset."
@@ -265,7 +265,7 @@
 - stack: spark
   id: 34
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What does lazy evaluation mean in Spark?"
   answer: "Operations on distributed datasets are not executed immediately; Spark builds a DAG and executes only when an action is triggered."
@@ -281,7 +281,7 @@
 - stack: spark
   id: 36
   type: theory
-  topic: transformations
+  topic: Transformations
   difficulty: easy
   question: "What are transformations in Spark's distributed datasets?"
   answer: "Transformations are operations that create a new dataset from an existing one, such as map and filter."
@@ -289,7 +289,7 @@
 - stack: spark
   id: 37
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: easy
   question: "What are actions in Spark's distributed datasets?"
   answer: "Actions are operations that trigger execution and return results to the driver or write data to storage, such as collect and count."
@@ -297,7 +297,7 @@
 - stack: spark
   id: 38
   type: theory
-  topic: transformations
+  topic: Transformations
   difficulty: medium
   question: "Give two examples of transformations in Spark."
   answer: "map and filter."
@@ -305,7 +305,7 @@
 - stack: spark
   id: 39
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: medium
   question: "Give two examples of actions in Spark."
   answer: "collect and saveAsTextFile."
@@ -313,7 +313,7 @@
 - stack: spark
   id: 40
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is the difference between narrow and wide dependencies in distributed datasets?"
   answer: "In narrow dependencies, each parent partition is used by at most one child partition. In wide dependencies, multiple child partitions depend on multiple parent partitions, causing shuffles."
@@ -321,7 +321,7 @@
 - stack: spark
   id: 41
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Give an example of a narrow dependency operation."
   answer: "map and filter create narrow dependencies."
@@ -329,7 +329,7 @@
 - stack: spark
   id: 42
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "Give an example of a wide dependency operation."
   answer: "reduceByKey and groupByKey create wide dependencies because they require shuffling."
@@ -337,7 +337,7 @@
 - stack: spark
   id: 43
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: easy
   question: "How can you create a distributed dataset from a collection?"
   answer: "By using the parallelize method on a collection."
@@ -345,7 +345,7 @@
 - stack: spark
   id: 44
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: easy
   question: "How can you create a distributed dataset from an external file?"
   answer: "By using methods like textFile() to read files into distributed datasets."
@@ -353,7 +353,7 @@
 - stack: spark
   id: 45
   type: theory
-  topic: transformations
+  topic: Transformations
   difficulty: easy
   question: "What does the map() transformation do on a distributed dataset?"
   answer: "It applies a function to each element of the dataset and returns a new dataset with the results."
@@ -361,7 +361,7 @@
 - stack: spark
   id: 46
   type: theory
-  topic: transformations
+  topic: Transformations
   difficulty: easy
   question: "What does the flatMap() transformation do on a distributed dataset?"
   answer: "It applies a function to each element and flattens the results into a single dataset."
@@ -369,7 +369,7 @@
 - stack: spark
   id: 47
   type: theory
-  topic: transformations
+  topic: Transformations
   difficulty: easy
   question: "What does the filter() transformation do on a distributed dataset?"
   answer: "It returns a new dataset containing only the elements that satisfy a given condition."
@@ -377,7 +377,7 @@
 - stack: spark
   id: 48
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: medium
   question: "What does reduce() action do in Spark?"
   answer: "It aggregates the elements of the dataset using a specified associative function."
@@ -385,7 +385,7 @@
 - stack: spark
   id: 49
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: medium
   question: "What is the difference between reduceByKey and groupByKey?"
   answer: "reduceByKey combines values for each key locally before shuffling, while groupByKey shuffles all key-value pairs, making it less efficient."
@@ -393,7 +393,7 @@
 - stack: spark
   id: 50
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: medium
   question: "What is the purpose of the join() operation on distributed datasets?"
   answer: "It combines two datasets based on matching keys, similar to SQL joins."
@@ -401,7 +401,7 @@
 - stack: spark
   id: 51
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: medium
   question: "What does the union() operation do in distributed datasets?"
   answer: "It returns a dataset that contains elements from both source datasets."
@@ -409,7 +409,7 @@
 - stack: spark
   id: 52
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: medium
   question: "What does the distinct() operation do in distributed datasets?"
   answer: "It returns a dataset with duplicate elements removed."
@@ -417,7 +417,7 @@
 - stack: spark
   id: 53
   type: theory
-  topic: rdd_operations
+  topic: RDD
   difficulty: medium
   question: "What does the cartesian() operation do in distributed datasets?"
   answer: "It returns all possible pairs between elements of two datasets, which can be very expensive."
@@ -425,7 +425,7 @@
 - stack: spark
   id: 54
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: easy
   question: "What does the collect() action do on a distributed dataset?"
   answer: "It returns all elements of the dataset to the driver program."
@@ -433,7 +433,7 @@
 - stack: spark
   id: 55
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: easy
   question: "What does the count() action do on a distributed dataset?"
   answer: "It returns the number of elements in the dataset."
@@ -441,7 +441,7 @@
 - stack: spark
   id: 56
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: easy
   question: "What does the take() action do on a distributed dataset?"
   answer: "It returns the first N elements of the dataset."
@@ -449,7 +449,7 @@
 - stack: spark
   id: 57
   type: theory
-  topic: actions
+  topic: Actions
   difficulty: medium
   question: "What does saveAsTextFile() action do?"
   answer: "It saves the elements of a dataset as a text file in the specified directory."
@@ -473,7 +473,7 @@
 - stack: spark
   id: 60
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: medium
   question: "What is lineage in distributed datasets?"
   answer: "Lineage is the sequence of transformations used to build a dataset, which Spark uses to recompute lost data partitions."
@@ -481,7 +481,7 @@
 - stack: spark
   id: 61
   type: theory
-  topic: spark basics
+  topic: Basics
   difficulty: hard
   question: "How does Spark use DAG (Directed Acyclic Graph) for distributed datasets?"
   answer: "Spark represents transformations as a DAG of stages and tasks. The DAG scheduler optimizes and executes this plan efficiently across the cluster."
@@ -489,7 +489,7 @@
 - stack: spark
   id: 62
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "What is a DataFrame in Spark?"
   answer: "A DataFrame is a distributed collection of data organized into named columns, similar to a table in a relational database."
@@ -497,7 +497,7 @@
 - stack: spark
   id: 63
   type: theory
-  topic: datasets
+  topic: Datasets
   difficulty: easy
   question: "What is a Dataset in Spark?"
   answer: "A Dataset is a strongly-typed distributed collection of data introduced in Spark 1.6, combining the benefits of RDDs and DataFrames."
@@ -505,7 +505,7 @@
 - stack: spark
   id: 64
   type: theory
-  topic: dataframes_vs_datasets
+  topic: Dataframes_vs_datasets
   difficulty: medium
   question: "What is the difference between an RDD, DataFrame, and Dataset?"
   answer: "RDDs provide low-level control with no schema, DataFrames are schema-based and optimized, and Datasets add compile-time type safety on top of DataFrames."
@@ -513,7 +513,7 @@
 - stack: spark
   id: 65
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "What is the role of a schema in Spark DataFrames?"
   answer: "A schema defines the structure of the DataFrame including column names and data types, enabling optimized execution through Catalyst."
@@ -529,7 +529,7 @@
 - stack: spark
   id: 67
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "How can you create a DataFrame from an RDD?"
   answer: "By applying a schema using SparkSession.createDataFrame() on an RDD."
@@ -537,7 +537,7 @@
 - stack: spark
   id: 68
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "How can you create a DataFrame from a JSON file?"
   answer: "By using spark.read.json('path')."
@@ -545,7 +545,7 @@
 - stack: spark
   id: 69
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "How can you create a DataFrame from a Parquet file?"
   answer: "By using spark.read.parquet('path')."
@@ -553,7 +553,7 @@
 - stack: spark
   id: 70
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "How can you create a DataFrame from a CSV file?"
   answer: "By using spark.read.csv('path', header=True, inferSchema=True)."
@@ -561,7 +561,7 @@
 - stack: spark
   id: 71
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "How can you create a DataFrame from a Hive table?"
   answer: "By enabling Hive support and using spark.sql('SELECT * FROM table_name')."
@@ -569,7 +569,7 @@
 - stack: spark
   id: 72
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "What does the select() operation do in DataFrames?"
   answer: "select() returns a new DataFrame with specified columns."
@@ -577,7 +577,7 @@
 - stack: spark
   id: 73
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "What does withColumn() do in DataFrames?"
   answer: "withColumn() creates a new column or replaces an existing one with a computed value."
@@ -585,7 +585,7 @@
 - stack: spark
   id: 74
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: easy
   question: "What does the filter() operation do in DataFrames?"
   answer: "filter() returns rows that satisfy a given condition."
@@ -593,7 +593,7 @@
 - stack: spark
   id: 75
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "What does groupBy() and agg() do in DataFrames?"
   answer: "groupBy() groups rows by column values and agg() performs aggregations such as sum, avg, or count."
@@ -689,7 +689,7 @@
 - stack: spark
   id: 87
   type: theory
-  topic: dataframes
+  topic: Dataframes
   difficulty: medium
   question: "What is partitioning in Spark DataFrames?"
   answer: "Partitioning splits data into smaller chunks stored across nodes, enabling parallelism and optimized processing."

@@ -1,7 +1,7 @@
 - stack: spark
   id: 1
   type: mcq
-  topic: rdd
+  topic: RDD
   difficulty: easy
   question: What does RDD stand for in Spark?
   options:
@@ -27,7 +27,7 @@
 - stack: spark
   id: 3
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: medium
   question: Which of the following best describes a DataFrame in Spark?
   options:
@@ -53,7 +53,7 @@
 - stack: spark
   id: 5
   type: mcq
-  topic: rdd
+  topic: RDD
   difficulty: medium
   question: Which operation in Spark RDD triggers execution?
   options:
@@ -66,7 +66,7 @@
 - stack: spark
   id: 6
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: medium
   question: What file formats can Spark DataFrame natively read?
   options:
@@ -79,7 +79,7 @@
 - stack: spark
   id: 7
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: hard
   question: What is the default cluster manager for Spark?
   options:
@@ -118,7 +118,7 @@
 - stack: spark
   id: 10
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: hard
   question: Which join type is not supported in Spark SQL?
   options:
@@ -131,7 +131,7 @@
 - stack: spark
   id: 11
   type: mcq
-  topic: rdd
+  topic: RDD
   difficulty: easy
   question: Which is an action in Spark RDD?
   options:
@@ -170,7 +170,7 @@
 - stack: spark
   id: 14
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: easy
   question: What function is used to display the first rows of a DataFrame?
   options:
@@ -183,7 +183,7 @@
 - stack: spark
   id: 15
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: hard
   question: What does Spark use for DAG scheduling?
   options:
@@ -209,7 +209,7 @@
 - stack: spark
   id: 17
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: medium
   question: Which method persists a DataFrame in memory?
   options:
@@ -222,7 +222,7 @@
 - stack: spark
   id: 18
   type: mcq
-  topic: rdd
+  topic: RDD
   difficulty: hard
   question: Which transformation guarantees data shuffling in Spark?
   options:
@@ -235,7 +235,7 @@
 - stack: spark
   id: 19
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: medium
   question: In Spark, what is a narrow transformation?
   options:
@@ -248,7 +248,7 @@
 - stack: spark
   id: 20
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: easy
   question: Which Spark API is most similar to SQL?
   options:
@@ -274,7 +274,7 @@
 - stack: spark
   id: 22
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: medium
   question: Which cluster manager is NOT supported by Spark?
   options:
@@ -313,7 +313,7 @@
 - stack: spark
   id: 25
   type: mcq
-  topic: rdd
+  topic: RDD
   difficulty: easy
   question: Which method is used to parallelize a local collection into RDD?
   options:
@@ -326,7 +326,7 @@
 - stack: spark
   id: 26
   type: mcq
-  topic: dataframe
+  topic: Dataframes
   difficulty: hard
   question: Which method writes DataFrame in append mode?
   options:
@@ -352,7 +352,7 @@
 - stack: spark
   id: 28
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: medium
   question: Which deployment mode runs the driver on the cluster?
   options:
@@ -378,7 +378,7 @@
 - stack: spark
   id: 30
   type: mcq
-  topic: spark-core
+  topic: Basics
   difficulty: easy
   question: Which language APIs does Spark support?
   options:

@@ -262,13 +262,13 @@
   type: mcq
   topic: SQL
   difficulty: hard
-  question: Which Spark SQL function is used for windowing operations?
+  question: In Spark SQL, which clause is used to define a window for analytic functions?
   options:
     '1': over()
     '2': window()
     '3': row_number()
     '4': rank()
-  answer: '2'
+  answer: '1'
   id: 21
 
 - stack: spark

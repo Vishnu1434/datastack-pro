@@ -96,11 +96,9 @@ export const load_manifest = async () => {
         const topicsByStack = {};
 
         for (const [stack, stackData] of Object.entries(manifest)) {
-            console.log(stack);
             techStacks.push(stack);
             topicsByStack[stack.charAt(0).toUpperCase() + stack.slice(1)] = stackData.topics || [];
         }
-        console.log(techStacks);
         return { techStacks, topicsByStack };
     } catch (error) {
         console.error("Error loading stack_manifest.yaml:", error);

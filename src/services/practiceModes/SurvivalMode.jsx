@@ -13,9 +13,9 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
     useEffect(() => {
         let mounted = true;
         async function fetchQuestions() {
-            const data = await loadQuestions();
-            const mcqs = Array.isArray(data) ? data.filter((q) => q.type === "mcq") : [];
+            const mcqs = await loadQuestions("mcqs");
             if (!mounted) return;
+
             setAllQuestions(mcqs);
             const filtered = filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic });
             setQuestions(filtered.sort(() => 0.5 - Math.random()));
@@ -54,7 +54,8 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
     const question = questions[current];
 
     const selectAnswer = (opt) => {
-        if (opt === question.correct) {
+        console.log("option is: ", opt, "answer is: ", question.answer);
+        if (opt === question.answer) {
             setStreak((s) => s + 1);
             setCurrent((prev) => (prev + 1) % questions.length);
         } else {
@@ -67,10 +68,10 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
             <p className="font-mono">Streak: {streak}</p>
             <h3 className="text-lg font-bold">{question.question}</h3>
             <ul className="space-y-2">
-                {question.options.map((opt, i) => (
+                {Object.entries(question.options).map(([key, opt]) => (
                     <li
-                        key={i}
-                        onClick={() => selectAnswer(opt)}
+                        key={key}
+                        onClick={() => selectAnswer(key)} // Pass key since answer in YAML is '1', '2', etc.
                         className="p-3 border rounded cursor-pointer hover:bg-gray-100"
                     >
                         {opt}

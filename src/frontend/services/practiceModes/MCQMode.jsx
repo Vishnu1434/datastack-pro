@@ -64,6 +64,17 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         onExamStateChange(examState);
     }, [examState]);
 
+    // when current changes, mark question as seen (if it was unseen)
+    useEffect(() => {
+        if (responses && responses[current] && responses[current].status === "unseen") {
+            setResponses((prev) => {
+                const copy = prev.slice();
+                copy[current] = { status: "unattempted", selected: null };
+                return copy;
+            });
+        }
+    }, [current]);
+
     useEffect(() => {
         return () => {
             if (timerRef.current) clearInterval(timerRef.current);

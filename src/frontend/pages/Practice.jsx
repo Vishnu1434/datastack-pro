@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import FlashcardMode from "../services/practiceModes/FlashcardMode";
-import MCQMode from "../services/practiceModes/MCQMode";
-import SurvivalMode from "../services/practiceModes/SurvivalMode";
+import FlashcardMode from "../services/practiceModes/FlashcardMode.jsx";
+import MCQMode from "../services/practiceModes/MCQMode.jsx";
+import SurvivalMode from "../services/practiceModes/SurvivalMode.jsx";
 import { load_manifest } from "../utils/common.jsx";
 
 const { techStacks, topicsByStack}  = await load_manifest();

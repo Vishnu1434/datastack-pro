@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import FlashcardMode from "../services/practiceModes/FlashcardMode.jsx";
-import MCQMode from "../services/practiceModes/MCQMode.jsx";
-import SurvivalMode from "../services/practiceModes/SurvivalMode.jsx";
+import FlashcardMode from "../services/practiceModes/FlashcardMode";
+import MCQMode from "../services/practiceModes/MCQMode";
+import SurvivalMode from "../services/practiceModes/SurvivalMode";
 import { load_manifest } from "../utils/common.jsx";
 
 const { techStacks, topicsByStack}  = await load_manifest();
@@ -24,6 +24,9 @@ function PracticePage() {
     const [buttonWidths, setButtonWidths] = useState({});
     const dropdownRefs = useRef({});
     const dropdownMenuRefs = useRef({});
+
+    // track exam state from MCQ child: idle | running | ended
+    const [examState, setExamState] = useState("idle");
 
     // Close dropdowns on the outside click
     useEffect(() => {
@@ -120,13 +123,14 @@ function PracticePage() {
     const toggleSelection = (value, setter, array) =>
         setter(array.includes(value) ? array.filter((v) => v !== value) : [...array, value]);
 
-    const renderCheckboxDropdown = (label, options, selected, setter, key) => (
+    const renderCheckboxDropdown = (label, options, selected, setter, key, disabled = false) => (
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen({ [key]: !dropdownOpen[key] })}
-                className={BUTTON_CLASSES}
+                onClick={() => { if (!disabled) setDropdownOpen({ [key]: !dropdownOpen[key] }); }}
+                className={`${BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
+                disabled={disabled}
             >
                 {label}
             </button>
@@ -143,13 +147,14 @@ function PracticePage() {
                     {options.map((opt) => (
                         <label
                             key={opt}
-                            className="flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                            className={`flex items-center px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm ${disabled ? 'opacity-50' : ''}`}
                         >
                             <input
                                 type="checkbox"
                                 className="mr-2"
                                 checked={selected.includes(opt)}
                                 onChange={() => toggleSelection(opt, setter, selected)}
+                                disabled={disabled}
                             />
                             {opt}
                         </label>
@@ -159,13 +164,14 @@ function PracticePage() {
         </div>
     );
 
-    const renderSingleSelectDropdown = (options, selected, setter, key) => (
+    const renderSingleSelectDropdown = (options, selected, setter, key, disabled = false) => (
         <div className="relative inline-block">
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
-                onClick={() => setDropdownOpen({ [key]: !dropdownOpen[key] })}
-                className={BUTTON_CLASSES}
+                onClick={() => { if (!disabled) setDropdownOpen({ [key]: !dropdownOpen[key] }); }}
+                className={`${BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
+                disabled={disabled}
             >
                 {selected}
             </button>
@@ -182,11 +188,8 @@ function PracticePage() {
                     {options.map((opt) => (
                         <div
                             key={opt}
-                            className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
-                            onClick={() => {
-                                setter(opt);
-                                setDropdownOpen({});
-                            }}
+                            className={`px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm ${disabled ? 'opacity-50' : ''}`}
+                            onClick={() => { if (!disabled) { setter(opt); setDropdownOpen({}); } }}
                         >
                             {opt}
                         </div>
@@ -202,6 +205,7 @@ function PracticePage() {
             techStack: selectedTechStacks,
             topic: selectedTopics,
             practiceType: selectedPracticeType,
+            onExamStateChange: setExamState,
         };
         switch (activeMode) {
             case "Flashcards":
@@ -215,6 +219,9 @@ function PracticePage() {
         }
     };
 
+    // disable filters while MCQ timed exam is running
+    const filtersDisabled = activeMode === 'MCQs' && selectedPracticeType !== 'Self-Paced' && examState === 'running';
+
     return (
         <div className="flex flex-col flex-1 px-3 py-2 w-full h-[calc(100vh-5rem)] min-h-0">
             <div className="flex flex-col flex-1 rounded-lg shadow overflow-hidden min-h-0">
@@ -222,15 +229,15 @@ function PracticePage() {
                 <div className="p-3 bg-blue-600 flex justify-between items-center">
                     {/* Left side */}
                     <div className="flex gap-3">
-                        {renderSingleSelectDropdown(modes, activeMode, setActiveMode, "mode")}
-                        {renderSingleSelectDropdown(practiceTypes, selectedPracticeType, setSelectedPracticeType, "practice")}
+                        {renderSingleSelectDropdown(modes, activeMode, setActiveMode, "mode", examState === 'running')}
+                        {renderSingleSelectDropdown(practiceTypes, selectedPracticeType, setSelectedPracticeType, "practice", examState === 'running')}
                     </div>
 
                     {/* Right side */}
                     <div className="flex gap-3">
-                        {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty")}
-                        {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech")}
-                        {renderCheckboxDropdown("Topic", availableTopics.length ? availableTopics : ALL_TOPICS, selectedTopics, setSelectedTopics, "topic")}
+                        {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty", filtersDisabled)}
+                        {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech", filtersDisabled)}
+                        {renderCheckboxDropdown("Topic", availableTopics.length ? availableTopics : ALL_TOPICS, selectedTopics, setSelectedTopics, "topic", filtersDisabled)}
                     </div>
                 </div>
 

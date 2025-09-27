@@ -313,7 +313,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     const report = computeReport();
 
     return (
-        <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
+        <div className="flex flex-col flex-1 gap-6 p-6 bg-gray-50 rounded-xl shadow-md min-h-0">
             {/* Top bar: stats on left, actions on right */}
             <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
@@ -489,131 +489,112 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
                 </>
             )}
 
-            {/* When exam ended show final score summary centered with detailed report */}
+            {/* When exam ended show full-page final summary with detailed report occupying the mode area */}
             {examState === "ended" && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 p-4">
-                    <div className="bg-white p-6 rounded-lg shadow max-w-4xl w-full">
-                        <div className="flex flex-col md:flex-row gap-6">
-                            <div className="md:w-1/3 text-center">
-                                <h3 className="text-lg font-semibold mb-2">Exam Finished</h3>
-                                <p className="text-sm text-gray-600 mb-4">Your scores for this session:</p>
-                                <div className="flex items-center justify-around mb-4">
-                                    <div>
-                                        <div className="text-2xl font-bold text-green-600">{correctCount}</div>
-                                        <div className="text-sm text-gray-500">Correct</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-red-600">{incorrectCount}</div>
-                                        <div className="text-sm text-gray-500">Incorrect</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-gray-700">{skippedCount}</div>
-                                        <div className="text-sm text-gray-500">Skipped</div>
-                                    </div>
+                <div className="flex-1 overflow-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+                        {/* Left: big summary */}
+                        <div className="col-span-1 bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center">
+                            <h2 className="text-2xl font-bold mb-2">Session Summary</h2>
+                            <p className="text-sm text-gray-500 mb-4">Here's how you performed in this session</p>
+                            <div className="flex items-center gap-6 mb-6">
+                                <div className="text-center">
+                                    <div className="text-4xl font-extrabold text-green-600">{correctCount}</div>
+                                    <div className="text-sm text-gray-500">Correct</div>
                                 </div>
-                                <div className="flex items-center justify-center gap-3">
-                                    <button
-                                        onClick={() => {
-                                            // reset exam state and allow parent to enable filters again
-                                            setExamState("idle");
-                                            // keep scores visible until user interacts; parent already re-enabled filters
-                                        }}
-                                        className="px-4 py-2 bg-blue-600 text-white rounded-md"
-                                    >
-                                        Close
-                                    </button>
+                                <div className="text-center">
+                                    <div className="text-4xl font-extrabold text-red-600">{incorrectCount}</div>
+                                    <div className="text-sm text-gray-500">Incorrect</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-4xl font-extrabold text-gray-700">{skippedCount}</div>
+                                    <div className="text-sm text-gray-500">Skipped</div>
                                 </div>
                             </div>
+                            <div className="w-full">
+                                <button
+                                    onClick={() => setExamState("idle")}
+                                    className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg font-medium"
+                                >
+                                    Close Report
+                                </button>
+                            </div>
+                        </div>
 
-                            <div className="md:w-2/3 overflow-auto max-h-[60vh]">
-                                <h4 className="text-md font-semibold mb-3">Detailed Report</h4>
-                                <div className="space-y-4">
-                                    {report.map((r) => (
-                                        <div key={r.stack} className="bg-gradient-to-r from-white to-gray-50 p-0 rounded-lg overflow-hidden border">
-                                            <div className="flex items-center justify-between p-4 bg-white/80">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">{iconForStack(r.stack)}</div>
-                                                    <div>
-                                                        <div className="font-semibold">{r.stack}</div>
-                                                        <div className="text-xs text-gray-500">{r.total} questions • {r.attempted} attempted</div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="flex items-center gap-3">
-                                                    <div className="text-right">
-                                                        <div className="text-sm text-gray-600">Score</div>
-                                                        <div className="text-lg font-bold text-blue-600">{r.score}%</div>
-                                                    </div>
+                        {/* Right: detailed stacks (span 2 cols on lg) */}
+                        <div className="col-span-1 lg:col-span-2 overflow-auto">
+                            <h3 className="text-lg font-semibold mb-4">Detailed Report</h3>
+                            <div className="space-y-4">
+                                {report.map((r) => (
+                                    <div key={r.stack} className="bg-white rounded-lg shadow p-4">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">{iconForStack(r.stack)}</div>
+                                                <div>
+                                                    <div className="font-semibold text-lg">{r.stack}</div>
+                                                    <div className="text-xs text-gray-500">{r.total} questions • {r.attempted} seen</div>
                                                 </div>
                                             </div>
-
-                                            <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 bg-white">
-                                                <div className="space-y-2">
-                                                    <div className="flex items-center gap-2 text-sm">
-                                                        <div className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Correct {r.correct}</div>
-                                                        <div className="px-2 py-1 bg-red-50 text-red-700 rounded-full text-xs font-medium">Incorrect {r.incorrect}</div>
-                                                        <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">Skipped {r.skipped}</div>
-                                                    </div>
-                                                    <div className="text-sm text-gray-600">Overall performance for this stack based on attempted questions.</div>
-                                                </div>
-
-                                                <div className="space-y-3">
-                                                    <div>
-                                                        <div className="text-sm font-semibold mb-2">Strongest Topics</div>
-                                                        {r.strongest.length ? (
-                                                            <div className="space-y-2">
-                                                                {r.strongest.map((t) => (
-                                                                    <div key={t.topic} className="flex items-center justify-between gap-3">
-                                                                        <div className="flex-1 min-w-0">
-                                                                            <div className="flex items-center justify-between">
-                                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
-                                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
-                                                                            </div>
-                                                                            <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
-                                                                                <div className="h-2 bg-green-400" style={{ width: `${t.percent}%` }} />
-                                                                            </div>
-                                                                            <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
-                                                                        </div>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        ) : (
-                                                            <div className="text-sm text-gray-500">No attempted topics</div>
-                                                        )}
-                                                    </div>
-
-                                                    <div>
-                                                        <div className="text-sm font-semibold mb-2">Weakest Topics</div>
-                                                        {r.weakest.length ? (
-                                                            <div className="space-y-2">
-                                                                {r.weakest.map((t) => (
-                                                                    <div key={t.topic} className="flex items-center justify-between gap-3">
-                                                                        <div className="flex-1 min-w-0">
-                                                                            <div className="flex items-center justify-between">
-                                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
-                                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
-                                                                            </div>
-                                                                            <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
-                                                                                <div className="h-2 bg-red-400" style={{ width: `${t.percent}%` }} />
-                                                                            </div>
-                                                                            <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
-                                                                        </div>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        ) : (
-                                                            <div className="text-sm text-gray-500">No attempted topics</div>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                            <div className="text-right">
+                                                <div className="text-sm text-gray-500">Score</div>
+                                                <div className="text-2xl font-bold text-blue-600">{r.score}%</div>
                                             </div>
                                         </div>
-                                    ))}
 
-                                    {report.length === 0 && (
-                                        <div className="text-sm text-gray-500">No detailed data available for this session.</div>
-                                    )}
-                                </div>
+                                        <div className="grid grid-cols-3 gap-3 mb-4">
+                                            <div className="p-3 bg-green-50 rounded text-center">
+                                                <div className="text-sm text-green-700 font-medium">Correct</div>
+                                                <div className="text-xl font-bold text-green-700">{r.correct}</div>
+                                            </div>
+                                            <div className="p-3 bg-red-50 rounded text-center">
+                                                <div className="text-sm text-red-700 font-medium">Incorrect</div>
+                                                <div className="text-xl font-bold text-red-700">{r.incorrect}</div>
+                                            </div>
+                                            <div className="p-3 bg-gray-50 rounded text-center">
+                                                <div className="text-sm text-gray-700 font-medium">Skipped</div>
+                                                <div className="text-xl font-bold text-gray-700">{r.skipped}</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <div className="text-sm font-semibold mb-2">Strongest Topics</div>
+                                                {r.strongest.length ? (
+                                                    <div className="space-y-2">
+                                                        {r.strongest.map((t) => (
+                                                            <div key={t.topic} className="flex items-center justify-between">
+                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
+                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <div className="text-sm text-gray-500">No attempted topics</div>
+                                                )}
+                                            </div>
+
+                                            <div>
+                                                <div className="text-sm font-semibold mb-2">Weakest Topics</div>
+                                                {r.weakest.length ? (
+                                                    <div className="space-y-2">
+                                                        {r.weakest.map((t) => (
+                                                            <div key={t.topic} className="flex items-center justify-between">
+                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
+                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <div className="text-sm text-gray-500">No attempted topics</div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+
+                                {report.length === 0 && (
+                                    <div className="text-sm text-gray-500">No detailed data available for this session.</div>
+                                )}
                             </div>
                         </div>
                     </div>

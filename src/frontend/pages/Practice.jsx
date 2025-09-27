@@ -5,7 +5,7 @@ import SurvivalMode from "../services/practiceModes/SurvivalMode";
 import { load_manifest } from "../utils/common.jsx";
 
 const { techStacks, topicsByStack}  = await load_manifest();
-const modes = ["Flashcards", "MCQs", "Adaptive Mode", "Revision Mode", "Survival Mode"];
+const modes = ["Flashcards", "MCQs", "Revision Mode", "Survival Mode"];
 const difficulties = ["Easy", "Medium", "Hard"];
 const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
 

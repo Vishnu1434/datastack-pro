@@ -149,10 +149,8 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     };
 
     const handleSelect = (optKey) => {
-        if (examState === "running" || examState === "idle") {
-            // allow selection in running mode only; in idle selection shouldn't happen (UI blocks)
-        }
-        if (answered || examState !== "running") return;
+        // allow selection when exam is running OR when in Self-Paced practiceType
+        if (answered || (examState !== "running" && practiceType !== "Self-Paced")) return;
         const q = questions[current];
         if (!q) return;
         setSelected(optKey);

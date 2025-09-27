@@ -147,11 +147,11 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             clearInterval(timerRef.current);
             timerRef.current = null;
         }
-        // ensure any remaining unattempted questions are marked as skipped for reporting
+        // ensure any remaining *seen but unattempted* questions are marked as skipped for reporting
         setResponses((prev) => {
             const copy = prev.slice();
             for (let i = 0; i < questions.length; i++) {
-                if (!copy[i] || copy[i].status === "unattempted") {
+                if (copy[i] && copy[i].status === "unattempted") {
                     copy[i] = { status: "skipped", selected: null };
                 }
             }

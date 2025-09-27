@@ -518,48 +518,82 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
                                 <h4 className="text-md font-semibold mb-3">Detailed Report</h4>
                                 <div className="space-y-4">
                                     {report.map((r) => (
-                                        <div key={r.stack} className="p-4 bg-gray-50 rounded-md border">
-                                            <div className="flex items-center justify-between mb-2">
+                                        <div key={r.stack} className="bg-gradient-to-r from-white to-gray-50 p-0 rounded-lg overflow-hidden border">
+                                            <div className="flex items-center justify-between p-4 bg-white/80">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 flex items-center justify-center text-blue-600">{iconForStack(r.stack)}</div>
-                                                    <div className="font-medium">{r.stack}</div>
+                                                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">{iconForStack(r.stack)}</div>
+                                                    <div>
+                                                        <div className="font-semibold">{r.stack}</div>
+                                                        <div className="text-xs text-gray-500">{r.total} questions • {r.attempted} attempted</div>
+                                                    </div>
                                                 </div>
-                                                <div className="text-sm text-gray-700">Score: <span className="font-bold">{r.score}%</span></div>
+
+                                                <div className="flex items-center gap-3">
+                                                    <div className="text-right">
+                                                        <div className="text-sm text-gray-600">Score</div>
+                                                        <div className="text-lg font-bold text-blue-600">{r.score}%</div>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                                                <div>Total questions: <strong>{r.total}</strong></div>
-                                                <div>Attempted: <strong>{r.attempted}</strong></div>
-                                                <div>Correct: <strong className="text-green-600">{r.correct}</strong></div>
-                                                <div>Incorrect: <strong className="text-red-600">{r.incorrect}</strong></div>
-                                                <div>Skipped: <strong>{r.skipped}</strong></div>
-                                                <div>Top score: <strong>{r.score}%</strong></div>
-                                            </div>
-
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <div className="text-sm font-semibold mb-1">Strongest Topics</div>
-                                                    {r.strongest.length ? (
-                                                        <ul className="text-sm list-disc list-inside">
-                                                            {r.strongest.map((t) => (
-                                                                <li key={t.topic}>{t.topic} — {t.percent}% ({t.correct}/{t.total})</li>
-                                                            ))}
-                                                        </ul>
-                                                    ) : (
-                                                        <div className="text-sm text-gray-500">No topic data</div>
-                                                    )}
+                                            <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 bg-white">
+                                                <div className="space-y-2">
+                                                    <div className="flex items-center gap-2 text-sm">
+                                                        <div className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">Correct {r.correct}</div>
+                                                        <div className="px-2 py-1 bg-red-50 text-red-700 rounded-full text-xs font-medium">Incorrect {r.incorrect}</div>
+                                                        <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">Skipped {r.skipped}</div>
+                                                    </div>
+                                                    <div className="text-sm text-gray-600">Overall performance for this stack based on attempted questions.</div>
                                                 </div>
-                                                <div>
-                                                    <div className="text-sm font-semibold mb-1">Weakest Topics</div>
-                                                    {r.weakest.length ? (
-                                                        <ul className="text-sm list-disc list-inside">
-                                                            {r.weakest.map((t) => (
-                                                                <li key={t.topic}>{t.topic} — {t.percent}% ({t.correct}/{t.total})</li>
-                                                            ))}
-                                                        </ul>
-                                                    ) : (
-                                                        <div className="text-sm text-gray-500">No topic data</div>
-                                                    )}
+
+                                                <div className="space-y-3">
+                                                    <div>
+                                                        <div className="text-sm font-semibold mb-2">Strongest Topics</div>
+                                                        {r.strongest.length ? (
+                                                            <div className="space-y-2">
+                                                                {r.strongest.map((t) => (
+                                                                    <div key={t.topic} className="flex items-center justify-between gap-3">
+                                                                        <div className="flex-1 min-w-0">
+                                                                            <div className="flex items-center justify-between">
+                                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
+                                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
+                                                                            </div>
+                                                                            <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
+                                                                                <div className="h-2 bg-green-400" style={{ width: `${t.percent}%` }} />
+                                                                            </div>
+                                                                            <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <div className="text-sm text-gray-500">No attempted topics</div>
+                                                        )}
+                                                    </div>
+
+                                                    <div>
+                                                        <div className="text-sm font-semibold mb-2">Weakest Topics</div>
+                                                        {r.weakest.length ? (
+                                                            <div className="space-y-2">
+                                                                {r.weakest.map((t) => (
+                                                                    <div key={t.topic} className="flex items-center justify-between gap-3">
+                                                                        <div className="flex-1 min-w-0">
+                                                                            <div className="flex items-center justify-between">
+                                                                                <div className="text-sm font-medium truncate">{t.topic}</div>
+                                                                                <div className="text-sm text-gray-500">{t.percent}%</div>
+                                                                            </div>
+                                                                            <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
+                                                                                <div className="h-2 bg-red-400" style={{ width: `${t.percent}%` }} />
+                                                                            </div>
+                                                                            <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
+                                                                        </div>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <div className="text-sm text-gray-500">No attempted topics</div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

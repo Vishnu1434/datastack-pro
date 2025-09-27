@@ -84,20 +84,6 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
         }
     };
 
-    // const optionClasses = (key) => {
-    //     const base = "p-3 border rounded-md transition-colors select-none bg-white";
-    //     const hoverable = !showFeedback && !gameOver ? " cursor-pointer hover:bg-blue1-100 hover:border-blue-400" : " cursor-default";
-    //     const isCorrectKey = key === question.answer;
-    //     const isSelected = selected === key;
-    //
-    //     if (showFeedback) {
-    //         if (isSelected && isCorrectKey) return `${base} ${hoverable} border-green-400 bg-green-100 text-green-800`;
-    //         if (isSelected && !isCorrectKey) return `${base} ${hoverable} border-red-400 bg-red-100 text-red-800`;
-    //         if (gameOver && isCorrectKey) return `${base} ${hoverable} border-green-400 bg-green-100 text-green-800`;
-    //     }
-    //     return `${base} ${hoverable}`;
-    // };
-
     const optionClasses = (key) => {
         const base = "p-4 rounded-lg border flex items-center justify-between transition select-none";
         const isCorrectKey = key === question.answer;

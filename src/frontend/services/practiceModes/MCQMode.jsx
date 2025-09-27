@@ -282,10 +282,11 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             const correct = indices.filter((i) => responses[i] && responses[i].status === "correct").length;
             const incorrect = indices.filter((i) => responses[i] && responses[i].status === "incorrect").length;
             const skipped = indices.filter((i) => responses[i] && responses[i].status === "skipped").length;
-            const attempted = indices.filter((i) => responses[i] && responses[i].status && responses[i].status !== "skipped" && responses[i].status !== "unattempted").length;
+            // 'attempted' should mean questions that the user saw (not 'unseen')
+            const attempted = indices.filter((i) => responses[i] && responses[i].status && responses[i].status !== "unseen").length;
             const score = attempted ? Math.round((correct / attempted) * 100) : 0;
 
-            // topic analysis for this stack (based only on attempted questions)
+            // topic analysis for this stack (based on questions the user saw)
             const topicMap = {};
             indices.forEach((i) => {
                 const topicKey = questions[i].topic || questions[i].topics || "General";
@@ -293,7 +294,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
                 const t = Array.isArray(topicKey) ? topicKey[0] : topicKey;
                 if (!topicMap[t]) topicMap[t] = { attempted: 0, correct: 0 };
                 const resp = responses[i];
-                if (resp && resp.status && resp.status !== "skipped" && resp.status !== "unattempted") {
+                if (resp && resp.status && resp.status !== "unseen") {
                     topicMap[t].attempted += 1;
                     if (resp.status === "correct") topicMap[t].correct += 1;
                 }

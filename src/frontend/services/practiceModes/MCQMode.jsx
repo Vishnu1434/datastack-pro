@@ -55,7 +55,8 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         setCorrectCount(0);
         setIncorrectCount(0);
         setSkippedCount(0);
-        setResponses(Array.from({ length: filtered.length }, () => ({ status: "unattempted", selected: null })));
+        // initial status: 'unseen' means the user hasn't viewed the question yet
+        setResponses(Array.from({ length: filtered.length }, () => ({ status: "unseen", selected: null })));
     }, [difficulty, techStack, topic, allQuestions]);
 
     useEffect(() => {

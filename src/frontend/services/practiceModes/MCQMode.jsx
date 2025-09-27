@@ -241,7 +241,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         setCorrectCount(0);
         setIncorrectCount(0);
         setSkippedCount(0);
-        setResponses((prev) => Array.from({ length: prev.length }, () => ({ status: "unattempted", selected: null })));
+        setResponses((prev) => Array.from({ length: prev.length }, () => ({ status: "unseen", selected: null })));
     };
 
     if (loading)

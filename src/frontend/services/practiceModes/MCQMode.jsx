@@ -14,7 +14,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     const [answered, setAnswered] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    // responses array tracks per-question status: { status: 'unattempted'|'correct'|'incorrect'|'skipped', selected: string|null }
+    // responses array tracks per-question status: { status: 'unseen'|'unattempted'|'correct'|'incorrect'|'skipped', selected: string|null }
     const [responses, setResponses] = useState([]);
 
     // score counters

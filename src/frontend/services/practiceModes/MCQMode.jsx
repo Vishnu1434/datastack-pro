@@ -191,7 +191,17 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         setSkippedCount(0);
     };
 
-    if (loading) return <p>Loading MCQs...</p>;
+    if (loading)
+        return (
+            <div className="flex-1 flex items-center justify-center min-h-0">
+                <div className="bg-white p-6 rounded-lg shadow text-center">
+                    <div className="mb-3">
+                        <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full mx-auto animate-spin" />
+                    </div>
+                    <div className="text-sm text-gray-700 font-medium">Loading MCQs...</div>
+                </div>
+            </div>
+        );
     if (!questions.length) return <p>No questions match current filters.</p>;
 
     const q = questions[current] || null;

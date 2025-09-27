@@ -212,6 +212,16 @@ function PracticePage() {
                 return <FlashcardMode {...props} />;
             case "MCQs":
                 return <MCQMode {...props} />;
+            case "Revision Mode":
+                return (
+                    <div className="flex-1 flex items-center justify-center min-h-0 p-6">
+                        <div className="max-w-lg text-center bg-white p-6 rounded-lg shadow border border-gray-200">
+                            <div className="text-3xl text-blue-600 mb-4">🔧</div>
+                            <h3 className="text-lg font-semibold mb-2">Revision Mode — Coming Soon</h3>
+                            <p className="text-sm text-gray-600">We're working to build this mode. In the meantime, try other modes like Flashcards or MCQs to continue practicing.</p>
+                        </div>
+                    </div>
+                );
             case "Survival Mode":
                 return <SurvivalMode {...props} />;
             default:

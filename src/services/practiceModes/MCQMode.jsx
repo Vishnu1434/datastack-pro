@@ -14,6 +14,11 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [] })
     const [answered, setAnswered] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    // score counters
+    const [correctCount, setCorrectCount] = useState(0);
+    const [incorrectCount, setIncorrectCount] = useState(0);
+    const [skippedCount, setSkippedCount] = useState(0);
+
     useEffect(() => {
         let mounted = true;
         async function fetchQuestions() {
@@ -31,28 +36,48 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [] })
     }, []);
 
     useEffect(() => {
-        setQuestions(filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic }));
+        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+        setQuestions(filtered);
         setCurrent(0);
         setSelected(null);
         setAnswered(false);
+        setCorrectCount(0);
+        setIncorrectCount(0);
+        setSkippedCount(0);
     }, [difficulty, techStack, topic, allQuestions]);
 
     const handleSelect = (optKey) => {
         if (answered) return;
+        const q = questions[current];
+        if (!q) return;
         setSelected(optKey);
         setAnswered(true);
+
+        if (optKey === q.answer) {
+            setCorrectCount((p) => p + 1);
+        } else {
+            setIncorrectCount((p) => p + 1);
+        }
     };
 
     const handleNext = () => {
+        if (!answered) {
+            setSkippedCount((p) => p + 1);
+        }
         setSelected(null);
         setAnswered(false);
         setCurrent((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
     };
 
     const handleReset = () => {
+        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+        setQuestions(shuffleArray([...filtered]));
+        setCurrent(0);
         setSelected(null);
         setAnswered(false);
-        setCurrent(0);
+        setCorrectCount(0);
+        setIncorrectCount(0);
+        setSkippedCount(0);
     };
 
     const handleShuffle = () => {
@@ -60,6 +85,9 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [] })
         setCurrent(0);
         setSelected(null);
         setAnswered(false);
+        setCorrectCount(0);
+        setIncorrectCount(0);
+        setSkippedCount(0);
     };
 
     if (loading) return <p>Loading MCQs...</p>;
@@ -70,19 +98,53 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [] })
 
     return (
         <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
-            {/* Question header */}
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 flex items-center justify-center text-blue-600">
-                        {iconForStack(q.stack || q.source || "")}
+            {/* Top bar: stats on left, actions on right */}
+            <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 mcq-stats">
+                            <button className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 border border-green-100 rounded-lg shadow-sm">
+                                <CheckCircle size={16} />
+                                <span className="text-sm font-medium">{correctCount} Correct</span>
+                            </button>
+                            <button className="flex items-center gap-2 px-3 py-2 bg-red-50 text-red-700 border border-red-100 rounded-lg shadow-sm">
+                                <XCircle size={16} />
+                                <span className="text-sm font-medium">{incorrectCount} Incorrect</span>
+                            </button>
+                            <button className="flex items-center gap-2 px-3 py-2 bg-gray-50 text-gray-700 border border-gray-100 rounded-lg shadow-sm">
+                                <span className="text-sm font-medium">{skippedCount} Skipped</span>
+                            </button>
+                        </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900">{q.question}</h3>
+
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={handleReset}
+                            className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg"
+                        >
+                            Reset
+                        </button>
+                        <button
+                            onClick={handleShuffle}
+                            className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+                        >
+                            <Shuffle size={16} /> Shuffle
+                        </button>
+                    </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                    {difficultyBadge(q.difficulty)}
-                    <div className="text-sm text-gray-500">
-                        {current + 1}/{questions.length}
+                {/* Question header */}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 flex items-center justify-center text-blue-600">
+                            {iconForStack(q.stack || q.source || "")}
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900">{q.question}</h3>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        {difficultyBadge(q.difficulty)}
+                        <div className="text-sm text-gray-500">{current + 1}/{questions.length}</div>
                     </div>
                 </div>
             </div>
@@ -125,20 +187,8 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [] })
                 })}
             </ul>
 
-            {/* Footer buttons */}
+            {/* Footer with only Next button */}
             <div className="flex items-center justify-center gap-4 pt-4">
-                <button
-                    onClick={handleReset}
-                    className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg"
-                >
-                    Reset
-                </button>
-                <button
-                    onClick={handleShuffle}
-                    className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
-                >
-                    <Shuffle size={16} /> Shuffle
-                </button>
                 <button
                     onClick={handleNext}
                     disabled={current >= questions.length - 1}

@@ -229,7 +229,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         setCorrectCount(0);
         setIncorrectCount(0);
         setSkippedCount(0);
-        setResponses(Array.from({ length: filtered.length }, () => ({ status: "unattempted", selected: null })));
+        setResponses(Array.from({ length: filtered.length }, () => ({ status: "unseen", selected: null })));
     };
 
     const handleShuffle = () => {

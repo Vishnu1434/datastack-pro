@@ -1,0 +1,1167 @@
+- stack: airflow
+  id: 1
+  type: mcq
+  topic: Introduction
+  difficulty: medium
+  question: What is the primary architectural component responsible for storing the state of all tasks and DAGs in Airflow?
+  options:
+    '1': The Webserver
+    '2': The Metadata Database
+    '3': The Executor
+    '4': The DAG folder
+  answer: '2'
+
+- stack: airflow
+  id: 2
+  type: mcq
+  topic: Introduction
+  difficulty: medium
+  question: In which programming language are Airflow workflows (DAGs) defined?
+  options:
+    '1': Java
+    '2': Python
+    '3': YAML
+    '4': SQL
+  answer: '2'
+
+- stack: airflow
+  id: 3
+  type: mcq
+  topic: Introduction
+  difficulty: medium
+  question: Which of the following best describes Airflow's core capability?
+  options:
+    '1': Real-time stream processing
+    '2': Data warehousing and ETL processing
+    '3': Programmatic scheduling and monitoring of workflows
+    '4': Machine learning model deployment
+  answer: '3'
+
+- stack: airflow
+  id: 4
+  type: mcq
+  topic: Introduction
+  difficulty: medium
+  question: Which component is responsible for providing the user interface to monitor and manage DAGs?
+  options:
+    '1': The Webserver
+    '2': The Scheduler
+    '3': The Worker
+    '4': The Executor
+  answer: '1'
+
+- stack: airflow
+  id: 5
+  type: mcq
+  topic: Introduction
+  difficulty: medium
+  question: Which of the following is NOT a core component of a standard Airflow installation?
+  options:
+    '1': Scheduler
+    '2': Webserver
+    '3': Message Queue (used by some Executors)
+    '4': Data Lake Storage
+  answer: '4'
+
+- stack: airflow
+  id: 6
+  type: mcq
+  topic: Dag
+  difficulty: medium
+  question: What does the 'Acyclic' part of Directed Acyclic Graph (DAG) signify?
+  options:
+    '1': Tasks must run alphabetically.
+    '2': The workflow must not contain circular dependencies.
+    '3': All tasks must be completed successfully.
+    '4': Tasks can only be defined in pure Python.
+  answer: '2'
+
+- stack: airflow
+  id: 7
+  type: mcq
+  topic: Dag
+  difficulty: medium
+  question: Which parameter is a mandatory, unique identifier for an Airflow DAG object?
+  options:
+    '1': start_date
+    '2': schedule
+    '3': dag_id
+    '4': default_args
+  answer: '3'
+
+- stack: airflow
+  id: 8
+  type: mcq
+  topic: Dag
+  difficulty: medium
+  question: What is the purpose of setting `catchup=False` in a DAG definition?
+  options:
+    '1': To prevent the DAG from running manually.
+    '2': To allow the DAG to run even if a previous run failed.
+    '3': To skip historical runs that have been missed since the `start_date`.
+    '4': To force the DAG to run immediately upon saving.
+  answer: '3'
+
+- stack: airflow
+  id: 9
+  type: mcq
+  topic: Dag
+  difficulty: medium
+  question: How are task dependencies most commonly and idiomatically defined in a modern Airflow DAG file?
+  options:
+    '1': Using Python bit-shift operators (`>>` and `<<`)
+    '2': Using the `depends_on` parameter in the Task constructor
+    '3': By defining the order in the `schedule` parameter
+    '4': By listing them in the `default_args` dictionary
+  answer: '1'
+
+- stack: airflow
+  id: 10
+  type: mcq
+  topic: Dag
+  difficulty: medium
+  question: What term describes a specific execution of a DAG at a particular `execution_date`?
+  options:
+    '1': Task Instance
+    '2': Operator
+    '3': DAG Run
+    '4': Execution Slot
+  answer: '3'
+
+- stack: airflow
+  id: 11
+  type: mcq
+  topic: Tasks
+  difficulty: medium
+  question: What is a 'Task' in Airflow?
+  options:
+    '1': The entire DAG workflow definition.
+    '2': An instantiated Operator within a DAG.
+    '3': A unit of work that always runs on a Worker.
+    '4': The same thing as an Operator.
+  answer: '2'
+
+- stack: airflow
+  id: 12
+  type: mcq
+  topic: Tasks
+  difficulty: medium
+  question: What is the primary role of an Airflow **Operator**?
+  options:
+    '1': To manage the scheduling of DAGs.
+    '2': To define the dependencies between tasks.
+    '3': To define the actual work that a task performs.
+    '4': To store the task's execution history.
+  answer: '3'
+
+- stack: airflow
+  id: 13
+  type: mcq
+  topic: Tasks
+  difficulty: medium
+  question: What is the purpose of **XComs** (Cross-Communication) in Airflow?
+  options:
+    '1': To pass small, structured pieces of data between tasks.
+    '2': To securely store large datasets in the Metadata DB.
+    '3': To allow tasks to communicate with external web services.
+    '4': To manage task logs and error reports.
+  answer: '1'
+
+- stack: airflow
+  id: 14
+  type: mcq
+  topic: Tasks
+  difficulty: medium
+  question: Which type of task is designed to pause its execution and wait for a specific external condition to be met before continuing?
+  options:
+    '1': PythonOperator
+    '2': BranchPythonOperator
+    '3': BashOperator
+    '4': Sensor
+  answer: '4'
+
+- stack: airflow
+  id: 15
+  type: mcq
+  topic: Tasks
+  difficulty: medium
+  question: What is a **Hook** used for in Airflow?
+  options:
+    '1': Defining custom task logic written in Python.
+    '2': Interfacing with external platforms and APIs (e.g., databases, cloud services).
+    '3': Creating branches or conditional paths in a DAG.
+    '4': A mechanism for retrying failed tasks.
+  answer: '2'
+
+- stack: airflow
+  id: 16
+  type: mcq
+  topic: Scheduler
+  difficulty: medium
+  question: What is the **primary** role of the Airflow Scheduler component?
+  options:
+    '1': To parse DAGs, determine which tasks need to run, and submit them to the Executor.
+    '2': To render the web interface and display task status.
+    '3': To execute the code defined in Operators.
+    '4': To store all historical run data in the Metadata Database.
+  answer: '1'
+
+- stack: airflow
+  id: 17
+  type: mcq
+  topic: Scheduler
+  difficulty: medium
+  question: If a DAG has a `schedule` set to `None` or `@once`, how is it typically started?
+  options:
+    '1': It runs automatically every hour.
+    '2': It is paused indefinitely by the Scheduler.
+    '3': It must be triggered manually via the Webserver or CLI.
+    '4': It runs only when a Sensor succeeds.
+  answer: '3'
+
+- stack: airflow
+  id: 18
+  type: mcq
+  topic: Scheduler
+  difficulty: medium
+  question: How does the Scheduler detect changes or new DAG files?
+  options:
+    '1': It relies on a manual user command to reload the DAGs.
+    '2': It only checks for changes when the Webserver starts.
+    '3': It monitors the configured DAGs folder continuously at a set interval.
+    '4': It polls the Git repository for new commits.
+  answer: '3'
+
+- stack: airflow
+  id: 19
+  type: mcq
+  topic: Scheduler
+  difficulty: medium
+  question: What action does the Scheduler perform once it decides a task is ready to run?
+  options:
+    '1': It executes the task code directly on its own machine.
+    '2': It sends a command or message to the configured Executor to run the task.
+    '3': It marks the task as successful in the Metadata DB.
+    '4': It waits for the Webserver to confirm the run.
+  answer: '2'
+
+- stack: airflow
+  id: 20
+  type: mcq
+  topic: Scheduler
+  difficulty: medium
+  question: What is a prerequisite for running multiple, highly available (HA) Airflow Scheduler instances?
+  options:
+    '1': Each Scheduler must connect to its own separate Metadata Database.
+    '2': All Schedulers must share the same database and DAGs folder.
+    '3': Only the LocalExecutor can be used.
+    '4': They must be run on different operating systems.
+  answer: '2'
+
+- stack: airflow
+  id: 21
+  type: mcq
+  topic: Security
+  difficulty: medium
+  question: What is the name of the framework Airflow uses for implementing user authentication and authorization in the Webserver?
+  options:
+    '1': OAuth 2.0
+    '2': PyJWT
+    '3': Flask-Login
+    '4': Flask-AppBuilder (FAB)
+  answer: '4'
+
+- stack: airflow
+  id: 22
+  type: mcq
+  topic: Security
+  difficulty: medium
+  question: How is access control (who can see/edit which DAGs) managed in the Airflow Webserver?
+  options:
+    '1': Through filesystem permissions on the DAG folder.
+    '2': By defining permissions in the `default_args` of the DAG.
+    '3': Using Task-Level Security (TLS).
+    '4': Via Role-Based Access Control (RBAC).
+  answer: '4'
+
+- stack: airflow
+  id: 23
+  type: mcq
+  topic: Security
+  difficulty: medium
+  question: Where does Airflow primarily store sensitive connection information, such as database credentials and API keys?
+  options:
+    '1': In plain text files within the DAG folder.
+    '2': In the Metadata Database, usually encrypted.
+    '3': As unencrypted environment variables on the Worker.
+    '4': In the `default_args` of the DAG.
+  answer: '2'
+
+- stack: airflow
+  id: 24
+  type: mcq
+  topic: Security
+  difficulty: medium
+  question: What is the recommended mechanism for decoupling credentials (like hostnames, passwords) from the Python code in your DAGs?
+  options:
+    '1': Airflow Connections
+    '2': XComs
+    '3': Airflow Hooks
+    '4': The `conf` object
+  answer: '1'
+
+- stack: airflow
+  id: 25
+  type: mcq
+  topic: Security
+  difficulty: medium
+  question: When connection passwords are encrypted in the database, which key is required to perform the encryption/decryption?
+  options:
+    '1': SSL Certificate
+    '2': Public SSH Key
+    '3': The Airflow Secret
+    '4': The Fernet Key
+  answer: '4'
+
+- stack: airflow
+  id: 26
+  type: mcq
+  topic: Sensor
+  difficulty: medium
+  question: What is the primary function of an Airflow Sensor?
+  options:
+    '1': To execute complex business logic in a task.
+    '2': To pause a DAG Run until a specific external condition is met.
+    '3': To create a fork in the DAG path based on a condition.
+    '4': To manage the secure connection details for external systems.
+  answer: '2'
+
+- stack: airflow
+  id: 27
+  type: mcq
+  topic: Sensor
+  difficulty: medium
+  question: Which mode is used by a Sensor to release the worker slot while it is waiting for its condition to be met, allowing the worker to execute other tasks?
+  options:
+    '1': Smart mode
+    '2': Reschedule mode
+    '3': Poke mode
+    '4': Defer mode
+  answer: '2'
+
+- stack: airflow
+  id: 28
+  type: mcq
+  topic: Sensor
+  difficulty: medium
+  question: If a Sensor's `timeout` is reached before the required condition is satisfied, what is the default behavior of the task instance?
+  options:
+    '1': It automatically retries infinitely.
+    '2': The task is marked as skipped.
+    '3': The task fails and the DAG Run may halt.
+    '4': It automatically proceeds to the next downstream task.
+  answer: '3'
+
+- stack: airflow
+  id: 29
+  type: mcq
+  topic: Sensor
+  difficulty: medium
+  question: What is the name of the method implemented in a custom Sensor that is responsible for checking the external condition in 'poke' mode?
+  options:
+    '1': check_status()
+    '2': validate_condition()
+    '3': poke()
+    '4': sense_external()
+  answer: '3'
+
+- stack: airflow
+  id: 30
+  type: mcq
+  topic: Sensor
+  difficulty: easy
+  question: A `HttpSensor` is used to wait for what specific condition?
+  options:
+    '1': A new file upload to a local folder.
+    '2': A successful HTTP response code from a specified URL.
+    '3': An event in the Airflow Metadata Database.
+    '4': A table or partition to be present in a database.
+  answer: '2'
+
+- stack: airflow
+  id: 31
+  type: mcq
+  topic: Advanced
+  difficulty: medium
+  question: What Airflow feature, introduced in Airflow 2.3+, allows a single task definition to execute multiple, independent instances of itself based on an input list?
+  options:
+    '1': XComs
+    '2': Dynamic Task Mapping
+    '3': Task Grouping
+    '4': Branching
+  answer: '2'
+
+- stack: airflow
+  id: 32
+  type: mcq
+  topic: Advanced
+  difficulty: medium
+  question: Which Airflow concept uses Jinja Templating to allow dynamic values (like execution date or task ID) to be passed into operator fields at runtime?
+  options:
+    '1': Sensors
+    '2': Hooks
+    '3': Templated Fields
+    '4': External Triggers
+  answer: '3'
+
+- stack: airflow
+  id: 33
+  type: mcq
+  topic: Advanced
+  difficulty: medium
+  question: What is an SLA (Service Level Agreement) used for in Airflow?
+  options:
+    '1': To define the retry count for failed tasks.
+    '2': To set the maximum number of concurrent DAG Runs.
+    '3': To define the acceptable time window for a task or DAG Run to complete.
+    '4': To enforce a specific execution order among independent DAGs.
+  answer: '3'
+
+- stack: airflow
+  id: 34
+  type: mcq
+  topic: Advanced
+  difficulty: hard
+  question: What is the primary benefit of using a Task Group in a DAG?
+  options:
+    '1': It allows tasks to run in a separate message queue.
+    '2': It simplifies the DAG structure in the UI and allows for collapsing/expanding related tasks.
+    '3': It forces all tasks within the group to run sequentially.
+    '4': It automatically shares XComs between tasks in the group.
+  answer: '2'
+
+- stack: airflow
+  id: 35
+  type: mcq
+  topic: Advanced
+  difficulty: medium
+  question: What is the purpose of the `ShortCircuitOperator`?
+  options:
+    '1': To stop a DAG Run immediately upon failure.
+    '2': To skip downstream tasks based on a Python callable's boolean return value.
+    '3': To automatically retry a task without waiting for the retry delay.
+    '4': To defer the execution of the entire DAG to another time.
+  answer: '2'
+
+- stack: airflow
+  id: 36
+  type: mcq
+  topic: Hook
+  difficulty: easy
+  question: What is the main role of an Airflow Hook?
+  options:
+    '1': To define the business logic of a task.
+    '2': To interface with external platforms and APIs, abstracting away connection details.
+    '3': To manage the overall scheduling of the DAG.
+    '4': To dynamically generate tasks based on an input list.
+  answer: '2'
+
+- stack: airflow
+  id: 37
+  type: mcq
+  topic: Hook
+  difficulty: medium
+  question: Where does a Hook retrieve the necessary credentials (host, schema, password, etc.) to establish an external connection?
+  options:
+    '1': From hardcoded values in the DAG file.
+    '2': From the `default_args` dictionary.
+    '3': From Airflow Connections, which are stored securely in the Metadata DB or a secret backend.
+    '4': Directly from environment variables on the worker.
+  answer: '3'
+
+- stack: airflow
+  id: 38
+  type: mcq
+  topic: Hook
+  difficulty: medium
+  question: Which method is commonly implemented in a database-specific Hook (e.g., `SqliteHook`) to obtain the executable connection object?
+  options:
+    '1': run_query()
+    '2': execute()
+    '3': get_conn()
+    '4': connect_external()
+  answer: '3'
+
+- stack: airflow
+  id: 39
+  type: mcq
+  topic: Hook
+  difficulty: medium
+  question: 'True or False: An Operator typically contains the business logic, and it calls upon one or more Hooks to manage external interactions.'
+  options:
+    '1': 'True'
+    '2': 'False'
+  answer: '1'
+
+- stack: airflow
+  id: 40
+  type: mcq
+  topic: Hook
+  difficulty: medium
+  question: When developing a custom Operator that needs to interact with a new cloud service, what should the developer create first to handle the connectivity?
+  options:
+    '1': A new Executor to run the task.
+    '2': A custom Hook to abstract the service's API and authentication.
+    '3': A new Sensor to wait for the service to be available.
+    '4': A specialized XCom backend.
+  answer: '2'
+
+- stack: airflow
+  id: 41
+  type: mcq
+  topic: Cloud
+  difficulty: medium
+  question: What is the recommended approach for authentication when using cloud provider Hooks (e.g., S3Hook, GCSHook) to avoid storing explicit credentials in Airflow Connections?
+  options:
+    '1': Using XComs to pass passwords.
+    '2': Relying on IAM Roles or Service Account Keys attached to the Worker.
+    '3': Hardcoding credentials in the Python file.
+    '4': Sending passwords via email on task failure.
+  answer: '2'
+
+- stack: airflow
+  id: 42
+  type: mcq
+  topic: Cloud
+  difficulty: medium
+  question: What is the collective name for the specialized libraries containing Operators and Hooks for interacting with specific cloud platforms (like AWS, GCP, Azure)?
+  options:
+    '1': Connectors
+    '2': Modules
+    '3': Provider Packages
+    '4': Cloud Integrations
+  answer: '3'
+
+- stack: airflow
+  id: 43
+  type: mcq
+  topic: Cloud
+  difficulty: medium
+  question: What is the primary benefit of using a managed Airflow service (like Google Cloud Composer or Amazon MWAA)?
+  options:
+    '1': It eliminates the need for any Python code.
+    '2': It is completely free to use at any scale.
+    '3': It offloads the setup, maintenance, and scaling of the Scheduler and Metadata Database.
+    '4': It automatically converts all DAGs to serverless functions.
+  answer: '3'
+
+- stack: airflow
+  id: 44
+  type: mcq
+  topic: Cloud
+  difficulty: medium
+  question: Which type of Operator is commonly used to start an external, long-running job (like a Databricks or Dataproc job) and then wait for the external system to report its completion?
+  options:
+    '1': Simple PythonOperator
+    '2': External Task Sensor
+    '3': Transfer Operator
+    '4': Asynchronous/Deferrable Operator
+  answer: '4'
+
+- stack: airflow
+  id: 45
+  type: mcq
+  topic: Cloud
+  difficulty: medium
+  question: For a distributed cloud environment, where must all Airflow components (Scheduler, Workers) have synchronized access to the DAG files?
+  options:
+    '1': The local filesystem of the Scheduler.
+    '2': A version control system like Git.
+    '3': A shared network file system or cloud storage bucket.
+    '4': The Airflow Webserver's file cache.
+  answer: '3'
+
+- stack: airflow
+  id: 46
+  type: mcq
+  topic: Monitoring
+  difficulty: medium
+  question: Which view in the Airflow Webserver UI is essential for quickly visualizing task dependencies, runtime, and the status of the entire workflow?
+  options:
+    '1': Gantt Chart
+    '2': Task Duration View
+    '3': Graph View
+    '4': Audit Log
+  answer: '3'
+
+- stack: airflow
+  id: 47
+  type: mcq
+  topic: Monitoring
+  difficulty: medium
+  question: Where does a user typically go to see the detailed output (stdout/stderr) and any traceback errors generated by a specific task instance?
+  options:
+    '1': The Webserver's console.
+    '2': The Task Logs accessed via the UI.
+    '3': The Metadata Database tables.
+    '4': XCom results.
+  answer: '2'
+
+- stack: airflow
+  id: 48
+  type: mcq
+  topic: Monitoring
+  difficulty: medium
+  question: Which Airflow feature should be configured in `default_args` or task callbacks to ensure immediate notification upon task completion or failure?
+  options:
+    '1': Execution Date
+    '2': SLAs
+    '3': Email/Slack/PagerDuty notifications
+    '4': Worker Pool configuration
+  answer: '3'
+
+- stack: airflow
+  id: 49
+  type: mcq
+  topic: Monitoring
+  difficulty: medium
+  question: Airflow can emit detailed metrics (e.g., task execution time, scheduler delay) to which external service for time-series analysis and dashboarding?
+  options:
+    '1': Elasticsearch
+    '2': StatsD/Prometheus
+    '3': Kafka
+    '4': MySQL
+  answer: '2'
+
+- stack: airflow
+  id: 50
+  type: mcq
+  topic: Monitoring
+  difficulty: hard
+  question: If the 'Scheduler heartbeat' metric stops updating, what is the most likely issue?
+  options:
+    '1': All the DAGs are paused.
+    '2': The Webserver has stopped running.
+    '3': The Scheduler component has failed or is unable to write to the Metadata Database.
+    '4': The worker pool is exhausted.
+  answer: '3'
+
+- stack: airflow
+  id: 51
+  type: mcq
+  topic: Scaling
+  difficulty: easy
+  question: Which Executor is suitable for single-process development and testing but cannot scale horizontally to handle a large volume of tasks?
+  options:
+    '1': CeleryExecutor
+    '2': SequentialExecutor
+    '3': KubernetesExecutor
+    '4': DaskExecutor
+  answer: '2'
+
+- stack: airflow
+  id: 52
+  type: mcq
+  topic: Scaling
+  difficulty: medium
+  question: Which two Executors are most commonly used to achieve horizontal scaling of task execution in a production environment?
+  options:
+    '1': SequentialExecutor and LocalExecutor
+    '2': CeleryExecutor and KubernetesExecutor
+    '3': LocalExecutor and KubernetesExecutor
+    '4': SequentialExecutor and CeleryExecutor
+  answer: '2'
+
+- stack: airflow
+  id: 53
+  type: mcq
+  topic: Scaling
+  difficulty: medium
+  question: When using the CeleryExecutor, what external component is required to serve as the communication layer between the Scheduler and the Workers?
+  options:
+    '1': A shared filesystem (e.g., NFS)
+    '2': The Airflow Webserver
+    '3': A Message Broker (e.g., Redis or RabbitMQ)
+    '4': A dedicated Metadata Database for the workers
+  answer: '3'
+
+- stack: airflow
+  id: 54
+  type: mcq
+  topic: Scaling
+  difficulty: hard
+  question: What is the main advantage of the KubernetesExecutor over the CeleryExecutor regarding task isolation and dependencies?
+  options:
+    '1': It is faster for all types of tasks.
+    '2': It uses a message broker, which is simpler to set up.
+    '3': Each task runs in its own dedicated, isolated Pod, allowing per-task resource limits and custom dependencies.
+    '4': It allows the Scheduler to run on a different network.
+  answer: '3'
+
+- stack: airflow
+  id: 55
+  type: mcq
+  topic: Scaling
+  difficulty: medium
+  question: For a horizontally scaled Airflow setup (e.g., with multiple Schedulers), what is a mandatory requirement for maintaining consistency?
+  options:
+    '1': Using different DAG files for each Scheduler.
+    '2': Ensuring all components read from and write to a single, centralized Metadata Database.
+    '3': Running all workers on the same machine.
+    '4': Pausing all DAGs before scaling up.
+  answer: '2'
+
+- stack: airflow
+  id: 56
+  type: mcq
+  topic: Operators
+  difficulty: easy
+  question: Which Operator is used to execute a Python function directly as a task?
+  options:
+    '1': BashOperator
+    '2': PythonOperator
+    '3': DummyOperator
+    '4': SqlOperator
+  answer: '2'
+
+- stack: airflow
+  id: 57
+  type: mcq
+  topic: Operators
+  difficulty: medium
+  question: All Airflow Operators must inherit from which base class?
+  options:
+    '1': BaseHook
+    '2': DAG
+    '3': BaseOperator
+    '4': TaskInstance
+  answer: '3'
+
+- stack: airflow
+  id: 58
+  type: mcq
+  topic: Operators
+  difficulty: medium
+  question: Which method must be implemented in a custom Operator to define the actual work the task will perform?
+  options:
+    '1': init()
+    '2': execute()
+    '3': run()
+    '4': start()
+  answer: '2'
+
+- stack: airflow
+  id: 59
+  type: mcq
+  topic: Operators
+  difficulty: medium
+  question: What type of Operator is used primarily for flow control or providing visual structure, without performing any actual external work?
+  options:
+    '1': Transfer Operator
+    '2': Sensor
+    '3': Branching Operator
+    '4': DummyOperator (or EmptyOperator in Airflow 2+)
+  answer: '4'
+
+- stack: airflow
+  id: 60
+  type: mcq
+  topic: Operators
+  difficulty: hard
+  question: What is the key difference between a **synchronous** Operator and a **deferrable** Operator?
+  options:
+    '1': Synchronous runs faster; deferrable runs slower.
+    '2': Synchronous waits for completion and occupies a worker slot; deferrable hands off to a triggerer and frees the worker slot.
+    '3': Synchronous is only for cloud services; deferrable is for on-premise.
+    '4': Synchronous is defined in the DAG; deferrable is defined in the Scheduler.
+  answer: '2'
+
+- stack: airflow
+  id: 61
+  type: mcq
+  topic: Executor
+  difficulty: easy
+  question: Which component in Airflow is responsible for determining *how* tasks will be run (e.g., locally, on a remote queue, or in Kubernetes pods)?
+  options:
+    '1': The Webserver
+    '2': The Executor
+    '3': The Metadata Database
+    '4': The Operator
+  answer: '2'
+
+- stack: airflow
+  id: 62
+  type: mcq
+  topic: Executor
+  difficulty: medium
+  question: Which Executor executes tasks on a single machine, potentially using multiple parallel processes, but still within the Airflow process?
+  options:
+    '1': SequentialExecutor
+    '2': CeleryExecutor
+    '3': KubernetesExecutor
+    '4': LocalExecutor
+  answer: '4'
+
+- stack: airflow
+  id: 63
+  type: mcq
+  topic: Executor
+  difficulty: medium
+  question: To enable task execution across multiple, distributed worker machines, which Executor requires an external message queue (like Redis or RabbitMQ)?
+  options:
+    '1': SequentialExecutor
+    '2': LocalExecutor
+    '3': CeleryExecutor
+    '4': DaskExecutor
+  answer: '3'
+
+- stack: airflow
+  id: 64
+  type: mcq
+  topic: Executor
+  difficulty: hard
+  question: What is the primary mechanism the KubernetesExecutor uses to execute tasks in isolation?
+  options:
+    '1': It uses a shared worker process pool.
+    '2': It launches a dedicated Kubernetes Pod for each task instance.
+    '3': It utilizes the Scheduler's internal thread pool.
+    '4': It executes tasks via remote SSH commands.
+  answer: '2'
+
+- stack: airflow
+  id: 65
+  type: mcq
+  topic: Executor
+  difficulty: medium
+  question: In a distributed setup (Celery or Kubernetes), which component reads the Metadata Database and tells the Executor *what* to run?
+  options:
+    '1': The Worker
+    '2': The Webserver
+    '3': The Hook
+    '4': The Scheduler
+  answer: '4'
+
+- stack: airflow
+  id: 66
+  type: mcq
+  topic: Xcom
+  difficulty: easy
+  question: What does the term XCom stand for in Airflow?
+  options:
+    '1': External Communications
+    '2': Cross-Communication
+    '3': Executor Command
+    '4': XML Converter
+  answer: '2'
+
+- stack: airflow
+  id: 67
+  type: mcq
+  topic: Xcom
+  difficulty: medium
+  question: What is the recommended use case for XComs?
+  options:
+    '1': Storing terabytes of processed data between tasks.
+    '2': Passing large configuration files (MBs in size).
+    '3': Passing small amounts of metadata or status messages between tasks.
+    '4': Encrypting external connection credentials.
+  answer: '3'
+
+- stack: airflow
+  id: 68
+  type: mcq
+  topic: Xcom
+  difficulty: medium
+  question: Where are XCom values stored by default?
+  options:
+    '1': In the DAG file.
+    '2': In a temporary local file on the worker.
+    '3': In the Airflow Metadata Database.
+    '4': In a shared cloud storage bucket.
+  answer: '3'
+
+- stack: airflow
+  id: 69
+  type: mcq
+  topic: Xcom
+  difficulty: hard
+  question: How can a PythonOperator implicitly push a value to XCom?
+  options:
+    '1': By using the `xcom_push()` method explicitly.
+    '2': By returning a value from the function specified in `python_callable`.
+    '3': By defining the value in the `default_args`.
+    '4': It cannot push implicitly; it requires a Hook.
+  answer: '2'
+
+- stack: airflow
+  id: 70
+  type: mcq
+  topic: Xcom
+  difficulty: medium
+  question: To retrieve a value pushed by an upstream task, which method on the `TaskInstance` object should the downstream task use?
+  options:
+    '1': get_status()
+    '2': xcom_pull()
+    '3': get_data()
+    '4': pull_result()
+  answer: '2'
+
+- stack: airflow
+  id: 71
+  type: mcq
+  topic: Usage
+  difficulty: easy
+  question: What is the most common command-line tool used to interact with Airflow (e.g., triggering DAGs or clearing tasks)?
+  options:
+    '1': airflowctl
+    '2': airflow
+    '3': dagshell
+    '4': executor-cli
+  answer: '2'
+
+- stack: airflow
+  id: 72
+  type: mcq
+  topic: Usage
+  difficulty: medium
+  question: What happens when you 'clear' a task instance in the Airflow UI?
+  options:
+    '1': The task is permanently deleted from the database.
+    '2': The task is marked as skipped for all future runs.
+    '3': The task's state is reset, making it eligible to be re-run by the Scheduler.
+    '4': The DAG Run is immediately terminated.
+  answer: '3'
+
+- stack: airflow
+  id: 73
+  type: mcq
+  topic: Usage
+  difficulty: medium
+  question: Which CLI command is used to test if a specific task in a DAG will execute its logic without considering dependencies or writing to the database?
+  options:
+    '1': airflow dags test
+    '2': airflow tasks run
+    '3': airflow tasks test
+    '4': airflow dags trigger
+  answer: '3'
+
+- stack: airflow
+  id: 74
+  type: mcq
+  topic: Usage
+  difficulty: medium
+  question: When manually triggering a DAG Run via the UI, what is the key benefit of providing configuration data in the 'Conf' JSON parameter?
+  options:
+    '1': The data is used to override the `schedule` interval.
+    '2': The data becomes available to all tasks via the `dag_run.conf` attribute.
+    '3': It is used to change the `dag_id` dynamically.
+    '4': It sets the default retry count for all tasks.
+  answer: '2'
+
+- stack: airflow
+  id: 75
+  type: mcq
+  topic: Usage
+  difficulty: hard
+  question: What are **pools** used for in Airflow?
+  options:
+    '1': To define the network subnets for the workers.
+    '2': To group multiple DAGs together for visual monitoring.
+    '3': To limit the concurrency of specific, resource-intensive tasks across all DAGs.
+    '4': To store task logs temporarily.
+  answer: '3'
+
+- stack: airflow
+  id: 76
+  type: mcq
+  topic: Plugins
+  difficulty: easy
+  question: What is the main purpose of Airflow Plugins?
+  options:
+    '1': To define the DAG scheduling logic.
+    '2': To extend Airflow's core functionality with custom components like Hooks, Operators, and UI views.
+    '3': To manage the Airflow Metadata Database.
+    '4': To provide a secure connection to cloud storage.
+  answer: '2'
+
+- stack: airflow
+  id: 77
+  type: mcq
+  topic: Plugins
+  difficulty: medium
+  question: Where should custom code for Operators, Hooks, or Sensors be placed to be loaded by the Airflow system?
+  options:
+    '1': In the `default_args` file.
+    '2': In the `plugins` folder, or packaged as a Python library.
+    '3': Directly inside the `DAGs` folder.
+    '4': In the `logs` folder.
+  answer: '2'
+
+- stack: airflow
+  id: 78
+  type: mcq
+  topic: Plugins
+  difficulty: medium
+  question: What must be included in an Airflow Plugin to register new components like custom operators or hooks?
+  options:
+    '1': A Python module named `__init__.py`.
+    '2': A class that inherits from `AirflowPlugin`.
+    '3': A YAML configuration file.
+    '4': A Dockerfile.
+  answer: '2'
+
+- stack: airflow
+  id: 79
+  type: mcq
+  topic: Plugins
+  difficulty: hard
+  question: Besides custom operators and hooks, what other element can be added to the Airflow Webserver using a plugin?
+  options:
+    '1': A custom Executor.
+    '2': A new Scheduler process.
+    '3': Custom Web UI views/endpoints.
+    '4': A different Metadata Database type.
+  answer: '3'
+
+- stack: airflow
+  id: 80
+  type: mcq
+  topic: Plugins
+  difficulty: medium
+  question: If you are creating a custom integration with a non-standard database, which component would you place in a plugin?
+  options:
+    '1': A custom Hook
+    '2': A custom Sensor
+    '3': A custom XCom backend
+    '4': A custom DummyOperator
+  answer: '1'
+
+- stack: airflow
+  id: 81
+  type: mcq
+  topic: Integration
+  difficulty: easy
+  question: What is the main way Airflow integrates with databases like PostgreSQL, MySQL, or Snowflake?
+  options:
+    '1': Via the `BashOperator` using the command line.
+    '2': Via specialized `Hooks` and `Operators` in Provider Packages.
+    '3': Via the `XCom` feature.
+    '4': Via manual triggers from the Webserver.
+  answer: '2'
+
+- stack: airflow
+  id: 82
+  type: mcq
+  topic: Integration
+  difficulty: medium
+  question: To integrate Airflow tasks with a remote system that supports an API, what mechanism is generally preferred for passing credentials?
+  options:
+    '1': Embedding credentials directly in the task's Python code.
+    '2': Using an Airflow Connection.
+    '3': Storing credentials as XCom values.
+    '4': Writing credentials to the DAG log file.
+  answer: '2'
+
+- stack: airflow
+  id: 83
+  type: mcq
+  topic: Integration
+  difficulty: medium
+  question: What feature allows you to use Airflow to run data transformation jobs managed by tools like dbt (data build tool)?
+  options:
+    '1': The dbt Operator (part of a Provider Package).
+    '2': Only the BashOperator is supported for dbt.
+    '3': Custom XComs.
+    '4': The Scheduler's built-in dbt engine.
+  answer: '1'
+
+- stack: airflow
+  id: 84
+  type: mcq
+  topic: Integration
+  difficulty: hard
+  question: How can one Airflow DAG be triggered by the successful completion of a task in a *separate* Airflow DAG?
+  options:
+    '1': Using a simple `PythonOperator` with an API call.
+    '2': Using the `ExternalTaskSensor` in the downstream DAG.
+    '3': It is not possible to link separate DAGs.
+    '4': By setting the same `schedule` for both DAGs.
+  answer: '2'
+
+- stack: airflow
+  id: 85
+  type: mcq
+  topic: Integration
+  difficulty: medium
+  question: Airflow's REST API is primarily used for what type of integration?
+  options:
+    '1': Running external databases.
+    '2': Programmatic control (e.g., triggering DAGs, monitoring status) from outside systems.
+    '3': Transferring large files between cloud services.
+    '4': Encrypting the contents of the Metadata Database.
+  answer: '2'
+
+- stack: airflow
+  id: 86
+  type: mcq
+  topic: Logging
+  difficulty: easy
+  question: Where are the logs for individual task executions primarily stored and viewed by default?
+  options:
+    '1': In the Metadata Database.
+    '2': In the configured log folder (local or remote/cloud storage).
+    '3': In the Webserver's temporary cache.
+    '4': As XCom values.
+  answer: '2'
+
+- stack: airflow
+  id: 87
+  type: mcq
+  topic: Logging
+  difficulty: medium
+  question: What mechanism does Airflow use to ensure that logs from tasks executed by remote workers (like Celery or Kubernetes) are accessible in the Webserver UI?
+  options:
+    '1': The Webserver makes direct SSH calls to the workers.
+    '2': Logs are streamed via XComs.
+    '3': Logs are stored in a centralized location like S3, GCS, or an NFS share.
+    '4': Logs are encrypted and stored in the Metadata DB.
+  answer: '3'
+
+- stack: airflow
+  id: 88
+  type: mcq
+  topic: Logging
+  difficulty: medium
+  question: When configuring logging, what setting is commonly changed to control the verbosity (level of detail) of the logs generated by the Scheduler and Worker?
+  options:
+    '1': log_size
+    '2': log_handler
+    '3': log_level
+    '4': log_date_format
+  answer: '3'
+
+- stack: airflow
+  id: 89
+  type: mcq
+  topic: Logging
+  difficulty: hard
+  question: Which Python standard library module is used by Airflow for its internal logging mechanism?
+  options:
+    '1': logging
+    '2': print
+    '3': sys
+    '4': os
+  answer: '1'
+
+- stack: airflow
+  id: 90
+  type: mcq
+  topic: Logging
+  difficulty: medium
+  question: Why is it recommended to configure remote logging to a cloud storage solution (like S3 or GCS) when using a distributed Executor?
+  options:
+    '1': Remote storage is faster than local disk.
+    '2': It ensures that the Webserver can retrieve logs from any worker, regardless of its location.
+    '3': It is a requirement for the SequentialExecutor.
+    '4': It encrypts the log files automatically.
+  answer: '2'

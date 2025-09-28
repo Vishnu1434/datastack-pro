@@ -2,208 +2,238 @@
   type: theory
   topic: basics
   difficulty: easy
-  question: "What is Python?"
-  answer: "Python is a high-level, interpreted, general-purpose programming language known for its simplicity and readability."
+  question: What is Python?
+  answer: Python is a high-level, interpreted, general-purpose programming language known for its simplicity and readability.
+  id: 1
 
 - stack: python
   type: theory
   topic: basics
   difficulty: easy
-  question: "What are Python's key features?"
-  answer: "Python is interpreted, dynamically typed, object-oriented, and has a large standard library."
+  question: What are Python's key features?
+  answer: Python is interpreted, dynamically typed, object-oriented, and has a large standard library.
+  id: 2
 
 - stack: python
   type: theory
   topic: basics
   difficulty: easy
-  question: "What are Python's data types?"
-  answer: "Common data types include int, float, str, list, tuple, set, dict, and bool."
+  question: What are Python's data types?
+  answer: Common data types include int, float, str, list, tuple, set, dict, and bool.
+  id: 3
 
 - stack: python
   type: theory
   topic: variables
   difficulty: easy
-  question: "How are variables declared in Python?"
-  answer: "Variables are created when a value is assigned; no explicit declaration is required."
+  question: How are variables declared in Python?
+  answer: Variables are created when a value is assigned; no explicit declaration is required.
+  id: 4
 
 - stack: python
   type: theory
   topic: variables
   difficulty: easy
-  question: "What are Python's variable naming rules?"
-  answer: "Names must start with a letter or underscore, cannot be reserved keywords, and are case-sensitive."
+  question: What are Python's variable naming rules?
+  answer: Names must start with a letter or underscore, cannot be reserved keywords, and are case-sensitive.
+  id: 5
 
 - stack: python
   type: theory
   topic: control_flow
   difficulty: easy
-  question: "What control flow statements are available in Python?"
-  answer: "Python provides if-else, for loops, while loops, and try-except for error handling."
+  question: What control flow statements are available in Python?
+  answer: Python provides if-else, for loops, while loops, and try-except for error handling.
+  id: 6
 
 - stack: python
   type: theory
   topic: functions
   difficulty: easy
-  question: "How are functions defined in Python?"
-  answer: "Functions are defined using the def keyword followed by the function name and parentheses."
+  question: How are functions defined in Python?
+  answer: Functions are defined using the def keyword followed by the function name and parentheses.
+  id: 7
 
 - stack: python
   type: theory
   topic: functions
   difficulty: medium
-  question: "What are *args and **kwargs in Python?"
-  answer: "*args allows passing a variable number of positional arguments, while **kwargs allows passing keyword arguments."
+  question: What are *args and **kwargs in Python?
+  answer: '*args allows passing a variable number of positional arguments, while **kwargs allows passing keyword arguments.'
+  id: 8
 
 - stack: python
   type: theory
   topic: functions
   difficulty: medium
-  question: "What is recursion in Python?"
-  answer: "Recursion is when a function calls itself to solve smaller instances of a problem."
+  question: What is recursion in Python?
+  answer: Recursion is when a function calls itself to solve smaller instances of a problem.
+  id: 9
 
 - stack: python
   type: theory
   topic: oop
   difficulty: medium
-  question: "What is object-oriented programming in Python?"
-  answer: "OOP is a programming paradigm based on classes and objects, supporting concepts like inheritance, encapsulation, and polymorphism."
+  question: What is object-oriented programming in Python?
+  answer: OOP is a programming paradigm based on classes and objects, supporting concepts like inheritance, encapsulation, and polymorphism.
+  id: 10
 
 - stack: python
   type: theory
   topic: oop
   difficulty: medium
-  question: "What are Python classes and objects?"
-  answer: "A class is a blueprint for creating objects, and an object is an instance of a class."
+  question: What are Python classes and objects?
+  answer: A class is a blueprint for creating objects, and an object is an instance of a class.
+  id: 11
 
 - stack: python
   type: theory
   topic: oop
   difficulty: medium
-  question: "What is the difference between class and instance variables?"
-  answer: "Class variables are shared across all instances, while instance variables are specific to each object."
+  question: What is the difference between class and instance variables?
+  answer: Class variables are shared across all instances, while instance variables are specific to each object.
+  id: 12
 
 - stack: python
   type: theory
   topic: oop
   difficulty: medium
-  question: "What is method overriding in Python?"
-  answer: "Method overriding occurs when a subclass defines a method with the same name as a parent class method, replacing its behavior."
+  question: What is method overriding in Python?
+  answer: Method overriding occurs when a subclass defines a method with the same name as a parent class method, replacing its behavior.
+  id: 13
 
 - stack: python
   type: theory
   topic: oop
   difficulty: medium
-  question: "What is multiple inheritance in Python?"
-  answer: "Multiple inheritance means a class can inherit from more than one parent class."
+  question: What is multiple inheritance in Python?
+  answer: Multiple inheritance means a class can inherit from more than one parent class.
+  id: 14
 
 - stack: python
   type: theory
   topic: oop
   difficulty: hard
-  question: "What is the Method Resolution Order (MRO) in Python?"
-  answer: "MRO is the order in which Python looks for a method in the hierarchy of classes, using the C3 linearization algorithm."
+  question: What is the Method Resolution Order (MRO) in Python?
+  answer: MRO is the order in which Python looks for a method in the hierarchy of classes, using the C3 linearization algorithm.
+  id: 15
 
 - stack: python
   type: theory
   topic: modules
   difficulty: easy
-  question: "What are Python modules?"
-  answer: "A module is a file containing Python definitions and functions, which can be imported into other programs."
+  question: What are Python modules?
+  answer: A module is a file containing Python definitions and functions, which can be imported into other programs.
+  id: 16
 
 - stack: python
   type: theory
   topic: modules
   difficulty: easy
-  question: "What is the difference between a module and a package in Python?"
-  answer: "A module is a single file, while a package is a collection of modules in a directory with an __init__.py file."
+  question: What is the difference between a module and a package in Python?
+  answer: A module is a single file, while a package is a collection of modules in a directory with an __init__.py file.
+  id: 17
 
 - stack: python
   type: theory
   topic: exceptions
   difficulty: medium
-  question: "How does exception handling work in Python?"
-  answer: "Exceptions are handled using try, except, else, and finally blocks."
+  question: How does exception handling work in Python?
+  answer: Exceptions are handled using try, except, else, and finally blocks.
+  id: 18
 
 - stack: python
   type: theory
   topic: exceptions
   difficulty: medium
-  question: "What is the difference between an error and an exception in Python?"
-  answer: "Errors are issues like syntax errors that stop execution, while exceptions are runtime issues that can be handled."
+  question: What is the difference between an error and an exception in Python?
+  answer: Errors are issues like syntax errors that stop execution, while exceptions are runtime issues that can be handled.
+  id: 19
 
 - stack: python
   type: theory
   topic: memory
   difficulty: medium
-  question: "How is memory managed in Python?"
-  answer: "Python uses automatic garbage collection and reference counting for memory management."
+  question: How is memory managed in Python?
+  answer: Python uses automatic garbage collection and reference counting for memory management.
+  id: 20
 
 - stack: python
   type: theory
   topic: memory
   difficulty: medium
-  question: "What are Python's mutable and immutable types?"
-  answer: "Mutable types include list, dict, and set; immutable types include int, str, tuple, and frozenset."
+  question: What are Python's mutable and immutable types?
+  answer: Mutable types include list, dict, and set; immutable types include int, str, tuple, and frozenset.
+  id: 21
 
 - stack: python
   type: theory
   topic: decorators
   difficulty: hard
-  question: "What are decorators in Python?"
-  answer: "Decorators are functions that modify the behavior of other functions or methods using the @ syntax."
+  question: What are decorators in Python?
+  answer: Decorators are functions that modify the behavior of other functions or methods using the @ syntax.
+  id: 22
 
 - stack: python
   type: theory
   topic: iterators
   difficulty: medium
-  question: "What are iterators in Python?"
-  answer: "An iterator is an object that allows sequential traversal of elements using __iter__() and __next__() methods."
+  question: What are iterators in Python?
+  answer: An iterator is an object that allows sequential traversal of elements using __iter__() and __next__() methods.
+  id: 23
 
 - stack: python
   type: theory
   topic: generators
   difficulty: medium
-  question: "What are generators in Python?"
-  answer: "Generators are functions that yield values one at a time using the yield keyword, maintaining state between calls."
+  question: What are generators in Python?
+  answer: Generators are functions that yield values one at a time using the yield keyword, maintaining state between calls.
+  id: 24
 
 - stack: python
   type: theory
   topic: comprehension
   difficulty: medium
-  question: "What are list comprehensions in Python?"
-  answer: "List comprehensions provide a concise way to create lists using a single line of code."
+  question: What are list comprehensions in Python?
+  answer: List comprehensions provide a concise way to create lists using a single line of code.
+  id: 25
 
 - stack: python
   type: theory
   topic: comprehension
   difficulty: medium
-  question: "What are dictionary comprehensions in Python?"
-  answer: "Dictionary comprehensions provide a concise way to create dictionaries using a single line of code."
+  question: What are dictionary comprehensions in Python?
+  answer: Dictionary comprehensions provide a concise way to create dictionaries using a single line of code.
+  id: 26
 
 - stack: python
   type: theory
   topic: advanced
   difficulty: hard
-  question: "What is the difference between deep copy and shallow copy in Python?"
-  answer: "A shallow copy copies object references, while a deep copy recursively copies all objects."
+  question: What is the difference between deep copy and shallow copy in Python?
+  answer: A shallow copy copies object references, while a deep copy recursively copies all objects.
+  id: 27
 
 - stack: python
   type: theory
   topic: advanced
   difficulty: hard
-  question: "What is the Global Interpreter Lock (GIL) in Python?"
-  answer: "The GIL is a mutex in CPython that allows only one thread to execute Python bytecode at a time."
+  question: What is the Global Interpreter Lock (GIL) in Python?
+  answer: The GIL is a mutex in CPython that allows only one thread to execute Python bytecode at a time.
+  id: 28
 
 - stack: python
   type: theory
   topic: advanced
   difficulty: hard
-  question: "What are Python's built-in data structures?"
-  answer: "The main built-in data structures are list, tuple, set, and dictionary."
+  question: What are Python's built-in data structures?
+  answer: The main built-in data structures are list, tuple, set, and dictionary.
+  id: 29
 
 - stack: python
   type: theory
   topic: advanced
   difficulty: hard
-  question: "What is the difference between deep copy and assignment in Python?"
-  answer: "Assignment creates a new reference to the same object, while deep copy creates an independent copy."
+  question: What is the difference between deep copy and assignment in Python?
+  answer: Assignment creates a new reference to the same object, while deep copy creates an independent copy.
+  id: 30

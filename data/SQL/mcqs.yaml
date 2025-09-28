@@ -1,74 +1,321 @@
 - stack: sql
   id: 1
   type: mcq
-  topic: basics
+  topic: Basics
   difficulty: easy
-  question: Which SQL statement is used to retrieve data from a database?
-  options:
-    '1': SELECT
-    '2': GET
-    '3': EXTRACT
-    '4': FETCH
+  question: Which SQL keyword is used to remove duplicates from a query result?
+  options: null
+  '1': DISTINCT
+  '2': UNIQUE
+  '3': GROUP BY
+  '4': FILTER
   answer: '1'
 
 - stack: sql
   id: 2
   type: mcq
-  topic: joins
+  topic: Basics
   difficulty: medium
-  question: Which JOIN returns all rows from both tables, even if there is no match?
-  options:
-    '1': INNER JOIN
-    '2': LEFT JOIN
-    '3': FULL OUTER JOIN
-    '4': CROSS JOIN
-  answer: '3'
+  question: Which clause is used with aggregate functions to filter data?
+  options: null
+  '1': WHERE
+  '2': HAVING
+  '3': GROUP BY
+  '4': SORT BY
+  answer: '2'
 
 - stack: sql
   id: 3
   type: mcq
-  topic: constraints
-  difficulty: easy
-  question: Which constraint ensures that a column cannot have NULL values?
-  options:
-    '1': UNIQUE
-    '2': NOT NULL
-    '3': CHECK
-    '4': DEFAULT
-  answer: '2'
+  topic: Basics
+  difficulty: medium
+  question: Which type of JOIN returns records that have matching values in both tables?
+  options: null
+  '1': LEFT JOIN
+  '2': OUTER JOIN
+  '3': INNER JOIN
+  '4': CROSS JOIN
+  answer: '3'
 
 - stack: sql
   id: 4
   type: mcq
-  topic: aggregation
-  difficulty: medium
-  question: Which SQL keyword is used with aggregate functions to group rows?
-  options:
-    '1': ORDER BY
-    '2': GROUP BY
-    '3': PARTITION BY
-    '4': DISTINCT
-  answer: '2'
+  topic: Basics
+  difficulty: hard
+  question: Which of the following describes a correlated subquery?
+  options: null
+  '1': Runs before the outer query is executed
+  '2': Does not depend on outer query values
+  '3': Is executed once for each row of the outer query
+  '4': Cannot use aggregate functions
+  answer: '3'
 
 - stack: sql
   id: 5
   type: mcq
-  topic: indexing
+  topic: Basics
   difficulty: hard
-  question: What is the main purpose of an index in SQL?
-  options:
-    '1': To enforce referential integrity
-    '2': To speed up query performance
-    '3': To store duplicate records
-    '4': To normalize data
-  answer: '2'
+  question: Which of the following is NOT part of ACID properties?
+  options: null
+  '1': Atomicity
+  '2': Consistency
+  '3': Durability
+  '4': Availability
+  answer: '4'
 
 - stack: sql
   id: 6
   type: mcq
-  topic: normalization
+  topic: Indexing
+  difficulty: easy
+  question: Which index type stores table data rows in sorted order?
+  options: null
+  '1': Non-clustered index
+  '2': Clustered index
+  '3': Composite index
+  '4': Bitmap index
+  answer: '2'
+
+- stack: sql
+  id: 7
+  type: mcq
+  topic: Indexing
   difficulty: medium
-  question: Which normal form removes transitive dependencies?
+  question: Which of the following is a drawback of indexes?
+  options: null
+  '1': Increased query execution time
+  '2': Slower data modification operations
+  '3': Reduced storage requirement
+  '4': Lack of sorting ability
+  answer: '2'
+
+- stack: sql
+  id: 8
+  type: mcq
+  topic: Indexing
+  difficulty: medium
+  question: Which index type is efficient for low-cardinality values?
+  options: null
+  '1': Hash index
+  '2': B-tree index
+  '3': Bitmap index
+  '4': Non-clustered index
+  answer: '3'
+
+- stack: sql
+  id: 9
+  type: mcq
+  topic: Indexing
+  difficulty: hard
+  question: What happens if a table has no clustered index?
+  options: null
+  '1': Data is stored in arbitrary order
+  '2': Data cannot be retrieved
+  '3': Non-clustered indexes cannot be created
+  '4': Joins will fail
+  answer: '1'
+
+- stack: sql
+  id: 10
+  type: mcq
+  topic: Views
+  difficulty: easy
+  question: What is a view in SQL?
+  options: null
+  '1': A stored query result
+  '2': A virtual table
+  '3': A stored procedure
+  '4': A transaction log
+  answer: '2'
+
+- stack: sql
+  id: 11
+  type: mcq
+  topic: Views
+  difficulty: medium
+  question: Which of these makes a view non-updatable?
+  options: null
+  '1': Using aggregate functions
+  '2': Referring to one table
+  '3': Excluding NULL constraints
+  '4': Using WHERE clause
+  answer: '1'
+
+- stack: sql
+  id: 12
+  type: mcq
+  topic: Views
+  difficulty: medium
+  question: What does a materialized view store?
+  options: null
+  '1': Only query definition
+  '2': Query results physically
+  '3': Indexes only
+  '4': Temporary logs
+  answer: '2'
+
+- stack: sql
+  id: 13
+  type: mcq
+  topic: Optimization
+  difficulty: easy
+  question: What is the purpose of SQL query optimization?
+  options: null
+  '1': To enforce data integrity
+  '2': To improve performance
+  '3': To store data efficiently
+  '4': To prevent deadlocks
+  answer: '2'
+
+- stack: sql
+  id: 14
+  type: mcq
+  topic: Optimization
+  difficulty: medium
+  question: Which statement is true about using indexes for optimization?
+  options: null
+  '1': They always improve performance
+  '2': They may slow down data modifications
+  '3': They prevent deadlocks
+  '4': They remove the need for joins
+  answer: '2'
+
+- stack: sql
+  id: 15
+  type: mcq
+  topic: Optimization
+  difficulty: medium
+  question: What is a query execution plan used for?
+  options: null
+  '1': To display user queries
+  '2': To define table structures
+  '3': To show how the database retrieves data
+  '4': To enforce constraints
+  answer: '3'
+
+- stack: sql
+  id: 16
+  type: mcq
+  topic: Optimization
+  difficulty: hard
+  question: Which optimizer type bases its decision on statistics?
+  options: null
+  '1': Cost-based optimizer
+  '2': Rule-based optimizer
+  '3': Heuristic optimizer
+  '4': Standard optimizer
+  answer: '1'
+
+- stack: sql
+  id: 17
+  type: mcq
+  topic: DDL
+  difficulty: easy
+  question: Which command is NOT part of DDL?
+  options:
+    '1': CREATE
+    '2': ALTER
+    '3': INSERT
+    '4': DROP
+  answer: '3'
+
+- stack: sql
+  id: 18
+  type: mcq
+  topic: DDL
+  difficulty: medium
+  question: What does the DROP TABLE statement do?
+  options:
+    '1': Deletes rows but not structure
+    '2': Removes the table definition and data
+    '3': Only clears indexes
+    '4': Disables SELECT
+  answer: '2'
+
+- stack: sql
+  id: 19
+  type: mcq
+  topic: DDL
+  difficulty: medium
+  question: Which command changes the definition of an existing table?
+  options:
+    '1': MODIFY
+    '2': CHANGE
+    '3': ALTER
+    '4': UPDATE
+  answer: '3'
+
+- stack: sql
+  id: 20
+  type: mcq
+  topic: DML
+  difficulty: easy
+  question: Which of these is a DML command?
+  options:
+    '1': DROP
+    '2': ALTER
+    '3': UPDATE
+    '4': CREATE
+  answer: '3'
+
+- stack: sql
+  id: 21
+  type: mcq
+  topic: DML
+  difficulty: medium
+  question: Which statement retrieves data from tables?
+  options:
+    '1': SELECT
+    '2': UPDATE
+    '3': DELETE
+    '4': INSERT
+  answer: '1'
+
+- stack: sql
+  id: 22
+  type: mcq
+  topic: Transactions
+  difficulty: easy
+  question: Which property of ACID ensures that either all operations succeed or none do?
+  options:
+    '1': Atomicity
+    '2': Consistency
+    '3': Durability
+    '4': Isolation
+  answer: '1'
+
+- stack: sql
+  id: 23
+  type: mcq
+  topic: Transactions
+  difficulty: medium
+  question: Which command is used to undo a transaction?
+  options:
+    '1': SAVEPOINT
+    '2': COMMIT
+    '3': ROLLBACK
+    '4': START
+  answer: '3'
+
+- stack: sql
+  id: 24
+  type: mcq
+  topic: Normalization
+  difficulty: easy
+  question: Which normal form removes repeating groups?
+  options:
+    '1': 1NF
+    '2': 2NF
+    '3': 3NF
+    '4': BCNF
+  answer: '1'
+
+- stack: sql
+  id: 25
+  type: mcq
+  topic: Normalization
+  difficulty: medium
+  question: Which normal form eliminates transitive dependencies?
   options:
     '1': 1NF
     '2': 2NF
@@ -77,314 +324,274 @@
   answer: '3'
 
 - stack: sql
-  id: 7
-  type: mcq
-  topic: subqueries
-  difficulty: hard
-  question: Which type of subquery can return multiple rows and be used with IN operator?
-  options:
-    '1': Scalar subquery
-    '2': Correlated subquery
-    '3': Table subquery
-    '4': Multi-row subquery
-  answer: '4'
-
-- stack: sql
-  id: 8
-  type: mcq
-  topic: window-functions
-  difficulty: hard
-  question: Which clause defines the set of rows for a window function?
-  options:
-    '1': GROUP BY
-    '2': OVER
-    '3': PARTITION
-    '4': RANK
-  answer: '2'
-
-- stack: sql
-  id: 9
-  type: mcq
-  topic: transactions
-  difficulty: medium
-  question: Which property of a transaction ensures that once committed, data remains permanent?
-  options:
-    '1': Atomicity
-    '2': Consistency
-    '3': Isolation
-    '4': Durability
-  answer: '4'
-
-- stack: sql
-  id: 10
-  type: mcq
-  topic: performance
-  difficulty: hard
-  question: What is the effect of using SELECT * in a query?
-  options:
-    '1': It improves performance by reducing parsing
-    '2': It may reduce readability and retrieve unnecessary columns
-    '3': It enforces normalization
-    '4': It avoids table scans
-  answer: '2'
-
-- stack: sql
-  id: 11
-  type: mcq
-  topic: data-types
-  difficulty: easy
-  question: Which SQL data type is used to store variable-length character strings?
-  options:
-    '1': CHAR
-    '2': VARCHAR
-    '3': TEXT
-    '4': STRING
-  answer: '2'
-
-- stack: sql
-  id: 12
-  type: mcq
-  topic: ddl
-  difficulty: medium
-  question: Which SQL command is used to remove a table along with its data permanently?
-  options:
-    '1': DELETE
-    '2': DROP
-    '3': TRUNCATE
-    '4': REMOVE
-  answer: '2'
-
-- stack: sql
-  id: 13
-  type: mcq
-  topic: dml
-  difficulty: easy
-  question: Which SQL statement is used to insert new records into a table?
-  options:
-    '1': ADD
-    '2': APPEND
-    '3': INSERT INTO
-    '4': UPDATE
-  answer: '3'
-
-- stack: sql
-  id: 14
-  type: mcq
-  topic: update
-  difficulty: medium
-  question: What happens if you run an UPDATE statement without a WHERE clause?
-  options:
-    '1': Only the first row is updated
-    '2': The query fails with an error
-    '3': All rows in the table are updated
-    '4': No rows are updated
-  answer: '3'
-
-- stack: sql
-  id: 15
-  type: mcq
-  topic: delete
-  difficulty: medium
-  question: Which SQL command removes all rows from a table but retains the structure?
-  options:
-    '1': DROP
-    '2': DELETE
-    '3': TRUNCATE
-    '4': CLEAR
-  answer: '3'
-
-- stack: sql
-  id: 16
-  type: mcq
-  topic: joins
-  difficulty: medium
-  question: Which JOIN returns only rows that have matching values in both tables?
-  options:
-    '1': INNER JOIN
-    '2': LEFT JOIN
-    '3': RIGHT JOIN
-    '4': FULL OUTER JOIN
-  answer: '1'
-
-- stack: sql
-  id: 17
-  type: mcq
-  topic: joins
-  difficulty: medium
-  question: Which JOIN can potentially create a Cartesian product?
-  options:
-    '1': CROSS JOIN
-    '2': INNER JOIN
-    '3': LEFT JOIN
-    '4': NATURAL JOIN
-  answer: '1'
-
-- stack: sql
-  id: 18
-  type: mcq
-  topic: aggregate
-  difficulty: easy
-  question: Which aggregate function is used to count the number of rows?
-  options:
-    '1': SUM()
-    '2': COUNT()
-    '3': TOTAL()
-    '4': LENGTH()
-  answer: '2'
-
-- stack: sql
-  id: 19
-  type: mcq
-  topic: aggregate
-  difficulty: medium
-  question: Which aggregate function ignores NULL values when calculating?
-  options:
-    '1': SUM()
-    '2': AVG()
-    '3': MAX()
-    '4': All of the above
-  answer: '4'
-
-- stack: sql
-  id: 20
-  type: mcq
-  topic: keys
-  difficulty: easy
-  question: Which key uniquely identifies each row in a table?
-  options:
-    '1': Foreign Key
-    '2': Primary Key
-    '3': Candidate Key
-    '4': Composite Key
-  answer: '2'
-
-- stack: sql
-  id: 21
-  type: mcq
-  topic: keys
-  difficulty: medium
-  question: Which type of key can accept NULL values in SQL?
-  options:
-    '1': Primary Key
-    '2': Foreign Key
-    '3': Unique Key
-    '4': Super Key
-  answer: '3'
-
-- stack: sql
-  id: 22
-  type: mcq
-  topic: constraints
-  difficulty: medium
-  question: Which SQL constraint is used to enforce a condition on a column?
-  options:
-    '1': UNIQUE
-    '2': CHECK
-    '3': NOT NULL
-    '4': FOREIGN KEY
-  answer: '2'
-
-- stack: sql
-  id: 23
-  type: mcq
-  topic: constraints
-  difficulty: hard
-  question: Which constraint ensures referential integrity between two tables?
-  options:
-    '1': PRIMARY KEY
-    '2': UNIQUE
-    '3': FOREIGN KEY
-    '4': DEFAULT
-  answer: '3'
-
-- stack: sql
-  id: 24
-  type: mcq
-  topic: functions
-  difficulty: easy
-  question: Which SQL function returns the current date?
-  options:
-    '1': NOW()
-    '2': GETDATE()
-    '3': CURRENT_DATE
-    '4': SYSDATE
-  answer: '3'
-
-- stack: sql
-  id: 25
-  type: mcq
-  topic: window-functions
-  difficulty: hard
-  question: Which window function assigns a unique sequential number to rows within a partition?
-  options:
-    '1': ROW_NUMBER()
-    '2': RANK()
-    '3': DENSE_RANK()
-    '4': NTILE()
-  answer: '1'
-
-- stack: sql
   id: 26
   type: mcq
-  topic: window-functions
-  difficulty: hard
-  question: Which window function can assign the same rank to ties but skip the next rank?
+  topic: Subqueries
+  difficulty: easy
+  question: Which operator can be used with subqueries?
   options:
-    '1': ROW_NUMBER()
-    '2': RANK()
-    '3': DENSE_RANK()
-    '4': NTILE()
-  answer: '2'
+    '1': IN
+    '2': BETWEEN
+    '3': EXISTS
+    '4': All of these
+  answer: '4'
 
 - stack: sql
   id: 27
   type: mcq
-  topic: transactions
+  topic: Subqueries
   difficulty: medium
-  question: Which SQL command is used to undo changes in a transaction?
+  question: Which subquery type is executed once for each row of the outer query?
   options:
-    '1': COMMIT
-    '2': ROLLBACK
-    '3': SAVEPOINT
-    '4': UNDO
-  answer: '2'
+    '1': Correlated
+    '2': Uncorrelated
+    '3': Independent
+    '4': Nested
+  answer: '1'
 
 - stack: sql
   id: 28
   type: mcq
-  topic: transactions
-  difficulty: hard
-  question: Which isolation level prevents dirty reads but allows non-repeatable reads?
+  topic: Keys
+  difficulty: easy
+  question: Which key does not allow NULL values?
   options:
-    '1': READ UNCOMMITTED
-    '2': READ COMMITTED
-    '3': REPEATABLE READ
-    '4': SERIALIZABLE
-  answer: '2'
+    '1': Foreign Key
+    '2': Unique Key
+    '3': Primary Key
+    '4': Candidate Key
+  answer: '3'
 
 - stack: sql
   id: 29
   type: mcq
-  topic: views
+  topic: Keys
   difficulty: medium
-  question: Which SQL statement is used to update an existing view?
+  question: Which key enforces referential integrity?
   options:
-    '1': ALTER VIEW
-    '2': UPDATE VIEW
-    '3': MODIFY VIEW
-    '4': CREATE OR REPLACE VIEW
-  answer: '4'
+    '1': Composite Key
+    '2': Candidate Key
+    '3': Foreign Key
+    '4': Surrogate Key
+  answer: '3'
 
 - stack: sql
   id: 30
   type: mcq
-  topic: performance
+  topic: Keys
   difficulty: hard
-  question: What is the main drawback of using too many indexes in a table?
+  question: What is true about a surrogate key?
   options:
-    '1': Slower reads
-    '2': Slower writes (INSERT/UPDATE/DELETE)
-    '3': Increased normalization
-    '4': Smaller database size
+    '1': Naturally occurring in data
+    '2': User-chosen column
+    '3': Artificial key, often auto-generated
+    '4': Only used in temporary tables
+  answer: '3'
+
+- stack: sql
+  id: 31
+  type: mcq
+  topic: Functions
+  difficulty: easy
+  question: Which function returns the current system date?
+  options:
+    '1': NOW()
+    '2': CURDATE()
+    '3': GETDATE()
+    '4': SYSDATE()
+  answer: '3'
+
+- stack: sql
+  id: 32
+  type: mcq
+  topic: Functions
+  difficulty: medium
+  question: Which is a string function in SQL?
+  options:
+    '1': LEFT()
+    '2': SUM()
+    '3': COUNT()
+    '4': AVG()
+  answer: '1'
+
+- stack: sql
+  id: 33
+  type: mcq
+  topic: Functions
+  difficulty: hard
+  question: Which of the following is non-deterministic?
+  options:
+    '1': ABS()
+    '2': LEN()
+    '3': GETDATE()
+    '4': ROUND()
+  answer: '3'
+
+- stack: sql
+  id: 34
+  type: mcq
+  topic: Constraints
+  difficulty: easy
+  question: Which constraint prevents null values in a column?
+  options:
+    '1': UNIQUE
+    '2': NOT NULL
+    '3': FOREIGN KEY
+    '4': DEFAULT
   answer: '2'
 
+- stack: sql
+  id: 35
+  type: mcq
+  topic: Constraints
+  difficulty: medium
+  question: Which constraint enforces referential integrity?
+  options:
+    '1': CHECK
+    '2': FOREIGN KEY
+    '3': PRIMARY KEY
+    '4': UNIQUE
+  answer: '2'
+
+- stack: sql
+  id: 36
+  type: mcq
+  topic: Joins
+  difficulty: easy
+  question: Which JOIN returns only matching rows from both tables?
+  options:
+    '1': INNER JOIN
+    '2': OUTER JOIN
+    '3': LEFT JOIN
+    '4': RIGHT JOIN
+  answer: '1'
+
+- stack: sql
+  id: 37
+  type: mcq
+  topic: Joins
+  difficulty: medium
+  question: Which JOIN shows all rows from left, even without matches?
+  options:
+    '1': FULL OUTER JOIN
+    '2': INNER JOIN
+    '3': LEFT JOIN
+    '4': CROSS JOIN
+  answer: '3'
+
+- stack: sql
+  id: 38
+  type: mcq
+  topic: Update
+  difficulty: easy
+  question: Which keyword is required in UPDATE to specify criteria?
+  options:
+    '1': WHEN
+    '2': WHERE
+    '3': FROM
+    '4': IF
+  answer: '2'
+
+- stack: sql
+  id: 39
+  type: mcq
+  topic: Update
+  difficulty: medium
+  question: What keyword is used to modify multiple columns at once?
+  options:
+    '1': AND
+    '2': SET
+    '3': CHANGE
+    '4': MODIFY
+  answer: '2'
+
+- stack: sql
+  id: 40
+  type: mcq
+  topic: Update
+  difficulty: easy
+  question: Which keyword is required in UPDATE to specify criteria?
+  options:
+    '1': WHEN
+    '2': WHERE
+    '3': FROM
+    '4': IF
+  answer: '2'
+
+- stack: sql
+  id: 41
+  type: mcq
+  topic: Update
+  difficulty: medium
+  question: What keyword is used to modify multiple columns at once?
+  options:
+    '1': AND
+    '2': SET
+    '3': CHANGE
+    '4': MODIFY
+  answer: '2'
+
+- stack: sql
+  id: 42
+  type: mcq
+  topic: Performance
+  difficulty: easy
+  question: Which of these improves read queries speed?
+  options:
+    '1': Index
+    '2': Subquery
+    '3': Trigger
+    '4': Commit
+  answer: '1'
+
+- stack: sql
+  id: 43
+  type: mcq
+  topic: Delete
+  difficulty: easy
+  question: Which command can delete a subset of rows?
+  options:
+    '1': TRUNCATE
+    '2': DROP
+    '3': DELETE
+    '4': CLEAR
+  answer: '3'
+
+- stack: sql
+  id: 44
+  type: mcq
+  topic: Aggregation
+  difficulty: easy
+  question: Which function finds the highest value in a column?
+  options:
+    '1': SUM
+    '2': MAX
+    '3': MIN
+    '4': AVG
+  answer: '2'
+
+- stack: sql
+  id: 45
+  type: mcq
+  topic: Window Functions
+  difficulty: medium
+  question: Which clause is always used with window functions?
+  options:
+    '1': OVER()
+    '2': WHERE
+    '3': JOIN
+    '4': LIMIT
+  answer: '1'
+
+- stack: sql
+  id: 46
+  type: mcq
+  topic: Data Types
+  difficulty: easy
+  question: Which data type is best for storing dates?
+  options:
+    '1': VARCHAR
+    '2': DATE
+    '3': INT
+    '4': CHAR
+  answer: '2'

@@ -33,11 +33,10 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     useEffect(() => {
         let mounted = true;
         async function fetchQuestions() {
-            const data = await loadQuestions("mcqs");
-            const mcqs = Array.isArray(data)
-                ? data.filter((q) => q.type === "mcq" && q.options)
-                : [];
+            const mcqs = await loadQuestions("mcqs");
+
             if (!mounted) return;
+            console.log("Fetched", mcqs.length, "MCQs");
             setAllQuestions(mcqs);
             setQuestions(filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic }));
             setLoading(false);

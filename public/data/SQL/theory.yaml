@@ -1,209 +1,567 @@
 - stack: sql
   type: theory
-  topic: basics
+  topic: Basics
   difficulty: easy
-  question: "What does SQL stand for?"
-  answer: "SQL stands for Structured Query Language."
+  question: What does the SELECT statement do in SQL?
+  answer: The SELECT statement retrieves data from one or more tables in a database.
+  id: 1
 
 - stack: sql
   type: theory
-  topic: basics
+  topic: Basics
   difficulty: easy
-  question: "What is the difference between SQL and MySQL?"
-  answer: "SQL is a query language, whereas MySQL is a relational database management system that uses SQL."
+  question: What is the difference between SQL and NoSQL databases?
+  answer: SQL databases are relational and use structured query language, while NoSQL databases are non-relational and designed for unstructured or semi-structured data.
+  id: 2
 
 - stack: sql
   type: theory
-  topic: basics
-  difficulty: easy
-  question: "What are the different types of SQL commands?"
-  answer: "SQL commands are categorized into DDL, DML, DCL, and TCL."
-
-- stack: sql
-  type: theory
-  topic: ddl
-  difficulty: easy
-  question: "What is DDL in SQL?"
-  answer: "DDL stands for Data Definition Language, used to define database objects like tables, indexes, and schemas."
-
-- stack: sql
-  type: theory
-  topic: ddl
-  difficulty: easy
-  question: "What is the difference between DROP and TRUNCATE in SQL?"
-  answer: "DROP removes the table structure and its data permanently, while TRUNCATE removes only the data but keeps the table structure."
-
-- stack: sql
-  type: theory
-  topic: ddl
+  topic: Basics
   difficulty: medium
-  question: "What is the difference between DELETE and TRUNCATE in SQL?"
-  answer: "DELETE removes rows one by one and can be rolled back, while TRUNCATE is faster, removes all rows, and cannot be rolled back."
+  question: Explain the difference between WHERE and HAVING clauses.
+  answer: WHERE filters rows before grouping, while HAVING filters groups after aggregation.
+  id: 3
 
 - stack: sql
   type: theory
-  topic: dml
-  difficulty: easy
-  question: "What is DML in SQL?"
-  answer: "DML stands for Data Manipulation Language, used to manipulate data in tables using SELECT, INSERT, UPDATE, and DELETE."
-
-- stack: sql
-  type: theory
-  topic: dml
+  topic: Basics
   difficulty: medium
-  question: "What is the difference between INNER JOIN and OUTER JOIN?"
-  answer: "INNER JOIN returns rows that have matching values in both tables, while OUTER JOIN returns all rows from one table and the matching rows from the other."
+  question: What are the differences between INNER JOIN and OUTER JOIN?
+  answer: INNER JOIN returns only matching rows from both tables, while OUTER JOIN also includes non-matching rows from one or both tables, filling missing values with NULL.
+  id: 4
 
 - stack: sql
   type: theory
-  topic: joins
-  difficulty: medium
-  question: "What is a SELF JOIN in SQL?"
-  answer: "A SELF JOIN is a join where a table is joined with itself."
-
-- stack: sql
-  type: theory
-  topic: joins
-  difficulty: medium
-  question: "What is a CROSS JOIN in SQL?"
-  answer: "A CROSS JOIN returns the Cartesian product of the two tables."
-
-- stack: sql
-  type: theory
-  topic: indexing
-  difficulty: medium
-  question: "What is an index in SQL?"
-  answer: "An index is a database object that improves the speed of data retrieval operations on a table."
-
-- stack: sql
-  type: theory
-  topic: indexing
-  difficulty: medium
-  question: "What are clustered and non-clustered indexes?"
-  answer: "A clustered index sorts and stores the data rows in the table, while a non-clustered index creates a separate structure pointing to the data."
-
-- stack: sql
-  type: theory
-  topic: constraints
-  difficulty: easy
-  question: "What are constraints in SQL?"
-  answer: "Constraints are rules enforced on table data to maintain integrity, such as PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL, and CHECK."
-
-- stack: sql
-  type: theory
-  topic: constraints
-  difficulty: medium
-  question: "What is the difference between PRIMARY KEY and UNIQUE constraint?"
-  answer: "Both enforce uniqueness, but a PRIMARY KEY also prevents NULL values and defines a table's main identifier."
-
-- stack: sql
-  type: theory
-  topic: constraints
-  difficulty: medium
-  question: "What is a FOREIGN KEY in SQL?"
-  answer: "A FOREIGN KEY enforces a link between the data in two tables, ensuring referential integrity."
-
-- stack: sql
-  type: theory
-  topic: functions
-  difficulty: easy
-  question: "What are aggregate functions in SQL?"
-  answer: "Aggregate functions perform calculations on a set of values and return a single value, such as COUNT, SUM, AVG, MIN, MAX."
-
-- stack: sql
-  type: theory
-  topic: functions
-  difficulty: medium
-  question: "What is the difference between aggregate and scalar functions?"
-  answer: "Aggregate functions return a single value for a group of rows, while scalar functions return a value for each row."
-
-- stack: sql
-  type: theory
-  topic: transactions
-  difficulty: medium
-  question: "What are transactions in SQL?"
-  answer: "A transaction is a sequence of operations performed as a single logical unit of work, which must be either fully completed or fully rolled back."
-
-- stack: sql
-  type: theory
-  topic: transactions
-  difficulty: medium
-  question: "What are the ACID properties in SQL?"
-  answer: "ACID stands for Atomicity, Consistency, Isolation, and Durability, the four key properties of transactions."
-
-- stack: sql
-  type: theory
-  topic: views
-  difficulty: easy
-  question: "What is a view in SQL?"
-  answer: "A view is a virtual table based on the result of a SQL query."
-
-- stack: sql
-  type: theory
-  topic: views
-  difficulty: medium
-  question: "What is the difference between a view and a table?"
-  answer: "A table stores data physically, whereas a view is a saved SQL query that displays data dynamically."
-
-- stack: sql
-  type: theory
-  topic: normalization
-  difficulty: medium
-  question: "What is normalization in SQL?"
-  answer: "Normalization is the process of organizing data to minimize redundancy and improve data integrity."
-
-- stack: sql
-  type: theory
-  topic: normalization
-  difficulty: medium
-  question: "What are different normal forms in SQL?"
-  answer: "The most common are 1NF, 2NF, 3NF, and BCNF, each with stricter rules to eliminate redundancy."
-
-- stack: sql
-  type: theory
-  topic: subqueries
-  difficulty: medium
-  question: "What is a subquery in SQL?"
-  answer: "A subquery is a query nested inside another SQL query."
-
-- stack: sql
-  type: theory
-  topic: subqueries
-  difficulty: medium
-  question: "What is the difference between correlated and non-correlated subqueries?"
-  answer: "A correlated subquery depends on the outer query for its values, while a non-correlated subquery runs independently."
-
-- stack: sql
-  type: theory
-  topic: keys
-  difficulty: easy
-  question: "What is the difference between PRIMARY KEY and FOREIGN KEY?"
-  answer: "A PRIMARY KEY uniquely identifies each row within its table, while a FOREIGN KEY references the primary key of another table."
-
-- stack: sql
-  type: theory
-  topic: optimization
-  difficulty: medium
-  question: "What is query optimization in SQL?"
-  answer: "Query optimization is the process of improving query execution time by analyzing multiple query plans and choosing the most efficient."
-
-- stack: sql
-  type: theory
-  topic: optimization
-  difficulty: medium
-  question: "What is the difference between HAVING and WHERE clause?"
-  answer: "WHERE filters rows before grouping, while HAVING filters groups after aggregation."
-
-- stack: sql
-  type: theory
-  topic: optimization
-  difficulty: medium
-  question: "What is the difference between UNION and UNION ALL?"
-  answer: "UNION removes duplicate rows, while UNION ALL includes duplicates."
-
-- stack: sql
-  type: theory
-  topic: optimization
+  topic: Basics
   difficulty: hard
-  question: "What are common causes of slow SQL queries?"
-  answer: "Slow queries can result from missing indexes, poor query design, large data scans, lack of normalization, or blocking locks."
+  question: Explain the concept of subqueries and correlated subqueries.
+  answer: A subquery is a query inside another query. A correlated subquery depends on values from the outer query for its execution, making it execute row-by-row.
+  id: 5
+
+- stack: sql
+  type: theory
+  topic: Basics
+  difficulty: hard
+  question: What are ACID properties in the context of SQL databases?
+  answer: ACID stands for Atomicity, Consistency, Isolation, and Durability, ensuring reliable transactions in databases.
+  id: 6
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: easy
+  question: What is an index in SQL?
+  answer: An index is a database object that improves query performance by providing quick access to rows in a table.
+  id: 7
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: easy
+  question: What is the difference between clustered and non-clustered indexes?
+  answer: A clustered index defines the physical order of data in a table, whereas a non-clustered index creates a separate structure that points to the data.
+  id: 8
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: medium
+  question: When should you avoid creating indexes?
+  answer: Indexes should be avoided on frequently updated columns or very small tables, as maintaining the index can outweigh its benefits.
+  id: 9
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: medium
+  question: What is a composite index?
+  answer: A composite index is an index created on two or more columns of a table.
+  id: 10
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: hard
+  question: How do indexes affect INSERT, UPDATE, and DELETE operations?
+  answer: Indexes can slow down write operations because the index must also be updated, though they improve read operations.
+  id: 11
+
+- stack: sql
+  type: theory
+  topic: Indexing
+  difficulty: hard
+  question: Explain the difference between a B-tree index and a bitmap index.
+  answer: B-tree indexes are efficient for high-cardinality values, while bitmap indexes are more efficient for low-cardinality columns such as gender or status.
+  id: 12
+
+- stack: sql
+  type: theory
+  topic: Views
+  difficulty: easy
+  question: What is a view in SQL?
+  answer: A view is a virtual table based on the result of an SQL query.
+  id: 13
+
+- stack: sql
+  type: theory
+  topic: Views
+  difficulty: easy
+  question: What is the difference between a view and a table?
+  answer: A table stores data physically, while a view only stores a query definition and presents data dynamically.
+  id: 14
+
+- stack: sql
+  type: theory
+  topic: Views
+  difficulty: medium
+  question: What is the difference between simple and complex views?
+  answer: A simple view is created from a single table without functions or groupings, while a complex view may involve multiple tables, joins, or aggregate functions.
+  id: 15
+
+- stack: sql
+  type: theory
+  topic: Views
+  difficulty: medium
+  question: Can we perform INSERT/UPDATE/DELETE operations on views?
+  answer: Yes, but only if the view is updatable and doesn't involve aggregates, joins, or DISTINCT.
+  id: 16
+
+- stack: sql
+  type: theory
+  topic: Views
+  difficulty: hard
+  question: What are materialized views, and how do they differ from regular views?
+  answer: A materialized view stores query results physically and can be periodically refreshed, unlike regular views, which store only the query definition.
+  id: 17
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: easy
+  question: What is SQL query optimization?
+  answer: SQL query optimization involves improving query performance by reducing resource usage and execution time.
+  id: 18
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: easy
+  question: Why should you use indexes for optimization?
+  answer: Indexes provide faster data retrieval and reduce the number of rows scanned, improving performance.
+  id: 19
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: medium
+  question: How does indexing affect query optimization?
+  answer: Indexes speed up reads but may increase the cost of writes, so they must be used selectively for query optimization.
+  id: 20
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: medium
+  question: What is the role of the query execution plan?
+  answer: A query execution plan describes how the database will execute a query and can be analyzed to improve performance.
+  id: 21
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: hard
+  question: What are some common query optimization techniques?
+  answer: Techniques include indexing, avoiding SELECT *, limiting joins, using EXISTS instead of IN, partitioning tables, and analyzing execution plans.
+  id: 22
+
+- stack: sql
+  type: theory
+  topic: Optimization
+  difficulty: hard
+  question: What is the difference between cost-based and rule-based optimization?
+  answer: Cost-based optimization chooses an execution plan with the lowest cost based on statistics, while rule-based optimization uses predefined rules without considering data distribution.
+  id: 23
+
+- stack: sql
+  type: theory
+  topic: DDL
+  difficulty: easy
+  question: What does DDL stand for in SQL?
+  answer: DDL stands for Data Definition Language, which defines and manages database structures.
+  id: 24
+
+- stack: sql
+  type: theory
+  topic: DDL
+  difficulty: easy
+  question: Name any three SQL DDL commands.
+  answer: Common DDL commands are CREATE, ALTER, DROP.
+  id: 25
+
+- stack: sql
+  type: theory
+  topic: DDL
+  difficulty: medium
+  question: What is the difference between DROP and TRUNCATE?
+  answer: DROP deletes the entire table structure including data, while TRUNCATE deletes all rows but keeps the table definition.
+  id: 26
+
+- stack: sql
+  type: theory
+  topic: DDL
+  difficulty: medium
+  question: What does the ALTER command do in SQL?
+  answer: ALTER modifies existing database objects such as tables, adding or modifying columns and constraints.
+  id: 27
+
+- stack: sql
+  type: theory
+  topic: DDL
+  difficulty: hard
+  question: Explain the difference between TRUNCATE and DELETE in terms of DDL and DML.
+  answer: TRUNCATE is a DDL command that removes all rows without logging individual deletions, whereas DELETE is a DML command that removes rows and logs each deletion.
+  id: 28
+
+- stack: sql
+  type: theory
+  topic: DML
+  difficulty: easy
+  question: What does DML stand for in SQL?
+  answer: DML stands for Data Manipulation Language, used to manage data inside tables.
+  id: 29
+
+- stack: sql
+  type: theory
+  topic: DML
+  difficulty: easy
+  question: Name the main DML commands.
+  answer: SELECT, INSERT, UPDATE, DELETE.
+  id: 30
+
+- stack: sql
+  type: theory
+  topic: DML
+  difficulty: medium
+  question: What is the difference between INSERT INTO ... VALUES and INSERT INTO ... SELECT?
+  answer: INSERT INTO VALUES adds specified data directly, while INSERT INTO SELECT inserts data fetched from another query.
+  id: 31
+
+- stack: sql
+  type: theory
+  topic: DML
+  difficulty: hard
+  question: Explain how transactions relate to DML operations.
+  answer: DML operations like INSERT, UPDATE, DELETE can be grouped in a transaction, allowing commit or rollback to maintain consistency.
+  id: 32
+
+- stack: sql
+  type: theory
+  topic: Transactions
+  difficulty: easy
+  question: What is a transaction in SQL?
+  answer: A transaction is a sequence of SQL operations performed as a single unit of work.
+  id: 33
+
+- stack: sql
+  type: theory
+  topic: Transactions
+  difficulty: easy
+  question: List the properties of transactions.
+  answer: Atomicity, Consistency, Isolation, Durability (ACID).
+  id: 34
+
+- stack: sql
+  type: theory
+  topic: Transactions
+  difficulty: medium
+  question: What is the difference between COMMIT and ROLLBACK?
+  answer: COMMIT makes all changes permanent, whereas ROLLBACK undoes changes made in the current transaction.
+  id: 35
+
+- stack: sql
+  type: theory
+  topic: Transactions
+  difficulty: hard
+  question: What is the difference between implicit and explicit transactions?
+  answer: Implicit transactions are started automatically by the system, while explicit transactions are started by the user using BEGIN TRANSACTION.
+  id: 36
+
+- stack: sql
+  type: theory
+  topic: Normalization
+  difficulty: easy
+  question: What is normalization in SQL?
+  answer: Normalization is the process of organizing data to minimize redundancy and dependency.
+  id: 37
+
+- stack: sql
+  type: theory
+  topic: Normalization
+  difficulty: medium
+  question: What is the difference between 1NF and 2NF?
+  answer: 1NF ensures no repeating groups and atomic values, while 2NF removes partial dependencies on part of a candidate key.
+  id: 38
+
+- stack: sql
+  type: theory
+  topic: Normalization
+  difficulty: hard
+  question: Explain Boyce-Codd Normal Form (BCNF).
+  answer: BCNF ensures no non-trivial functional dependency exists where the determinant is not a candidate key.
+  id: 39
+
+- stack: sql
+  type: theory
+  topic: Subqueries
+  difficulty: easy
+  question: What is a subquery?
+  answer: A subquery is a nested query inside another query.
+  id: 40
+
+- stack: sql
+  type: theory
+  topic: Subqueries
+  difficulty: medium
+  question: What is the difference between correlated and uncorrelated subqueries?
+  answer: Correlated subqueries depend on the outer query values, whereas uncorrelated subqueries can run independently.
+  id: 41
+
+- stack: sql
+  type: theory
+  topic: Subqueries
+  difficulty: hard
+  question: What is the purpose of EXISTS in subqueries?
+  answer: EXISTS checks for the existence of rows that satisfy the subquery condition and returns a boolean result.
+  id: 42
+
+- stack: sql
+  type: theory
+  topic: Keys
+  difficulty: easy
+  question: What is a PRIMARY KEY in SQL?
+  answer: A PRIMARY KEY uniquely identifies each row in a table.
+  id: 43
+
+- stack: sql
+  type: theory
+  topic: Keys
+  difficulty: easy
+  question: What is the difference between PRIMARY KEY and UNIQUE KEY?
+  answer: Both enforce uniqueness, but a table can only have one PRIMARY KEY and it does not allow NULLs, while UNIQUE allows multiple and permits NULLs.
+  id: 44
+
+- stack: sql
+  type: theory
+  topic: Keys
+  difficulty: medium
+  question: What is the difference between FOREIGN KEY and PRIMARY KEY?
+  answer: PRIMARY KEY uniquely identifies a row in its table, FOREIGN KEY enforces referential integrity by referencing another tableÃ¢â‚¬â„¢s primary key.
+  id: 45
+
+- stack: sql
+  type: theory
+  topic: Keys
+  difficulty: medium
+  question: What is a composite key?
+  answer: A composite key is a key made up of two or more columns that together uniquely identify a row.
+  id: 46
+
+- stack: sql
+  type: theory
+  topic: Keys
+  difficulty: hard
+  question: Explain the concept of candidate keys and surrogate keys.
+  answer: Candidate keys are all possible columns that can uniquely identify rows, one of which is chosen as the primary key. Surrogate keys are artificially created identifiers, often auto-incremented.
+  id: 47
+
+- stack: sql
+  type: theory
+  topic: Functions
+  difficulty: easy
+  question: What is a function in SQL?
+  answer: A function in SQL is a predefined or user-defined operation that returns a single value based on input.
+  id: 48
+
+- stack: sql
+  type: theory
+  topic: Functions
+  difficulty: easy
+  question: Differentiate between scalar and aggregate functions.
+  answer: Scalar functions operate on a single value and return a single value, while aggregate functions work on multiple rows and return one value.
+  id: 49
+
+- stack: sql
+  type: theory
+  topic: Functions
+  difficulty: medium
+  question: What is the purpose of the STRING functions in SQL?
+  answer: String functions perform operations like concatenation, substring extraction, or case conversion on text values.
+  id: 50
+
+- stack: sql
+  type: theory
+  topic: Functions
+  difficulty: hard
+  question: Explain user-defined functions (UDFs) and types.
+  answer: UDFs are custom functions created by users. They can be scalar (return single value), inline table-valued, or multi-statement table-valued functions.
+  id: 51
+
+- stack: sql
+  type: theory
+  topic: Functions
+  difficulty: hard
+  question: How do deterministic and non-deterministic functions differ?
+  answer: Deterministic functions always return the same output for the same inputs, while non-deterministic functions may return different outputs (e.g., GETDATE()).
+  id: 52
+
+- stack: sql
+  type: theory
+  topic: Constraints
+  difficulty: easy
+  question: What is a constraint in SQL?
+  answer: A constraint is a rule enforced on table data to maintain accuracy and integrity.
+  id: 53
+
+- stack: sql
+  type: theory
+  topic: Constraints
+  difficulty: easy
+  question: What are examples of SQL constraints?
+  answer: NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK, DEFAULT.
+  id: 54
+
+- stack: sql
+  type: theory
+  topic: Constraints
+  difficulty: medium
+  question: What is the difference between UNIQUE and PRIMARY KEY constraints?
+  answer: Both enforce uniqueness, but PRIMARY KEY also disallows NULL and each table can only have one primary key.
+  id: 55
+
+- stack: sql
+  type: theory
+  topic: Constraints
+  difficulty: hard
+  question: Explain CHECK constraint with example.
+  answer: CHECK constraint enforces conditions on column values, e.g., CHECK(age >= 18).
+  id: 56
+
+- stack: sql
+  type: theory
+  topic: Joins
+  difficulty: easy
+  question: What is a JOIN in SQL?
+  answer: A JOIN combines rows from two or more tables based on related columns.
+  id: 57
+
+- stack: sql
+  type: theory
+  topic: Joins
+  difficulty: medium
+  question: Difference between LEFT JOIN and INNER JOIN.
+  answer: INNER JOIN returns only matching records, LEFT JOIN returns all rows from the left table and matching rows from the right.
+  id: 58
+
+- stack: sql
+  type: theory
+  topic: Joins
+  difficulty: hard
+  question: What is a CROSS JOIN?
+  answer: CROSS JOIN returns the Cartesian product of two tables, combining all rows.
+  id: 59
+
+- stack: sql
+  type: theory
+  topic: Update
+  difficulty: easy
+  question: What is the purpose of the UPDATE command?
+  answer: UPDATE modifies existing data in a table.
+  id: 60
+
+- stack: sql
+  type: theory
+  topic: Update
+  difficulty: medium
+  question: What happens if we omit the WHERE clause in UPDATE?
+  answer: All rows in the table will be updated.
+  id: 61
+
+- stack: sql
+  type: theory
+  topic: Performance
+  difficulty: easy
+  question: What is SQL performance tuning?
+  answer: SQL performance tuning is optimizing queries and database design for efficiency.
+  id: 62
+
+- stack: sql
+  type: theory
+  topic: Performance
+  difficulty: medium
+  question: How do indexes affect performance?
+  answer: Indexes improve read performance but can slow down write operations.
+  id: 63
+
+- stack: sql
+  type: theory
+  topic: Delete
+  difficulty: easy
+  question: What does DELETE statement do?
+  answer: DELETE removes specific rows from a table.
+  id: 64
+
+- stack: sql
+  type: theory
+  topic: Delete
+  difficulty: medium
+  question: Delete vs Truncate?
+  answer: DELETE removes rows conditionally and logs each removal, TRUNCATE deletes all rows faster but keeps structure.
+  id: 65
+
+- stack: sql
+  type: theory
+  topic: Aggregation
+  difficulty: easy
+  question: What are aggregate functions in SQL?
+  answer: Aggregate functions compute values across multiple rows and return a single result, e.g., SUM, AVG, COUNT.
+  id: 66
+
+- stack: sql
+  type: theory
+  topic: Aggregation
+  difficulty: medium
+  question: What is the difference between COUNT(*) and COUNT(column)?
+  answer: COUNT(*) counts all rows including NULL, COUNT(column) counts only non-NULL values.
+  id: 67
+
+- stack: sql
+  type: theory
+  topic: Window Functions
+  difficulty: easy
+  question: What is a window function in SQL?
+  answer: A window function performs calculations across a set of rows related to the current row.
+  id: 68
+
+- stack: sql
+  type: theory
+  topic: Window Functions
+  difficulty: medium
+  question: Difference between aggregate and window functions?
+  answer: Aggregate functions collapse results into one value, window functions return values for each row.
+  id: 69
+
+- stack: sql
+  type: theory
+  topic: Data Types
+  difficulty: easy
+  question: What are SQL data types?
+  answer: Data types define the kind of values a column can store, such as INT, VARCHAR, DATE.
+  id: 70
+
+- stack: sql
+  type: theory
+  topic: Data Types
+  difficulty: medium
+  question: Difference between CHAR and VARCHAR?
+  answer: CHAR has fixed length, VARCHAR has variable length.
+  id: 71

@@ -1,0 +1,335 @@
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: easy
+  question: What is Apache Airflow and what is it used for?
+  answer: Apache Airflow is an open-source platform to programmatically author, schedule, and monitor workflows or data pipelines.
+  id: 1
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: easy
+  question: What is a DAG in Airflow?
+  answer: A DAG (Directed Acyclic Graph) is a collection of tasks with defined dependencies that represent a workflow in Airflow.
+  id: 2
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: medium
+  question: How does Airflow schedule and execute DAGs?
+  answer: The scheduler parses DAG files, queues tasks based on schedule and dependencies, and executors run the tasks on workers.
+  id: 3
+
+- stack: airflow
+  type: theory
+  topic: Operators
+  difficulty: easy
+  question: What is an Operator in Airflow?
+  answer: An Operator is a template for a task that defines a unit of work in Airflow, such as executing bash commands or running Python functions.
+  id: 4
+
+- stack: airflow
+  type: theory
+  topic: Operators
+  difficulty: medium
+  question: What is the difference between Sensor and Operator?
+  answer: Sensors are a type of Operator that wait for a certain condition to be met before proceeding, usually waiting on external events.
+  id: 5
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: easy
+  question: What is Apache Airflow and what is it used for?
+  answer: Apache Airflow is an open-source platform to programmatically author, schedule, and monitor workflows or data pipelines.
+  id: 6
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: easy
+  question: Name the main components of Apache Airflow architecture.
+  answer: Scheduler, Executor, Webserver, Metadata Database, Workers, and Dag Processor.
+  id: 7
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: medium
+  question: What is the Airflow metadata database used for?
+  answer: It stores information about DAG runs, task states, variables, connections, and configurations.
+  id: 8
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: medium
+  question: Explain the role of the Airflow Webserver.
+  answer: The webserver hosts the UI which allows users to monitor, trigger, and debug workflows.
+  id: 9
+
+- stack: airflow
+  type: theory
+  topic: Introduction
+  difficulty: hard
+  question: Describe how Airflow achieves extensibility.
+  answer: Through plugins, hooks, operators, and sensors that allow integration with various systems and customization.
+  id: 10
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: easy
+  question: What is a DAG in Airflow?
+  answer: A Directed Acyclic Graph (DAG) is a representation of a workflow composed of tasks with dependencies.
+  id: 11
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: medium
+  question: How do you define schedule intervals in Airflow DAGs?
+  answer: Using cron expressions or preset strings like '@daily', '@hourly', '@once', or timedelta objects.
+  id: 12
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: medium
+  question: What happens when a DAG is paused in Airflow?
+  answer: The scheduler skips triggering runs of the paused DAG until it is unpaused.
+  id: 13
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: hard
+  question: Explain dynamic DAG generation and its use case.
+  answer: Dynamic DAGs are generated programmatically at runtime, useful for repetitive or parameterized workflows.
+  id: 14
+
+- stack: airflow
+  type: theory
+  topic: DAG
+  difficulty: hard
+  question: What are subDAGs and when should they be used?
+  answer: A subDAG is a DAG within a DAG used to encapsulate complex task groups and manage dependencies cleanly.
+  id: 15
+
+- stack: airflow
+  type: theory
+  topic: Operators
+  difficulty: easy
+  question: What is an Operator in Airflow?
+  answer: An Operator defines a single task in a DAG and specifies what work to execute.
+  id: 16
+
+- stack: airflow
+  type: theory
+  topic: Operators
+  difficulty: medium
+  question: Differentiate between PythonOperator and BashOperator.
+  answer: PythonOperator runs Python callables; BashOperator executes bash shell commands.
+  id: 17
+
+- stack: airflow
+  type: theory
+  topic: Tasks
+  difficulty: medium
+  question: How are dependencies between tasks defined?
+  answer: Using bitshift operators (>> and <<), set_upstream, or set_downstream methods.
+  id: 18
+
+- stack: airflow
+  type: theory
+  topic: Operators
+  difficulty: hard
+  question: Explain the concept of templating in Airflow Operators.
+  answer: Templating uses Jinja to dynamically substitute variables into operator parameters at runtime.
+  id: 19
+
+- stack: airflow
+  type: theory
+  topic: Tasks
+  difficulty: hard
+  question: What are XComs and how are they used for task communication?
+  answer: XComs (cross-communication) allow tasks to share metadata or small data snippets between one another.
+  id: 20
+
+- stack: airflow
+  type: theory
+  topic: Scheduler
+  difficulty: easy
+  question: What is the role of the Airflow Scheduler?
+  answer: It parses DAGs, determines when tasks should run based on schedules and dependencies, and submits tasks to executors.
+  id: 21
+
+- stack: airflow
+  type: theory
+  topic: Executor
+  difficulty: medium
+  question: Name the different types of executors in Airflow.
+  answer: SequentialExecutor, LocalExecutor, CeleryExecutor, KubernetesExecutor, DaskExecutor.
+  id: 22
+
+- stack: airflow
+  type: theory
+  topic: Executor
+  difficulty: medium
+  question: How does the CeleryExecutor improve scalability?
+  answer: It distributes task execution asynchronously across multiple worker nodes, enabling parallelism.
+  id: 23
+
+- stack: airflow
+  type: theory
+  topic: Scheduler
+  difficulty: hard
+  question: What is the purpose of the Triggerer component?
+  answer: Triggerer manages deferred tasks that wait for specific events asynchronously without blocking worker resources.
+  id: 24
+
+- stack: airflow
+  type: theory
+  topic: Executor
+  difficulty: hard
+  question: Explain how Airflow handles task retries and failures.
+  answer: Tasks can be configured with retry logic, delay between retries, and failure callbacks to manage execution robustness.
+  id: 25
+
+- stack: airflow
+  type: theory
+  topic: Sensors
+  difficulty: easy
+  question: What is a Sensor in Airflow?
+  answer: A sensor is a special Operator that waits for a specific condition or external event before continuing.
+  id: 26
+
+- stack: airflow
+  type: theory
+  topic: Sensors
+  difficulty: medium
+  question: What are the different modes a Sensor can run in?
+  answer: poke mode (checks repeatedly), reschedule mode (defers task release), and smart sensor mode (shared resource use).
+  id: 27
+
+- stack: airflow
+  type: theory
+  topic: XCOM
+  difficulty: medium
+  question: What is XCom backends and how can you customize them?
+  answer: XCom backend defines how XCom data is serialized and stored; users can implement custom backends for large data or encryption.
+  id: 28
+
+- stack: airflow
+  type: theory
+  topic: Sensors
+  difficulty: hard
+  question: Discuss the scalability considerations when using Sensors.
+  answer: Long-running sensors can block slots; using rescheduling sensors or external triggers reduces resource locking.
+  id: 29
+
+- stack: airflow
+  type: theory
+  topic: XCOM
+  difficulty: hard
+  question: How does XCom differ from pushing data to external storage?
+  answer: XCom is meant for small, transient metadata within Airflow, while external storage handles large, durable data.
+  id: 30
+
+- stack: airflow
+  type: theory
+  topic: Hooks
+  difficulty: easy
+  question: What is a Hook in Airflow?
+  answer: Hooks are interfaces to external services that simplify connections and authentication.
+  id: 31
+
+- stack: airflow
+  type: theory
+  topic: Plugins
+  difficulty: medium
+  question: Why use Plugins in Airflow?
+  answer: Plugins extend AirflowÃ¢â‚¬â„¢s capabilities by adding custom operators, hooks, sensors, UI views, and more.
+  id: 32
+
+- stack: airflow
+  type: theory
+  topic: Hooks
+  difficulty: hard
+  question: Describe a use case for creating a custom hook.
+  answer: When integrating with an unsupported external service or API requiring custom authentication or procedures.
+  id: 33
+
+- stack: airflow
+  type: theory
+  topic: Monitoring
+  difficulty: easy
+  question: How does Airflow provide monitoring capabilities?
+  answer: Through its web UI for visualizing DAG runs, task status, logs, and metrics.
+  id: 34
+
+- stack: airflow
+  type: theory
+  topic: Logging
+  difficulty: medium
+  question: What logging options does Airflow support?
+  answer: Local file logging, remote storage (S3, GCS), and integration with logging services like ELK or Stackdriver.
+  id: 35
+
+- stack: airflow
+  type: theory
+  topic: Monitoring
+  difficulty: hard
+  question: How do alerting and SLA monitoring work in Airflow?
+  answer: SLA misses trigger alert callbacks or emails; task failures can invoke retries and notifications.
+  id: 36
+
+- stack: airflow
+  type: theory
+  topic: Security
+  difficulty: medium
+  question: What security measures are recommended for production Airflow?
+  answer: Authentication, RBAC, encrypted connections, secrets backend, and regular audit logging.
+  id: 37
+
+- stack: airflow
+  type: theory
+  topic: Scaling
+  difficulty: hard
+  question: Explain vertical vs horizontal scaling in Airflow.
+  answer: Vertical scales by upgrading machine specs, horizontal by adding more workers or nodes.
+  id: 38
+
+- stack: airflow
+  type: theory
+  topic: Cloud Integration
+  difficulty: medium
+  question: How can Airflow integrate with cloud services?
+  answer: Via hooks and operators for AWS, GCP, Azure services to manage data storage, compute, and messaging.
+  id: 39
+
+- stack: airflow
+  type: theory
+  topic: Cloud Integration
+  difficulty: hard
+  question: What are benefits of running Airflow on Kubernetes?
+  answer: Improved scalability, resiliency, isolated execution environments, and optimized resource utilization.
+  id: 40
+
+- stack: airflow
+  type: theory
+  topic: Advanced
+  difficulty: hard
+  question: Describe workflow versioning and backfilling in Airflow.
+  answer: Versioning tracks DAG changes over time; backfilling runs historical DAG executions to fill data gaps.
+  id: 41
+
+- stack: airflow
+  type: theory
+  topic: Advanced
+  difficulty: hard
+  question: What techniques exist for optimizing Airflow performance?
+  answer: Task concurrency tuning, using task pools, sensor rescheduling, caching, and optimizing database queries.
+  id: 42

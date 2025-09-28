@@ -91,7 +91,7 @@
   topic: Basics
   difficulty: easy
   question: What is MLlib in Spark?
-  answer: MLlib is Sparkâ€™s scalable machine learning library providing algorithms for classification, regression, clustering, and more.
+  answer: MLlib is SparkÃ¢â‚¬â„¢s scalable machine learning library providing algorithms for classification, regression, clustering, and more.
   id: 12
 
 - stack: spark
@@ -99,14 +99,14 @@
   topic: Basics
   difficulty: medium
   question: What is GraphX in Spark?
-  answer: GraphX is Sparkâ€™s API for graph-parallel computation and graph analytics.
+  answer: GraphX is SparkÃ¢â‚¬â„¢s API for graph-parallel computation and graph analytics.
   id: 13
 
 - stack: spark
   type: theory
   topic: Basics
   difficulty: medium
-  question: Explain Sparkâ€™s architecture in one line.
+  question: Explain SparkÃ¢â‚¬â„¢s architecture in one line.
   answer: Spark follows a master-slave architecture with a Driver program coordinating tasks executed by Executors on cluster nodes.
   id: 14
 
@@ -139,7 +139,7 @@
   topic: Basics
   difficulty: medium
   question: What is the difference between Standalone and YARN in Spark?
-  answer: Standalone is Sparkâ€™s built-in cluster manager, while YARN is a Hadoop-based cluster manager for resource sharing across applications.
+  answer: Standalone is SparkÃ¢â‚¬â„¢s built-in cluster manager, while YARN is a Hadoop-based cluster manager for resource sharing across applications.
   id: 18
 
 - stack: spark
@@ -147,7 +147,7 @@
   topic: Basics
   difficulty: medium
   question: What is Spark on Kubernetes?
-  answer: It is Sparkâ€™s native integration with Kubernetes, where Spark applications run as pods in a Kubernetes cluster.
+  answer: It is SparkÃ¢â‚¬â„¢s native integration with Kubernetes, where Spark applications run as pods in a Kubernetes cluster.
   id: 19
 
 - stack: spark
@@ -203,7 +203,7 @@
   topic: Basics
   difficulty: medium
   question: What is the difference between PySpark and Scala Spark?
-  answer: PySpark provides a Python API for Spark, while Scala is Sparkâ€™s native language and often offers better performance.
+  answer: PySpark provides a Python API for Spark, while Scala is SparkÃ¢â‚¬â„¢s native language and often offers better performance.
   id: 26
 
 - stack: spark
@@ -523,7 +523,7 @@
   topic: Optimization
   difficulty: medium
   question: What is the Catalyst Optimizer?
-  answer: Catalyst Optimizer is Spark SQLâ€™s query optimization engine that automatically optimizes logical query plans into efficient physical execution plans.
+  answer: Catalyst Optimizer is Spark SQLÃ¢â‚¬â„¢s query optimization engine that automatically optimizes logical query plans into efficient physical execution plans.
   id: 66
 
 - stack: spark
@@ -954,7 +954,7 @@
   type: theory
   topic: DAG Scheduler
   difficulty: medium
-  question: What is the difference between a stage and a task in Sparkâ€™s DAG Scheduler?
+  question: What is the difference between a stage and a task in SparkÃ¢â‚¬â„¢s DAG Scheduler?
   answer: A stage is a set of tasks that can be executed in parallel, while a task is the smallest unit of work sent to a single executor.
   id: 120
 
@@ -1026,7 +1026,7 @@
   type: theory
   topic: Memory Management
   difficulty: easy
-  question: What are the two main categories of memory in Sparkâ€™s unified memory model?
+  question: What are the two main categories of memory in SparkÃ¢â‚¬â„¢s unified memory model?
   answer: Execution memory (used for shuffles, joins, sorts) and storage memory (used for caching and broadcast variables).
   id: 129
 
@@ -1475,7 +1475,7 @@
   topic: Kubernetes
   difficulty: hard
   question: How does Spark on Kubernetes handle dynamic resource allocation?
-  answer: It integrates with Kubernetesâ€™ pod lifecycle and requires external shuffle service or Kubernetes-native shuffle implementations.
+  answer: It integrates with KubernetesÃ¢â‚¬â„¢ pod lifecycle and requires external shuffle service or Kubernetes-native shuffle implementations.
   id: 185
 
 - stack: spark
@@ -1643,7 +1643,7 @@
   topic: Incremental ETL
   difficulty: hard
   question: How do merge operations in Delta Lake support incremental ETL?
-  answer: Delta Lakeâ€™s MERGE INTO allows upserts of changed records, making it efficient for incremental pipelines.
+  answer: Delta LakeÃ¢â‚¬â„¢s MERGE INTO allows upserts of changed records, making it efficient for incremental pipelines.
   id: 206
 
 - stack: spark

@@ -355,7 +355,7 @@
   topic: Keys
   difficulty: medium
   question: What is the difference between FOREIGN KEY and PRIMARY KEY?
-  answer: PRIMARY KEY uniquely identifies a row in its table, FOREIGN KEY enforces referential integrity by referencing another tableÃ¢â‚¬â„¢s primary key.
+  answer: PRIMARY KEY uniquely identifies a row in its table, FOREIGN KEY enforces referential integrity by referencing another tableÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s primary key.
   id: 45
 
 - stack: sql

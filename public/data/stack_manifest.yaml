@@ -3,138 +3,135 @@ Airflow:
   - theory
   - mcqs
   topics:
-  - XCOM
-  - Scaling
-  - Advanced
   - Introduction
-  - Executor
-  - Plugins
-  - Logging
-  - Tasks
-  - Scheduler
-  - Hooks
-  - Monitoring
-  - Cloud Integration
-  - Sensors
-  - Security
   - DAG
   - Operators
+  - Sensors
+  - Scheduler
+  - XCOM
+  - Monitoring
+  - Scaling
+  - Advanced
+  - Security
+  - Plugins
+  - Cloud Integration
+  - Logging
+  - Hooks
+  - Tasks
+  - Executor
+  - Cloud
   - Hook
+  - Integration
   - Sensor
   - Usage
   - Dag
   - Xcom
-  - Cloud
-  - Integration
 Python:
   types:
   - theory
   - mcqs
   topics:
-  - iterators
-  - oop
-  - basics
-  - control_flow
-  - generators
-  - comprehension
   - modules
-  - advanced
-  - memory
-  - variables
-  - exceptions
   - decorators
+  - comprehension
+  - variables
+  - generators
+  - control_flow
+  - memory
+  - iterators
+  - advanced
   - functions
-  - Error Handling
-  - Control Flow
-  - Typing
-  - Dictionaries
+  - exceptions
+  - basics
+  - oop
   - Lists
-  - Concurrency
+  - Data Types
+  - Documentation
   - Comprehensions
-  - Functions
-  - Sets
-  - File I/O
-  - Strings
-  - Operators
+  - Typing
+  - Error Handling
+  - OOP
   - Variables & Memory
+  - Functions
+  - Concurrency
+  - Strings
+  - Sets
+  - Generators
+  - File I/O
+  - Operators
+  - Control Flow
   - Data Structures
+  - Dictionaries
   - Decorators
   - Modules
-  - OOP
-  - Data Types
-  - Generators
-  - Documentation
 Spark:
   types:
   - theory
   - mcqs
   topics:
-  - Caching
-  - Logging
-  - Joins
-  - Datasets
-  - Memory Management
-  - Multi-Tenancy
-  - UDF
-  - Window Functions
-  - Fault Tolerance
-  - Checkpointing
-  - Task Scheduling
-  - Delta Lake
-  - Dataframes
-  - Apache Iceberg
-  - Optimization
-  - Debugging
-  - Data Skew
-  - Cluster Managers
-  - Monitoring
-  - Data Sources
-  - Structured Streaming
-  - Spark SQL
-  - Partitioning
-  - Tungsten Engine
-  - SQL
-  - RDD
-  - Apache Hudi
-  - Incremental ETL
-  - DAG Scheduler
   - Actions
-  - Data Capture
-  - Serialization
-  - Resource Tuning
+  - Partitioning
+  - Dataframes
+  - Structured Streaming
+  - Task Scheduling
+  - Cluster Managers
+  - Data Sources
+  - RDD
+  - Caching
   - Hive
-  - Lake House
+  - Delta Lake
   - Spark Security
-  - Kubernetes
-  - shuffle operations
-  - Transformations
+  - Optimization
   - Deployment
-  - AQE
+  - Apache Hudi
+  - Debugging
+  - DAG Scheduler
   - Basics
-  - Shuffle Operations
-  - DataFrames
-  - Spark Streaming
+  - Fault Tolerance
+  - Joins
+  - AQE
+  - Kubernetes
+  - UDF
+  - Data Capture
+  - Data Skew
+  - Transformations
+  - Serialization
+  - Checkpointing
+  - Lake House
+  - Datasets
+  - Apache Iceberg
+  - SQL
+  - Resource Tuning
+  - Window Functions
+  - Multi-Tenancy
+  - shuffle operations
+  - Monitoring
+  - Incremental ETL
+  - Spark SQL
+  - Tungsten Engine
+  - Logging
+  - Memory Management
 SQL:
   types:
   - theory
   - mcqs
   topics:
-  - DML
-  - Joins
-  - Performance
-  - Window Functions
-  - Constraints
-  - Optimization
-  - Views
-  - Functions
   - Normalization
-  - Keys
   - Data Types
   - Transactions
+  - DML
   - Indexing
+  - Optimization
   - DDL
-  - Aggregation
-  - Subqueries
-  - Delete
+  - Functions
   - Update
+  - Keys
   - Basics
+  - Joins
+  - Performance
+  - Constraints
+  - Subqueries
+  - Views
+  - Window Functions
+  - Delete
+  - Aggregation

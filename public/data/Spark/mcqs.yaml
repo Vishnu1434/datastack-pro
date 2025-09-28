@@ -393,7 +393,7 @@
   topic: Basics
   difficulty: easy
   question: What is Big Data?
-  options: null
+  options:
   '1': Data that fits into a single system easily
   '2': Data that is too large and complex to process with traditional systems
   '3': Only structured data from databases
@@ -406,7 +406,7 @@
   topic: Basics
   difficulty: easy
   question: What are the 3Vs of Big Data?
-  options: null
+  options:
   '1': Volume, Velocity, Variety
   '2': Value, Volume, Variance
   '3': Velocity, Variance, Version
@@ -419,7 +419,7 @@
   topic: Basics
   difficulty: easy
   question: What is the difference between batch processing and real-time processing?
-  options: null
+  options:
   '1': Batch processes data in bulk, real-time processes data continuously
   '2': Both process data continuously
   '3': Batch processes only structured data, real-time processes unstructured
@@ -432,7 +432,7 @@
   topic: Basics
   difficulty: easy
   question: Give an example of a batch processing system.
-  options: null
+  options:
   '1': Apache Kafka
   '2': Apache Hadoop MapReduce
   '3': Apache Storm
@@ -445,7 +445,7 @@
   topic: Basics
   difficulty: easy
   question: Give an example of a real-time processing system.
-  options: null
+  options:
   '1': Apache Flink
   '2': Apache Hadoop
   '3': Microsoft Excel
@@ -458,7 +458,7 @@
   topic: Basics
   difficulty: easy
   question: What is Apache Spark?
-  options: null
+  options:
   '1': A distributed real-time monitoring system
   '2': A distributed data processing engine for big data analytics
   '3': A relational database
@@ -471,7 +471,7 @@
   topic: Basics
   difficulty: easy
   question: Why is Spark faster than Hadoop MapReduce?
-  options: null
+  options:
   '1': Spark stores data in RAM and uses DAG execution
   '2': Spark ignores data locality
   '3': Spark uses only disk-based storage
@@ -484,7 +484,7 @@
   topic: Basics
   difficulty: easy
   question: List the main components of the Spark ecosystem.
-  options: null
+  options:
   '1': Spark Core, Spark SQL, Spark Streaming, MLlib, GraphX
   '2': HDFS, YARN, Hive, Pig
   '3': MapReduce, HBase, Sqoop, Flume
@@ -497,7 +497,7 @@
   topic: Basics
   difficulty: easy
   question: What is Spark Core?
-  options: null
+  options:
   '1': The component that handles SQL queries
   '2': The foundation for Spark providing basic functionalities like task scheduling and memory management
   '3': The library for machine learning
@@ -510,7 +510,7 @@
   topic: Basics
   difficulty: easy
   question: What is Spark SQL used for?
-  options: null
+  options:
   '1': Running SQL queries and working with structured data
   '2': Handling unstructured streaming data
   '3': Performing graph computations
@@ -523,7 +523,7 @@
   topic: Basics
   difficulty: easy
   question: What is Spark Streaming?
-  options: null
+  options:
   '1': A library for working with static datasets
   '2': A library for processing real-time streaming data
   '3': A library for machine learning
@@ -536,7 +536,7 @@
   topic: Basics
   difficulty: easy
   question: What is MLlib in Spark?
-  options: null
+  options:
   '1': A library for graph computation
   '2': A library for machine learning algorithms
   '3': A library for SQL queries
@@ -549,7 +549,7 @@
   topic: Basics
   difficulty: easy
   question: What is GraphX in Spark?
-  options: null
+  options:
   '1': A library for streaming
   '2': A library for structured queries
   '3': A library for graph processing
@@ -562,7 +562,7 @@
   topic: Basics
   difficulty: easy
   question: Explain Sparkâ€™s architecture in one line.
-  options: null
+  options:
   '1': Master-Slave architecture with Driver and Executors
   '2': Only master node executes tasks
   '3': A purely peer-to-peer system
@@ -575,7 +575,7 @@
   topic: Basics
   difficulty: easy
   question: What is the role of the Driver in Spark?
-  options: null
+  options:
   '1': To execute tasks directly on worker nodes
   '2': To convert user code into tasks and schedule execution
   '3': To store RDDs in memory
@@ -588,7 +588,7 @@
   topic: Basics
   difficulty: easy
   question: What are Executors in Spark?
-  options: null
+  options:
   '1': Processes running on worker nodes executing tasks
   '2': Processes managing cluster resources
   '3': The Spark shell interface
@@ -601,7 +601,7 @@
   topic: Basics
   difficulty: easy
   question: What is the role of the Cluster Manager?
-  options: null
+  options:
   '1': To manage HDFS storage
   '2': To allocate resources to applications and manage cluster nodes
   '3': To execute SQL queries
@@ -614,7 +614,7 @@
   topic: Basics
   difficulty: easy
   question: What is the difference between Standalone and YARN in Spark?
-  options: null
+  options:
   '1': Standalone is Sparkâ€™s own manager, YARN is Hadoopâ€™s cluster manager
   '2': Both are identical in architecture
   '3': Standalone supports only SQL, YARN supports ML
@@ -627,7 +627,7 @@
   topic: Basics
   difficulty: easy
   question: What is Spark on Kubernetes?
-  options: null
+  options:
   '1': Running Spark applications in Docker containers orchestrated by Kubernetes
   '2': Spark integrated with Hadoop YARN
   '3': Spark replacing Kubernetes for scheduling
@@ -640,7 +640,7 @@
   topic: Basics
   difficulty: easy
   question: What is Local mode in Spark?
-  options: null
+  options:
   '1': Running Spark on a single JVM for testing and debugging
   '2': Running Spark across multiple nodes in a cluster
   '3': Running Spark on cloud only
@@ -653,7 +653,7 @@
   topic: Basics
   difficulty: easy
   question: What is Cluster mode in Spark?
-  options: null
+  options:
   '1': Running Spark applications on multiple nodes in a distributed environment
   '2': Running Spark locally on a single node
   '3': Running Spark without a driver
@@ -666,7 +666,7 @@
   topic: Basics
   difficulty: easy
   question: Which cluster managers can Spark run on?
-  options: null
+  options:
   '1': Standalone, YARN, Mesos, Kubernetes
   '2': Only YARN and Standalone
   '3': Only Mesos
@@ -679,7 +679,7 @@
   topic: Basics
   difficulty: easy
   question: What is Spark Shell?
-  options: null
+  options:
   '1': An interactive REPL for running Spark commands
   '2': A command-line tool for managing Hadoop clusters
   '3': A GUI for Spark job monitoring
@@ -692,7 +692,7 @@
   topic: Basics
   difficulty: easy
   question: Which languages are supported by Spark Shell?
-  options: null
+  options:
   '1': Scala and Python
   '2': Only Java
   '3': R and C++
@@ -705,7 +705,7 @@
   topic: Basics
   difficulty: easy
   question: Why is Spark Shell useful?
-  options: null
+  options:
   '1': For quick testing, prototyping, and learning Spark interactively
   '2': For managing HDFS
   '3': For training ML models in production
@@ -718,7 +718,7 @@
   topic: Basics
   difficulty: easy
   question: What is the difference between PySpark and Scala Spark?
-  options: null
+  options:
   '1': PySpark uses Python APIs, Scala Spark uses Scala APIs
   '2': Both are identical without any differences
   '3': PySpark is faster than Scala Spark
@@ -731,7 +731,7 @@
   topic: Basics
   difficulty: easy
   question: What is the role of DAG (Directed Acyclic Graph) in Spark execution?
-  options: null
+  options:
   '1': To represent execution plan of tasks in a fault-tolerant way
   '2': To store datasets in HDFS
   '3': To run SQL queries
@@ -744,7 +744,7 @@
   topic: Basics
   difficulty: easy
   question: What is SparkContext?
-  options: null
+  options:
   '1': The entry point for Spark functionalities before Spark 2.0
   '2': The component for SQL queries
   '3': The API for streaming data
@@ -757,7 +757,7 @@
   topic: Basics
   difficulty: easy
   question: What is SparkSession?
-  options: null
+  options:
   '1': The unified entry point to Spark introduced in 2.0
   '2': The API only for Spark SQL
   '3': The ML pipeline API
@@ -770,7 +770,7 @@
   topic: Basics
   difficulty: easy
   question: What is the difference between SparkContext and SparkSession?
-  options: null
+  options:
   '1': SparkContext is the old entry point, SparkSession is the unified entry point post 2.0
   '2': Both are identical
   '3': SparkContext is only for streaming, SparkSession is for SQL
@@ -783,7 +783,7 @@
   topic: Basics
   difficulty: easy
   question: What does RDD stand for in Spark and what role does it serve?
-  options: null
+  options:
   '1': Resilient Distributed Dataset, fundamental data structure of Spark
   '2': Random Distributed Data, temporary cache in Spark
   '3': Repeated Data Distribution, used for backups
@@ -796,7 +796,7 @@
   topic: Basics
   difficulty: easy
   question: Why are distributed datasets called 'resilient'?
-  options: null
+  options:
   '1': Because they can recover automatically from node failures
   '2': Because they are always stored on disk
   '3': Because they are immutable and cannot be changed
@@ -809,7 +809,7 @@
   topic: Basics
   difficulty: easy
   question: What does it mean that distributed datasets are immutable?
-  options: null
+  options:
   '1': Once created, they cannot be changed and only new datasets are derived
   '2': They can be updated in place at any time
   '3': They can be deleted partially on worker nodes
@@ -822,7 +822,7 @@
   topic: Basics
   difficulty: easy
   question: What does lazy evaluation mean in Spark?
-  options: null
+  options:
   '1': Transformations are executed immediately when called
   '2': Computation is triggered only when an action is performed
   '3': Spark delays loading libraries until runtime
@@ -835,7 +835,7 @@
   topic: Basics
   difficulty: medium
   question: What is the difference between narrow and wide dependencies in distributed datasets?
-  options: null
+  options:
   '1': Narrow dependencies require shuffling, wide dependencies do not
   '2': Narrow dependencies have limited parent partitions per child, wide dependencies can depend on many parent partitions
   '3': Narrow dependencies happen in streaming, wide dependencies in batch
@@ -848,7 +848,7 @@
   topic: Basics
   difficulty: easy
   question: Give an example of a narrow dependency operation.
-  options: null
+  options:
   '1': map()
   '2': reduceByKey()
   '3': groupByKey()
@@ -861,7 +861,7 @@
   topic: Basics
   difficulty: easy
   question: Give an example of a wide dependency operation.
-  options: null
+  options:
   '1': filter()
   '2': map()
   '3': groupByKey()
@@ -874,7 +874,7 @@
   topic: Basics
   difficulty: medium
   question: What is lineage in distributed datasets?
-  options: null
+  options:
   '1': The history of transformations used to build a dataset
   '2': The physical memory location of a dataset
   '3': The version control system for datasets
@@ -887,7 +887,7 @@
   topic: Basics
   difficulty: medium
   question: How does Spark use DAG (Directed Acyclic Graph) for distributed datasets?
-  options: null
+  options:
   '1': To represent the fault tolerance lineage of datasets
   '2': To allocate cluster resources
   '3': To store intermediate results on disk
@@ -900,7 +900,7 @@
   topic: Fault Tolerance
   difficulty: easy
   question: What is fault tolerance in distributed data structures?
-  options: null
+  options:
   '1': The ability to prevent all hardware failures completely
   '2': The ability to recover lost data and computations after failures
   '3': Running computations only on a single machine to avoid faults
@@ -913,7 +913,7 @@
   topic: Fault Tolerance
   difficulty: medium
   question: How does Spark achieve fault tolerance in Structured Streaming?
-  options: null
+  options:
   '1': By re-running failed queries from the beginning only
   '2': By using checkpointing and write-ahead logs to recover state and progress
   '3': By ignoring failed data records
@@ -926,7 +926,7 @@
   topic: Fault Tolerance
   difficulty: medium
   question: What is checkpointing in Spark?
-  options: null
+  options:
   '1': Saving intermediate RDDs to disk to truncate lineage for recovery
   '2': A mechanism to replicate data to all executors
   '3': A system for caching datasets in memory
@@ -939,7 +939,7 @@
   topic: Fault Tolerance
   difficulty: medium
   question: What is the role of Write-Ahead Logs (WAL) in Spark Streaming?
-  options: null
+  options:
   '1': To store log messages for debugging only
   '2': To replicate data across clusters
   '3': To ensure received data is reliably stored before processing
@@ -952,7 +952,7 @@
   topic: Fault Tolerance
   difficulty: medium
   question: How does Spark recover RDDs when a node fails?
-  options: null
+  options:
   '1': By restarting the cluster from scratch
   '2': By recomputing lost partitions using lineage information
   '3': By storing all data permanently in RAM
@@ -965,7 +965,7 @@
   topic: Transformations
   difficulty: easy
   question: What are transformations in Spark's distributed datasets?
-  options: null
+  options:
   '1': Operations that trigger immediate computation
   '2': Operations that define a new RDD from an existing one without immediate execution
   '3': Actions that return values to the driver program
@@ -978,7 +978,7 @@
   topic: Transformations
   difficulty: easy
   question: Give two examples of transformations in Spark.
-  options: null
+  options:
   '1': map(), flatMap()
   '2': collect(), count()
   '3': reduce(), take()
@@ -991,7 +991,7 @@
   topic: Transformations
   difficulty: easy
   question: What does the map() transformation do on a distributed dataset?
-  options: null
+  options:
   '1': Returns only distinct elements
   '2': Applies a function to each element and returns a new RDD of the same size
   '3': Splits elements into multiple parts and flattens them
@@ -1004,7 +1004,7 @@
   topic: Transformations
   difficulty: easy
   question: What does the flatMap() transformation do on a distributed dataset?
-  options: null
+  options:
   '1': Maps each element to zero or more elements and flattens the result
   '2': Filters elements based on a condition
   '3': Returns a random subset of the dataset
@@ -1017,7 +1017,7 @@
   topic: Transformations
   difficulty: easy
   question: What does the filter() transformation do on a distributed dataset?
-  options: null
+  options:
   '1': Applies a function to all elements
   '2': Returns only elements that satisfy a given condition
   '3': Groups data by key
@@ -1030,7 +1030,7 @@
   topic: Actions
   difficulty: easy
   question: What are actions in Spark's distributed datasets?
-  options: null
+  options:
   '1': Operations that define a new dataset lazily
   '2': Operations that trigger execution and return results or write output
   '3': Operations that only transform data without computing
@@ -1043,7 +1043,7 @@
   topic: Actions
   difficulty: easy
   question: Give two examples of actions in Spark.
-  options: null
+  options:
   '1': reduce(), collect()
   '2': map(), flatMap()
   '3': filter(), distinct()
@@ -1056,7 +1056,7 @@
   topic: Actions
   difficulty: medium
   question: What does reduce() action do in Spark?
-  options: null
+  options:
   '1': Saves data to disk
   '2': Aggregates elements of an RDD using a specified function
   '3': Groups elements by key
@@ -1069,7 +1069,7 @@
   topic: Actions
   difficulty: medium
   question: What is the difference between reduceByKey and groupByKey?
-  options: null
+  options:
   '1': reduceByKey combines values per key locally before shuffling, groupByKey shuffles all data without pre-aggregation
   '2': groupByKey is faster and more efficient than reduceByKey
   '3': reduceByKey only works with strings, groupByKey only works with numbers
@@ -1082,7 +1082,7 @@
   topic: Actions
   difficulty: easy
   question: What does the collect() action do on a distributed dataset?
-  options: null
+  options:
   '1': Gathers all elements from workers and returns them to the driver program
   '2': Saves the dataset to HDFS
   '3': Removes duplicate elements
@@ -1095,7 +1095,7 @@
   topic: Actions
   difficulty: easy
   question: What does the count() action do on a distributed dataset?
-  options: null
+  options:
   '1': Returns the first element
   '2': Returns the total number of elements
   '3': Saves the dataset to a text file
@@ -1108,7 +1108,7 @@
   topic: Actions
   difficulty: easy
   question: What does the take() action do on a distributed dataset?
-  options: null
+  options:
   '1': Returns a fixed number of elements from the dataset
   '2': Removes elements that donâ€™t match a condition
   '3': Saves the dataset in sequence files
@@ -1121,7 +1121,7 @@
   topic: Actions
   difficulty: easy
   question: What does saveAsTextFile() action do?
-  options: null
+  options:
   '1': Saves the RDD as a text file in the local file system or HDFS
   '2': Saves the RDD as a binary file only
   '3': Collects elements and prints them on the driver console
@@ -1134,7 +1134,7 @@
   topic: RDD
   difficulty: easy
   question: How can you create a distributed dataset from a collection?
-  options: null
+  options:
   '1': Using sc.textFile()
   '2': Using sc.parallelize()
   '3': Using sc.union()
@@ -1147,7 +1147,7 @@
   topic: RDD
   difficulty: easy
   question: How can you create a distributed dataset from an external file?
-  options: null
+  options:
   '1': Using sc.parallelize()
   '2': Using sc.textFile("path")
   '3': Using sc.union()
@@ -1160,7 +1160,7 @@
   topic: RDD
   difficulty: medium
   question: What is the purpose of the join() operation on distributed datasets?
-  options: null
+  options:
   '1': To combine elements with the same key from two RDDs
   '2': To remove duplicates from an RDD
   '3': To split data into multiple partitions
@@ -1173,7 +1173,7 @@
   topic: RDD
   difficulty: easy
   question: What does the union() operation do in distributed datasets?
-  options: null
+  options:
   '1': Returns only distinct elements from two RDDs
   '2': Combines two RDDs into one containing all elements
   '3': Performs a cross product of two RDDs
@@ -1186,7 +1186,7 @@
   topic: RDD
   difficulty: easy
   question: What does the distinct() operation do in distributed datasets?
-  options: null
+  options:
   '1': Returns only distinct elements from an RDD
   '2': Returns a fixed number of elements
   '3': Joins two datasets together
@@ -1199,7 +1199,7 @@
   topic: RDD
   difficulty: medium
   question: What does the cartesian() operation do in distributed datasets?
-  options: null
+  options:
   '1': Returns a cross product of all elements from two RDDs
   '2': Returns only unique pairs of elements
   '3': Groups values by key
@@ -1212,7 +1212,7 @@
   topic: Caching
   difficulty: easy
   question: What is dataset persistence in Spark?
-  options: null
+  options:
   '1': The process of recomputing transformations every time
   '2': The mechanism to store RDDs or DataFrames in memory or disk for reuse
   '3': The replication of datasets across all worker nodes
@@ -1225,7 +1225,7 @@
   topic: Caching
   difficulty: medium
   question: What is the difference between cache() and persist() in Spark?
-  options: null
+  options:
   '1': cache() stores data in memory only, persist() allows custom storage levels
   '2': cache() saves data to HDFS, persist() keeps it in memory
   '3': persist() is faster than cache() in all cases
@@ -1238,7 +1238,7 @@
   topic: Caching
   difficulty: medium
   question: What caching strategies does Spark provide?
-  options: null
+  options:
   '1': MEMORY_ONLY, MEMORY_AND_DISK, DISK_ONLY, and others
   '2': HDFS_ONLY, DB_ONLY, CACHE_ONLY
   '3': RAM_ONLY, GPU_ONLY, SSD_ONLY
@@ -1251,7 +1251,7 @@
   topic: Caching
   difficulty: medium
   question: Why is caching useful in Spark applications?
-  options: null
+  options:
   '1': It reduces recomputation and speeds up iterative algorithms
   '2': It removes the need for data shuffling
   '3': It eliminates the need for cluster managers
@@ -1264,7 +1264,7 @@
   topic: Caching
   difficulty: easy
   question: Which method unpersists a cached dataset in Spark?
-  options: null
+  options:
   '1': dataset.clear()
   '2': dataset.drop()
   '3': dataset.unpersist()
@@ -1277,7 +1277,7 @@
   topic: DataFrames
   difficulty: easy
   question: What is a DataFrame in Spark?
-  options: null
+  options:
   '1': A distributed collection of rows with a schema like a table
   '2': A single file stored in HDFS
   '3': A local array of objects in Scala
@@ -1290,7 +1290,7 @@
   topic: DataFrames
   difficulty: medium
   question: What is the difference between an RDD, DataFrame, and Dataset?
-  options: null
+  options:
   '1': RDD is low-level, DataFrame adds schema, Dataset provides type safety with schema
   '2': They are all identical in Spark
   '3': DataFrames are faster than Datasets in all cases
@@ -1303,7 +1303,7 @@
   topic: DataFrames
   difficulty: medium
   question: What is the role of a schema in Spark DataFrames?
-  options: null
+  options:
   '1': It defines data types and column names for structured data
   '2': It stores metadata for RDD partitions
   '3': It specifies how data is replicated
@@ -1316,7 +1316,7 @@
   topic: DataFrames
   difficulty: easy
   question: How can you create a DataFrame from an RDD?
-  options: null
+  options:
   '1': By using toDF() on the RDD
   '2': By using sc.parallelize()
   '3': By using groupByKey()
@@ -1329,7 +1329,7 @@
   topic: DataFrames
   difficulty: easy
   question: How can you create a DataFrame from a JSON file?
-  options: null
+  options:
   '1': spark.read.json("path")
   '2': spark.read.csv("path")
   '3': spark.read.parquet("path")
@@ -1342,7 +1342,7 @@
   topic: DataFrames
   difficulty: easy
   question: How can you create a DataFrame from a Parquet file?
-  options: null
+  options:
   '1': spark.read.json("path")
   '2': spark.read.csv("path")
   '3': spark.read.parquet("path")
@@ -1355,7 +1355,7 @@
   topic: DataFrames
   difficulty: easy
   question: How can you create a DataFrame from a CSV file?
-  options: null
+  options:
   '1': spark.read.json("path")
   '2': spark.read.csv("path")
   '3': spark.read.text("path")
@@ -1368,7 +1368,7 @@
   topic: DataFrames
   difficulty: medium
   question: How can you create a DataFrame from a Hive table?
-  options: null
+  options:
   '1': spark.read.table("table_name")
   '2': spark.read.hdfs("table_name")
   '3': spark.read.json("table_name")
@@ -1381,7 +1381,7 @@
   topic: DataFrames
   difficulty: easy
   question: What does the select() operation do in DataFrames?
-  options: null
+  options:
   '1': Selects specific columns from a DataFrame
   '2': Filters rows by condition
   '3': Groups data by key
@@ -1394,7 +1394,7 @@
   topic: DataFrames
   difficulty: easy
   question: What does withColumn() do in DataFrames?
-  options: null
+  options:
   '1': Adds or replaces a column in a DataFrame
   '2': Removes a column from a DataFrame
   '3': Renames the DataFrame schema
@@ -1407,7 +1407,7 @@
   topic: DataFrames
   difficulty: easy
   question: What does the filter() operation do in DataFrames?
-  options: null
+  options:
   '1': Returns rows that satisfy a condition
   '2': Returns only distinct rows
   '3': Returns the first n rows
@@ -1420,7 +1420,7 @@
   topic: DataFrames
   difficulty: medium
   question: What do groupBy() and agg() do in DataFrames?
-  options: null
+  options:
   '1': Group rows by column(s) and apply aggregation functions
   '2': Select specific columns from the dataset
   '3': Add or replace a column
@@ -1433,7 +1433,7 @@
   topic: DataFrames
   difficulty: medium
   question: What is partitioning in Spark DataFrames?
-  options: null
+  options:
   '1': Dividing DataFrame data across multiple partitions for parallelism
   '2': Saving DataFrames into multiple files
   '3': Removing duplicates from DataFrames
@@ -1446,7 +1446,7 @@
   topic: Datasets
   difficulty: easy
   question: What is a Dataset in Spark?
-  options: null
+  options:
   '1': A distributed collection of strongly-typed objects with schema support
   '2': A distributed collection of raw bytes only
   '3': An unstructured text file stored in HDFS
@@ -1459,7 +1459,7 @@
   topic: Datasets
   difficulty: medium
   question: What is the main advantage of Datasets over DataFrames?
-  options: null
+  options:
   '1': Type safety at compile time while keeping benefits of Spark SQL optimizations
   '2': Faster performance in all cases than DataFrames
   '3': Ability to use Datasets only in Python
@@ -1472,7 +1472,7 @@
   topic: Datasets
   difficulty: medium
   question: Which languages currently support Spark Datasets?
-  options: null
+  options:
   '1': Scala and Java
   '2': Python and R
   '3': Only SQL
@@ -1485,7 +1485,7 @@
   topic: Datasets
   difficulty: medium
   question: How can you create a Dataset from a DataFrame in Scala?
-  options: null
+  options:
   '1': By using .as[Type] on the DataFrame
   '2': By using sc.parallelize()
   '3': By using groupByKey()
@@ -1498,7 +1498,7 @@
   topic: Datasets
   difficulty: easy
   question: What is an Encoder in Spark Datasets?
-  options: null
+  options:
   '1': A mechanism that maps JVM objects to Spark SQL types for serialization
   '2': A tool for compressing datasets on disk
   '3': A schema validator for Hive queries
@@ -1511,7 +1511,7 @@
   topic: Optimization
   difficulty: medium
   question: What is the Catalyst Optimizer in Spark?
-  options: null
+  options:
   '1': A query optimization framework in Spark SQL
   '2': A caching mechanism for Spark RDDs
   '3': A tool for monitoring Spark jobs
@@ -1524,7 +1524,7 @@
   topic: Optimization
   difficulty: easy
   question: What are broadcast variables in Spark?
-  options: null
+  options:
   '1': Variables shared with all worker nodes efficiently without sending with each task
   '2': Variables that accumulate values across nodes
   '3': Variables that represent RDD partitions
@@ -1537,7 +1537,7 @@
   topic: Optimization
   difficulty: easy
   question: What are accumulators in Spark?
-  options: null
+  options:
   '1': Variables used for aggregating values across executors
   '2': Variables that replace broadcast variables
   '3': Variables that store metadata of jobs
@@ -1550,7 +1550,7 @@
   topic: Optimization
   difficulty: medium
   question: What is data locality in Spark?
-  options: null
+  options:
   '1': Running computations close to the data to reduce network overhead
   '2': Saving data on local disks only
   '3': Partitioning data across executors
@@ -1563,7 +1563,7 @@
   topic: Optimization
   difficulty: medium
   question: How can partitioning strategies improve Spark performance?
-  options: null
+  options:
   '1': By reducing shuffling and aligning data with computation
   '2': By increasing the number of driver nodes
   '3': By removing data locality constraints
@@ -1576,7 +1576,7 @@
   topic: Optimization
   difficulty: medium
   question: What is shuffling in Spark?
-  options: null
+  options:
   '1': The process of redistributing data across partitions for operations like groupBy and join
   '2': The caching of RDDs in memory
   '3': The process of saving RDDs to disk
@@ -1589,7 +1589,7 @@
   topic: Optimization
   difficulty: medium
   question: Why is shuffling expensive in Spark?
-  options: null
+  options:
   '1': It involves disk I/O, data serialization, and network transfer
   '2': It requires more driver memory
   '3': It eliminates fault tolerance
@@ -1602,7 +1602,7 @@
   topic: Optimization
   difficulty: medium
   question: What is the Tungsten execution engine in Spark SQL?
-  options: null
+  options:
   '1': A project to improve Spark SQL performance with memory management and code generation
   '2': A library for Spark Streaming
   '3': A caching layer for Spark MLlib
@@ -1615,7 +1615,7 @@
   topic: Optimization
   difficulty: hard
   question: What is whole-stage code generation in Spark SQL?
-  options: null
+  options:
   '1': A technique that generates optimized bytecode for entire query stages
   '2': A method for caching DataFrames
   '3': A way to parallelize file reading
@@ -1628,7 +1628,7 @@
   topic: Optimization
   difficulty: hard
   question: How do broadcast hints improve query performance in Spark SQL?
-  options: null
+  options:
   '1': By forcing small tables to be broadcast for efficient joins
   '2': By caching broadcast variables automatically
   '3': By pruning partitions at runtime
@@ -1641,7 +1641,7 @@
   topic: Optimization
   difficulty: medium
   question: How does partition pruning optimize queries in Spark SQL?
-  options: null
+  options:
   '1': By avoiding reading irrelevant partitions based on filter conditions
   '2': By compressing partition data on disk
   '3': By caching partitions in executors
@@ -1654,7 +1654,7 @@
   topic: Optimization
   difficulty: medium
   question: Why is file format selection important for Spark SQL performance?
-  options: null
+  options:
   '1': Columnar formats like Parquet and ORC reduce I/O and improve query speed
   '2': Text formats always run faster than binary formats
   '3': File format has no impact on performance
@@ -1667,7 +1667,7 @@
   topic: Optimization
   difficulty: medium
   question: How can shuffle performance be optimized in Spark?
-  options: null
+  options:
   '1': By tuning spark.sql.shuffle.partitions and using map-side combines
   '2': By increasing driver memory only
   '3': By disabling partitioning
@@ -1680,7 +1680,7 @@
   topic: Optimization
   difficulty: medium
   question: Why is partition size important in Spark performance optimization?
-  options: null
+  options:
   '1': Too small partitions cause overhead, too large partitions reduce parallelism
   '2': Large partitions always improve performance
   '3': Partition size only affects caching
@@ -1693,7 +1693,7 @@
   topic: Optimization
   difficulty: easy
   question: What is the recommended partition size for Spark?
-  options: null
+  options:
   '1': 100â€“200 MB per partition
   '2': 10 GB per partition
   '3': 1 KB per partition
@@ -1706,7 +1706,7 @@
   topic: Optimization
   difficulty: medium
   question: How can broadcast joins improve performance in Spark?
-  options: null
+  options:
   '1': By broadcasting small tables to executors and avoiding shuffles
   '2': By caching all large tables automatically
   '3': By pruning partitions dynamically
@@ -1719,7 +1719,7 @@
   topic: UDF
   difficulty: easy
   question: What is a User-Defined Function (UDF) in Spark?
-  options: null
+  options:
   '1': A custom function that extends Spark SQL capabilities
   '2': A built-in aggregation function in Spark
   '3': A method for persisting datasets
@@ -1732,7 +1732,7 @@
   topic: UDF
   difficulty: medium
   question: What is the difference between a UDF and a UDAF in Spark?
-  options: null
+  options:
   '1': UDF operates on a single row, UDAF performs aggregations across rows
   '2': UDF is only for Scala, UDAF is for Python
   '3': UDAF is faster than UDF in all cases
@@ -1745,7 +1745,7 @@
   topic: UDF
   difficulty: medium
   question: Why can UDFs sometimes reduce Spark SQL performance?
-  options: null
+  options:
   '1': They bypass Catalyst Optimizerâ€™s optimizations
   '2': They disable DataFrame caching
   '3': They force Spark to use RDD APIs only
@@ -1758,7 +1758,7 @@
   topic: Window Functions
   difficulty: easy
   question: What are window functions in Spark SQL?
-  options: null
+  options:
   '1': Functions that perform calculations across a group of rows related to the current row
   '2': Functions for filtering DataFrames
   '3': Functions for saving files in windows format
@@ -1771,7 +1771,7 @@
   topic: Window Functions
   difficulty: medium
   question: Which of the following is an example of a window function in Spark SQL?
-  options: null
+  options:
   '1': row_number()
   '2': groupBy()
   '3': collect()
@@ -1784,7 +1784,7 @@
   topic: Spark SQL
   difficulty: easy
   question: What is Spark SQL?
-  options: null
+  options:
   '1': A module for structured data processing with SQL and DataFrame APIs
   '2': A Spark library for graph processing
   '3': A replacement for Spark Core
@@ -1797,7 +1797,7 @@
   topic: Spark SQL
   difficulty: medium
   question: What are the main components of Spark SQL?
-  options: null
+  options:
   '1': Catalyst Optimizer, Tungsten Execution Engine, SQL Parser
   '2': DAG Scheduler, Shuffle Manager, Cluster Manager
   '3': MLlib, GraphX, Spark Streaming
@@ -1810,7 +1810,7 @@
   topic: Spark SQL
   difficulty: medium
   question: What is schema evolution in Spark SQL?
-  options: null
+  options:
   '1': The ability to handle changes in schema over time in data sources
   '2': The process of converting DataFrames to RDDs
   '3': The optimization of SQL queries by Catalyst
@@ -1823,7 +1823,7 @@
   topic: Joins
   difficulty: medium
   question: What are the types of joins supported in Spark SQL?
-  options: null
+  options:
   '1': Inner, Left, Right, Full, Cross, Semi, Anti
   '2': Only Inner and Outer
   '3': Only Broadcast and Shuffle
@@ -1836,7 +1836,7 @@
   topic: Joins
   difficulty: medium
   question: What is a broadcast join in Spark SQL?
-  options: null
+  options:
   '1': A join where a small table is broadcast to all executors to avoid shuffles
   '2': A join that requires all data to be cached
   '3': A join where results are broadcast to the driver
@@ -1849,7 +1849,7 @@
   topic: Joins
   difficulty: medium
   question: When should broadcast joins be used in Spark?
-  options: null
+  options:
   '1': When one table is small enough to fit in executor memory
   '2': When both tables are very large
   '3': Only when using Parquet format
@@ -1862,7 +1862,7 @@
   topic: Joins
   difficulty: medium
   question: What is a shuffle join in Spark SQL?
-  options: null
+  options:
   '1': A join that requires shuffling data across the cluster based on join keys
   '2': A join that avoids network transfers
   '3': A join limited to Hive tables
@@ -1875,7 +1875,7 @@
   topic: Joins
   difficulty: medium
   question: What is a sort-merge join in Spark SQL?
-  options: null
+  options:
   '1': A join where both datasets are sorted on join keys before merging
   '2': A join that works only with CSV files
   '3': A join used only in local mode
@@ -1888,7 +1888,7 @@
   topic: Data Skew
   difficulty: easy
   question: What is data skew in Spark?
-  options: null
+  options:
   '1': An uneven distribution of data across partitions leading to performance issues
   '2': The compression of data in Parquet format
   '3': The replication of data for fault tolerance
@@ -1901,7 +1901,7 @@
   topic: Data Skew
   difficulty: medium
   question: How does Spark SQL handle data skew in joins?
-  options: null
+  options:
   '1': By using techniques like broadcast joins, salting, and adaptive execution
   '2': By disabling shuffles
   '3': By repartitioning all tables randomly
@@ -1914,7 +1914,7 @@
   topic: Data Skew
   difficulty: medium
   question: What are techniques to mitigate data skew in Spark?
-  options: null
+  options:
   '1': Key salting, broadcast joins, increasing parallelism
   '2': Disabling partitioning, reducing executors
   '3': Converting all tables to CSV format
@@ -1927,7 +1927,7 @@
   topic: Data Skew
   difficulty: medium
   question: What is data skew in Spark?
-  options: null
+  options:
   '1': Uneven distribution of data across partitions leading to workload imbalance
   '2': Data loss during shuffling
   '3': Data replication for fault tolerance
@@ -1940,7 +1940,7 @@
   topic: Data Skew
   difficulty: medium
   question: How does Spark SQL handle data skew in joins?
-  options: null
+  options:
   '1': By using techniques like salting, adaptive execution, or broadcast joins
   '2': By ignoring skewed partitions
   '3': By reducing the number of executors
@@ -1953,7 +1953,7 @@
   topic: Data Skew
   difficulty: medium
   question: Which of the following is a technique to mitigate data skew in Spark?
-  options: null
+  options:
   '1': Key salting
   '2': Adaptive Query Execution (AQE)
   '3': Broadcast joins
@@ -1966,7 +1966,7 @@
   topic: AQE
   difficulty: medium
   question: What is Adaptive Query Execution (AQE) in Spark SQL?
-  options: null
+  options:
   '1': A framework that dynamically optimizes queries at runtime
   '2': A static rule-based optimizer for SQL queries
   '3': A data serialization mechanism
@@ -1979,7 +1979,7 @@
   topic: AQE
   difficulty: medium
   question: What are the benefits of AQE in Spark SQL?
-  options: null
+  options:
   '1': Better join strategies, skew handling, and optimized partition sizes
   '2': Faster Spark job submission
   '3': Automatic caching of DataFrames
@@ -1992,7 +1992,7 @@
   topic: AQE
   difficulty: medium
   question: How does AQE improve join strategies in Spark SQL?
-  options: null
+  options:
   '1': By dynamically switching between shuffle and broadcast joins
   '2': By forcing sort-merge joins only
   '3': By removing shuffles entirely
@@ -2005,7 +2005,7 @@
   topic: AQE
   difficulty: medium
   question: How does AQE handle skewed data in Spark SQL?
-  options: null
+  options:
   '1': By splitting skewed partitions into smaller sub-partitions
   '2': By ignoring skewed data
   '3': By storing skewed data in Hive tables
@@ -2018,7 +2018,7 @@
   topic: AQE
   difficulty: medium
   question: Which of the following optimizations can AQE perform?
-  options: null
+  options:
   '1': Join strategy optimization
   '2': Skewed partition handling
   '3': Coalescing partitions
@@ -2031,7 +2031,7 @@
   topic: Partitioning
   difficulty: medium
   question: What is partitioning in Spark SQL?
-  options: null
+  options:
   '1': Dividing data into smaller subsets based on column values for faster query performance
   '2': Storing data only on a single node
   '3': Replicating data across executors
@@ -2044,7 +2044,7 @@
   topic: Partitioning
   difficulty: medium
   question: What is bucketing in Spark SQL?
-  options: null
+  options:
   '1': Distributing data into fixed number of buckets based on hash of a column
   '2': Randomly assigning data to partitions
   '3': Replicating data to all executors
@@ -2057,7 +2057,7 @@
   topic: Partitioning
   difficulty: medium
   question: What is Z-ordering in Spark SQL?
-  options: null
+  options:
   '1': A multi-dimensional clustering technique for improving query performance
   '2': Sorting DataFrames by primary key
   '3': A caching strategy in Spark SQL
@@ -2070,7 +2070,7 @@
   topic: Partitioning
   difficulty: medium
   question: What is the difference between bucketing and partitioning?
-  options: null
+  options:
   '1': Partitioning splits data by column values, bucketing splits data into fixed buckets using a hash function
   '2': Both are identical in Spark SQL
   '3': Bucketing stores data in Hive, partitioning does not
@@ -2083,7 +2083,7 @@
   topic: Hive
   difficulty: medium
   question: How does Spark SQL integrate with Hive?
-  options: null
+  options:
   '1': By reading Hive tables and using Hive metastore for schema management
   '2': By replacing Hiveâ€™s execution engine entirely
   '3': By converting Hive queries into RDD transformations only
@@ -2096,7 +2096,7 @@
   topic: Hive
   difficulty: medium
   question: What is the Hive metastore in Spark SQL?
-  options: null
+  options:
   '1': A central repository storing metadata about Hive tables and schemas
   '2': A cache for Hive queries in Spark
   '3': A file format used by Hive
@@ -2109,7 +2109,7 @@
   topic: Hive
   difficulty: medium
   question: What are managed and external Hive tables in Spark SQL?
-  options: null
+  options:
   '1': Managed tables store data in Hive warehouse, external tables reference data outside Hive warehouse
   '2': Both store data only in HDFS
   '3': Managed tables are read-only, external are write-only
@@ -2122,7 +2122,7 @@
   topic: Hive
   difficulty: medium
   question: How can you enable Hive support in Spark?
-  options: null
+  options:
   '1': By using SparkSession.builder.enableHiveSupport()
   '2': By importing HiveContext manually in all jobs
   '3': By installing Hive separately and starting it with Spark
@@ -2135,7 +2135,7 @@
   topic: DAG Scheduler
   difficulty: medium
   question: What is the role of the DAG Scheduler in Spark?
-  options: null
+  options:
   '1': Divides jobs into stages and stages into tasks for execution
   '2': Manages memory allocation for executors
   '3': Handles data serialization in Spark
@@ -2148,7 +2148,7 @@
   topic: DAG Scheduler
   difficulty: medium
   question: What is the difference between a stage and a task in Sparkâ€™s DAG Scheduler?
-  options: null
+  options:
   '1': A stage is a group of tasks, while a task is the smallest execution unit
   '2': A stage runs on a single executor, tasks run across multiple executors
   '3': A stage is a DataFrame, a task is an RDD
@@ -2161,7 +2161,7 @@
   topic: DAG Scheduler
   difficulty: medium
   question: What triggers the creation of a new stage in Spark?
-  options: null
+  options:
   '1': The presence of a shuffle dependency between operations
   '2': The use of filter transformations
   '3': When an RDD is cached
@@ -2174,7 +2174,7 @@
   topic: Task Scheduling
   difficulty: medium
   question: How does Spark assign tasks to executors?
-  options: null
+  options:
   '1': Based on data locality and available executor resources
   '2': Randomly without considering data location
   '3': Only by memory size of the executor
@@ -2187,7 +2187,7 @@
   topic: Shuffle Operations
   difficulty: medium
   question: What is a shuffle in Spark?
-  options: null
+  options:
   '1': The process of redistributing data across partitions based on keys
   '2': Saving RDDs to external storage
   '3': Merging multiple DataFrames
@@ -2200,7 +2200,7 @@
   topic: Shuffle Operations
   difficulty: medium
   question: Why are shuffle operations expensive in Spark?
-  options: null
+  options:
   '1': They involve disk I/O, network transfer, and serialization overhead
   '2': They require creating new SparkContexts
   '3': They always need Kryo serialization
@@ -2213,7 +2213,7 @@
   topic: Tungsten Engine
   difficulty: medium
   question: What is the Tungsten project in Spark?
-  options: null
+  options:
   '1': An initiative to improve memory management and CPU efficiency in Spark
   '2': A storage format for Spark SQL
   '3': A shuffle optimization mechanism only
@@ -2226,7 +2226,7 @@
   topic: Tungsten Engine
   difficulty: medium
   question: What is whole-stage code generation in Tungsten?
-  options: null
+  options:
   '1': A technique that generates optimized Java bytecode for query execution
   '2': A caching mechanism for intermediate RDDs
   '3': A way to store DataFrames in Parquet format
@@ -2239,7 +2239,7 @@
   topic: Tungsten Engine
   difficulty: medium
   question: What is vectorized execution in Spark Tungsten?
-  options: null
+  options:
   '1': Processing multiple rows of data at once for efficiency
   '2': Converting RDDs into vectors for MLlib
   '3': A graph computation model in Spark GraphX
@@ -2252,7 +2252,7 @@
   topic: Memory Management
   difficulty: medium
   question: What are the two main categories of memory in Sparkâ€™s unified memory model?
-  options: null
+  options:
   '1': Execution memory and storage memory
   '2': Heap memory and off-heap memory
   '3': Driver memory and executor memory
@@ -2265,7 +2265,7 @@
   topic: Memory Management
   difficulty: medium
   question: How does Spark dynamically allocate execution and storage memory?
-  options: null
+  options:
   '1': By allowing unused space in one category to be borrowed by the other
   '2': By pre-allocating fixed blocks
   '3': By increasing JVM heap size at runtime
@@ -2278,7 +2278,7 @@
   topic: Memory Management
   difficulty: medium
   question: Why is garbage collection tuning important in Spark?
-  options: null
+  options:
   '1': To minimize pause times and avoid memory leaks in executors
   '2': To reduce shuffle dependency
   '3': To enable schema evolution
@@ -2291,7 +2291,7 @@
   topic: Memory Management
   difficulty: medium
   question: Which JVM garbage collectors are commonly tuned for Spark workloads?
-  options: null
+  options:
   '1': G1GC and CMS (Concurrent Mark Sweep)
   '2': Serial GC only
   '3': ZGC exclusively
@@ -2304,7 +2304,7 @@
   topic: Serialization
   difficulty: medium
   question: What are the two main serialization formats in Spark?
-  options: null
+  options:
   '1': Java serialization and Kryo serialization
   '2': JSON serialization and Avro serialization
   '3': Parquet serialization and ORC serialization
@@ -2317,7 +2317,7 @@
   topic: Serialization
   difficulty: medium
   question: Why is Kryo serialization preferred over Java serialization in Spark?
-  options: null
+  options:
   '1': It is faster and more compact
   '2': It automatically handles schema evolution
   '3': It does not require registering classes
@@ -2330,7 +2330,7 @@
   topic: Serialization
   difficulty: medium
   question: What is a limitation of Kryo serialization?
-  options: null
+  options:
   '1': Requires explicit class registration for best performance
   '2': It cannot serialize large objects
   '3': It works only with DataFrames
@@ -2343,7 +2343,7 @@
   topic: Resource Tuning
   difficulty: medium
   question: What are the main executor-related parameters to tune in Spark?
-  options: null
+  options:
   '1': Executor memory, number of cores, and number of executors
   '2': Shuffle partitions, SQL parser, and DAG scheduler
   '3': Catalyst optimizer rules and broadcast hints
@@ -2356,7 +2356,7 @@
   topic: Resource Tuning
   difficulty: medium
   question: What is the trade-off in setting a high number of executor cores?
-  options: null
+  options:
   '1': Can cause contention and longer garbage collection pauses
   '2': Always guarantees better performance
   '3': Reduces data skew automatically
@@ -2369,7 +2369,7 @@
   topic: Resource Tuning
   difficulty: medium
   question: How can improper memory tuning affect Spark performance?
-  options: null
+  options:
   '1': It may cause frequent garbage collection and out-of-memory errors
   '2': It always improves Catalyst optimizations
   '3': It reduces DAG scheduling overhead
@@ -2382,7 +2382,7 @@
   topic: Resource Tuning
   difficulty: medium
   question: What is dynamic resource allocation in Spark?
-  options: null
+  options:
   '1': A feature that scales executors up or down based on workload
   '2': Allocating resources only at application startup
   '3': Manually configuring executor memory and cores
@@ -2395,7 +2395,7 @@
   topic: Resource Tuning
   difficulty: medium
   question: What is required for dynamic resource allocation to work in Spark?
-  options: null
+  options:
   '1': External shuffle service enabled
   '2': Kryo serialization enabled
   '3': Using Catalyst optimizer
@@ -2408,7 +2408,7 @@
   topic: Cluster Managers
   difficulty: medium
   question: What is the role of a cluster manager in Spark?
-  options: null
+  options:
   '1': Allocates resources and manages executors across the cluster
   '2': Parses SQL queries into execution plans
   '3': Handles serialization of objects
@@ -2421,7 +2421,7 @@
   topic: Cluster Managers
   difficulty: medium
   question: What is the main difference between YARN and Kubernetes as Spark cluster managers?
-  options: null
+  options:
   '1': YARN is Hadoop-based, while Kubernetes is container-based
   '2': YARN works only with Scala, Kubernetes only with Python
   '3': Kubernetes is slower than YARN in all cases
@@ -2434,7 +2434,7 @@
   topic: Cluster Managers
   difficulty: medium
   question: What are the advantages of using Kubernetes over Standalone mode for Spark?
-  options: null
+  options:
   '1': Containerization, better scalability, and resource isolation
   '2': Always faster query execution than SQL Catalyst
   '3': No need for executors
@@ -2447,7 +2447,7 @@
   topic: Cluster Managers
   difficulty: medium
   question: Why is Mesos less commonly used for Spark today compared to Kubernetes?
-  options: null
+  options:
   '1': Decline in community support and preference for Kubernetes features
   '2': Mesos does not support shuffle operations
   '3': Mesos cannot run Spark in cluster mode
@@ -2460,7 +2460,7 @@
   topic: Debugging
   difficulty: medium
   question: How does the Spark UI help in debugging failed jobs?
-  options: null
+  options:
   '1': By showing DAG visualization, stage/task progress, and error logs
   '2': By automatically fixing failed jobs
   '3': By disabling shuffle operations
@@ -2473,7 +2473,7 @@
   topic: Logging
   difficulty: medium
   question: Which logging framework does Spark use by default?
-  options: null
+  options:
   '1': Log4j
   '2': SLF4J
   '3': Logback
@@ -2486,7 +2486,7 @@
   topic: Logging
   difficulty: medium
   question: Why should sensitive information be excluded from Spark logs?
-  options: null
+  options:
   '1': To prevent security risks and data leaks
   '2': To reduce log file size only
   '3': To improve DAG scheduling
@@ -2499,7 +2499,7 @@
   topic: Logging
   difficulty: medium
   question: What is a best practice in Spark application logging?
-  options: null
+  options:
   '1': Use appropriate log levels (INFO, WARN, ERROR) for clarity
   '2': Log every record processed by executors
   '3': Disable logging completely
@@ -2512,7 +2512,7 @@
   topic: Deployment
   difficulty: medium
   question: What is AWS EMR in the context of Spark?
-  options: null
+  options:
   '1': A managed cluster platform for running Spark and other big data frameworks
   '2': A Spark SQL optimizer
   '3': A data serialization format
@@ -2525,7 +2525,7 @@
   topic: Deployment
   difficulty: medium
   question: What is Databricks?
-  options: null
+  options:
   '1': A managed Spark service with collaborative features and optimizations
   '2': A Spark serialization framework
   '3': A standalone cluster manager
@@ -2538,7 +2538,7 @@
   topic: Deployment
   difficulty: medium
   question: Which of the following is NOT a Spark deployment mode?
-  options: null
+  options:
   '1': Local mode
   '2': Cluster mode
   '3': Client mode
@@ -2551,7 +2551,7 @@
   topic: Deployment
   difficulty: medium
   question: What are the advantages of using managed Spark services like Databricks over self-managed clusters?
-  options: null
+  options:
   '1': Simplified management, scalability, performance optimizations, and security
   '2': Only cheaper cost
   '3': They eliminate need for partitioning
@@ -2564,7 +2564,7 @@
   topic: Kubernetes
   difficulty: medium
   question: What is Spark on Kubernetes?
-  options: null
+  options:
   '1': Running Spark applications in containers orchestrated by Kubernetes
   '2': A Spark serialization framework
   '3': A Spark SQL optimizer
@@ -2577,7 +2577,7 @@
   topic: Kubernetes
   difficulty: medium
   question: How is driver scheduling different in Spark on Kubernetes compared to YARN?
-  options: null
+  options:
   '1': The driver runs inside a Kubernetes pod instead of YARNâ€™s ApplicationMaster
   '2': The driver always runs on the client machine in Kubernetes
   '3': The driver does not exist in Kubernetes deployments
@@ -2590,7 +2590,7 @@
   topic: Kubernetes
   difficulty: medium
   question: How are Spark executors launched in Kubernetes?
-  options: null
+  options:
   '1': As Kubernetes pods managed by the Kubernetes scheduler
   '2': As threads inside the driver
   '3': As Hadoop containers
@@ -2603,7 +2603,7 @@
   topic: Kubernetes
   difficulty: medium
   question: What challenges arise when running Spark on Kubernetes?
-  options: null
+  options:
   '1': Networking, security, resource isolation, and integration complexity
   '2': Lack of shuffle operations
   '3': Inability to use DataFrames
@@ -2616,7 +2616,7 @@
   topic: Kubernetes
   difficulty: medium
   question: How do ConfigMaps and Secrets help Spark on Kubernetes?
-  options: null
+  options:
   '1': By providing configuration data and sensitive credentials securely
   '2': By optimizing shuffle performance
   '3': By storing serialized RDDs

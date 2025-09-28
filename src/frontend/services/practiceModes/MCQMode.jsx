@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { loadQuestions } from "../practicePage.js";
 import { CheckCircle, XCircle, Shuffle } from "lucide-react";
 import { iconForStack, difficultyBadge, filterQuestions } from "../../utils/common.jsx";
+import { renderExamModeBanner } from "../examModeBanner.jsx";
 
 // Utility: shuffle array
 const shuffleArray = (arr) => arr.map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
@@ -36,7 +37,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             const mcqs = await loadQuestions("mcqs");
 
             if (!mounted) return;
-            console.log("Fetched", mcqs.length, "MCQs");
+
             setAllQuestions(mcqs);
             setQuestions(filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic }));
             setLoading(false);
@@ -371,23 +372,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             </div>
 
             {/* If practice is timed and exam not started, show centered info + start button */}
-            {(practiceType === "Overall Time" || practiceType === "Per Question Time") && examState === "idle" && (
-                <div className="flex-1 flex flex-col items-center justify-center text-center">
-                    <div className="max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">{practiceType} Mode</h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                            {practiceType === "Overall Time"
-                                ? "A total time will be allotted to solve all questions. Apply filters now and click Start to begin the timed session. Live scoring will be hidden during the run and revealed at the end."
-                                : "Each question will have a fixed time limit. Apply filters now and click Start to begin. Live scoring will be hidden during the run and revealed at the end."}
-                        </p>
-                        <div className="flex items-center justify-center gap-3">
-                            <button onClick={startExam} className="px-5 py-2 bg-blue-600 text-white rounded-lg">
-                                Start
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {renderExamModeBanner(practiceType, examState, startExam)}
 
             {/* If exam running show question UI but hide live stats; show timer and End button */}
             {examState === "running" && (

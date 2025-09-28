@@ -22,7 +22,7 @@ export async function loadQuestions(type = "theory") {
 
                 const text = await response.text();
                 const data = yaml.load(text);
-                console.log(`Loaded ${type} questions from ${techStack}:`, data.length);
+
                 if (Array.isArray(data)) {
                     allQuestions.push(...data);
                 }

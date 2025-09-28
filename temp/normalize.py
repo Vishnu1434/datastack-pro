@@ -4,62 +4,7 @@ from pathlib import Path
 
 # -------- Topic Mapping (Old → New) --------
 TOPIC_MAPPING = {
-    "rdd_operations": "RDD",
-    "rdd": "RDD",
-    "actions": "Actions",
-    "transformations": "Transformations",
-    "dataframe": "DataFrames",
-    "dataframes": "DataFrames",
-    "datasets": "Datasets",
-    "dataframes_vs_datasets": "DataFrames",
-    "spark-core": "Basics",
-    "spark basics": "Basics",
-    "spark sql": "Spark SQL",
-    "sql": "SQL",
-    "window_functions": "Window Functions",
-    "udf": "UDF",
-    "optimization": "Optimization",
-    "query_optimization": "Optimization",
-    "shuffle optimization": "Optimization",
-    "skew mitigation": "Data Skew",
-    "data_skew": "Data Skew",
-    "resource tuning": "Resource Tuning",
-    "caching strategies": "Caching",
-    "persistence": "Caching",
-    "partitioning": "Partitioning",
-    "serialization": "Serialization",
-    "garbage collection": "Memory Management",
-    "memory management": "Memory Management",
-    "dag scheduler": "DAG Scheduler",
-    "task scheduling": "Task Scheduling",
-    "dynamic resource allocation": "Resource Tuning",
-    "cluster managers": "Cluster Managers",
-    "tungsten project": "Tungsten Engine",
-    "fault tolerance": "Fault Tolerance",
-    "fault_tolerance": "Fault Tolerance",
-    "checkpointing": "Checkpointing",
-    "logging": "Logging",
-    "spark monitoring": "Monitoring",
-    "spark debugging": "Debugging",
-    "structured streaming": "Structured Streaming",
-    "spark-streaming": "Spark Streaming",
-    "incremental etl": "Incremental ETL",
-    "change data capture": "Data Capture",
-    "deployment": "Deployment",
-    "cloud deployments": "Deployment",
-    "spark on kubernetes": "Kubernetes",
-    "multi-tenancy": "Multi-Tenancy",
-    "spark security": "Spark Security",
-    "lakehouse architecture": "Lake House",
-    "lakehouse integration": "Lake House",
-    "lakehouse comparison": "Lake House",
-    "delta lake": "Delta Lake",
-    "apache hudi": "Apache Hudi",
-    "apache iceberg": "Apache Iceberg",
-    "hive": "Hive",
-    "data source": "Data Sources",
-    "aqe": "AQE",
-    "AQE": "AQE"
+
 }
 
 
@@ -128,6 +73,6 @@ def process_folder(folder_path: str):
 
 # ---------- Run ----------
 if __name__ == "__main__":
-    folder = "public/data/spark"  # 👈 change to your folder path
+    folder = "public/data/Spark"  # 👈 change to your folder path
     process_folder(folder)
     print("✅ Processing complete! Topics normalized and IDs reassigned.")

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {shuffleQuestions, useEffectLoadQuestions} from "../practicePage.jsx";
 import { CheckCircle, XCircle, Shuffle } from "lucide-react";
 import {iconForStack, difficultyBadge, filterQuestions} from "../../utils/common.jsx";
-import {LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
+import {BuildingModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
 
 export default function MCQMode(props) {
     const {difficulty, techStack, topic, practiceType} = props;
@@ -28,11 +28,13 @@ export default function MCQMode(props) {
         setSkippedCount,
         answered,
         questions,
-        questionIndex
+        questionIndex,
+        allQuestions,
+        setQuestions,
+        selected
     }
 
     const scoreProps = {correctCount, incorrectCount, skippedCount}
-    const questionProps = {allQuestions, setQuestions}
 
     useEffectLoadQuestions("mcqs", {setAllQuestions, setLoading})
 
@@ -51,13 +53,24 @@ export default function MCQMode(props) {
 
     const question = questions[questionIndex] || null;
 
+    switch (practiceType) {
+        case "Self-Paced":
+            return mcqsMainContainer(question, localProps, props, scoreProps);
+        default:
+            return <BuildingModeBanner/>;
+    }
+}
+
+function mcqsMainContainer(question, localProps, props, scoreProps) {
+    const {selected} = localProps;
+
     return (
         <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
             {/* Top bar: stats on the left, actions on the right */}
             <div className="flex flex-col gap-3">
-                {mcqsHeaderBar(questionProps, localProps, props, scoreProps)}
+                {mcqsHeaderBar(localProps, props, scoreProps)}
 
-                {mcqsQuestionBar({questions, question, questionIndex})}
+                {mcqsQuestionBar(localProps)}
             </div>
 
             {/* Options */}
@@ -86,10 +99,10 @@ export default function MCQMode(props) {
                 </button>
             </div>
         </div>
-    );
+    )
 }
 
-function mcqsHeaderBar(questionProps, localProps, props, scoreProps) {
+function mcqsHeaderBar(localProps, props, scoreProps) {
     const {correctCount, incorrectCount, skippedCount} = scoreProps;
 
     return (
@@ -112,13 +125,13 @@ function mcqsHeaderBar(questionProps, localProps, props, scoreProps) {
 
             <div className="flex items-center gap-3">
                 <button
-                    onClick={() => handleReset(questionProps, localProps, props)}
+                    onClick={() => handleReset(localProps, props)}
                     className="px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg"
                 >
                     Reset
                 </button>
                 <button
-                    onClick={() => handleShuffle(questionProps, localProps)}
+                    onClick={() => handleShuffle(localProps)}
                     className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
                 >
                     <Shuffle size={16} /> Shuffle
@@ -128,7 +141,10 @@ function mcqsHeaderBar(questionProps, localProps, props, scoreProps) {
     )
 }
 
-function mcqsQuestionBar({questions, question, questionIndex}) {
+function mcqsQuestionBar(localProps) {
+    const {questions, question, questionIndex} = localProps;
+    console.log("question id: ", question);
+
     return (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -174,9 +190,8 @@ function resetStats(props) {
     setSkippedCount(0);
 }
 
-function handleReset(questionProps, localProps, props) {
-    const {allQuestions, setQuestions} = questionProps;
-    const {difficulty, techStack, topic} = props;
+function handleReset(localProps, props) {
+    const {allQuestions, setQuestions, difficulty, techStack, topic} = props;
 
     const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
     setQuestions(shuffleQuestions([...filtered]));
@@ -184,8 +199,8 @@ function handleReset(questionProps, localProps, props) {
     resetStats(localProps);
 }
 
-function handleShuffle(questionProps, localProps) {
-    const {_, setQuestions} = questionProps;
+function handleShuffle(localProps) {
+    const {setQuestions} = localProps;
 
     setQuestions((prev) => shuffleQuestions([...prev]));
 

@@ -18,11 +18,9 @@ export default function FlashcardMode(props) {
   useEffectLoadQuestions("theory", {setAllQuestions, setLoading})
 
   useEffect(() => {
-    setQuestions(() => filterQuestions(allQuestions, {
-      difficulties: difficulty,
-      techStacks: techStack,
-      topics: topic
-    }));
+    const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+    setQuestions(filtered);
+
     setOpenIndex(null);
   }, [difficulty, techStack, topic, allQuestions]);
 

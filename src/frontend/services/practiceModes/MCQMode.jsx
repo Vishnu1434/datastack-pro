@@ -365,7 +365,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             </div>
 
             {/* If practice is timed and exam not started, show centered info + start button */}
-            {renderExamModeBanner(practiceType, examState, startExam)}
+            {examModeBanner(practiceType, examState, startExam)}
 
             {/* If exam running show question UI but hide live stats; show timer and End button */}
             {examState === "running" && (

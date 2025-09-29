@@ -6,7 +6,7 @@ import MCQMode from "./practiceModes/MCQMode.jsx";
 import SurvivalMode from "./practiceModes/SurvivalMode.jsx";
 import {BuildingModeBanner} from "../utils/infoBanners.jsx";
 
-export async function loadQuestions(type = "theory") {
+export async function loadQuestions(type) {
     try {
         const allQuestions = [];
 
@@ -58,15 +58,13 @@ export function filterTopics(selectedTechStacks, topicsByStack, setAvailableTopi
 
 export const renderModeComponent = (activeMode, props) => {
     switch (activeMode) {
-        case "Flashcards":
+        case "Flashcards":``
             return <FlashcardMode {...props} />;
         case "MCQs":
             return <MCQMode {...props} />;
-        case "Revision Mode":
-            return <BuildingModeBanner/>
         case "Survival Mode":
             return <SurvivalMode {...props} />;
         default:
-            return <FlashcardMode {...props} />;
+            return <BuildingModeBanner/>;
     }
 };

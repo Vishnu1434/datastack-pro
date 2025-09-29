@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import FlashcardMode from "../services/practiceModes/FlashcardMode";
-import MCQMode from "../services/practiceModes/MCQMode";
-import SurvivalMode from "../services/practiceModes/SurvivalMode";
 
 import {filterTopics, renderModeComponent} from "../services/practicePage.jsx";
 import * as commonUtils from "../utils/common.jsx";

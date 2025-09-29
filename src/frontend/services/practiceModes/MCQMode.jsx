@@ -25,7 +25,10 @@ export default function MCQMode(props) {
         setAnswered,
         setCorrectCount,
         setIncorrectCount,
-        setSkippedCount
+        setSkippedCount,
+        answered,
+        questions,
+        questionIndex
     }
 
     const scoreProps = {correctCount, incorrectCount, skippedCount}
@@ -39,29 +42,6 @@ export default function MCQMode(props) {
 
         resetStats(localProps);
     }, [difficulty, techStack, topic, allQuestions]);
-
-    const handleSelect = (optKey) => {
-        if (answered) return;
-        const q = questions[questionIndex];
-        if (!q) return;
-        setSelected(optKey);
-        setAnswered(true);
-
-        if (optKey === q.answer) {
-            setCorrectCount((p) => p + 1);
-        } else {
-            setIncorrectCount((p) => p + 1);
-        }
-    };
-
-    const handleNext = () => {
-        if (!answered) {
-            setSkippedCount((p) => p + 1);
-        }
-        setSelected(null);
-        setAnswered(false);
-        setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
-    };
 
     if (loading) {
         return LoadingBanner("MCQs")
@@ -87,7 +67,7 @@ export default function MCQMode(props) {
                     const isCorrect = question.answer === key;
 
                     return (
-                        <li key={key} onClick={() => handleSelect(key)} className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition ${getOptionClasses({ answered, isCorrect, isSelected })}`} >
+                        <li key={key} onClick={() => handleSelect(key, localProps)} className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition ${getOptionClasses({ answered, isCorrect, isSelected })}`} >
                             <div className="flex items-center gap-3">
                                 <div className="w-6 h-6 flex items-center justify-center">
                                     {renderOptionIcon({ answered, isCorrect, isSelected, index: i })}
@@ -101,7 +81,7 @@ export default function MCQMode(props) {
 
             {/* Footer with only the Next button */}
             <div className="flex items-center justify-center gap-4 pt-4">
-                <button onClick={handleNext} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50" >
+                <button onClick={() => handleNext(localProps)} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50" >
                     Next
                 </button>
             </div>
@@ -210,4 +190,49 @@ function handleShuffle(questionProps, localProps) {
     setQuestions((prev) => shuffleQuestions([...prev]));
 
     resetStats(localProps);
+}
+
+function handleSelect(selectedKey, localProps) {
+    const {
+        answered,
+        questions,
+        questionIndex,
+        setSelected,
+        setAnswered,
+        setCorrectCount,
+        setIncorrectCount
+    } = localProps;
+
+    if (answered) return;
+
+    const question = questions[questionIndex];
+    if (!question) return;
+
+    setSelected(selectedKey);
+    setAnswered(true);
+
+    if (selectedKey === question.answer) {
+        setCorrectCount((p) => p + 1);
+    } else {
+        setIncorrectCount((p) => p + 1);
+    }
+}
+
+function handleNext(localProps) {
+    const {
+        answered,
+        setAnswered,
+        setQuestionIndex,
+        setSkippedCount,
+        setSelected,
+        questions
+    } = localProps
+
+    if (!answered) {
+        setSkippedCount((p) => p + 1);
+    }
+
+    setSelected(null);
+    setAnswered(false);
+    setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
 }

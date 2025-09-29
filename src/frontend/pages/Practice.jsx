@@ -2,15 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import FlashcardMode from "../services/practiceModes/FlashcardMode";
 import MCQMode from "../services/practiceModes/MCQMode";
 import SurvivalMode from "../services/practiceModes/SurvivalMode";
-import { load_manifest } from "../utils/common.jsx";
 
-const { techStacks, topicsByStack}  = await load_manifest();
-const modes = ["Flashcards", "MCQs", "Revision Mode", "Survival Mode"];
-const difficulties = ["Easy", "Medium", "Hard"];
-const practiceTypes = ["Self-Paced", "Overall Time", "Per Question Time"];
+import {filterTopics, renderModeComponent} from "../services/practicePage.jsx";
+import * as commonUtils from "../utils/common.jsx";
+import * as constants from "../resources/constants.jsx";
+import * as styles from "../utils/styles.jsx";
 
-const BUTTON_CLASSES = "px-3 py-2 bg-white text-gray-800 border rounded-md text-sm font-medium shadow-sm whitespace-nowrap";
-const ALL_TOPICS = Array.from(new Set(Object.values(topicsByStack).flat()));
+const { techStacks, topicsByStack}  = await commonUtils.load_manifest();
+const allTopics = Array.from(new Set(Object.values(topicsByStack).flat()));
 
 function PracticePage() {
     const [activeMode, setActiveMode] = useState("Flashcards");
@@ -29,96 +28,19 @@ function PracticePage() {
     const [examState, setExamState] = useState("idle");
 
     // Close dropdowns on the outside click
-    useEffect(() => {
-        const handler = (e) => {
-            const buttons = Object.values(dropdownRefs.current || {});
-            const menus = Object.values(dropdownMenuRefs.current || {});
-            const clickedInside =
-                buttons.some((el) => el && el.contains(e.target)) ||
-                menus.some((el) => el && el.contains(e.target));
-            if (!clickedInside) setDropdownOpen({});
-        };
-        document.addEventListener("click", handler);
-        return () => document.removeEventListener("click", handler);
-    }, []);
+    commonUtils.useOutsideClick(dropdownRefs, dropdownMenuRefs, setDropdownOpen);
 
     // Update topics when tech stack changes
-    useEffect(() => {
-        const unique = Array.from(
-            new Set(selectedTechStacks.flatMap((stack) => topicsByStack[stack] || []))
-        );
-        setAvailableTopics(unique);
-        setSelectedTopics((prev) => prev.filter((t) => unique.includes(t)));
-    }, [selectedTechStacks]);
+    filterTopics(selectedTechStacks, topicsByStack, setAvailableTopics, setSelectedTopics);
 
     // Measure and set widths
-    const measureAndSetWidth = (key, options, { includeCheckbox = false, buttonLabel = "" } = {}) => {
-        if (!options?.length) return;
-        let maxWidth = 0;
-
-        const container = document.createElement("div");
-        container.style.cssText = "visibility:hidden;position:absolute;left:-9999px;top:-9999px;";
-        document.body.appendChild(container);
-
-        const menu = document.createElement("div");
-        menu.style.maxHeight = "240px";
-        menu.style.overflow = "auto";
-        container.appendChild(menu);
-
-        const createEl = (text) => {
-            const el = document.createElement(includeCheckbox ? "label" : "div");
-            el.className = "px-3 py-2 text-sm flex items-center";
-            if (includeCheckbox) {
-                const cb = document.createElement("input");
-                cb.type = "checkbox";
-                cb.className = "mr-2";
-                el.appendChild(cb);
-            }
-            const span = document.createElement("span");
-            span.textContent = text;
-            el.appendChild(span);
-            menu.appendChild(el);
-            return el.offsetWidth;
-        };
-
-        options.forEach((opt) => {
-            maxWidth = Math.max(maxWidth, createEl(opt));
-        });
-
-        if (buttonLabel) {
-            const btn = document.createElement("button");
-            btn.className = BUTTON_CLASSES;
-            btn.textContent = buttonLabel;
-            container.appendChild(btn);
-            maxWidth = Math.max(maxWidth, btn.offsetWidth);
-        }
-
-        // account for scrollbar if present
-        if (menu.scrollHeight > menu.clientHeight) {
-            maxWidth += menu.offsetWidth - menu.clientWidth;
-        }
-
-        document.body.removeChild(container);
-        setButtonWidths((prev) => ({ ...prev, [key]: maxWidth + 12 }));
-    };
-
     useEffect(() => {
-        measureAndSetWidth("mode", modes, { buttonLabel: "Flashcards" });
-        measureAndSetWidth("practice", practiceTypes, { buttonLabel: "Self-Paced" });
-        measureAndSetWidth("difficulty", difficulties, { includeCheckbox: true, buttonLabel: "Difficulty" });
-        measureAndSetWidth("tech", techStacks, { includeCheckbox: true, buttonLabel: "Tech Stack" });
-        measureAndSetWidth("topic", ALL_TOPICS, { includeCheckbox: true, buttonLabel: "Topic" });
-    }, []);
-
-    const computeDropdownPosition = (key) => {
-        const btn = dropdownRefs.current[key];
-        const w = buttonWidths[key];
-        if (!btn || !w) return {};
-        const rect = btn.getBoundingClientRect();
-        const viewportWidth = window.innerWidth;
-        const spaceRight = viewportWidth - rect.left - 8;
-        return w <= spaceRight ? { left: 0 } : { left: "auto", right: 0 };
-    };
+        styles.measureAndSetWidth("mode", constants.MODES, setButtonWidths, { buttonLabel: "Flashcards" });
+        styles.measureAndSetWidth("practice", constants.PRACTICE_TYPES, setButtonWidths, { buttonLabel: "Self-Paced" });
+        styles.measureAndSetWidth("difficulty", constants.DIFFICULTIES, setButtonWidths, { includeCheckbox: true, buttonLabel: "Difficulty" });
+        styles.measureAndSetWidth("tech", techStacks, setButtonWidths, { includeCheckbox: true, buttonLabel: "Tech Stack" });
+        styles.measureAndSetWidth("topic", allTopics, setButtonWidths, { includeCheckbox: true, buttonLabel: "Topic" });
+    }, [constants.MODES, constants.PRACTICE_TYPES, constants.DIFFICULTIES, techStacks, allTopics]);
 
     const toggleSelection = (value, setter, array) =>
         setter(array.includes(value) ? array.filter((v) => v !== value) : [...array, value]);
@@ -128,7 +50,7 @@ function PracticePage() {
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
                 onClick={() => { if (!disabled) setDropdownOpen({ [key]: !dropdownOpen[key] }); }}
-                className={`${BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`${constants.BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
                 disabled={disabled}
             >
@@ -139,7 +61,7 @@ function PracticePage() {
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
                     style={{
-                        ...computeDropdownPosition(key),
+                        ...styles.computeDropdownPosition(key, dropdownRefs, buttonWidths),
                         width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined,
                     }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}
@@ -169,7 +91,7 @@ function PracticePage() {
             <button
                 ref={(el) => (dropdownRefs.current[key] = el)}
                 onClick={() => { if (!disabled) setDropdownOpen({ [key]: !dropdownOpen[key] }); }}
-                className={`${BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`${constants.BUTTON_CLASSES} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined }}
                 disabled={disabled}
             >
@@ -180,7 +102,7 @@ function PracticePage() {
                 <div
                     className="absolute z-10 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
                     style={{
-                        ...computeDropdownPosition(key),
+                        ...styles.computeDropdownPosition(key, dropdownRefs, buttonWidths),
                         width: buttonWidths[key] ? `${buttonWidths[key]}px` : undefined,
                     }}
                     ref={(el) => (dropdownMenuRefs.current[key] = el)}
@@ -199,38 +121,16 @@ function PracticePage() {
         </div>
     );
 
-    const renderModeComponent = () => {
-        const props = {
-            difficulty: selectedDifficulties,
-            techStack: selectedTechStacks,
-            topic: selectedTopics,
-            practiceType: selectedPracticeType,
-            onExamStateChange: setExamState,
-        };
-        switch (activeMode) {
-            case "Flashcards":
-                return <FlashcardMode {...props} />;
-            case "MCQs":
-                return <MCQMode {...props} />;
-            case "Revision Mode":
-                return (
-                    <div className="flex-1 flex items-center justify-center min-h-0 p-6">
-                        <div className="max-w-lg text-center bg-white p-6 rounded-lg shadow border border-gray-200">
-                            <div className="text-3xl text-blue-600 mb-4">🔧</div>
-                            <h3 className="text-lg font-semibold mb-2">Revision Mode — Coming Soon</h3>
-                            <p className="text-sm text-gray-600">We're working to build this mode. In the meantime, try other modes like Flashcards or MCQs to continue practicing.</p>
-                        </div>
-                    </div>
-                );
-            case "Survival Mode":
-                return <SurvivalMode {...props} />;
-            default:
-                return <FlashcardMode {...props} />;
-        }
-    };
-
-    // disable filters while MCQ timed exam is running
+    // disable filters while the MCQ timed exam is running
     const filtersDisabled = activeMode === 'MCQs' && selectedPracticeType !== 'Self-Paced' && examState === 'running';
+
+    const props = {
+        difficulty: selectedDifficulties,
+        techStack: selectedTechStacks,
+        topic: selectedTopics,
+        practiceType: selectedPracticeType,
+        onExamStateChange: setExamState,
+    };
 
     return (
         <div className="flex flex-col flex-1 px-3 py-2 w-full h-[calc(100vh-5rem)] min-h-0">
@@ -239,21 +139,21 @@ function PracticePage() {
                 <div className="p-3 bg-blue-600 flex justify-between items-center">
                     {/* Left side */}
                     <div className="flex gap-3">
-                        {renderSingleSelectDropdown(modes, activeMode, setActiveMode, "mode", examState === 'running')}
-                        {renderSingleSelectDropdown(practiceTypes, selectedPracticeType, setSelectedPracticeType, "practice", examState === 'running')}
+                        {renderSingleSelectDropdown(constants.MODES, activeMode, setActiveMode, "mode", examState === 'running')}
+                        {renderSingleSelectDropdown(constants.PRACTICE_TYPES, selectedPracticeType, setSelectedPracticeType, "practice", examState === 'running')}
                     </div>
 
                     {/* Right side */}
                     <div className="flex gap-3">
-                        {renderCheckboxDropdown("Difficulty", difficulties, selectedDifficulties, setSelectedDifficulties, "difficulty", filtersDisabled)}
+                        {renderCheckboxDropdown("Difficulty", constants.DIFFICULTIES, selectedDifficulties, setSelectedDifficulties, "difficulty", filtersDisabled)}
                         {renderCheckboxDropdown("Tech Stack", techStacks, selectedTechStacks, setSelectedTechStacks, "tech", filtersDisabled)}
-                        {renderCheckboxDropdown("Topic", availableTopics.length ? availableTopics : ALL_TOPICS, selectedTopics, setSelectedTopics, "topic", filtersDisabled)}
+                        {renderCheckboxDropdown("Topic", availableTopics.length ? availableTopics : allTopics, selectedTopics, setSelectedTopics, "topic", filtersDisabled)}
                     </div>
                 </div>
 
                 {/* Practice Content */}
                 <div className="flex-1">
-                    {renderModeComponent()}
+                    {renderModeComponent(activeMode, props)}
                 </div>
             </div>
         </div>

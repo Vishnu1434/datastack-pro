@@ -1,11 +1,12 @@
 import yaml from "js-yaml";
 
-import SparkIcon from "../icons/spark.svg";
-import PythonIcon from "../icons/python.svg";
-import JavaIcon from "../icons/java.svg";
-import SqlIcon from "../icons/sql.svg";
-import AirflowIcon from "../icons/airflow.svg";
-import DefaultIcon from "../icons/default.svg";
+import SparkIcon from "../resources/icons/spark.svg";
+import PythonIcon from "../resources/icons/python.svg";
+import JavaIcon from "../resources/icons/java.svg";
+import SqlIcon from "../resources/icons/sql.svg";
+import AirflowIcon from "../resources/icons/airflow.svg";
+import DefaultIcon from "../resources/icons/default.svg";
+import React, {useEffect} from "react";
 
 export const iconForStack = (stack) => {
     if (!stack) return <img src={DefaultIcon} alt="Default" className="w-6 h-6" />;
@@ -97,11 +98,40 @@ export const load_manifest = async () => {
 
         for (const [stack, stackData] of Object.entries(manifest)) {
             techStacks.push(stack);
-            topicsByStack[stack.charAt(0).toUpperCase() + stack.slice(1)] = stackData.topics || [];
+            topicsByStack[stack] = stackData.topics || [];
         }
+
         return { techStacks, topicsByStack };
     } catch (error) {
         console.error("Error loading stack_manifest.yaml:", error);
         return { techStacks: [], topicsByStack: {} };
     }
 };
+
+export const loadingQuestions = () => {
+    return (
+        <div className="flex-1 flex items-center justify-center min-h-0">
+            <div className="bg-white p-6 rounded-lg shadow text-center">
+                <div className="mb-3">
+                    <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full mx-auto animate-spin" />
+                </div>
+                <div className="text-sm text-gray-700 font-medium">Loading Questions...</div>
+            </div>
+        </div>
+    );
+}
+
+export function useOutsideClick(dropdownRefs, dropdownMenuRefs, setDropdownOpen) {
+    useEffect(() => {
+        const handler = (e) => {
+            const buttons = Object.values(dropdownRefs.current || {});
+            const menus = Object.values(dropdownMenuRefs.current || {});
+            const clickedInside =
+                buttons.some((el) => el && el.contains(e.target)) ||
+                menus.some((el) => el && el.contains(e.target));
+            if (!clickedInside) setDropdownOpen({});
+        };
+        document.addEventListener("click", handler);
+        return () => document.removeEventListener("click", handler);
+    }, []);
+}

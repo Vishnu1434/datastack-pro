@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { loadQuestions } from "../practicePage.js";
+import { loadQuestions } from "../practicePage.jsx";
 import { BookOpen, Shuffle } from "lucide-react";
 import { iconForStack, difficultyBadge, filterQuestions } from "../../utils/common.jsx";
 

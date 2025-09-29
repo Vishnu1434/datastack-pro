@@ -1,4 +1,10 @@
 import yaml from "js-yaml";
+import React, {useEffect} from "react";
+
+import FlashcardMode from "./practiceModes/FlashcardMode.jsx";
+import MCQMode from "./practiceModes/MCQMode.jsx";
+import SurvivalMode from "./practiceModes/SurvivalMode.jsx";
+import {BuildingModeBanner} from "../utils/infoBanners.jsx";
 
 export async function loadQuestions(type = "theory") {
     try {
@@ -37,3 +43,30 @@ export async function loadQuestions(type = "theory") {
         return [];
     }
 }
+
+// Filtering topics based on selected tech stacks
+export function filterTopics(selectedTechStacks, topicsByStack, setAvailableTopics, setSelectedTopics) {
+    useEffect(() => {
+        const unique = Array.from(
+            new Set(selectedTechStacks.flatMap((stack) => topicsByStack[stack] || []))
+        );
+
+        setAvailableTopics(unique);
+        setSelectedTopics((prev) => prev.filter((t) => unique.includes(t)));
+    }, [selectedTechStacks]);
+}
+
+export const renderModeComponent = (activeMode, props) => {
+    switch (activeMode) {
+        case "Flashcards":
+            return <FlashcardMode {...props} />;
+        case "MCQs":
+            return <MCQMode {...props} />;
+        case "Revision Mode":
+            return <BuildingModeBanner/>
+        case "Survival Mode":
+            return <SurvivalMode {...props} />;
+        default:
+            return <FlashcardMode {...props} />;
+    }
+};

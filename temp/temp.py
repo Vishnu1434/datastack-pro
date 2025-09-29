@@ -172,5 +172,5 @@ class Temp:
 if __name__ == "__main__":
     stack = "Spark"
     temp = Temp(stack)
-    # temp.rearrange_ids()
-    temp.generate_manifest()
+    temp.rearrange_ids()
+    # temp.generate_manifest()

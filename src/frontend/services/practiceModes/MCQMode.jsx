@@ -9,7 +9,7 @@ export default function MCQMode(props) {
 
     const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [questionIndex, setQuestionIndex] = useState(0);
     const [selected, setSelected] = useState(null);
     const [answered, setAnswered] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export default function MCQMode(props) {
     const [skippedCount, setSkippedCount] = useState(0);
 
     const localProps = {
-        setCurrentQuestion,
+        setQuestionIndex,
         setSelected,
         setAnswered,
         setCorrectCount,
@@ -42,7 +42,7 @@ export default function MCQMode(props) {
 
     const handleSelect = (optKey) => {
         if (answered) return;
-        const q = questions[currentQuestion];
+        const q = questions[questionIndex];
         if (!q) return;
         setSelected(optKey);
         setAnswered(true);
@@ -60,7 +60,7 @@ export default function MCQMode(props) {
         }
         setSelected(null);
         setAnswered(false);
-        setCurrentQuestion((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
+        setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
     };
 
     if (loading) {
@@ -69,8 +69,7 @@ export default function MCQMode(props) {
 
     if (!questions.length) return NoQuestionsFoundBanner();
 
-    const q = questions[currentQuestion] || null;
-    const options = Object.entries(q.options || {});
+    const question = questions[questionIndex] || null;
 
     return (
         <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
@@ -78,52 +77,20 @@ export default function MCQMode(props) {
             <div className="flex flex-col gap-3">
                 {mcqsHeaderBar(questionProps, localProps, props, scoreProps)}
 
-                {/* Question header */}
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 flex items-center justify-center text-blue-600">
-                            {iconForStack(q.stack || q.source || "")}
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900">{q.question}</h3>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        {difficultyBadge(q.difficulty)}
-                        <div className="text-sm text-gray-500">{currentQuestion + 1}/{questions.length}</div>
-                    </div>
-                </div>
+                {mcqsQuestionBar({questions, question, questionIndex})}
             </div>
 
             {/* Options */}
             <ul className="space-y-2">
-                {Object.entries(q.options).map(([key, value], i) => {
+                {Object.entries(question.options).map(([key, value], i) => {
                     const isSelected = selected === key;
-                    const isCorrect = q.answer === key;
+                    const isCorrect = question.answer === key;
 
                     return (
-                        <li
-                            key={key}
-                            onClick={() => handleSelect(key)}
-                            className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition
-                            ${
-                                answered
-                                    ? isCorrect
-                                        ? "bg-green-100 border-green-400 text-green-800"
-                                        : isSelected
-                                            ? "bg-red-100 border-red-400 text-red-800"
-                                            : "bg-white border-gray-200"
-                                    : "bg-white hover:bg-gray-50 border-gray-200"
-                            }`}
-                        >
+                        <li key={key} onClick={() => handleSelect(key)} className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition ${getOptionClasses({ answered, isCorrect, isSelected })}`} >
                             <div className="flex items-center gap-3">
                                 <div className="w-6 h-6 flex items-center justify-center">
-                                    {answered && isCorrect ? (
-                                        <CheckCircle className="text-green-600" size={18} />
-                                    ) : answered && isSelected && !isCorrect ? (
-                                        <XCircle className="text-red-600" size={18} />
-                                    ) : (
-                                        <span className="text-gray-500">{String.fromCharCode(65 + i)}</span>
-                                    )}
+                                    {renderOptionIcon({ answered, isCorrect, isSelected, index: i })}
                                 </div>
                                 <div className="text-sm font-medium">{value}</div>
                             </div>
@@ -134,11 +101,7 @@ export default function MCQMode(props) {
 
             {/* Footer with only the Next button */}
             <div className="flex items-center justify-center gap-4 pt-4">
-                <button
-                    onClick={handleNext}
-                    disabled={currentQuestion >= questions.length - 1}
-                    className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50"
-                >
+                <button onClick={handleNext} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50" >
                     Next
                 </button>
             </div>
@@ -185,10 +148,45 @@ function mcqsHeaderBar(questionProps, localProps, props, scoreProps) {
     )
 }
 
-function resetStats(props) {
-    const { setCurrentQuestion, setSelected, setAnswered, setCorrectCount, setIncorrectCount, setSkippedCount } = props;
+function mcqsQuestionBar({questions, question, questionIndex}) {
+    return (
+        <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+                <div className="w-10 h-10 flex items-center justify-center text-blue-600">
+                    {iconForStack(question.stack || question.source || "")}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">{question.question}</h3>
+            </div>
+    
+            <div className="flex items-center gap-3">
+                {difficultyBadge(question.difficulty)}
+                <div className="text-sm text-gray-500">{questionIndex + 1}/{questions.length}</div>
+            </div>
+        </div>
+    )
+}
 
-    setCurrentQuestion(0);
+function getOptionClasses({ answered, isCorrect, isSelected }) {
+    if (answered) {
+        if (isCorrect) return "bg-green-100 border-green-400 text-green-800";
+        if (isSelected) return "bg-red-100 border-red-400 text-red-800";
+        return "bg-white border-gray-200";
+    }
+    return "bg-white hover:bg-gray-50 border-gray-200";
+}
+
+function renderOptionIcon({ answered, isCorrect, isSelected, index }) {
+    if (answered) {
+        if(isCorrect) return <CheckCircle className="text-green-600" size={18} />;
+        if(isSelected) return <XCircle className="text-red-600" size={18} />;
+    }
+    return <span className="text-gray-500">{String.fromCharCode(65 + index)}</span>;
+}
+
+function resetStats(props) {
+    const { setQuestionIndex, setSelected, setAnswered, setCorrectCount, setIncorrectCount, setSkippedCount } = props;
+
+    setQuestionIndex(0);
     setSelected(null);
     setAnswered(false);
     setCorrectCount(0);

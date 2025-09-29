@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { loadQuestions } from "../practicePage.jsx";
+import { shuffleQuestions, useEffectLoadQuestions } from "../practicePage.jsx";
 import { BookOpen, Shuffle } from "lucide-react";
 import { iconForStack, difficultyBadge, filterQuestions } from "../../utils/common.jsx";
-import {BuildingModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
-import MCQMode from "./MCQMode.jsx";
-import SurvivalMode from "./SurvivalMode.jsx";
+import { BuildingModeBanner, LoadingBanner, NoQuestionsFoundBanner } from "../../utils/infoBanners.jsx";
+
 
 // const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-const shuffleArray = (arr) => {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-};
 
 export default function FlashcardMode(props) {
   const {difficulty, techStack, topic, practiceType} = props;
@@ -25,20 +15,10 @@ export default function FlashcardMode(props) {
   const [openIndex, setOpenIndex] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchQuestions() {
-      const theoryQs = await loadQuestions("theory");
-
-      // await sleep(10000);
-      setAllQuestions(theoryQs);
-      setLoading(false);
-    }
-
-    fetchQuestions();
-  }, []);
+  useEffectLoadQuestions("theory", {setAllQuestions, setLoading})
 
   useEffect(() => {
-    setQuestions((prev) => filterQuestions(allQuestions, {
+    setQuestions(() => filterQuestions(allQuestions, {
       difficulties: difficulty,
       techStacks: techStack,
       topics: topic
@@ -47,7 +27,7 @@ export default function FlashcardMode(props) {
   }, [difficulty, techStack, topic, allQuestions]);
 
   const toggleAnswer = (idx) => setOpenIndex((prev) => (prev === idx ? null : idx));
-  const shuffleQuestions = () => setQuestions((prev) => shuffleArray(prev));
+  const shuffleData = () => setQuestions((prev) => shuffleQuestions(prev));
 
   if (loading) {
     return LoadingBanner("flashcards")
@@ -57,7 +37,7 @@ export default function FlashcardMode(props) {
 
   switch (practiceType) {
     case "Self-Paced":
-      return selfPaceMode(shuffleQuestions, toggleAnswer, {questions, openIndex});
+      return selfPaceMode(shuffleData, toggleAnswer, {questions, openIndex});
     default:
       return <BuildingModeBanner/>;
   }

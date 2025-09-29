@@ -68,3 +68,30 @@ export const renderModeComponent = (activeMode, props) => {
             return <BuildingModeBanner/>;
     }
 };
+
+export function shuffleQuestions(questionsArray) {
+    const newArray = questionsArray.slice();
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+export function useEffectLoadQuestions(type, {setAllQuestions, setLoading}) {
+    return (
+        useEffect(() => {
+            let mounted = true;
+            async function fetchQuestions() {
+                const mcqs = await loadQuestions(type);
+
+                if (!mounted) return;
+
+                setAllQuestions(mcqs);
+                setLoading(false);
+            }
+            fetchQuestions();
+            return () => (mounted = false);
+        }, [])
+    )
+}

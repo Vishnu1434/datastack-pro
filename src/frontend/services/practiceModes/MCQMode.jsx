@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { loadQuestions } from "../practicePage.jsx";
+import {useEffectLoadQuestions} from "../practicePage.jsx";
 import { CheckCircle, XCircle, Shuffle } from "lucide-react";
-import {iconForStack, difficultyBadge, filterQuestions, loadingQuestions} from "../../utils/common.jsx";
-import { examModeBanner } from "../../utils/infoBanners.jsx";
+import {iconForStack, difficultyBadge, filterQuestions} from "../../utils/common.jsx";
+import {examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
+import {computeReport} from "../reportPage.jsx";
 
 // Utility: shuffle array
 const shuffleArray = (arr) => arr.map((a) => [Math.random(), a]).sort((a, b) => a[0] - b[0]).map((a) => a[1]);
 
-export default function MCQMode({ difficulty = [], techStack = [], topic = [], practiceType = "Self-Paced", onExamStateChange = () => {} }) {
+export default function MCQMode(props) {
+    const {difficulty, techStack, topic, practiceType, onExamStateChange} = props;
+
     const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [current, setCurrent] = useState(0);
@@ -31,20 +34,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     const [questionRemaining, setQuestionRemaining] = useState(0);
     const timerRef = useRef(null);
 
-    useEffect(() => {
-        let mounted = true;
-        async function fetchQuestions() {
-            const mcqs = await loadQuestions("mcqs");
-
-            if (!mounted) return;
-
-            setAllQuestions(mcqs);
-            setQuestions(filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic }));
-            setLoading(false);
-        }
-        fetchQuestions();
-        return () => (mounted = false);
-    }, []);
+    useEffectLoadQuestions("mcqs", {setAllQuestions, setLoading})
 
     useEffect(() => {
         const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
@@ -56,7 +46,7 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
         setIncorrectCount(0);
         setSkippedCount(0);
         // initial status: 'unseen' means the user hasn't viewed the question yet
-        setResponses(Array.from({ length: filtered.length }, () => ({ status: "unseen", selected: null })));
+        // setResponses(Array.from({ length: filtered.length }, () => ({ status: "unseen", selected: null })));
     }, [difficulty, techStack, topic, allQuestions]);
 
     useEffect(() => {
@@ -245,10 +235,10 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
     };
 
     if (loading){
-        loadingQuestions()
+        return LoadingBanner("MCQs")
     }
 
-    if (!questions.length) return <p>No questions match current filters.</p>;
+    if (!questions.length) return NoQuestionsFoundBanner();
 
     const q = questions[current] || null;
 
@@ -261,46 +251,6 @@ export default function MCQMode({ difficulty = [], techStack = [], topic = [], p
             .toString()
             .padStart(2, "0");
         return `${mm}:${ss}`;
-    };
-
-    // compute detailed report data (score and topic strengths based on ATTEMPTED questions only)
-    const computeReport = () => {
-        const stacks = Array.from(new Set(questions.map((q) => q.stack || q.source || "Unknown")));
-        const perStack = stacks.map((stack) => {
-            const indices = questions
-                .map((qq, idx) => ({ qq, idx }))
-                .filter(({ qq }) => (qq.stack || qq.source || "Unknown") === stack)
-                .map(({ idx }) => idx);
-            const total = indices.length;
-            const correct = indices.filter((i) => responses[i] && responses[i].status === "correct").length;
-            const incorrect = indices.filter((i) => responses[i] && responses[i].status === "incorrect").length;
-            const skipped = indices.filter((i) => responses[i] && responses[i].status === "skipped").length;
-            // 'attempted' should mean questions that the user saw (not 'unseen')
-            const attempted = indices.filter((i) => responses[i] && responses[i].status && responses[i].status !== "unseen").length;
-            const score = attempted ? Math.round((correct / attempted) * 100) : 0;
-
-            // topic analysis for this stack (based on questions the user saw)
-            const topicMap = {};
-            indices.forEach((i) => {
-                const topicKey = questions[i].topic || questions[i].topics || "General";
-                // topic might be string or array; normalize to string
-                const t = Array.isArray(topicKey) ? topicKey[0] : topicKey;
-                if (!topicMap[t]) topicMap[t] = { attempted: 0, correct: 0 };
-                const resp = responses[i];
-                if (resp && resp.status && resp.status !== "unseen") {
-                    topicMap[t].attempted += 1;
-                    if (resp.status === "correct") topicMap[t].correct += 1;
-                }
-            });
-
-            const topics = Object.entries(topicMap).map(([t, v]) => ({ topic: t, attempted: v.attempted, correct: v.correct, percent: v.attempted ? Math.round((v.correct / v.attempted) * 100) : 0 }));
-            const strongest = topics.slice().sort((a, b) => b.percent - a.percent).slice(0, 3);
-            const weakest = topics.slice().sort((a, b) => a.percent - b.percent).slice(0, 3);
-
-            return { stack, total, attempted, correct, incorrect, skipped, score, strongest, weakest };
-        });
-
-        return perStack;
     };
 
     const report = computeReport();

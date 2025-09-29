@@ -57,14 +57,13 @@ export default function FlashcardMode(props) {
 
   switch (practiceType) {
     case "Self-Paced":
-      return selfPaceMode();
+      return selfPaceMode(shuffleQuestions, toggleAnswer, {questions, openIndex});
     default:
       return <BuildingModeBanner/>;
   }
-
 }
 
-function selfPaceMode({questions, shuf}) {
+function selfPaceMode(shuffleQuestions, toggleAnswer, {questions, openIndex}) {
   return (
       <div className="flex flex-col flex-1 h-screen bg-gray-50 rounded-md overflow-hidden min-h-0">
       {/* Header - stays fixed, no scroll */}

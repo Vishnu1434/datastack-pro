@@ -155,7 +155,6 @@ function PracticePage() {
             </div>
         </div>
     );
-
 }
 
 export default PracticePage;

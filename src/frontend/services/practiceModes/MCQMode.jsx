@@ -62,7 +62,7 @@ export default function MCQMode(props) {
 }
 
 function mcqsMainContainer(question, localProps, props, scoreProps) {
-    const {selected} = localProps;
+    const {selected, answered, questionIndex, questions} = localProps;
 
     return (
         <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
@@ -70,7 +70,7 @@ function mcqsMainContainer(question, localProps, props, scoreProps) {
             <div className="flex flex-col gap-3">
                 {mcqsHeaderBar(localProps, props, scoreProps)}
 
-                {mcqsQuestionBar(localProps)}
+                {mcqsQuestionBar(question, localProps)}
             </div>
 
             {/* Options */}
@@ -141,9 +141,8 @@ function mcqsHeaderBar(localProps, props, scoreProps) {
     )
 }
 
-function mcqsQuestionBar(localProps) {
-    const {questions, question, questionIndex} = localProps;
-    console.log("question id: ", question);
+function mcqsQuestionBar(question, localProps) {
+    const {questions, questionIndex} = localProps;
 
     return (
         <div className="flex items-center justify-between">
@@ -191,7 +190,7 @@ function resetStats(props) {
 }
 
 function handleReset(localProps, props) {
-    const {allQuestions, setQuestions, difficulty, techStack, topic} = props;
+    const {allQuestions, setQuestions, difficulty, techStack, topic} = localProps;
 
     const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
     setQuestions(shuffleQuestions([...filtered]));

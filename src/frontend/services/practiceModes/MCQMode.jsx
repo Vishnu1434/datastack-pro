@@ -29,7 +29,7 @@ export default function MCQMode(props) {
         setQuestionIndex, setSelected, setAnswered, setCorrectCount,
         setIncorrectCount, setSkippedCount, answered, questions,
         questionIndex, allQuestions, setQuestions, selected,
-        totalTimeRemaining, questionTimeRemaining
+        totalTimeRemaining, questionTimeRemaining, testStarted
     }
 
     const scoreProps = {correctCount, incorrectCount, skippedCount}
@@ -61,7 +61,7 @@ export default function MCQMode(props) {
 }
 
 function mcqsMainContainer({question, localProps, props, scoreProps}) {
-    const {selected, answered, questionIndex, questions} = localProps;
+    const {selected, questionIndex, questions} = localProps;
 
     return (
         <div className="flex flex-col flex-1 h-screen gap-6 p-6 bg-gray-50 rounded-xl shadow-md">
@@ -79,10 +79,10 @@ function mcqsMainContainer({question, localProps, props, scoreProps}) {
                     const isCorrect = question.answer === key;
 
                     return (
-                        <li key={key} onClick={() => handleSelect(key, localProps)} className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition ${getOptionClasses({ answered, isCorrect, isSelected })}`} >
+                        <li key={key} onClick={() => handleSelect(key, localProps)} className={`p-4 rounded-lg border cursor-pointer flex items-center justify-between transition ${getOptionClasses({ localProps, isCorrect, isSelected })}`} >
                             <div className="flex items-center gap-3">
                                 <div className="w-6 h-6 flex items-center justify-center">
-                                    {renderOptionIcon({ answered, isCorrect, isSelected, index: i })}
+                                    {renderOptionIcon({ localProps, isCorrect, isSelected, index: i })}
                                 </div>
                                 <div className="text-sm font-medium">{value}</div>
                             </div>
@@ -103,9 +103,8 @@ function mcqsMainContainer({question, localProps, props, scoreProps}) {
 
 function mcqsHeaderBar(localProps, props, scoreProps) {
     const {correctCount, incorrectCount, skippedCount} = scoreProps;
-    const {totalTimeRemaining, questionTimeRemaining} = localProps;
+    const {totalTimeRemaining} = localProps;
     const {practiceType} = props;
-    console.log("header bar method called here...");
 
     const selfPaced = (
         <div className="flex items-center justify-between">
@@ -183,19 +182,27 @@ function mcqsQuestionBar(question, localProps) {
     )
 }
 
-function getOptionClasses({ answered, isCorrect, isSelected }) {
-    if (answered) {
-        if (isCorrect) return "bg-green-100 border-green-400 text-green-800";
-        if (isSelected) return "bg-red-100 border-red-400 text-red-800";
-        return "bg-white border-gray-200";
+function getOptionClasses({ localProps, isCorrect, isSelected }) {
+    const { answered, testStarted } = localProps;
+
+    if (!testStarted) {
+        if (answered) {
+            if (isCorrect) return "bg-green-100 border-green-400 text-green-800";
+            if (isSelected) return "bg-red-100 border-red-400 text-red-800";
+        }
     }
-    return "bg-white hover:bg-gray-50 border-gray-200";
+    else if (isSelected) return "bg-blue-100 border-blue-200";
+
+    return "bg-white hover:bg-gray-100 border-gray-200";
 }
 
-function renderOptionIcon({ answered, isCorrect, isSelected, index }) {
-    if (answered) {
-        if(isCorrect) return <CheckCircle className="text-green-600" size={18} />;
-        if(isSelected) return <XCircle className="text-red-600" size={18} />;
+function renderOptionIcon({ localProps, isCorrect, isSelected, index }) {
+    const { answered, testStarted } = localProps;
+    if (!testStarted) {
+        if (answered) {
+            if(isCorrect) return <CheckCircle className="text-green-600" size={18} />;
+            if(isSelected) return <XCircle className="text-red-600" size={18} />;
+        }
     }
     return <span className="text-gray-500">{String.fromCharCode(65 + index)}</span>;
 }
@@ -242,7 +249,6 @@ function handleSelect(selectedKey, localProps) {
     if (answered) return;
 
     const question = questions[questionIndex];
-    if (!question) return;
 
     setSelected(selectedKey);
     setAnswered(true);

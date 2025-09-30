@@ -59,7 +59,7 @@ export default function MCQMode(props) {
 
     const clubbedProps = {question, localProps, props, scoreProps};
 
-    return getReport(localProps);
+    // return getReport(localProps);
 
     if (displayReport) {
         return getReport(localProps);

@@ -1,7 +1,15 @@
 import {resetStats} from "./practiceModes/MCQMode.jsx";
 
 export function getReport(localProps) {
-    const { correctCount, incorrectCount, skippedCount, testMetrics, questions } = localProps;
+    return (
+        <div className="bg-white p-5 rounded-xl shadow-lg max-w-md w-full mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
+            {getSummaryReport(localProps)}
+        </div>
+    );
+}
+
+function getSummaryReport(localProps) {
+    const { correctCount, incorrectCount, skippedCount, questions } = localProps;
     const totalQuestions = questions.length;
     const unattemptedCount = totalQuestions - correctCount - incorrectCount - skippedCount;
 
@@ -13,20 +21,17 @@ export function getReport(localProps) {
     ];
 
     return (
-        <div className="bg-white p-5 rounded-xl shadow-lg max-w-md w-full mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
-            {/* Header */}
+        <div>
             <div className="text-center mb-5">
                 <h3 className="text-2xl font-bold text-gray-800 mb-1">Test Finished</h3>
                 <p className="text-xs text-gray-600">Your performance summary:</p>
             </div>
 
-            {/* Total Questions */}
             <div className="bg-blue-50 p-3 rounded-lg mb-5 flex justify-between items-center">
                 <div className="text-sm font-semibold text-blue-700">Total Questions:</div>
                 <div className="text-2xl font-extrabold text-blue-600">{totalQuestions}</div>
             </div>
 
-            {/* Breakdown */}
             <div className="space-y-1.5">
                 <div className="grid grid-cols-3 text-xs font-bold text-gray-500 border-b border-gray-200 pb-1.5">
                     <div className="text-left">Metric</div>
@@ -36,14 +41,13 @@ export function getReport(localProps) {
                 {metrics.map((metric) => (getSummaryRow(totalQuestions, metric)))}
             </div>
 
-            {/* Button */}
             <div className="flex items-center justify-center mt-6">
                 <button onClick={() => resetStats(localProps)} className="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md shadow hover:bg-blue-700 transition duration-150 transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-blue-300">
                     Close Results
                 </button>
             </div>
         </div>
-    );
+    )
 }
 
 function getPercentage(count, totalQuestions) {

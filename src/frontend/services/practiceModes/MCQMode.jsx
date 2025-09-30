@@ -19,6 +19,7 @@ export default function MCQMode(props) {
     const [correctCount, setCorrectCount] = useState(0);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [skippedCount, setSkippedCount] = useState(0);
+    const [testMetrics, setTestMetrics] = useState({correctIds: [], incorrectIds: [], skippedIds: []});
 
     const [totalTimeRemaining, setTotalTimeRemaining] = useState(0);
 
@@ -31,7 +32,7 @@ export default function MCQMode(props) {
         questionIndex, allQuestions, setQuestions, selected,
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
-        skippedCount
+        skippedCount, testMetrics, setTestMetrics
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};
@@ -57,6 +58,8 @@ export default function MCQMode(props) {
     const question = questions[questionIndex] || null;
 
     const clubbedProps = {question, localProps, props, scoreProps};
+
+    return getReport(localProps);
 
     if (displayReport) {
         return getReport(localProps);
@@ -220,6 +223,7 @@ function getOptionClasses({ localProps, isCorrect, isSelected }) {
 
 function renderOptionIcon({ localProps, isCorrect, isSelected, index }) {
     const { answered, testStarted } = localProps;
+
     if (!testStarted) {
         if (answered) {
             if(isCorrect) return <CheckCircle className="text-green-600" size={18} />;
@@ -267,7 +271,8 @@ function handleSelect(selectedKey, localProps) {
         setSelected,
         setAnswered,
         setCorrectCount,
-        setIncorrectCount
+        setIncorrectCount,
+        setTestMetrics
     } = localProps;
 
     if (answered) return;
@@ -279,8 +284,10 @@ function handleSelect(selectedKey, localProps) {
 
     if (selectedKey === question.answer) {
         setCorrectCount((p) => p + 1);
+        setTestMetrics((p) => ({...p, correctIds: [...p.correctIds, question.id]}));
     } else {
         setIncorrectCount((p) => p + 1);
+        setTestMetrics((p) => ({...p, incorrectIds: [...p.incorrectIds, question.id]}));
     }
 }
 
@@ -292,14 +299,17 @@ function handleNext(localProps, props) {
         setSkippedCount,
         setSelected,
         questions,
-        question,
-        setTotalTimeRemaining
+        setTotalTimeRemaining,
+        setTestMetrics,
+        questionIndex
     } = localProps
 
     const {practiceType} = props;
+    const question = questions[questionIndex];
 
     if (!answered) {
         setSkippedCount((p) => p + 1);
+        setTestMetrics((p) => ({...p, skippedIds: [...p.skippedIds, question.id]}));
     }
 
     setSelected(null);

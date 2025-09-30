@@ -1,15 +1,78 @@
 import {resetStats} from "./practiceModes/MCQMode.jsx";
+import {iconForStack} from "../utils/common.jsx";
+import {useState} from "react";
 
-export function getReport(localProps) {
+// const props = {
+//     tecStack: ["python", "java"],
+//
+//     stack: "python",
+//
+//     // State tracking answers per stack
+//     testMetrics: {
+//         python: {
+//             correctIds: [1, 3, 5],
+//             incorrectIds: [2, 4],
+//             skippedIds: [6],
+//         },
+//         javascript: {
+//             correctIds: [11, 12],
+//             incorrectIds: [13],
+//             skippedIds: [],
+//         },
+//     },
+//
+//     // Full list of questions
+//     questions: [
+//         { id: 1, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q1" },
+//         { id: 2, stack: "python", type: "mcq", topic: "Loops", difficulty: "medium", question: "Q2" },
+//         { id: 3, stack: "python", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q3" },
+//         { id: 4, stack: "python", type: "mcq", topic: "Lists", difficulty: "hard", question: "Q4" },
+//         { id: 5, stack: "python", type: "mcq", topic: "Dicts", difficulty: "medium", question: "Q5" },
+//         { id: 6, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q6" },
+//         { id: 7, stack: "python", type: "mcq", topic: "Sets", difficulty: "easy", question: "Q7" }, // unattempted
+//
+//         { id: 11, stack: "java", type: "mcq", topic: "Arrays", difficulty: "easy", question: "Q11" },
+//         { id: 12, stack: "java", type: "mcq", topic: "Objects", difficulty: "medium", question: "Q12" },
+//         { id: 13, stack: "java", type: "mcq", topic: "Loops", difficulty: "hard", question: "Q13" },
+//         { id: 14, stack: "java", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q14" }, // unattempted
+//     ],
+//
+//     // Optional: total counts already computed (can match testMetrics)
+//     correctCount: 5,       // sum of correctIds across stacks
+//     incorrectCount: 3,     // sum of incorrectIds across stacks
+//     skippedCount: 1,       // sum of skippedIds across stacks
+// };
+
+
+export function GetReport(localProps) {
+    const {stack, setStack, techStack} = localProps;
+
     return (
-        <div className="bg-white p-5 rounded-xl shadow-lg max-w-md w-full mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
-            {getSummaryReport(localProps)}
+        <div className="bg-white p-5 rounded-xl shadow-lg w-[90%] mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
+            <div className="flex gap-4 items-start">
+                <div className="flex-none w-[30%]">
+                    {getSummaryReport(localProps)}
+                </div>
+
+                <div className="flex-1 w-[70%]">
+                    {getDetailedReport(stack, localProps)}
+                </div>
+            </div>
+
+            {/* Example buttons to switch stacks */}
+            <div className="mt-4 flex gap-2">
+                {techStack.map((s) => (
+                    <button key={s} onClick={() => setStack(s)} className={`px-3 py-1 rounded ${stack === s ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"}`}>
+                        {s}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }
 
 function getSummaryReport(localProps) {
-    const { correctCount, incorrectCount, skippedCount, questions } = localProps;
+    const {correctCount, incorrectCount, skippedCount, questions} = localProps;
     const totalQuestions = questions.length;
     const unattemptedCount = totalQuestions - correctCount - incorrectCount - skippedCount;
 
@@ -49,6 +112,138 @@ function getSummaryReport(localProps) {
         </div>
     )
 }
+
+function getDetailedReport(stack = "python", localProps) {
+    const {testMetrics, questions} = localProps;
+
+    const stackMetrics = testMetrics[stack];
+    const {correctIds, incorrectIds, skippedIds} = stackMetrics;
+
+    const stackQuestions = questions.filter(q => q.stack === stack);
+    const stackQuestionsCount = stackQuestions.length;
+    const attemptedCount  = correctIds.length + incorrectIds.length + skippedIds.length;
+    const unattemptedCount = stackQuestionsCount - attemptedCount;
+
+    return (
+        <div>
+            <div className="flex items-center justify-between p-4 bg-white/80 mb-2">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">{iconForStack(stack)}</div>
+                    <div>
+                        <div className="font-semibold">{stack}</div>
+                        <div className="text-xs text-gray-500">{stackQuestionsCount} questions • {attemptedCount} attempted</div>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <div className="text-right">
+                        <div className="text-sm text-gray-600">Score</div>
+                        <div className="text-lg font-bold text-blue-600">{getPercentage(correctIds.length, stackQuestionsCount)}%</div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex justify-center items-center gap-2 text-sm mb-8">
+                <div className="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs font-medium">
+                    Correct {correctIds.length}
+                </div>
+                <div className="px-2 py-1 bg-red-50 text-red-700 rounded-full text-xs font-medium">
+                    Incorrect {incorrectIds.length}
+                </div>
+                <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">
+                    Skipped {skippedIds.length}
+                </div>
+                <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">
+                    Unattempted {unattemptedCount}
+                </div>
+            </div>
+            <div>
+                {suggestedTopics(stackQuestions, stackMetrics)}
+            </div>
+        </div>
+    )
+}
+
+function suggestedTopics(stackQuestions, stackMetrics) {
+    const { correctIds, incorrectIds, skippedIds } = stackMetrics;
+
+    // Track questions per topic
+    const topicStats = {}; // { topic: { total: n, correct: m, attempted: k } }
+
+    stackQuestions.forEach((q) => {
+        const { topic, id } = q;
+
+        if (!topicStats[topic]) {
+            topicStats[topic] = { total: 0, correct: 0, attempted: 0 };
+        }
+
+        topicStats[topic].total += 1;
+
+        if (correctIds.includes(id) || incorrectIds.includes(id) || skippedIds.includes(id)) {
+            topicStats[topic].attempted += 1;
+        }
+
+        if (correctIds.includes(id)) {
+            topicStats[topic].correct += 1;
+        }
+    });
+
+    // Calculate score % per topic (based on attempted questions)
+    const topicScores = Object.entries(topicStats).map(([topic, stats]) => {
+        const percent = stats.attempted > 0 ? Math.round((stats.correct / stats.attempted) * 100) : 0;
+        return {topic, percent, correct: stats.correct, attempted: stats.attempted,
+        };
+    });
+
+    // Separate into best and worst
+    const bestTopics = topicScores.filter((t) => t.percent > 50).sort((a, b) => b.percent - a.percent).slice(0, 3);
+
+    const worstTopics = topicScores.filter((t) => t.percent <= 50).sort((a, b) => a.percent - b.percent).slice(0, 3);
+
+    return (
+        <div className="text-sm font-semibold mb-2">
+            <div className="flex gap-6">
+                {/* Strongest Topics - Left */}
+                <div className="flex-1">
+                    <div className="mb-2 font-semibold">Strongest Topics</div>
+                    {bestTopics.map((t) => (
+                        <div key={t.topic} className="flex items-center justify-between gap-3 mb-3">
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm font-medium truncate">{t.topic}</div>
+                                    <div className="text-sm text-gray-500">{t.percent}%</div>
+                                </div>
+                                <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
+                                    <div className="h-2 bg-green-400" style={{ width: `${t.percent}%` }} />
+                                </div>
+                                <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Weakest Topics - Right */}
+                <div className="flex-1">
+                    <div className="mb-2 font-semibold">Weakest Topics</div>
+                    {worstTopics.map((t) => (
+                        <div key={t.topic} className="flex items-center justify-between gap-3 mb-3">
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                    <div className="text-sm font-medium truncate">{t.topic}</div>
+                                    <div className="text-sm text-gray-500">{t.percent}%</div>
+                                </div>
+                                <div className="w-full bg-gray-200 h-2 rounded-full mt-2 overflow-hidden">
+                                    <div className="h-2 bg-red-400" style={{ width: `${t.percent}%` }} />
+                                </div>
+                                <div className="text-xs text-gray-500 mt-1">{t.correct}/{t.attempted} correct/attempted</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 
 function getPercentage(count, totalQuestions) {
     return ((count / totalQuestions) * 100).toFixed(0);

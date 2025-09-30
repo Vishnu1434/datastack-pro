@@ -3,7 +3,7 @@ import {shuffleQuestions, useEffectLoadQuestions} from "../practicePage.jsx";
 import { CheckCircle, XCircle, Shuffle, AlarmClock  } from "lucide-react";
 import {iconForStack, difficultyBadge, filterQuestions, formatTime} from "../../utils/common.jsx";
 import {examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
-import {getReport} from "../reportPage.jsx";
+import {GetReport} from "../reportPage.jsx";
 
 export default function MCQMode(props) {
     const {difficulty, techStack, topic, practiceType} = props;
@@ -19,12 +19,14 @@ export default function MCQMode(props) {
     const [correctCount, setCorrectCount] = useState(0);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [skippedCount, setSkippedCount] = useState(0);
-    const [testMetrics, setTestMetrics] = useState({correctIds: [], incorrectIds: [], skippedIds: []});
+    const [testMetrics, setTestMetrics] = useState({});
 
     const [totalTimeRemaining, setTotalTimeRemaining] = useState(0);
 
     const [testStarted, setTestStarted] = useState(false);
     const [displayReport, setDisplayReport] = useState(false);
+
+    const [stack, setStack] = useState(techStack[0]);
 
     const localProps = {
         setQuestionIndex, setSelected, setAnswered, setCorrectCount,
@@ -32,7 +34,7 @@ export default function MCQMode(props) {
         questionIndex, allQuestions, setQuestions, selected,
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
-        skippedCount, testMetrics, setTestMetrics
+        skippedCount, testMetrics, setTestMetrics, techStack, stack, setStack
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};
@@ -59,10 +61,10 @@ export default function MCQMode(props) {
 
     const clubbedProps = {question, localProps, props, scoreProps};
 
-    // return getReport(localProps);
+    // return GetReport(localProps);
 
     if (displayReport) {
-        return getReport(localProps);
+        return GetReport(localProps);
     }
 
     if (practiceType !== "Self-Paced" && !testStarted) {
@@ -284,10 +286,11 @@ function handleSelect(selectedKey, localProps) {
 
     if (selectedKey === question.answer) {
         setCorrectCount((p) => p + 1);
-        setTestMetrics((p) => ({...p, correctIds: [...p.correctIds, question.id]}));
+        updateTestMetrics(question.stack, "correctIds", question.id, setTestMetrics);
     } else {
         setIncorrectCount((p) => p + 1);
-        setTestMetrics((p) => ({...p, incorrectIds: [...p.incorrectIds, question.id]}));
+        updateTestMetrics(question.stack, "incorrectIds", question.id, setTestMetrics);
+
     }
 }
 
@@ -309,7 +312,7 @@ function handleNext(localProps, props) {
 
     if (!answered) {
         setSkippedCount((p) => p + 1);
-        setTestMetrics((p) => ({...p, skippedIds: [...p.skippedIds, question.id]}));
+        updateTestMetrics(question.stack, "skippedIds", question.id, setTestMetrics);
     }
 
     setSelected(null);
@@ -371,4 +374,32 @@ export function endTest(props) {
     setTestStarted(false);
     setTotalTimeRemaining(0);
     setDisplayReport(true);
+}
+
+function updateTestMetrics(stack, category, questionId, setTestMetrics) {
+    setTestMetrics((prev) => {
+        let stackData = prev[stack];
+
+        if (!stackData) {
+            stackData = {
+                correctIds: [],
+                incorrectIds: [],
+                skippedIds: [],
+            };
+        }
+
+        const correctIds = [...stackData.correctIds];
+        const incorrectIds = [...stackData.incorrectIds];
+        const skippedIds = [...stackData.skippedIds];
+
+        if (category === "correctIds") {
+            correctIds.push(questionId);
+        } else if (category === "incorrectIds") {
+            incorrectIds.push(questionId);
+        } else if (category === "skippedIds") {
+            skippedIds.push(questionId);
+        }
+
+        return {...prev, [stack]: {correctIds, incorrectIds, skippedIds}};
+    });
 }

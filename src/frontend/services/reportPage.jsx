@@ -1,47 +1,40 @@
-// compute detailed report data (score and topic strengths based on ATTEMPTED questions only)
-// const computeReport = () => {
-//     const stacks = Array.from(new Set(questions.map((q) => q.stack || q.source || "Unknown")));
-//     const perStack = stacks.map((stack) => {
-//         const indices = questions
-//             .map((qq, idx) => ({ qq, idx }))
-//             .filter(({ qq }) => (qq.stack || qq.source || "Unknown") === stack)
-//             .map(({ idx }) => idx);
-//         const total = indices.length;
-//         const correct = indices.filter((i) => responses[i] && responses[i].status === "correct").length;
-//         const incorrect = indices.filter((i) => responses[i] && responses[i].status === "incorrect").length;
-//         const skipped = indices.filter((i) => responses[i] && responses[i].status === "skipped").length;
-//         // 'attempted' should mean questions that the user saw (not 'unseen')
-//         const attempted = indices.filter((i) => responses[i] && responses[i].status && responses[i].status !== "unseen").length;
-//         const score = attempted ? Math.round((correct / attempted) * 100) : 0;
-//
-//         // topic analysis for this stack (based on questions the user saw)
-//         const topicMap = {};
-//         indices.forEach((i) => {
-//             const topicKey = questions[i].topic || questions[i].topics || "General";
-//             // topic might be string or array; normalize to string
-//             const t = Array.isArray(topicKey) ? topicKey[0] : topicKey;
-//             if (!topicMap[t]) topicMap[t] = { attempted: 0, correct: 0 };
-//             const resp = responses[i];
-//             if (resp && resp.status && resp.status !== "unseen") {
-//                 topicMap[t].attempted += 1;
-//                 if (resp.status === "correct") topicMap[t].correct += 1;
-//             }
-//         });
-//
-//         const topics = Object.entries(topicMap).map(([t, v]) => ({ topic: t, attempted: v.attempted, correct: v.correct, percent: v.attempted ? Math.round((v.correct / v.attempted) * 100) : 0 }));
-//         const strongest = topics.slice().sort((a, b) => b.percent - a.percent).slice(0, 3);
-//         const weakest = topics.slice().sort((a, b) => a.percent - b.percent).slice(0, 3);
-//
-//         return { stack, total, attempted, correct, incorrect, skipped, score, strongest, weakest };
-//     });
-//
-//     return perStack;
-// };
+export function getReport(scoreProps) {
+    const {correctCount, incorrectCount, skippedCount} = scoreProps;
 
-export function computeReport() {
     return (
-        <div>
-            <p>This is Report</p>
+        <div className="bg-white p-6 rounded-lg shadow max-w-4xl w-full">
+            <div className="flex flex-col md:flex-row gap-6">
+                <div className="md:w-1/3 text-center">
+                    <h3 className="text-lg font-semibold mb-2">Exam Finished</h3>
+                    <p className="text-sm text-gray-600 mb-4">Your scores for this session:</p>
+                    <div className="flex items-center justify-around mb-4">
+                        <div>
+                            <div className="text-2xl font-bold text-green-600">{correctCount}</div>
+                            <div className="text-sm text-gray-500">Correct</div>
+                        </div>
+                        <div>
+                            <div className="text-2xl font-bold text-red-600">{incorrectCount}</div>
+                            <div className="text-sm text-gray-500">Incorrect</div>
+                        </div>
+                        <div>
+                            <div className="text-2xl font-bold text-gray-700">{skippedCount}</div>
+                            <div className="text-sm text-gray-500">Skipped</div>
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-center gap-3">
+                        <button
+                            // onClick={() => {
+                            // reset exam state and allow parent to enable filters again
+                            // setExamState("idle");
+                            // keep scores visible until user interacts; parent already re-enabled filters
+                            // }}
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

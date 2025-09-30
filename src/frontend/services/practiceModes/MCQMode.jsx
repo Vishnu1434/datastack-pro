@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import {shuffleQuestions, useEffectLoadQuestions} from "../practicePage.jsx";
 import { CheckCircle, XCircle, Shuffle, AlarmClock  } from "lucide-react";
 import {iconForStack, difficultyBadge, filterQuestions, formatTime} from "../../utils/common.jsx";
-import {BuildingModeBanner, examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
+import {examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
+import {getReport} from "../reportPage.jsx";
 
 export default function MCQMode(props) {
     const {difficulty, techStack, topic, practiceType} = props;
@@ -20,41 +21,50 @@ export default function MCQMode(props) {
     const [skippedCount, setSkippedCount] = useState(0);
 
     const [totalTimeRemaining, setTotalTimeRemaining] = useState(0);
-    const [questionTimeRemaining, setQuestionTimeRemaining] = useState(0);
-    const timerRef = useRef(null);
 
     const [testStarted, setTestStarted] = useState(false);
+    const [displayReport, setDisplayReport] = useState(false);
 
     const localProps = {
         setQuestionIndex, setSelected, setAnswered, setCorrectCount,
         setIncorrectCount, setSkippedCount, answered, questions,
         questionIndex, allQuestions, setQuestions, selected,
-        totalTimeRemaining, questionTimeRemaining, testStarted
-    }
+        totalTimeRemaining, setTotalTimeRemaining, testStarted,
+        setDisplayReport
+    };
 
-    const scoreProps = {correctCount, incorrectCount, skippedCount}
+    const scoreProps = {correctCount, incorrectCount, skippedCount};
 
-    useEffectLoadQuestions("mcqs", {setAllQuestions, setLoading})
+    useEffectLoadQuestions("mcqs", {setAllQuestions, setLoading});
+    useEffectTimer(localProps);
 
     useEffect(() => {
         const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
         setQuestions(filtered);
 
+        handleShuffle(localProps);
+
         resetStats(localProps);
-    }, [difficulty, techStack, topic, allQuestions]);
+    }, [difficulty, techStack, topic, practiceType, allQuestions]);
 
     if (loading) {
-        return LoadingBanner("MCQs")
+        return LoadingBanner("MCQs");
     }
 
     if (!questions.length) return NoQuestionsFoundBanner();
 
     const question = questions[questionIndex] || null;
 
-    const clubbedProps = {question, localProps, props, scoreProps}
+    const clubbedProps = {question, localProps, props, scoreProps};
+
+    if (displayReport) {
+        return getReport(scoreProps);
+    }
 
     if (practiceType !== "Self-Paced" && !testStarted) {
-        return examModeBanner(practiceType, {setTestStarted});
+        let time = calculateTestTime(questions);
+
+        return examModeBanner(practiceType, {time, setTestStarted, setTotalTimeRemaining});
     }
 
     return mcqsMainContainer(clubbedProps);
@@ -93,7 +103,7 @@ function mcqsMainContainer({question, localProps, props, scoreProps}) {
 
             {/* Footer with only the Next button */}
             <div className="flex items-center justify-center gap-4 pt-4">
-                <button onClick={() => handleNext(localProps)} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-gray-200 hover:bg-gray-300 rounded-lg disabled:opacity-50" >
+                <button onClick={() => handleNext(localProps)} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
                     Next
                 </button>
             </div>
@@ -103,7 +113,7 @@ function mcqsMainContainer({question, localProps, props, scoreProps}) {
 
 function mcqsHeaderBar(localProps, props, scoreProps) {
     const {correctCount, incorrectCount, skippedCount} = scoreProps;
-    const {totalTimeRemaining} = localProps;
+    const {totalTimeRemaining, setDisplayReport} = localProps;
     const {practiceType} = props;
 
     const selfPaced = (
@@ -141,19 +151,30 @@ function mcqsHeaderBar(localProps, props, scoreProps) {
         </div>
     )
 
-    const timeType = practiceType === "Overall Time" ? "Total" : "Question";
+    // const timeType = practiceType === "Overall Time" ? "Total" : "Question";
 
     const otherTypes = (
-        <div className="flex items-center justify-center text-sm text-gray-700 gap-2 mb-1">
-            <AlarmClock className="w-4 h-4 text-blue-600" />
-            <span>
-                {timeType} time left:{" "}
-                <strong className="font-bold text-blue-600">
-                  {formatTime(totalTimeRemaining)}
-                </strong>
-            </span>
+        <div className="flex items-center justify-between w-full mb-1">
+            <div className="flex-1 flex justify-center">
+                <div className="flex items-center text-lg text-gray-700 gap-2">
+                    <AlarmClock className="w-5 h-5 text-blue-500" />
+                    <span>
+                        {"  "}
+                        <strong className="font-bold text-blue-500">
+                            {formatTime(totalTimeRemaining)}
+                        </strong>
+                    </span>
+                </div>
+            </div>
+
+            {/*onClick={endExam}*/}
+            <div>
+                <button onClick={() => (setDisplayReport(true))} className="px-5 py-2 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    End
+                </button>
+            </div>
         </div>
-    )
+    );
 
     if (practiceType === "Self-Paced") {
         return selfPaced;
@@ -277,4 +298,41 @@ function handleNext(localProps) {
     setSelected(null);
     setAnswered(false);
     setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
+}
+
+function useEffectTimer(localProps) {
+    const {totalTimeRemaining, setTotalTimeRemaining} = localProps;
+
+    return (
+        useEffect(() => {
+            if (totalTimeRemaining <= 0) return;
+
+            const timer = setInterval(() => {
+                setTotalTimeRemaining((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(timer);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }, [totalTimeRemaining])
+    );
+}
+
+function calculateTestTime(questions) {
+    let time = 0;
+
+    for (const question of questions) {
+        time += question.difficulty === "easy" ? 30 : question.difficulty === "Medium" ? 45 : 60;
+    }
+    return time;
+}
+
+export function startTest(props) {
+    const {time, setTestStarted, setTotalTimeRemaining} = props;
+    setTestStarted(true);
+    setTotalTimeRemaining(time);
 }

@@ -1,9 +1,10 @@
 import React from "react";
+import { startTest } from "../services/practiceModes/MCQMode.jsx";
 
 const overallTime = "A total time will be allotted to solve all questions. Apply filters now and click Start to begin the timed session. Live scoring will be hidden during the run and revealed at the end."
 const perQuestionTime = "Each question will have a fixed time limit. Apply filters now and click Start to begin. Live scoring will be hidden during the run and revealed at the end."
 
-export function examModeBanner(practiceType, {setTestStarted}) {
+export function examModeBanner(practiceType, props) {
     return (
         <div className="flex items-center justify-center min-h-full p-6">
             <div className="w-4/5 max-w-3xl text-center bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border border-gray-200">
@@ -12,7 +13,7 @@ export function examModeBanner(practiceType, {setTestStarted}) {
                     {practiceType === "Overall Time" ? overallTime : perQuestionTime}
                 </p>
                 <div className="flex items-center justify-center gap-3">
-                    <button onClick={() => setTestStarted(true)} className="px-7 py-2 bg-blue-600 text-white rounded-lg shadow-lg">
+                    <button onClick={() => {startTest(props)}} className="px-7 py-2 bg-blue-600 text-white rounded-lg shadow-lg">
                         Start
                     </button>
                 </div>

@@ -30,7 +30,8 @@ export default function MCQMode(props) {
         setIncorrectCount, setSkippedCount, answered, questions,
         questionIndex, allQuestions, setQuestions, selected,
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
-        setDisplayReport
+        setTestStarted, setDisplayReport, correctCount, incorrectCount,
+        skippedCount
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};
@@ -58,7 +59,7 @@ export default function MCQMode(props) {
     const clubbedProps = {question, localProps, props, scoreProps};
 
     if (displayReport) {
-        return getReport(scoreProps);
+        return getReport(localProps);
     }
 
     if (practiceType !== "Self-Paced" && !testStarted) {
@@ -169,7 +170,7 @@ function mcqsHeaderBar(localProps, props, scoreProps) {
 
             {/*onClick={endExam}*/}
             <div>
-                <button onClick={() => (setDisplayReport(true))} className="px-5 py-2 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700">
+                <button onClick={() => endTest(localProps)} className="px-5 py-2 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700">
                     End
                 </button>
             </div>
@@ -228,8 +229,9 @@ function renderOptionIcon({ localProps, isCorrect, isSelected, index }) {
     return <span className="text-gray-500">{String.fromCharCode(65 + index)}</span>;
 }
 
-function resetStats(props) {
-    const { setQuestionIndex, setSelected, setAnswered, setCorrectCount, setIncorrectCount, setSkippedCount } = props;
+export function resetStats(props) {
+    const { setQuestionIndex, setSelected, setAnswered, setCorrectCount,
+        setIncorrectCount, setSkippedCount, setDisplayReport } = props;
 
     setQuestionIndex(0);
     setSelected(null);
@@ -237,6 +239,7 @@ function resetStats(props) {
     setCorrectCount(0);
     setIncorrectCount(0);
     setSkippedCount(0);
+    setDisplayReport(false);
 }
 
 function handleReset(localProps, props) {
@@ -328,11 +331,19 @@ function calculateTestTime(questions) {
     for (const question of questions) {
         time += question.difficulty === "easy" ? 30 : question.difficulty === "Medium" ? 45 : 60;
     }
-    return time;
+
+    return Math.ceil(time / 60) * 60;
 }
 
 export function startTest(props) {
     const {time, setTestStarted, setTotalTimeRemaining} = props;
     setTestStarted(true);
     setTotalTimeRemaining(time);
+}
+
+export function endTest(props) {
+    const {setDisplayReport, setTestStarted, setTotalTimeRemaining} = props;
+    setTestStarted(false);
+    setTotalTimeRemaining(0);
+    setDisplayReport(true);
 }

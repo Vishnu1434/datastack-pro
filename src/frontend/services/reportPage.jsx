@@ -1,5 +1,7 @@
-export function getReport(scoreProps) {
-    const {correctCount, incorrectCount, skippedCount} = scoreProps;
+import {resetStats} from "./practiceModes/MCQMode.jsx";
+
+export function getReport(localProps) {
+    const {correctCount, incorrectCount, skippedCount} = localProps;
 
     return (
         <div className="bg-white p-6 rounded-lg shadow max-w-4xl w-full">
@@ -22,14 +24,7 @@ export function getReport(scoreProps) {
                         </div>
                     </div>
                     <div className="flex items-center justify-center gap-3">
-                        <button
-                            // onClick={() => {
-                            // reset exam state and allow parent to enable filters again
-                            // setExamState("idle");
-                            // keep scores visible until user interacts; parent already re-enabled filters
-                            // }}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md"
-                        >
+                        <button onClick={() => resetStats(localProps)} className="px-4 py-2 bg-blue-600 text-white rounded-md">
                             Close
                         </button>
                     </div>

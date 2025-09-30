@@ -37,7 +37,7 @@ export default function MCQMode(props) {
     const scoreProps = {correctCount, incorrectCount, skippedCount};
 
     useEffectLoadQuestions("mcqs", {setAllQuestions, setLoading});
-    useEffectTimer(localProps);
+    useEffectTimer(localProps, props);
 
     useEffect(() => {
         const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
@@ -104,7 +104,7 @@ function mcqsMainContainer({question, localProps, props, scoreProps}) {
 
             {/* Footer with only the Next button */}
             <div className="flex items-center justify-center gap-4 pt-4">
-                <button onClick={() => handleNext(localProps)} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
+                <button onClick={() => handleNext(localProps, props)} disabled={questionIndex >= questions.length - 1} className="px-5 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
                     Next
                 </button>
             </div>
@@ -284,15 +284,19 @@ function handleSelect(selectedKey, localProps) {
     }
 }
 
-function handleNext(localProps) {
+function handleNext(localProps, props) {
     const {
         answered,
         setAnswered,
         setQuestionIndex,
         setSkippedCount,
         setSelected,
-        questions
+        questions,
+        question,
+        setTotalTimeRemaining
     } = localProps
+
+    const {practiceType} = props;
 
     if (!answered) {
         setSkippedCount((p) => p + 1);
@@ -301,14 +305,25 @@ function handleNext(localProps) {
     setSelected(null);
     setAnswered(false);
     setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
+
+    if (practiceType === "Per Question Time") {
+        setTotalTimeRemaining(question.difficulty === "easy" ? 30 : question.difficulty === "Medium" ? 45 : 60);
+    }
 }
 
-function useEffectTimer(localProps) {
-    const {totalTimeRemaining, setTotalTimeRemaining} = localProps;
+function useEffectTimer(localProps, props) {
+    const {totalTimeRemaining, setTotalTimeRemaining, questions, questionIndex} = localProps;
+    const {practiceType} = props;
 
     return (
         useEffect(() => {
-            if (totalTimeRemaining <= 0) return;
+            if (totalTimeRemaining <= 0) {
+                if (practiceType !== "Overall Time" && questionIndex < questions.length - 1) {
+                    return handleNext(localProps, props);
+                }
+
+                return endTest(localProps);
+            }
 
             const timer = setInterval(() => {
                 setTotalTimeRemaining((prev) => {

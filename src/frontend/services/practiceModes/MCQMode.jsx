@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {shuffleQuestions, useEffectLoadQuestions} from "../practicePage.jsx";
-import { CheckCircle, XCircle, Shuffle } from "lucide-react";
-import {iconForStack, difficultyBadge, filterQuestions} from "../../utils/common.jsx";
-import {BuildingModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
+import { CheckCircle, XCircle, Shuffle, AlarmClock  } from "lucide-react";
+import {iconForStack, difficultyBadge, filterQuestions, formatTime} from "../../utils/common.jsx";
+import {BuildingModeBanner, examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
 
 export default function MCQMode(props) {
     const {difficulty, techStack, topic, practiceType} = props;
@@ -19,19 +19,17 @@ export default function MCQMode(props) {
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [skippedCount, setSkippedCount] = useState(0);
 
+    const [totalTimeRemaining, setTotalTimeRemaining] = useState(0);
+    const [questionTimeRemaining, setQuestionTimeRemaining] = useState(0);
+    const timerRef = useRef(null);
+
+    const [testStarted, setTestStarted] = useState(false);
+
     const localProps = {
-        setQuestionIndex,
-        setSelected,
-        setAnswered,
-        setCorrectCount,
-        setIncorrectCount,
-        setSkippedCount,
-        answered,
-        questions,
-        questionIndex,
-        allQuestions,
-        setQuestions,
-        selected
+        setQuestionIndex, setSelected, setAnswered, setCorrectCount,
+        setIncorrectCount, setSkippedCount, answered, questions,
+        questionIndex, allQuestions, setQuestions, selected,
+        totalTimeRemaining, questionTimeRemaining
     }
 
     const scoreProps = {correctCount, incorrectCount, skippedCount}
@@ -53,15 +51,16 @@ export default function MCQMode(props) {
 
     const question = questions[questionIndex] || null;
 
-    switch (practiceType) {
-        case "Self-Paced":
-            return mcqsMainContainer(question, localProps, props, scoreProps);
-        default:
-            return <BuildingModeBanner/>;
+    const clubbedProps = {question, localProps, props, scoreProps}
+
+    if (practiceType !== "Self-Paced" && !testStarted) {
+        return examModeBanner(practiceType, {setTestStarted});
     }
+
+    return mcqsMainContainer(clubbedProps);
 }
 
-function mcqsMainContainer(question, localProps, props, scoreProps) {
+function mcqsMainContainer({question, localProps, props, scoreProps}) {
     const {selected, answered, questionIndex, questions} = localProps;
 
     return (
@@ -104,8 +103,11 @@ function mcqsMainContainer(question, localProps, props, scoreProps) {
 
 function mcqsHeaderBar(localProps, props, scoreProps) {
     const {correctCount, incorrectCount, skippedCount} = scoreProps;
+    const {totalTimeRemaining, questionTimeRemaining} = localProps;
+    const {practiceType} = props;
+    console.log("header bar method called here...");
 
-    return (
+    const selfPaced = (
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2 mcq-stats">
@@ -139,6 +141,26 @@ function mcqsHeaderBar(localProps, props, scoreProps) {
             </div>
         </div>
     )
+
+    const timeType = practiceType === "Overall Time" ? "Total" : "Question";
+
+    const otherTypes = (
+        <div className="flex items-center justify-center text-sm text-gray-700 gap-2 mb-1">
+            <AlarmClock className="w-4 h-4 text-blue-600" />
+            <span>
+                {timeType} time left:{" "}
+                <strong className="font-bold text-blue-600">
+                  {formatTime(totalTimeRemaining)}
+                </strong>
+            </span>
+        </div>
+    )
+
+    if (practiceType === "Self-Paced") {
+        return selfPaced;
+    } else {
+        return otherTypes;
+    }
 }
 
 function mcqsQuestionBar(question, localProps) {

@@ -122,3 +122,11 @@ export function useOutsideClick(dropdownRefs, dropdownMenuRefs, setDropdownOpen)
         return () => document.removeEventListener("click", handler);
     }, []);
 }
+
+export function formatTime(time) {
+    console.log("fomat time is called here");
+    const mm = Math.floor(time / 60).toString().padStart(2, "0");
+    const ss = Math.floor(time % 60).toString().padStart(2, "0");
+
+    return `${mm}:${ss}`;
+}

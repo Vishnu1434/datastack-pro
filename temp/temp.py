@@ -130,6 +130,14 @@ class Temp:
         self.write_yaml_file(f"../public/data/{self.stack}/theory_new.yaml", t_data)
         self.write_yaml_file(f"../public/data/{self.stack}/mcqs_new.yaml", m_data)
 
+    def sort_nested(self, obj):
+        if isinstance(obj, dict):
+            return {k: self.sort_nested(v) for k, v in sorted(obj.items())}
+        elif isinstance(obj, list):
+            return sorted([self.sort_nested(e) for e in obj], key=lambda x: str(x))
+        else:
+            return obj
+
     def generate_manifest(self):
         def get_the_topics(directory, file, current_list):
             topics = []
@@ -165,7 +173,7 @@ class Temp:
             manifest[stack_name]["topics"] += topics_list
 
         with open(self.manifest_file_path, "w") as f:
-            yaml.safe_dump(manifest, f, default_flow_style=False, sort_keys=False)
+            yaml.safe_dump(self.sort_nested(manifest), f, default_flow_style=False, sort_keys=True)
 
         print(f"stack_manifest.yaml generated at {self.manifest_file_path}")
 

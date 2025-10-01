@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const props = {
-    techStack: ["java", "python"],
+    techStack: ["java"],
 
     stack: "java",
     setStack: () => {},
@@ -55,13 +55,15 @@ export function GetReport(localProps) {
     localProps = props;
 
     return (
-        <div className="bg-white p-5 rounded-xl shadow-lg w-[90%] mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
-            <div className="flex gap-4 items-start">
-                <div className="flex-none w-[30%]">
+        <div className="w-[90%] mx-auto my-8 transition duration-300 hover:shadow-xl">
+            <div className="flex gap-6 h-full">
+                {/* LEFT → Summary Report */}
+                <div className="flex flex-col w-[30%] bg-white rounded-xl shadow-lg hover:shadow-xl p-4">
                     {getSummaryReport(localProps)}
                 </div>
 
-                <div className="flex-1 w-[70%]">
+                {/* RIGHT → Detailed Report */}
+                <div className="flex flex-col flex-1 bg-white rounded-xl shadow-lg hover:shadow-xl p-4">
                     {getDetailedReport(localProps)}
                 </div>
             </div>
@@ -93,7 +95,7 @@ function getSummaryReport(localProps) {
                 <div className="text-2xl font-extrabold text-blue-600">{totalQuestions}</div>
             </div>
 
-            <div className="space-y-1.5 mb-10">
+            <div className="space-y-1.5">
                 <div className="grid grid-cols-3 text-xs font-bold text-gray-500 border-b border-gray-200 pb-1.5">
                     <div className="text-left">Metric</div>
                     <div className="text-center">Count</div>
@@ -161,11 +163,11 @@ function getDetailedReport(localProps) {
                     Unattempted {unattemptedCount}
                 </div>
             </div>
-            <div>
+            <div className="min-h-[240px]">
                 {suggestedTopics(stackQuestions, stackMetrics)}
             </div>
 
-            <div className="flex items-center justify-center gap-4 pt-4">
+            <div className="flex items-center justify-center gap-4">
                 <button onClick={() => handlePrevReport(localProps)} disabled={stackIndex <= 0} className="px-2 py-1 text-sm  bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
                     <ChevronLeft />
                 </button>

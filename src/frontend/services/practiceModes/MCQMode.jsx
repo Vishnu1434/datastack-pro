@@ -35,7 +35,7 @@ export default function MCQMode(props) {
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
         skippedCount, testMetrics, setTestMetrics, selectedTechStacks, stackIndex,
-        setStackIndex, allTechStacks
+        setStackIndex, allTechStacks, practiceType
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};
@@ -67,9 +67,7 @@ export default function MCQMode(props) {
     }
 
     if (practiceType !== "Self-Paced" && !testStarted) {
-        let time = calculateTestTime(questions);
-
-        return examModeBanner(practiceType, {time, setTestStarted, setTotalTimeRemaining});
+        return examModeBanner(localProps);
     }
 
     return mcqsMainContainer(clubbedProps);
@@ -289,7 +287,6 @@ function handleSelect(selectedKey, localProps) {
     } else {
         setIncorrectCount((p) => p + 1);
         updateTestMetrics(question.stack, "incorrectIds", question.id, setTestMetrics);
-
     }
 }
 
@@ -307,7 +304,7 @@ function handleNext(localProps, props) {
     } = localProps
 
     const {practiceType} = props;
-    const question = questions[questionIndex];
+    let question = questions[questionIndex];
 
     if (!answered) {
         setSkippedCount((p) => p + 1);
@@ -316,10 +313,12 @@ function handleNext(localProps, props) {
 
     setSelected(null);
     setAnswered(false);
-    setQuestionIndex((prev) => Math.min(prev + 1, Math.max(questions.length - 1, 0)));
+    setQuestionIndex((prev) => prev + 1);
+
+    question = questions[questionIndex + 1];
 
     if (practiceType === "Per Question Time") {
-        setTotalTimeRemaining(question.difficulty === "easy" ? 30 : question.difficulty === "Medium" ? 45 : 60);
+        setTotalTimeRemaining(question.difficulty === "easy" ? 30 : question.difficulty === "medium" ? 45 : 60);
     }
 }
 
@@ -362,10 +361,18 @@ function calculateTestTime(questions) {
     return Math.ceil(time / 60) * 60;
 }
 
-export function startTest(props) {
-    const {time, setTestStarted, setTotalTimeRemaining} = props;
+export function startTest(localProps) {
+    const {setTestStarted, setTotalTimeRemaining, practiceType, questions, questionIndex} = localProps;
+
+    if (practiceType === "Per Question Time") {
+        const question = questions[questionIndex];
+        setTotalTimeRemaining(question.difficulty === "easy" ? 30 : question.difficulty === "medium" ? 45 : 60);
+    }
+    else {
+        let time = calculateTestTime(questions);
+        setTotalTimeRemaining(time);
+    }
     setTestStarted(true);
-    setTotalTimeRemaining(time);
 }
 
 export function endTest(props) {

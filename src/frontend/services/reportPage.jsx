@@ -1,7 +1,9 @@
+import React from "react";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import {resetStats} from "./practiceModes/MCQMode.jsx";
 import {iconForStack} from "../utils/common.jsx";
-import React, {useState} from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function getReport(localProps) {
     return (

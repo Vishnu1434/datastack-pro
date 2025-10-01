@@ -292,30 +292,24 @@ function handleSelect(selectedKey, localProps) {
 
 function handleNext(localProps, props) {
     const {
-        answered,
         setAnswered,
         setQuestionIndex,
-        setSkippedCount,
         setSelected,
         questions,
         setTotalTimeRemaining,
-        setTestMetrics,
         questionIndex
     } = localProps
 
     const {practiceType} = props;
-    let question = questions[questionIndex];
 
-    if (!answered) {
-        setSkippedCount((p) => p + 1);
-        updateTestMetrics(question.stack, "skippedIds", question.id, setTestMetrics);
-    }
+    console.log("from handle next here");
+    handleSkip(localProps);
 
     setSelected(null);
     setAnswered(false);
     setQuestionIndex((prev) => prev + 1);
 
-    question = questions[questionIndex + 1];
+    const question = questions[questionIndex + 1];
 
     if (practiceType === "Per Question Time") {
         setTotalTimeRemaining(question.difficulty === "easy" ? 30 : question.difficulty === "medium" ? 45 : 60);
@@ -323,16 +317,16 @@ function handleNext(localProps, props) {
 }
 
 function useEffectTimer(localProps, props) {
-    const {totalTimeRemaining, setTotalTimeRemaining, questions, questionIndex} = localProps;
+    const {totalTimeRemaining, setTotalTimeRemaining, questions, questionIndex, testStarted} = localProps;
     const {practiceType} = props;
 
     return (
         useEffect(() => {
-            if (totalTimeRemaining <= 0) {
+            if (totalTimeRemaining <= 0 && testStarted) {
                 if (practiceType !== "Overall Time" && questionIndex < questions.length - 1) {
                     return handleNext(localProps, props);
                 }
-
+                console.log("from end use effect here");
                 return endTest(localProps);
             }
 
@@ -375,8 +369,21 @@ export function startTest(localProps) {
     setTestStarted(true);
 }
 
-export function endTest(props) {
-    const {setDisplayReport, setTestStarted, setTotalTimeRemaining} = props;
+function handleSkip(localProps) {
+    const {answered, setSkippedCount, questions, questionIndex, setTestMetrics} = localProps;
+
+    const question = questions[questionIndex];
+
+    if (!answered) {
+        setSkippedCount((p) => p + 1);
+        updateTestMetrics(question.stack, "skippedIds", question.id, setTestMetrics);
+    }
+}
+
+export function endTest(localProps) {
+    const {setDisplayReport, setTestStarted, setTotalTimeRemaining} = localProps;
+    handleSkip(localProps);
+
     setTestStarted(false);
     setTotalTimeRemaining(0);
     setDisplayReport(true);

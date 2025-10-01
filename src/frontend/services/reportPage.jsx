@@ -70,9 +70,9 @@ function getDetailedReport(localProps) {
     
     let techStacks = selectedTechStacks.length > 0 ? selectedTechStacks : allTechStacks;
 
-    const stack = techStacks[stackIndex];
+    const stack = techStacks[stackIndex].toLowerCase();
 
-    const stackMetrics = testMetrics[stack.toLowerCase()] || { correctIds: [], incorrectIds: [], skippedIds: [] };
+    const stackMetrics = testMetrics[stack] || { correctIds: [], incorrectIds: [], skippedIds: [] };
     const {correctIds, incorrectIds, skippedIds} = stackMetrics;
 
     const stackQuestions = questions.filter(q => q.stack === stack);

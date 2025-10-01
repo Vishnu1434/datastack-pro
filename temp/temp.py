@@ -170,7 +170,8 @@ class Temp:
         print(f"stack_manifest.yaml generated at {self.manifest_file_path}")
 
 if __name__ == "__main__":
-    stack = "Spark"
+    stack = "Airflow"
     temp = Temp(stack)
-    temp.rearrange_ids()
-    # temp.generate_manifest()
+    # temp.rearrange_ids()
+    temp.generate_manifest()
+    # temp.topic_wise_count()

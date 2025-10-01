@@ -26,7 +26,7 @@ export default function MCQMode(props) {
     const [testStarted, setTestStarted] = useState(false);
     const [displayReport, setDisplayReport] = useState(false);
 
-    const [stack, setStack] = useState(techStack[0]);
+    const [stackIndex, setStackIndex] = useState(0);
 
     const localProps = {
         setQuestionIndex, setSelected, setAnswered, setCorrectCount,
@@ -34,7 +34,8 @@ export default function MCQMode(props) {
         questionIndex, allQuestions, setQuestions, selected,
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
-        skippedCount, testMetrics, setTestMetrics, techStack, stack, setStack
+        skippedCount, testMetrics, setTestMetrics, techStack, stackIndex,
+        setStackIndex
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};
@@ -61,7 +62,7 @@ export default function MCQMode(props) {
 
     const clubbedProps = {question, localProps, props, scoreProps};
 
-    // return GetReport(localProps);
+    return GetReport(localProps);
 
     if (displayReport) {
         return GetReport(localProps);

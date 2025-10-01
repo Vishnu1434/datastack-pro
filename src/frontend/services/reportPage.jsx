@@ -1,51 +1,58 @@
 import {resetStats} from "./practiceModes/MCQMode.jsx";
 import {iconForStack} from "../utils/common.jsx";
-import {useState} from "react";
+import React, {useState} from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// const props = {
-//     tecStack: ["python", "java"],
-//
-//     stack: "python",
-//
-//     // State tracking answers per stack
-//     testMetrics: {
-//         python: {
-//             correctIds: [1, 3, 5],
-//             incorrectIds: [2, 4],
-//             skippedIds: [6],
-//         },
-//         javascript: {
-//             correctIds: [11, 12],
-//             incorrectIds: [13],
-//             skippedIds: [],
-//         },
-//     },
-//
-//     // Full list of questions
-//     questions: [
-//         { id: 1, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q1" },
-//         { id: 2, stack: "python", type: "mcq", topic: "Loops", difficulty: "medium", question: "Q2" },
-//         { id: 3, stack: "python", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q3" },
-//         { id: 4, stack: "python", type: "mcq", topic: "Lists", difficulty: "hard", question: "Q4" },
-//         { id: 5, stack: "python", type: "mcq", topic: "Dicts", difficulty: "medium", question: "Q5" },
-//         { id: 6, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q6" },
-//         { id: 7, stack: "python", type: "mcq", topic: "Sets", difficulty: "easy", question: "Q7" }, // unattempted
-//
-//         { id: 11, stack: "java", type: "mcq", topic: "Arrays", difficulty: "easy", question: "Q11" },
-//         { id: 12, stack: "java", type: "mcq", topic: "Objects", difficulty: "medium", question: "Q12" },
-//         { id: 13, stack: "java", type: "mcq", topic: "Loops", difficulty: "hard", question: "Q13" },
-//         { id: 14, stack: "java", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q14" }, // unattempted
-//     ],
-//
-//     // Optional: total counts already computed (can match testMetrics)
-//     correctCount: 5,       // sum of correctIds across stacks
-//     incorrectCount: 3,     // sum of incorrectIds across stacks
-//     skippedCount: 1,       // sum of skippedIds across stacks
-// };
+const props = {
+    techStack: ["java", "python"],
+
+    stack: "java",
+    setStack: () => {},
+
+    stackIndex: 0,
+    setStackIndex: () => {},
+    // State tracking answers per stack
+    testMetrics: {
+        python: {
+            correctIds: [1, 3, 5],
+            incorrectIds: [2, 4],
+            skippedIds: [6],
+        },
+        java: {
+            correctIds: [11, 12],
+            incorrectIds: [13],
+            skippedIds: [],
+        },
+    },
+
+    // Full list of questions
+    questions: [
+        { id: 1, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q1" },
+        { id: 2, stack: "python", type: "mcq", topic: "Loops", difficulty: "medium", question: "Q2" },
+        { id: 3, stack: "python", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q3" },
+        { id: 4, stack: "python", type: "mcq", topic: "Lists", difficulty: "hard", question: "Q4" },
+        { id: 5, stack: "python", type: "mcq", topic: "Dicts", difficulty: "medium", question: "Q5" },
+        { id: 6, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q6" },
+        { id: 7, stack: "python", type: "mcq", topic: "Sets", difficulty: "easy", question: "Q7" }, // unattempted
+
+        { id: 11, stack: "java", type: "mcq", topic: "Arrays", difficulty: "easy", question: "Q11" },
+        { id: 12, stack: "java", type: "mcq", topic: "Objects", difficulty: "medium", question: "Q12" },
+        { id: 13, stack: "java", type: "mcq", topic: "Loops", difficulty: "hard", question: "Q13" },
+        { id: 14, stack: "java", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q14" }, // unattempted
+    ],
+
+    // Optional: total counts already computed (can match testMetrics)
+    correctCount: 5,       // sum of correctIds across stacks
+    incorrectCount: 3,     // sum of incorrectIds across stacks
+    skippedCount: 1,       // sum of skippedIds across stacks
+};
 
 
 export function GetReport(localProps) {
-    const {stack, setStack, techStack} = localProps;
+    const {setStack, setStackIndex} = localProps;
+    props.setStack = setStack;
+    props.setStackIndex = setStackIndex;
+    localProps = props;
 
     return (
         <div className="bg-white p-5 rounded-xl shadow-lg w-[90%] mx-auto my-8 border border-gray-100 transition duration-300 hover:shadow-xl">
@@ -55,17 +62,8 @@ export function GetReport(localProps) {
                 </div>
 
                 <div className="flex-1 w-[70%]">
-                    {getDetailedReport(stack, localProps)}
+                    {getDetailedReport(localProps)}
                 </div>
-            </div>
-
-            {/* Example buttons to switch stacks */}
-            <div className="mt-4 flex gap-2">
-                {techStack.map((s) => (
-                    <button key={s} onClick={() => setStack(s)} className={`px-3 py-1 rounded ${stack === s ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"}`}>
-                        {s}
-                    </button>
-                ))}
             </div>
         </div>
     );
@@ -95,7 +93,7 @@ function getSummaryReport(localProps) {
                 <div className="text-2xl font-extrabold text-blue-600">{totalQuestions}</div>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 mb-10">
                 <div className="grid grid-cols-3 text-xs font-bold text-gray-500 border-b border-gray-200 pb-1.5">
                     <div className="text-left">Metric</div>
                     <div className="text-center">Count</div>
@@ -113,8 +111,12 @@ function getSummaryReport(localProps) {
     )
 }
 
-function getDetailedReport(stack = "python", localProps) {
-    const {testMetrics, questions} = localProps;
+function getDetailedReport(localProps) {
+    const {stackIndex, testMetrics, questions, techStack} = localProps;
+
+    const stack = techStack[stackIndex];
+    console.log("stack index is: ", stackIndex);
+    console.log("stack is: ", stack);
 
     const stackMetrics = testMetrics[stack];
     const {correctIds, incorrectIds, skippedIds} = stackMetrics;
@@ -123,6 +125,9 @@ function getDetailedReport(stack = "python", localProps) {
     const stackQuestionsCount = stackQuestions.length;
     const attemptedCount  = correctIds.length + incorrectIds.length + skippedIds.length;
     const unattemptedCount = stackQuestionsCount - attemptedCount;
+
+    const stackCount = techStack.length;
+    console.log("stack count is: ", stackCount);
 
     return (
         <div>
@@ -158,6 +163,15 @@ function getDetailedReport(stack = "python", localProps) {
             </div>
             <div>
                 {suggestedTopics(stackQuestions, stackMetrics)}
+            </div>
+
+            <div className="flex items-center justify-center gap-4 pt-4">
+                <button onClick={() => handlePrevReport(localProps)} disabled={stackIndex <= 0} className="px-2 py-1 text-sm  bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
+                    <ChevronLeft />
+                </button>
+                <button onClick={() => handleNextReport(localProps)} disabled={stackIndex >= techStack.length - 1} className="px-2 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
+                    <ChevronRight />
+                </button>
             </div>
         </div>
     )
@@ -244,7 +258,6 @@ function suggestedTopics(stackQuestions, stackMetrics) {
     );
 }
 
-
 function getPercentage(count, totalQuestions) {
     return ((count / totalQuestions) * 100).toFixed(0);
 }
@@ -253,7 +266,7 @@ function getSummaryRow(totalQuestions, {label, count, colorClass}) {
     const numericCount = Number(count);
 
     return (
-        <div className="grid grid-cols-3 items-center py-1.5 border-b border-gray-100 last:border-b-0">
+        <div key={label} className="grid grid-cols-3 items-center py-1.5 border-b border-gray-100 last:border-b-0">
             {/* Metric Label */}
             <div className="text-left text-gray-700 text-sm font-medium">
                 {label}
@@ -270,4 +283,15 @@ function getSummaryRow(totalQuestions, {label, count, colorClass}) {
             </div>
         </div>
     );
+}
+
+function handleNextReport(localProps) {
+    console.log("next report called here");
+    const {setStackIndex} = localProps;
+    setStackIndex((p) => p + 1);
+}
+
+function handlePrevReport(localProps) {
+    const {setStackIndex} = localProps;
+    setStackIndex((p) => p - 1);
 }

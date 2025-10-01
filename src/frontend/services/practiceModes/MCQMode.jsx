@@ -6,7 +6,7 @@ import {examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils
 import {getReport} from "../reportPage.jsx";
 
 export default function MCQMode(props) {
-    const {difficulty, selectedTechStacks, topic, practiceType} = props;
+    const {difficulty, selectedTechStacks, topic, practiceType, allTechStacks} = props;
 
     const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
@@ -35,7 +35,7 @@ export default function MCQMode(props) {
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
         skippedCount, testMetrics, setTestMetrics, selectedTechStacks, stackIndex,
-        setStackIndex
+        setStackIndex, allTechStacks
     };
 
     const scoreProps = {correctCount, incorrectCount, skippedCount};

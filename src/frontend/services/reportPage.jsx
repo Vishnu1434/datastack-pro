@@ -67,18 +67,16 @@ function getDetailedReport(localProps) {
     const {stackIndex, testMetrics, questions, selectedTechStacks, allTechStacks} = localProps;
     
     let techStacks = selectedTechStacks.length > 0 ? selectedTechStacks : allTechStacks;
+
     const stack = techStacks[stackIndex];
 
-    const stackMetrics = testMetrics[stack.toLowerCase()];
+    const stackMetrics = testMetrics[stack.toLowerCase()] || { correctIds: [], incorrectIds: [], skippedIds: [] };
     const {correctIds, incorrectIds, skippedIds} = stackMetrics;
 
     const stackQuestions = questions.filter(q => q.stack === stack);
     const stackQuestionsCount = stackQuestions.length;
     const attemptedCount  = correctIds.length + incorrectIds.length + skippedIds.length;
     const unattemptedCount = stackQuestionsCount - attemptedCount;
-
-    const stackCount = selectedTechStacks.length;
-    console.log("stack count is: ", stackCount);
 
     return (
         <div>

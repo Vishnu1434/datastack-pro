@@ -105,7 +105,7 @@ function getDetailedReport(localProps) {
                 <div className="px-2 py-1 bg-red-50 text-red-700 rounded-full text-xs font-medium">
                     Incorrect {incorrectIds.length}
                 </div>
-                <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">
+                <div className="px-2 py-1 bg-gray-50 text-yellow-700 rounded-full text-xs font-medium">
                     Skipped {skippedIds.length}
                 </div>
                 <div className="px-2 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-medium">
@@ -129,28 +129,28 @@ function getDetailedReport(localProps) {
 }
 
 function suggestedTopics(stackQuestions, stackMetrics) {
-    const { correctIds, incorrectIds, skippedIds } = stackMetrics;
+    const {correctIds, incorrectIds, skippedIds} = stackMetrics;
 
     // Track questions per topic
-    const topicStats = {}; // { topic: { total: n, correct: m, attempted: k } }
+    const topicStats = {}; // { topic: { correct: m, attempted: k } }
 
     stackQuestions.forEach((q) => {
         const { topic, id } = q;
+        const isCorrect = correctIds.includes(id);
 
-        if (!topicStats[topic]) {
-            topicStats[topic] = { total: 0, correct: 0, attempted: 0 };
-        }
-
-        topicStats[topic].total += 1;
-
-        if (correctIds.includes(id) || incorrectIds.includes(id) || skippedIds.includes(id)) {
+        if (isCorrect || incorrectIds.includes(id) || skippedIds.includes(id)) {
+            if (!topicStats[topic]) {
+                topicStats[topic] = { correct: 0, attempted: 0 };
+            }
             topicStats[topic].attempted += 1;
-        }
 
-        if (correctIds.includes(id)) {
-            topicStats[topic].correct += 1;
+            if (isCorrect) {
+                topicStats[topic].correct += 1;
+            }
         }
     });
+
+    console.log(topicStats);
 
     // Calculate score % per topic (based on attempted questions)
     const topicScores = Object.entries(topicStats).map(([topic, stats]) => {

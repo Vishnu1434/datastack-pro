@@ -233,8 +233,8 @@ function renderOptionIcon({ localProps, isCorrect, isSelected, index }) {
 }
 
 export function resetStats(props) {
-    const { setQuestionIndex, setSelected, setAnswered, setCorrectCount,
-        setIncorrectCount, setSkippedCount, setDisplayReport } = props;
+    const {setQuestionIndex, setSelected, setAnswered, setCorrectCount, setStackIndex,
+        setIncorrectCount, setSkippedCount, setDisplayReport, setTestMetrics } = props;
 
     setQuestionIndex(0);
     setSelected(null);
@@ -242,6 +242,8 @@ export function resetStats(props) {
     setCorrectCount(0);
     setIncorrectCount(0);
     setSkippedCount(0);
+    setTestMetrics({});
+    setStackIndex(0);
     setDisplayReport(false);
 }
 
@@ -326,7 +328,6 @@ function useEffectTimer(localProps, props) {
                 if (practiceType !== "Overall Time" && questionIndex < questions.length - 1) {
                     return handleNext(localProps, props);
                 }
-                console.log("from end use effect here");
                 return endTest(localProps);
             }
 

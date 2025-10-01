@@ -8,7 +8,7 @@ import { BuildingModeBanner, LoadingBanner, NoQuestionsFoundBanner } from "../..
 // const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export default function FlashcardMode(props) {
-  const {difficulty, techStack, topic, practiceType} = props;
+  const {difficulty, selectedTechStacks, topic, practiceType} = props;
 
   const [allQuestions, setAllQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -18,11 +18,11 @@ export default function FlashcardMode(props) {
   useEffectLoadQuestions("theory", {setAllQuestions, setLoading})
 
   useEffect(() => {
-    const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+    const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: selectedTechStacks, topics: topic });
     setQuestions(filtered);
 
     setOpenIndex(null);
-  }, [difficulty, techStack, topic, allQuestions]);
+  }, [difficulty, selectedTechStacks, topic, allQuestions]);
 
   const toggleAnswer = (idx) => setOpenIndex((prev) => (prev === idx ? null : idx));
   const shuffleData = () => setQuestions((prev) => shuffleQuestions(prev));

@@ -3,10 +3,10 @@ import {shuffleQuestions, useEffectLoadQuestions} from "../practicePage.jsx";
 import { CheckCircle, XCircle, Shuffle, AlarmClock  } from "lucide-react";
 import {iconForStack, difficultyBadge, filterQuestions, formatTime} from "../../utils/common.jsx";
 import {examModeBanner, LoadingBanner, NoQuestionsFoundBanner} from "../../utils/infoBanners.jsx";
-import {GetReport} from "../reportPage.jsx";
+import {getReport} from "../reportPage.jsx";
 
 export default function MCQMode(props) {
-    const {difficulty, techStack, topic, practiceType} = props;
+    const {difficulty, selectedTechStacks, topic, practiceType} = props;
 
     const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
@@ -34,7 +34,7 @@ export default function MCQMode(props) {
         questionIndex, allQuestions, setQuestions, selected,
         totalTimeRemaining, setTotalTimeRemaining, testStarted,
         setTestStarted, setDisplayReport, correctCount, incorrectCount,
-        skippedCount, testMetrics, setTestMetrics, techStack, stackIndex,
+        skippedCount, testMetrics, setTestMetrics, selectedTechStacks, stackIndex,
         setStackIndex
     };
 
@@ -44,13 +44,13 @@ export default function MCQMode(props) {
     useEffectTimer(localProps, props);
 
     useEffect(() => {
-        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: selectedTechStacks, topics: topic });
         setQuestions(filtered);
 
         handleShuffle(localProps);
 
         resetStats(localProps);
-    }, [difficulty, techStack, topic, practiceType, allQuestions]);
+    }, [difficulty, selectedTechStacks, topic, practiceType, allQuestions]);
 
     if (loading) {
         return LoadingBanner("MCQs");
@@ -62,10 +62,8 @@ export default function MCQMode(props) {
 
     const clubbedProps = {question, localProps, props, scoreProps};
 
-    return GetReport(localProps);
-
     if (displayReport) {
-        return GetReport(localProps);
+        return getReport(localProps);
     }
 
     if (practiceType !== "Self-Paced" && !testStarted) {
@@ -250,9 +248,9 @@ export function resetStats(props) {
 }
 
 function handleReset(localProps, props) {
-    const {allQuestions, setQuestions, difficulty, techStack, topic} = localProps;
+    const {allQuestions, setQuestions, difficulty, selectedTechStacks, topic} = localProps;
 
-    const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+    const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: selectedTechStacks, topics: topic });
     setQuestions(shuffleQuestions([...filtered]));
 
     resetStats(localProps);

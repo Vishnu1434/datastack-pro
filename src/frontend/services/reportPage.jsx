@@ -3,59 +3,9 @@ import {iconForStack} from "../utils/common.jsx";
 import React, {useState} from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const props = {
-    techStack: ["java"],
-
-    stack: "java",
-    setStack: () => {},
-
-    stackIndex: 0,
-    setStackIndex: () => {},
-    // State tracking answers per stack
-    testMetrics: {
-        python: {
-            correctIds: [1, 3, 5],
-            incorrectIds: [2, 4],
-            skippedIds: [6],
-        },
-        java: {
-            correctIds: [11, 12],
-            incorrectIds: [13],
-            skippedIds: [],
-        },
-    },
-
-    // Full list of questions
-    questions: [
-        { id: 1, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q1" },
-        { id: 2, stack: "python", type: "mcq", topic: "Loops", difficulty: "medium", question: "Q2" },
-        { id: 3, stack: "python", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q3" },
-        { id: 4, stack: "python", type: "mcq", topic: "Lists", difficulty: "hard", question: "Q4" },
-        { id: 5, stack: "python", type: "mcq", topic: "Dicts", difficulty: "medium", question: "Q5" },
-        { id: 6, stack: "python", type: "mcq", topic: "Strings", difficulty: "easy", question: "Q6" },
-        { id: 7, stack: "python", type: "mcq", topic: "Sets", difficulty: "easy", question: "Q7" }, // unattempted
-
-        { id: 11, stack: "java", type: "mcq", topic: "Arrays", difficulty: "easy", question: "Q11" },
-        { id: 12, stack: "java", type: "mcq", topic: "Objects", difficulty: "medium", question: "Q12" },
-        { id: 13, stack: "java", type: "mcq", topic: "Loops", difficulty: "hard", question: "Q13" },
-        { id: 14, stack: "java", type: "mcq", topic: "Functions", difficulty: "easy", question: "Q14" }, // unattempted
-    ],
-
-    // Optional: total counts already computed (can match testMetrics)
-    correctCount: 5,       // sum of correctIds across stacks
-    incorrectCount: 3,     // sum of incorrectIds across stacks
-    skippedCount: 1,       // sum of skippedIds across stacks
-};
-
-
-export function GetReport(localProps) {
-    const {setStack, setStackIndex} = localProps;
-    props.setStack = setStack;
-    props.setStackIndex = setStackIndex;
-    localProps = props;
-
+export function getReport(localProps) {
     return (
-        <div className="w-[90%] mx-auto my-8 transition duration-300 hover:shadow-xl">
+        <div className="bg-transparent p-5 w-[90%] mx-auto">
             <div className="flex gap-6 h-full">
                 {/* LEFT → Summary Report */}
                 <div className="flex flex-col w-[30%] bg-white rounded-xl shadow-lg hover:shadow-xl p-4">
@@ -114,13 +64,12 @@ function getSummaryReport(localProps) {
 }
 
 function getDetailedReport(localProps) {
-    const {stackIndex, testMetrics, questions, techStack} = localProps;
+    const {stackIndex, testMetrics, questions, selectedTechStacks, allTechStacks} = localProps;
+    
+    let techStacks = selectedTechStacks.length > 0 ? selectedTechStacks : allTechStacks;
+    const stack = techStacks[stackIndex];
 
-    const stack = techStack[stackIndex];
-    console.log("stack index is: ", stackIndex);
-    console.log("stack is: ", stack);
-
-    const stackMetrics = testMetrics[stack];
+    const stackMetrics = testMetrics[stack.toLowerCase()];
     const {correctIds, incorrectIds, skippedIds} = stackMetrics;
 
     const stackQuestions = questions.filter(q => q.stack === stack);
@@ -128,7 +77,7 @@ function getDetailedReport(localProps) {
     const attemptedCount  = correctIds.length + incorrectIds.length + skippedIds.length;
     const unattemptedCount = stackQuestionsCount - attemptedCount;
 
-    const stackCount = techStack.length;
+    const stackCount = selectedTechStacks.length;
     console.log("stack count is: ", stackCount);
 
     return (
@@ -171,7 +120,7 @@ function getDetailedReport(localProps) {
                 <button onClick={() => handlePrevReport(localProps)} disabled={stackIndex <= 0} className="px-2 py-1 text-sm  bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
                     <ChevronLeft />
                 </button>
-                <button onClick={() => handleNextReport(localProps)} disabled={stackIndex >= techStack.length - 1} className="px-2 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
+                <button onClick={() => handleNextReport(localProps)} disabled={stackIndex >= techStacks.length - 1} className="px-2 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" >
                     <ChevronRight />
                 </button>
             </div>

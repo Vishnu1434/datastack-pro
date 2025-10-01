@@ -3,7 +3,7 @@ import { loadQuestions } from "../practicePage.jsx";
 import { filterQuestions } from "../../utils/common.jsx";
 import { Flame, Skull } from "lucide-react";
 
-function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
+function SurvivalMode({ difficulty = [], selectedTechStacks = [], topic = [] }) {
     const [allQuestions, setAllQuestions] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [current, setCurrent] = useState(0);
@@ -22,7 +22,7 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
             if (!mounted) return;
 
             setAllQuestions(mcqs);
-            const filtered = filterQuestions(mcqs, { difficulties: difficulty, techStacks: techStack, topics: topic });
+            const filtered = filterQuestions(mcqs, { difficulties: difficulty, techStacks: selectedTechStacks, topics: topic });
             setQuestions(filtered.sort(() => 0.5 - Math.random()));
             setLoading(false);
         }
@@ -31,7 +31,7 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
     }, []);
 
     useEffect(() => {
-        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: techStack, topics: topic });
+        const filtered = filterQuestions(allQuestions, { difficulties: difficulty, techStacks: selectedTechStacks, topics: topic });
         setQuestions(filtered.sort(() => 0.5 - Math.random()));
         setCurrent(0);
         setStreak(0);
@@ -42,7 +42,7 @@ function SurvivalMode({ difficulty = [], techStack = [], topic = [] }) {
             clearTimeout(timerRef.current);
             timerRef.current = null;
         }
-    }, [difficulty, techStack, topic, allQuestions]);
+    }, [difficulty, selectedTechStacks, topic, allQuestions]);
 
     useEffect(() => () => {
         if (timerRef.current) clearTimeout(timerRef.current);

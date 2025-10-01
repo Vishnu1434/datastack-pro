@@ -5,12 +5,13 @@ import * as commonUtils from "../utils/common.jsx";
 import * as constants from "../resources/constants.jsx";
 import * as styles from "../utils/styles.jsx";
 
-const { techStacks, topicsByStack}  = await commonUtils.load_manifest();
+const {techStacks, topicsByStack}  = await commonUtils.load_manifest();
 const allTopics = Array.from(new Set(Object.values(topicsByStack).flat()));
 
 function PracticePage() {
     const [activeMode, setActiveMode] = useState("Flashcards");
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
+    const [allTechStacks, setAllTechStacks] = useState(techStacks);
     const [selectedTechStacks, setSelectedTechStacks] = useState([]);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [availableTopics, setAvailableTopics] = useState([]);
@@ -123,7 +124,8 @@ function PracticePage() {
 
     const props = {
         difficulty: selectedDifficulties,
-        techStack: selectedTechStacks,
+        allTechStacks: allTechStacks,
+        selectedTechStacks: selectedTechStacks,
         topic: selectedTopics,
         practiceType: selectedPracticeType,
         onExamStateChange: setExamState,

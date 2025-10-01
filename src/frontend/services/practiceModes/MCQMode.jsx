@@ -304,7 +304,6 @@ function handleNext(localProps, props) {
 
     const {practiceType} = props;
 
-    console.log("from handle next here");
     handleSkip(localProps);
 
     setSelected(null);

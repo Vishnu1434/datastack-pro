@@ -150,8 +150,6 @@ function suggestedTopics(stackQuestions, stackMetrics) {
         }
     });
 
-    console.log(topicStats);
-
     // Calculate score % per topic (based on attempted questions)
     const topicScores = Object.entries(topicStats).map(([topic, stats]) => {
         const percent = stats.attempted > 0 ? Math.round((stats.correct / stats.attempted) * 100) : 0;
@@ -237,7 +235,6 @@ function getSummaryRow(totalQuestions, {label, count, colorClass}) {
 }
 
 function handleNextReport(localProps) {
-    console.log("next report called here");
     const {setStackIndex} = localProps;
     setStackIndex((p) => p + 1);
 }

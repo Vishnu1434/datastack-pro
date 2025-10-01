@@ -4,11 +4,11 @@
   topic: Basics
   difficulty: easy
   question: Which SQL keyword is used to remove duplicates from a query result?
-  options: null
-  '1': DISTINCT
-  '2': UNIQUE
-  '3': GROUP BY
-  '4': FILTER
+  options:
+    '1': DISTINCT
+    '2': UNIQUE
+    '3': GROUP BY
+    '4': FILTER
   answer: '1'
 
 - stack: sql
@@ -17,11 +17,11 @@
   topic: Basics
   difficulty: medium
   question: Which clause is used with aggregate functions to filter data?
-  options: null
-  '1': WHERE
-  '2': HAVING
-  '3': GROUP BY
-  '4': SORT BY
+  options:
+    '1': WHERE
+    '2': HAVING
+    '3': GROUP BY
+    '4': SORT BY
   answer: '2'
 
 - stack: sql
@@ -30,11 +30,11 @@
   topic: Basics
   difficulty: medium
   question: Which type of JOIN returns records that have matching values in both tables?
-  options: null
-  '1': LEFT JOIN
-  '2': OUTER JOIN
-  '3': INNER JOIN
-  '4': CROSS JOIN
+  options:
+    '1': LEFT JOIN
+    '2': OUTER JOIN
+    '3': INNER JOIN
+    '4': CROSS JOIN
   answer: '3'
 
 - stack: sql
@@ -43,11 +43,11 @@
   topic: Basics
   difficulty: hard
   question: Which of the following describes a correlated subquery?
-  options: null
-  '1': Runs before the outer query is executed
-  '2': Does not depend on outer query values
-  '3': Is executed once for each row of the outer query
-  '4': Cannot use aggregate functions
+  options:
+    '1': Runs before the outer query is executed
+    '2': Does not depend on outer query values
+    '3': Is executed once for each row of the outer query
+    '4': Cannot use aggregate functions
   answer: '3'
 
 - stack: sql
@@ -56,11 +56,11 @@
   topic: Basics
   difficulty: hard
   question: Which of the following is NOT part of ACID properties?
-  options: null
-  '1': Atomicity
-  '2': Consistency
-  '3': Durability
-  '4': Availability
+  options:
+    '1': Atomicity
+    '2': Consistency
+    '3': Durability
+    '4': Availability
   answer: '4'
 
 - stack: sql
@@ -69,11 +69,11 @@
   topic: Indexing
   difficulty: easy
   question: Which index type stores table data rows in sorted order?
-  options: null
-  '1': Non-clustered index
-  '2': Clustered index
-  '3': Composite index
-  '4': Bitmap index
+  options:
+    '1': Non-clustered index
+    '2': Clustered index
+    '3': Composite index
+    '4': Bitmap index
   answer: '2'
 
 - stack: sql
@@ -82,11 +82,11 @@
   topic: Indexing
   difficulty: medium
   question: Which of the following is a drawback of indexes?
-  options: null
-  '1': Increased query execution time
-  '2': Slower data modification operations
-  '3': Reduced storage requirement
-  '4': Lack of sorting ability
+  options:
+    '1': Increased query execution time
+    '2': Slower data modification operations
+    '3': Reduced storage requirement
+    '4': Lack of sorting ability
   answer: '2'
 
 - stack: sql
@@ -95,11 +95,11 @@
   topic: Indexing
   difficulty: medium
   question: Which index type is efficient for low-cardinality values?
-  options: null
-  '1': Hash index
-  '2': B-tree index
-  '3': Bitmap index
-  '4': Non-clustered index
+  options:
+    '1': Hash index
+    '2': B-tree index
+    '3': Bitmap index
+    '4': Non-clustered index
   answer: '3'
 
 - stack: sql
@@ -108,11 +108,11 @@
   topic: Indexing
   difficulty: hard
   question: What happens if a table has no clustered index?
-  options: null
-  '1': Data is stored in arbitrary order
-  '2': Data cannot be retrieved
-  '3': Non-clustered indexes cannot be created
-  '4': Joins will fail
+  options:
+    '1': Data is stored in arbitrary order
+    '2': Data cannot be retrieved
+    '3': Non-clustered indexes cannot be created
+    '4': Joins will fail
   answer: '1'
 
 - stack: sql
@@ -121,11 +121,11 @@
   topic: Views
   difficulty: easy
   question: What is a view in SQL?
-  options: null
-  '1': A stored query result
-  '2': A virtual table
-  '3': A stored procedure
-  '4': A transaction log
+  options:
+    '1': A stored query result
+    '2': A virtual table
+    '3': A stored procedure
+    '4': A transaction log
   answer: '2'
 
 - stack: sql
@@ -134,11 +134,11 @@
   topic: Views
   difficulty: medium
   question: Which of these makes a view non-updatable?
-  options: null
-  '1': Using aggregate functions
-  '2': Referring to one table
-  '3': Excluding NULL constraints
-  '4': Using WHERE clause
+  options:
+    '1': Using aggregate functions
+    '2': Referring to one table
+    '3': Excluding NULL constraints
+    '4': Using WHERE clause
   answer: '1'
 
 - stack: sql
@@ -147,11 +147,11 @@
   topic: Views
   difficulty: medium
   question: What does a materialized view store?
-  options: null
-  '1': Only query definition
-  '2': Query results physically
-  '3': Indexes only
-  '4': Temporary logs
+  options:
+    '1': Only query definition
+    '2': Query results physically
+    '3': Indexes only
+    '4': Temporary logs
   answer: '2'
 
 - stack: sql
@@ -160,11 +160,11 @@
   topic: Optimization
   difficulty: easy
   question: What is the purpose of SQL query optimization?
-  options: null
-  '1': To enforce data integrity
-  '2': To improve performance
-  '3': To store data efficiently
-  '4': To prevent deadlocks
+  options:
+    '1': To enforce data integrity
+    '2': To improve performance
+    '3': To store data efficiently
+    '4': To prevent deadlocks
   answer: '2'
 
 - stack: sql
@@ -173,11 +173,11 @@
   topic: Optimization
   difficulty: medium
   question: Which statement is true about using indexes for optimization?
-  options: null
-  '1': They always improve performance
-  '2': They may slow down data modifications
-  '3': They prevent deadlocks
-  '4': They remove the need for joins
+  options:
+    '1': They always improve performance
+    '2': They may slow down data modifications
+    '3': They prevent deadlocks
+    '4': They remove the need for joins
   answer: '2'
 
 - stack: sql
@@ -186,11 +186,11 @@
   topic: Optimization
   difficulty: medium
   question: What is a query execution plan used for?
-  options: null
-  '1': To display user queries
-  '2': To define table structures
-  '3': To show how the database retrieves data
-  '4': To enforce constraints
+  options:
+    '1': To display user queries
+    '2': To define table structures
+    '3': To show how the database retrieves data
+    '4': To enforce constraints
   answer: '3'
 
 - stack: sql
@@ -199,11 +199,11 @@
   topic: Optimization
   difficulty: hard
   question: Which optimizer type bases its decision on statistics?
-  options: null
-  '1': Cost-based optimizer
-  '2': Rule-based optimizer
-  '3': Heuristic optimizer
-  '4': Standard optimizer
+  options:
+    '1': Cost-based optimizer
+    '2': Rule-based optimizer
+    '3': Heuristic optimizer
+    '4': Standard optimizer
   answer: '1'
 
 - stack: sql
